@@ -556,31 +556,88 @@
               :class="darkMode ? 'bg-gray-800' : 'bg-white'"
             >
               <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                📁 Estructura de Archivos
+                📁 Estructura de Archivos Next.js 14+
               </h3>
+
+              <!-- Explicación de la estructura -->
+              <div class="mb-4 p-3 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
+                <h4 class="font-bold mb-2 text-sm" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
+                  🤔 ¿Por qué esta estructura? - Para Dummies
+                </h4>
+                <p class="text-xs" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  Next.js 14+ usa <strong>App Router</strong> que organiza rutas por carpetas. Es como Express routes pero basado en el sistema de archivos.
+                </p>
+              </div>
+
               <pre
                 class="p-4 rounded-lg text-xs overflow-x-auto transition-colors duration-300"
                 :class="darkMode ? 'bg-gray-900 text-green-400' : 'bg-gray-900 text-green-400'"
               ><code>src/
-├── app/                    # App Router (Next.js 14+)
-│   ├── globals.css        # Estilos globales
-│   ├── layout.tsx         # Layout principal
-│   ├── page.tsx          # Página home
-│   ├── users/
-│   │   ├── page.tsx      # Lista usuarios (/users)
-│   │   └── [id]/
-│   │       └── page.tsx  # Usuario específico (/users/123)
-│   └── api/
-│       └── users/
-│           └── route.ts  # API routes
-├── components/
-│   ├── ui/               # Componentes base
-│   └── forms/           # Formularios
-├── lib/
-│   ├── api.ts           # Funciones API
-│   ├── types.ts         # Tipos TypeScript
-│   └── utils.ts         # Utilidades
-└── hooks/               # Custom hooks</code></pre>
+├── app/                      # 📂 CORE: App Router de Next.js (similar a routes/ en Express)
+│   ├── globals.css          # 🎨 Estilos globales (como reset CSS, Tailwind imports)
+│   ├── layout.tsx           # 🏗️ Layout raíz (HTML wrapper, navbar, footer comunes)
+│   ├── page.tsx            # 🏠 Página principal (ruta "/", como index.html)
+│   ├── loading.tsx         # ⏳ Loading UI automático (fallback mientras carga)
+│   ├── error.tsx           # ❌ Error boundary (maneja errores de la app)
+│   ├── not-found.tsx       # 404 Error page personalizada
+│   │
+│   ├── users/              # 📂 RUTA: /users (como Express router.use('/users'))
+│   │   ├── page.tsx       # 📄 Lista usuarios (/users) - Server Component
+│   │   ├── loading.tsx    # ⏳ Loading específico para /users
+│   │   └── [id]/         # 📂 PARÁMETRO DINÁMICO: /users/:id
+│   │       ├── page.tsx  # 📄 Usuario específico (/users/123)
+│   │       └── edit/     # 📂 SUBRUTA: /users/123/edit
+│   │           └── page.tsx # 📝 Formulario editar usuario
+│   │
+│   ├── dashboard/          # 📂 RUTA: /dashboard (área privada)
+│   │   ├── layout.tsx     # 🏗️ Layout específico (sidebar, auth guard)
+│   │   ├── page.tsx       # 📊 Dashboard principal
+│   │   └── settings/      # 📂 SUBRUTA: /dashboard/settings
+│   │       └── page.tsx   # ⚙️ Página configuración
+│   │
+│   └── api/               # 📂 API ROUTES: Tu backend interno (como Express routes)
+│       ├── users/         # 📂 ENDPOINT: /api/users
+│       │   └── route.ts   # 🔌 GET/POST /api/users (tu backend)
+│       └── auth/          # 📂 ENDPOINT: /api/auth
+│           └── route.ts   # 🔐 Autenticación
+│
+├── components/            # 📂 COMPONENTES REUTILIZABLES (tu librería de UI)
+│   ├── ui/               # 📂 Componentes base (Button, Input, Modal)
+│   │   ├── button.tsx    # 🔘 Botón reutilizable con variantes
+│   │   ├── input.tsx     # 📝 Input con validación y estilos
+│   │   └── modal.tsx     # 🪟 Modal/Dialog reutilizable
+│   │
+│   ├── forms/            # 📂 Formularios específicos de negocio
+│   │   ├── CreateUserForm.tsx  # 📋 Formulario crear usuario
+│   │   └── LoginForm.tsx       # 🔐 Formulario login
+│   │
+│   └── layout/           # 📂 Componentes de layout
+│       ├── Header.tsx    # 🎯 Header/Navbar
+│       ├── Footer.tsx    # 📄 Footer
+│       └── Sidebar.tsx   # 📱 Sidebar/Menu lateral
+│
+├── lib/                  # 📂 LÓGICA DE NEGOCIO (tu backend client)
+│   ├── api.ts           # 🌐 Cliente HTTP (fetch functions a tu API)
+│   ├── auth.ts          # 🔐 Lógica autenticación (tokens, sessions)
+│   ├── types.ts         # 📋 Tipos TypeScript compartidos
+│   ├── utils.ts         # 🛠️ Utilidades (formatters, validators)
+│   ├── constants.ts     # 📦 Constantes (URLs, configs)
+│   └── validations.ts   # ✅ Esquemas Zod para validación
+│
+├── hooks/               # 📂 CUSTOM HOOKS (lógica reutilizable)
+│   ├── useAuth.ts       # 🔐 Hook autenticación
+│   ├── useUsers.ts      # 👥 Hook para manejo usuarios
+│   └── useLocalStorage.ts # 💾 Hook para localStorage
+│
+├── providers/           # 📂 CONTEXT PROVIDERS (estado global)
+│   ├── AuthProvider.tsx # 🔐 Contexto autenticación
+│   └── QueryProvider.tsx # 🔄 React Query provider
+│
+├── middleware.ts        # 🛡️ Middleware Next.js (auth, redirects)
+├── next.config.js       # ⚙️ Configuración Next.js
+├── tailwind.config.js   # 🎨 Configuración Tailwind CSS
+├── tsconfig.json       # 📘 Configuración TypeScript
+└── package.json        # 📦 Dependencias y scripts</code></pre>
             </div>
           </div>
         </div>
@@ -619,110 +676,182 @@
               <div class="space-y-6">
                 <!-- Step 1: Backend -->
                 <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    1️⃣ Backend (Node.js/Express)
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Endpoint para crear usuario:
-                  </p>
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-green-600 text-white text-xs font-bold rounded">🔧 BACKEND</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                      1️⃣ API Endpoint (Node.js/Express)
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-green-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>routes/users.js</code> o <code>controllers/userController.js</code></p>
+                    <p><strong>🎯 Propósito:</strong> Recibe datos del frontend, valida y guarda usuario en BD</p>
+                    <p><strong>🔗 Endpoint:</strong> <code>POST /api/users</code> - Crea un nuevo usuario</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Es tu lógica de backend familiar, como siempre has hecho</p>
+                  </div>
                   <pre
                     class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
                     :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// routes/users.js
+                  ><code>// routes/users.js - Tu backend Express familiar
 app.post('/api/users', async (req, res) => {
   try {
     const { name, email, role } = req.body;
     
-    // Validación
+    // Validación básica (como siempre haces)
     if (!name || !email) {
       return res.status(400).json({ 
+        success: false,
         error: 'Name and email are required' 
       });
     }
     
-    // Crear usuario en base de datos
-    const user = await User.create({ name, email, role });
+    // Crear usuario en base de datos (Mongoose, Sequelize, Prisma, etc.)
+    const user = await User.create({ name, email, role: role || 'user' });
     
+    // Respuesta estructurada para el frontend
     res.status(201).json({
       success: true,
-      data: user,
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        createdAt: user.createdAt
+      },
       message: 'Usuario creado exitosamente'
     });
   } catch (error) {
+    // Manejo de errores para el frontend
     res.status(500).json({ 
-      error: error.message 
+      success: false,
+      error: error.message,
+      code: 'USER_CREATION_FAILED'
     });
   }
 });</code></pre>
                 </div>
 
                 <!-- Step 2: Types -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                    2️⃣ Tipos TypeScript
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/lib/types.ts</code
-                    >
-                  </p>
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded">📘 SHARED</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
+                      2️⃣ Tipos TypeScript Compartidos
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-purple-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>src/lib/types.ts</code></p>
+                    <p><strong>🎯 Propósito:</strong> Definir interfaces que frontend y backend comparten</p>
+                    <p><strong>🔗 Uso:</strong> Tanto en componentes React como en validaciones de API</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Como tus DTOs en backend, pero para TypeScript</p>
+                  </div>
                   <pre
                     class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
                     :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/lib/types.ts
+                  ><code>// src/lib/types.ts - Contratos de datos compartidos
+// Como tus interfaces/DTOs en backend, pero para el frontend
+
+// Usuario completo (respuesta de la API)
 export interface User {
   id: string;
   name: string;
   email: string;
   role: 'admin' | 'user';
   createdAt: string;
+  updatedAt: string;
 }
 
+// Datos para crear usuario (request al backend)
 export interface CreateUserRequest {
   name: string;
   email: string;
   role?: 'admin' | 'user';
 }
 
+// Respuesta estándar de tu API (como siempre estructuras tus responses)
 export interface ApiResponse&lt;T&gt; {
   success: boolean;
   data?: T;
   error?: string;
+  code?: string;
+  message?: string;
+}
+
+// Estados del formulario (para React)
+export interface CreateUserFormData {
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+  // Estados de UI
+  isSubmitting?: boolean;
+  errors?: Record&lt;string, string&gt;;
+}</code></pre>
+                </div>
   message?: string;
 }</code></pre>
                 </div>
 
                 <!-- Step 3: API Function -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
-                    3️⃣ Función API
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/lib/api.ts</code
-                    >
-                  </p>
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded">🌐 FRONTEND</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                      3️⃣ Cliente API (HTTP Client)
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-blue-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>src/lib/api.ts</code></p>
+                    <p><strong>🎯 Propósito:</strong> Funciones que conectan frontend con tu backend</p>
+                    <p><strong>🔗 Uso:</strong> Wrapper de fetch() con manejo de errores y tipos</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Como Axios/HTTP client, pero con TypeScript y específico para tu API</p>
+                  </div>
                   <pre
                     class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
                     :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/lib/api.ts
+                  ><code>// src/lib/api.ts - Cliente HTTP para comunicarse con tu backend
 import { User, CreateUserRequest, ApiResponse } from './types';
 
+// URL base de tu API backend
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+// Función para crear usuario (llama a tu endpoint backend)
 export async function createUser(userData: CreateUserRequest): Promise&lt;User&gt; {
-  const response = await fetch(\`\${API_BASE_URL}/api/users\`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
+  try {
+    const response = await fetch(\`\${API_BASE_URL}/api/users\`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Si usas auth: 'Authorization': \`Bearer \${token}\`
+      },
+      body: JSON.stringify(userData),
+    });
+
+    // Parsear respuesta JSON
+    const result: ApiResponse&lt;User&gt; = await response.json();
+    
+    // Manejar errores del backend
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'Error creating user');
+    }
+
+    return result.data!; // Retornar solo los datos del usuario
+    
+  } catch (error) {
+    // Re-throw con mensaje más descriptivo
+    throw new Error(
+      error instanceof Error ? error.message : 'Network error'
+    );
+  }
+}
+
+// Función para obtener usuarios (para el siguiente ejemplo)
+export async function getUsers(): Promise&lt;User[]&gt; {
+  const response = await fetch(\`\${API_BASE_URL}/api/users\`);
+  const result: ApiResponse&lt;User[]&gt; = await response.json();
+  
+  if (!result.success) throw new Error(result.error);
+  return result.data || [];
+}</code></pre>
+                </div>
   });
 
   if (!response.ok) {
@@ -748,27 +877,152 @@ export async function getUsers(): Promise&lt;User[]&gt; {
 
                 <!-- Step 4: Form Component -->
                 <div class="border-l-4 pl-4" :class="darkMode ? 'border-orange-400' : 'border-orange-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
-                    4️⃣ Componente Formulario
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/components/forms/CreateUserForm.tsx</code
-                    >
-                  </p>
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-orange-600 text-white text-xs font-bold rounded">⚛️ FRONTEND</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
+                      4️⃣ Componente React (Formulario)
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-orange-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>src/components/forms/CreateUserForm.tsx</code></p>
+                    <p><strong>🎯 Propósito:</strong> Interfaz de usuario para crear usuarios con validación</p>
+                    <p><strong>🔗 Uso:</strong> Se importa en páginas que necesiten crear usuarios</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Componente reutilizable que maneja estado, validación y envío a la API</p>
+                  </div>
                   <pre
                     class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
                     :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>'use client';
+                  ><code>'use client'; // Next.js Client Component (interactivo)
 
 import { useState } from 'react';
-import { createUser } from '@/lib/api';
-import { CreateUserRequest } from '@/lib/types';
+import { createUser } from '@/lib/api'; // Tu función HTTP client
+import { CreateUserRequest } from '@/lib/types'; // Tipos compartidos
 
 export default function CreateUserForm() {
+  // Estado local del formulario (como variables en memoria)
+  const [formData, setFormData] = useState&lt;CreateUserRequest&gt;({
+    name: '',
+    email: '',
+    role: 'user',
+  });
+  
+  // Estados de UI para feedback al usuario
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  // Manejar cambios en los inputs
+  const handleInputChange = (e: React.ChangeEvent&lt;HTMLInputElement | HTMLSelectElement&gt;) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Limpiar errores cuando usuario empieza a escribir
+    if (error) setError('');
+  };
+
+  // Enviar datos al backend
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validación frontend (adicional a la del backend)
+    if (!formData.name.trim() || !formData.email.trim()) {
+      setError('Nombre y email son obligatorios');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      // Llamar a tu API backend
+      const newUser = await createUser(formData);
+      
+      // Éxito: resetear formulario y mostrar confirmación
+      setSuccess(true);
+      setFormData({ name: '', email: '', role: 'user' });
+      
+      // Auto-ocultar mensaje de éxito después de 3s
+      setTimeout(() => setSuccess(false), 3000);
+      
+    } catch (err) {
+      // Mostrar error del backend al usuario
+      setError(err instanceof Error ? err.message : 'Error inesperado');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md"&gt;
+      &lt;h2 className="text-xl font-bold mb-4"&gt;Crear Usuario&lt;/h2&gt;
+      
+      {/* Campo Nombre */}
+      &lt;div className="mb-4"&gt;
+        &lt;label className="block text-sm font-medium mb-2"&gt;Nombre&lt;/label&gt;
+        &lt;input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      {/* Campo Email */}
+      &lt;div className="mb-4"&gt;
+        &lt;label className="block text-sm font-medium mb-2"&gt;Email&lt;/label&gt;
+        &lt;input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      {/* Campo Rol */}
+      &lt;div className="mb-4"&gt;
+        &lt;label className="block text-sm font-medium mb-2"&gt;Rol&lt;/label&gt;
+        &lt;select
+          name="role"
+          value={formData.role}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        &gt;
+          &lt;option value="user"&gt;Usuario&lt;/option&gt;
+          &lt;option value="admin"&gt;Administrador&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      {/* Mensajes de estado */}
+      {error && (
+        &lt;div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded"&gt;
+          {error}
+        &lt;/div&gt;
+      )}
+
+      {success && (
+        &lt;div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded"&gt;
+          ¡Usuario creado exitosamente!
+        &lt;/div&gt;
+      )}
+
+      {/* Botón Submit */}
+      &lt;button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+      &gt;
+        {isSubmitting ? 'Creando...' : 'Crear Usuario'}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+                </div>
   const [formData, setFormData] = useState&lt;CreateUserRequest&gt;({
     name: '',
     email: '',
@@ -963,26 +1217,100 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
               <div class="space-y-6">
                 <!-- Users List Component -->
                 <div class="border-l-4 pl-4" :class="darkMode ? 'border-indigo-400' : 'border-indigo-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-indigo-400' : 'text-indigo-600'">
-                    📄 Lista de Usuarios (Server Component)
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/app/users/page.tsx</code
-                    >
-                  </p>
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-indigo-600 text-white text-xs font-bold rounded">⚛️ FRONTEND</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-indigo-400' : 'text-indigo-600'">
+                      1️⃣ Página Lista de Usuarios (Server Component)
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-indigo-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>src/app/users/page.tsx</code></p>
+                    <p><strong>🎯 Propósito:</strong> Página que muestra lista de usuarios obtenida del servidor</p>
+                    <p><strong>🔗 Ruta:</strong> <code>/users</code> - Se accede desde navegador</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Next.js App Router: carpeta = ruta, page.tsx = página</p>
+                  </div>
                   <pre
                     class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
                     :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/app/users/page.tsx
+                  ><code>// src/app/users/page.tsx - Página de lista de usuarios
 import Link from 'next/link';
-import { getUsers } from '@/lib/api';
+import { getUsers } from '@/lib/api'; // Función que consulta tu backend
+import UserCard from '@/components/ui/UserCard'; // Componente reutilizable
 
+// Server Component: se ejecuta en el servidor (como SSR)
 export default async function UsersPage() {
-  // Esto se ejecuta en el servidor
+  // Esta función se ejecuta en el servidor durante el build/request
+  // Es como hacer una consulta a BD directamente, pero llamando a tu API
+  let users = [];
+  let error = null;
+
+  try {
+    // Consultar tu API backend durante el server-side rendering
+    users = await getUsers();
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    error = err instanceof Error ? err.message : 'Error loading users';
+  }
+
+  // Si hay error, mostrar página de error
+  if (error) {
+    return (
+      &lt;div className="container mx-auto px-4 py-8"&gt;
+        &lt;h1 className="text-2xl font-bold text-red-600 mb-4"&gt;Error&lt;/h1&gt;
+        &lt;p&gt;{error}&lt;/p&gt;
+        &lt;Link href="/" className="text-blue-500 hover:underline"&gt;
+          Volver al inicio
+        &lt;/Link&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  // Renderizar lista de usuarios
+  return (
+    &lt;div className="container mx-auto px-4 py-8"&gt;
+      {/* Header con botón crear */}
+      &lt;div className="flex justify-between items-center mb-6"&gt;
+        &lt;h1 className="text-3xl font-bold text-gray-900"&gt;Usuarios&lt;/h1&gt;
+        &lt;Link 
+          href="/users/create" 
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        &gt;
+          + Crear Usuario
+        &lt;/Link&gt;
+      &lt;/div&gt;
+
+      {/* Lista vacía */}
+      {users.length === 0 ? (
+        &lt;div className="text-center py-12"&gt;
+          &lt;p className="text-gray-500 text-lg"&gt;No hay usuarios registrados&lt;/p&gt;
+          &lt;Link href="/users/create" className="text-blue-500 hover:underline"&gt;
+            Crear el primer usuario
+          &lt;/Link&gt;
+        &lt;/div&gt;
+      ) : (
+        &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+          {users.map((user) => (
+            &lt;UserCard 
+              key={user.id} 
+              user={user} 
+              // Props para acciones
+              showActions={true}
+              onEdit={() => console.log('Edit user', user.id)}
+              onDelete={() => console.log('Delete user', user.id)}
+            /&gt;
+          ))}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+// Metadata para SEO (opcional)
+export const metadata = {
+  title: 'Usuarios - Mi App',
+  description: 'Lista de usuarios registrados en la aplicación',
+};</code></pre>
+                </div>
   const users = await getUsers();
 
   return (
@@ -1047,6 +1375,136 @@ export const metadata = {
   title: 'Usuarios - Mi App',
   description: 'Lista de todos los usuarios del sistema',
 };</code></pre>
+                </div>
+
+                <!-- User Card Component -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-pink-400' : 'border-pink-500'">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="px-2 py-1 bg-pink-600 text-white text-xs font-bold rounded">🧩 COMPONENT</span>
+                    <h4 class="font-bold" :class="darkMode ? 'text-pink-400' : 'text-pink-600'">
+                      2️⃣ Componente Reutilizable (UserCard)
+                    </h4>
+                  </div>
+                  <div class="text-sm mb-3 p-2 rounded" :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-pink-50 text-gray-700'">
+                    <p><strong>📁 Archivo:</strong> <code>src/components/ui/UserCard.tsx</code></p>
+                    <p><strong>🎯 Propósito:</strong> Tarjeta reutilizable para mostrar información de usuario</p>
+                    <p><strong>🔗 Uso:</strong> Se importa en múltiples páginas que muestren usuarios</p>
+                    <p><strong>🧠 ¿Por qué aquí?</strong> Componente atómico reutilizable, evita duplicar código</p>
+                  </div>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/components/ui/UserCard.tsx - Componente reutilizable
+import Link from 'next/link';
+import { User } from '@/lib/types'; // Tipos compartidos
+
+interface UserCardProps {
+  user: User;                    // Datos del usuario
+  showActions?: boolean;         // Mostrar botones de acción
+  onEdit?: () => void;          // Callback para editar
+  onDelete?: () => void;        // Callback para eliminar
+  className?: string;           // Clases CSS adicionales
+}
+
+export default function UserCard({ 
+  user, 
+  showActions = false, 
+  onEdit, 
+  onDelete, 
+  className = "" 
+}: UserCardProps) {
+  return (
+    &lt;div 
+      className={\`bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 \${className}\`}
+    &gt;
+      {/* Avatar y nombre */}
+      &lt;div className="flex items-start justify-between mb-4"&gt;
+        &lt;div className="flex items-center space-x-3"&gt;
+          {/* Avatar generado con iniciales */}
+          &lt;div className="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center font-semibold"&gt;
+            {user.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+          &lt;/div&gt;
+          
+          &lt;div&gt;
+            &lt;h3 className="text-lg font-semibold text-gray-800"&gt;
+              {user.name}
+            &lt;/h3&gt;
+            &lt;p className="text-sm text-gray-500"&gt;
+              Desde {new Date(user.createdAt).toLocaleDateString()}
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Badge de rol */}
+        &lt;span className={\`px-2 py-1 rounded-full text-xs font-medium \${
+          user.role === 'admin' 
+            ? 'bg-purple-100 text-purple-800' 
+            : 'bg-gray-100 text-gray-800'
+        }\`}&gt;
+          {user.role === 'admin' ? '👑 Admin' : '👤 Usuario'}
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+      {/* Información de contacto */}
+      &lt;div className="space-y-2 mb-4"&gt;
+        &lt;div className="flex items-center text-sm text-gray-600"&gt;
+          &lt;span className="w-4 h-4 mr-2"&gt;📧&lt;/span&gt;
+          &lt;span&gt;{user.email}&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      {/* Acciones */}
+      {showActions && (
+        &lt;div className="flex space-x-2 pt-4 border-t border-gray-100"&gt;
+          &lt;Link
+            href={\`/users/\${user.id}\`}
+            className="flex-1 text-center px-3 py-2 text-sm text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors"
+          &gt;
+            Ver detalles
+          &lt;/Link&gt;
+          
+          {onEdit && (
+            &lt;button
+              onClick={onEdit}
+              className="flex-1 px-3 py-2 text-sm text-green-600 bg-green-50 rounded-md hover:bg-green-100 transition-colors"
+            &gt;
+              Editar
+            &lt;/button&gt;
+          )}
+          
+          {onDelete && (
+            &lt;button
+              onClick={onDelete}
+              className="px-3 py-2 text-sm text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors"
+            &gt;
+              🗑️
+            &lt;/button&gt;
+          )}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+// Variante loading skeleton para mientras cargan los datos
+export function UserCardSkeleton() {
+  return (
+    &lt;div className="bg-white rounded-lg shadow-md p-6 animate-pulse"&gt;
+      &lt;div className="flex items-center space-x-3 mb-4"&gt;
+        &lt;div className="w-12 h-12 bg-gray-300 rounded-full"&gt;&lt;/div&gt;
+        &lt;div className="space-y-2"&gt;
+          &lt;div className="h-4 bg-gray-300 rounded w-24"&gt;&lt;/div&gt;
+          &lt;div className="h-3 bg-gray-200 rounded w-20"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className="h-3 bg-gray-200 rounded w-32 mb-4"&gt;&lt;/div&gt;
+      &lt;div className="flex space-x-2"&gt;
+        &lt;div className="flex-1 h-8 bg-gray-200 rounded"&gt;&lt;/div&gt;
+        &lt;div className="flex-1 h-8 bg-gray-200 rounded"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
                 </div>
               </div>
             </div>
