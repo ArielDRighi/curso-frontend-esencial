@@ -1,0 +1,41 @@
+{
+  "name": "frontend-esencial-curso",
+  "version": "1.0.0",
+  "description": "Curso interactivo de Frontend para desarrolladores Backend",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 8000",
+    "dev": "npx live-server --port=8000 --entry-file=index.html",
+    "build": "echo 'No build process needed - static files'",
+    "deploy": "echo 'Ready for deployment to any static hosting service'"
+  },
+  "keywords": [
+    "frontend",
+    "react",
+    "typescript",
+    "nextjs",
+    "tailwindcss",
+    "curso",
+    "educacion",
+    "desarrollo-web"
+  ],
+  "author": "Curso Frontend Esencial",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "Tu repositorio aquí"
+  },
+  "bugs": {
+    "url": "Tu sistema de issues aquí"
+  },
+  "homepage": "."
+}

@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Esencial - Curso Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .module-card {
+        transition: all 0.3s ease;
+      }
+      .module-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .progress-ring {
+        transition: stroke-dasharray 0.35s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+      }
+    </style>
+  </head>
+  <body
+    class="font-sans transition-colors duration-300"
+    :class="darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'"
+    x-data="courseApp()"
+  >
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+      <div class="container mx-auto px-4 py-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="text-3xl font-bold">🚀</div>
+            <div>
+              <h1 class="text-2xl font-bold">Frontend Esencial</h1>
+              <p class="text-blue-100">Curso Interactivo para Desarrolladores Backend</p>
+            </div>
+            <!-- Mobile Theme Toggle -->
+            <button
+              @click="toggleDarkMode()"
+              class="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white ml-auto"
+              title="Cambiar tema"
+            >
+              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <!-- Theme Toggle Button -->
+            <button
+              @click="toggleDarkMode()"
+              class="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white"
+              title="Cambiar tema"
+            >
+              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </button>
+
+            <div class="text-right">
+              <p class="text-sm text-blue-100">Progreso Total</p>
+              <div class="flex items-center space-x-2">
+                <svg class="w-8 h-8">
+                  <circle cx="16" cy="16" r="14" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" />
+                  <circle
+                    cx="16"
+                    cy="16"
+                    r="14"
+                    stroke="white"
+                    stroke-width="2"
+                    fill="none"
+                    class="progress-ring"
+                    :stroke-dasharray="calculateProgress() + ' 88'"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span class="font-semibold" x-text="Math.round(calculateProgress() * 100 / 88) + '%'"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav
+      class="shadow-md sticky top-0 z-40 transition-colors duration-300"
+      :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+    >
+      <div class="container mx-auto px-4">
+        <div class="flex space-x-8 overflow-x-auto">
+          <button
+            @click="currentView = 'dashboard'"
+            :class="currentView === 'dashboard' ? 
+              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
+              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            📊 Dashboard
+          </button>
+          <button
+            @click="currentView = 'modules'"
+            :class="currentView === 'modules' ? 
+              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
+              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            📚 Módulos
+          </button>
+          <button
+            @click="currentView = 'reference'"
+            :class="currentView === 'reference' ? 
+              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
+              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🔍 Referencia
+          </button>
+          <button
+            @click="currentView = 'ai-prompts'"
+            :class="currentView === 'ai-prompts' ? 
+              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
+              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🤖 Prompts IA
+          </button>
+          <button
+            @click="currentView = 'project'"
+            :class="currentView === 'project' ? 
+              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
+              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🛠️ Proyecto
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Dashboard View -->
+      <div x-show="currentView === 'dashboard'" x-transition:enter.duration.300ms>
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            Dashboard del Curso
+          </h2>
+          <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white mb-8">
+            <h3 class="text-xl font-semibold mb-2">🎯 Objetivo General</h3>
+            <p class="text-blue-100">
+              Capacitar a desarrolladores backend en los fundamentos, mejores prácticas e implementación del desarrollo
+              frontend moderno, utilizando React, TypeScript, Next.js y Tailwind CSS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Duración Total</p>
+                <p class="text-2xl font-bold" :class="darkMode ? 'text-gray-100' : 'text-gray-900'">18 semanas</p>
+              </div>
+              <div class="text-3xl">⏱️</div>
+            </div>
+          </div>
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Módulos</p>
+                <p
+                  class="text-2xl font-bold"
+                  :class="darkMode ? 'text-gray-100' : 'text-gray-900'"
+                  x-text="modules.length"
+                ></p>
+              </div>
+              <div class="text-3xl">📚</div>
+            </div>
+          </div>
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Completados</p>
+                <p class="text-2xl font-bold text-green-600" x-text="getCompletedModules().length"></p>
+              </div>
+              <div class="text-3xl">✅</div>
+            </div>
+          </div>
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Progreso</p>
+                <p
+                  class="text-2xl font-bold text-blue-600"
+                  x-text="Math.round(calculateProgress() * 100 / 88) + '%'"
+                ></p>
+              </div>
+              <div class="text-3xl">📈</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gestión de Progreso -->
+        <div
+          class="rounded-lg p-6 shadow-md mb-8 transition-colors duration-300"
+          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+        >
+          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            ⚙️ Gestión de Progreso
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <button
+              @click="resetAllProgress()"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 flex items-center gap-2"
+            >
+              🔄 Reiniciar Todo
+            </button>
+            <button
+              @click="exportProgress()"
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2"
+            >
+              📥 Exportar Progreso
+            </button>
+          </div>
+          <p class="text-sm mt-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
+            También puedes reiniciar módulos individuales desde cada sección del curso.
+          </p>
+        </div>
+
+        <!-- Learning Path -->
+        <div
+          class="rounded-lg p-6 shadow-md mb-8 transition-colors duration-300"
+          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+        >
+          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            🛣️ Ruta de Aprendizaje
+          </h3>
+          <div class="space-y-4">
+            <template x-for="(module, index) in modules" :key="index">
+              <div
+                class="flex items-center p-4 border rounded-lg cursor-pointer transition-colors duration-300"
+                :class="darkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'"
+                @click="selectModule(index); currentView = 'modules'"
+              >
+                <div
+                  class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-4"
+                  :class="module.completed ? 'bg-green-500 text-white' : (darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-600')"
+                >
+                  <span x-text="module.completed ? '✓' : index + 1"></span>
+                </div>
+                <div class="flex-1">
+                  <h4
+                    class="font-medium"
+                    :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                    x-text="module.title"
+                  ></h4>
+                  <p class="text-sm" :class="darkMode ? 'text-gray-400' : 'text-gray-600'" x-text="module.duration"></p>
+                </div>
+                <div class="text-2xl" x-text="module.emoji"></div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modules View -->
+      <div x-show="currentView === 'modules'" x-transition:enter.duration.300ms>
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Module Sidebar -->
+          <div class="lg:w-1/4">
+            <div
+              class="rounded-lg shadow-md p-4 sticky top-24 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+                📚 Módulos del Curso
+              </h3>
+              <div class="space-y-2">
+                <template x-for="(module, index) in modules" :key="index">
+                  <button
+                    @click="selectModule(index)"
+                    :class="selectedModule === index ? 
+                      'bg-blue-500 text-white' : 
+                      (darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-gray-100 hover:bg-gray-200 text-gray-800')"
+                    class="w-full text-left p-3 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <div class="flex items-center">
+                      <span x-text="module.emoji" class="mr-2"></span>
+                      <span x-text="module.shortTitle || module.title"></span>
+                      <span x-show="module.completed" class="ml-auto text-green-400">✓</span>
+                    </div>
+                  </button>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module Content -->
+          <div class="lg:w-3/4">
+            <div
+              x-show="selectedModule !== null"
+              class="rounded-lg shadow-md p-8 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <template x-for="(module, index) in modules" :key="index">
+                <div x-show="selectedModule === index">
+                  <!-- Module Header -->
+                  <div class="flex items-start justify-between mb-6">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-2">
+                        <span x-text="module.emoji" class="text-3xl mr-3"></span>
+                        <h2
+                          class="text-2xl font-bold"
+                          :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                          x-text="module.title"
+                        ></h2>
+                      </div>
+                      <p
+                        class="mb-2"
+                        :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
+                        x-text="module.duration"
+                      ></p>
+                      <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" x-text="module.objective"></p>
+                    </div>
+                    <div class="ml-4 flex gap-2">
+                      <button
+                        @click="toggleModuleComplete(index)"
+                        :class="module.completed ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'"
+                        class="px-4 py-2 text-white rounded-lg font-medium transition-colors"
+                      >
+                        <span x-text="module.completed ? 'Completado ✓' : 'Marcar Completo'"></span>
+                      </button>
+                      <button
+                        @click="resetModuleProgress(index)"
+                        class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors"
+                        title="Reiniciar progreso de este módulo"
+                      >
+                        🔄
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Module Sections -->
+                  <div class="space-y-6">
+                    <template x-for="(section, sectionIndex) in module.sections" :key="sectionIndex">
+                      <div
+                        class="border-l-4 border-blue-200 pl-6"
+                        :class="darkMode ? 'border-blue-400' : 'border-blue-200'"
+                      >
+                        <h3
+                          class="text-lg font-semibold mb-3"
+                          :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                          x-text="section.title"
+                        ></h3>
+                        <div class="prose max-w-none" :class="darkMode ? 'prose-invert' : ''">
+                          <template x-for="content in section.content" :key="content">
+                            <div
+                              x-html="content"
+                              class="mb-4"
+                              :class="darkMode ? 'text-gray-300' : 'text-gray-700'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+
+                  <!-- Navigation -->
+                  <div
+                    class="flex justify-between mt-8 pt-6 transition-colors duration-300"
+                    :class="darkMode ? 'border-gray-600' : 'border-gray-200'"
+                    style="border-top-width: 1px"
+                  >
+                    <button
+                      x-show="index > 0"
+                      @click="selectModule(index - 1)"
+                      class="px-4 py-2 rounded-lg font-medium transition-colors"
+                      :class="darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'"
+                    >
+                      ← Módulo Anterior
+                    </button>
+                    <button
+                      x-show="index < modules.length - 1"
+                      @click="selectModule(index + 1)"
+                      class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors ml-auto"
+                    >
+                      Siguiente Módulo →
+                    </button>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reference View -->
+      <div x-show="currentView === 'reference'" x-transition:enter.duration.300ms>
+        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+          🔍 Guía de Referencia Práctica
+        </h2>
+
+        <!-- Quick Access Tabs -->
+        <div class="mb-8">
+          <div class="flex flex-wrap gap-2 mb-6">
+            <button
+              @click="referenceTab = 'cheatsheet'"
+              :class="referenceTab === 'cheatsheet' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
+              class="px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              📋 Cheatsheet
+            </button>
+            <button
+              @click="referenceTab = 'fullstack'"
+              :class="referenceTab === 'fullstack' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
+              class="px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              🔗 Backend → Frontend
+            </button>
+            <button
+              @click="referenceTab = 'components'"
+              :class="referenceTab === 'components' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
+              class="px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              🧩 Componentes
+            </button>
+            <button
+              @click="referenceTab = 'styling'"
+              :class="referenceTab === 'styling' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
+              class="px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              🎨 Estilos
+            </button>
+            <button
+              @click="referenceTab = 'deployment'"
+              :class="referenceTab === 'deployment' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
+              class="px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              🚀 Despliegue
+            </button>
+          </div>
+        </div>
+
+        <!-- Cheatsheet Tab -->
+        <div x-show="referenceTab === 'cheatsheet'">
+          <!-- Explicación inicial para dummies -->
+          <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
+            <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
+              🤔 ¿Qué son estos comandos? - Para Dummies
+            </h4>
+            <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+              <strong>Concepto:</strong> Estos son comandos de terminal que usarás constantemente para crear, instalar y
+              ejecutar aplicaciones frontend.
+            </p>
+            <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+              <strong>Analogía backend:</strong> Como `npm init`, `npm install express` o `node server.js`, pero
+              específicos para proyectos frontend con Next.js y React.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Quick Commands -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+                ⚡ Comandos Rápidos
+              </h3>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    Crear proyecto Next.js
+                  </h4>
+                  <code
+                    class="block p-2 rounded text-sm transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                    >npx create-next-app@latest mi-app --typescript --tailwind --app</code
+                  >
+                </div>
+                <div>
+                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    Instalar dependencias comunes
+                  </h4>
+                  <code
+                    class="block p-2 rounded text-sm transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                    >npm install zod @tanstack/react-query lucide-react</code
+                  >
+                </div>
+                <div>
+                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    Ejecutar en desarrollo
+                  </h4>
+                  <code
+                    class="block p-2 rounded text-sm transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                    >npm run dev</code
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- File Structure -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+                📁 Estructura de Archivos
+              </h3>
+              <pre
+                class="p-4 rounded-lg text-xs overflow-x-auto transition-colors duration-300"
+                :class="darkMode ? 'bg-gray-900 text-green-400' : 'bg-gray-900 text-green-400'"
+              ><code>src/
+├── app/                    # App Router (Next.js 14+)
+│   ├── globals.css        # Estilos globales
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx          # Página home
+│   ├── users/
+│   │   ├── page.tsx      # Lista usuarios (/users)
+│   │   └── [id]/
+│   │       └── page.tsx  # Usuario específico (/users/123)
+│   └── api/
+│       └── users/
+│           └── route.ts  # API routes
+├── components/
+│   ├── ui/               # Componentes base
+│   └── forms/           # Formularios
+├── lib/
+│   ├── api.ts           # Funciones API
+│   ├── types.ts         # Tipos TypeScript
+│   └── utils.ts         # Utilidades
+└── hooks/               # Custom hooks</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend to Frontend Tab -->
+        <div x-show="referenceTab === 'fullstack'">
+          <div class="space-y-8">
+            <!-- Example 1: Create User -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                📋 Ejemplo Completo: Crear Usuario
+              </h3>
+
+              <!-- Explicación para dummies -->
+              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
+                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
+                  🤔 ¿Qué vamos a hacer? - Para Dummies
+                </h4>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Problema:</strong> Tu aplicación backend tiene un endpoint para crear usuarios, pero necesitas
+                  que los usuarios puedan crear cuentas desde una página web bonita.
+                </p>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Solución:</strong> Crear un formulario en React que tome los datos, los valide y los envíe a
+                  tu API backend.
+                </p>
+                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Flujo:</strong> Usuario llena formulario → React valida datos → Se envían al backend → Backend
+                  crea usuario en base de datos → Frontend muestra confirmación
+                </p>
+              </div>
+
+              <div class="space-y-6">
+                <!-- Step 1: Backend -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    1️⃣ Backend (Node.js/Express)
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Endpoint para crear usuario:
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// routes/users.js
+app.post('/api/users', async (req, res) => {
+  try {
+    const { name, email, role } = req.body;
+    
+    // Validación
+    if (!name || !email) {
+      return res.status(400).json({ 
+        error: 'Name and email are required' 
+      });
+    }
+    
+    // Crear usuario en base de datos
+    const user = await User.create({ name, email, role });
+    
+    res.status(201).json({
+      success: true,
+      data: user,
+      message: 'Usuario creado exitosamente'
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: error.message 
+    });
+  }
+});</code></pre>
+                </div>
+
+                <!-- Step 2: Types -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                    2️⃣ Tipos TypeScript
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/lib/types.ts</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/lib/types.ts
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+  createdAt: string;
+}
+
+export interface CreateUserRequest {
+  name: string;
+  email: string;
+  role?: 'admin' | 'user';
+}
+
+export interface ApiResponse&lt;T&gt; {
+  success: boolean;
+  data?: T;
+  error?: string;
+  message?: string;
+}</code></pre>
+                </div>
+
+                <!-- Step 3: API Function -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
+                    3️⃣ Función API
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/lib/api.ts</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/lib/api.ts
+import { User, CreateUserRequest, ApiResponse } from './types';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+export async function createUser(userData: CreateUserRequest): Promise&lt;User&gt; {
+  const response = await fetch(\`\${API_BASE_URL}/api/users\`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'Error creating user');
+  }
+
+  const result: ApiResponse&lt;User&gt; = await response.json();
+  return result.data!;
+}
+
+export async function getUsers(): Promise&lt;User[]&gt; {
+  const response = await fetch(\`\${API_BASE_URL}/api/users\`);
+  
+  if (!response.ok) {
+    throw new Error('Error fetching users');
+  }
+  
+  const result: ApiResponse&lt;User[]&gt; = await response.json();
+  return result.data!;
+}</code></pre>
+                </div>
+
+                <!-- Step 4: Form Component -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-orange-400' : 'border-orange-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
+                    4️⃣ Componente Formulario
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/components/forms/CreateUserForm.tsx</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>'use client';
+
+import { useState } from 'react';
+import { createUser } from '@/lib/api';
+import { CreateUserRequest } from '@/lib/types';
+
+export default function CreateUserForm() {
+  const [formData, setFormData] = useState&lt;CreateUserRequest&gt;({
+    name: '',
+    email: '',
+    role: 'user'
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState&lt;{ type: 'success' | 'error'; text: string } | null&gt;(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage(null);
+
+    try {
+      const newUser = await createUser(formData);
+      setMessage({ type: 'success', text: 'Usuario creado exitosamente!' });
+      setFormData({ name: '', email: '', role: 'user' }); // Reset form
+    } catch (error) {
+      setMessage({ 
+        type: 'error', 
+        text: error instanceof Error ? error.message : 'Error desconocido' 
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"&gt;
+      &lt;h2 className="text-2xl font-bold mb-6 text-gray-800"&gt;Crear Usuario&lt;/h2&gt;
+      
+      {/* Message */}
+      {message && (
+        &lt;div className={\`mb-4 p-3 rounded \${
+          message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+        }\`}&gt;
+          {message.text}
+        &lt;/div&gt;
+      )}
+
+      {/* Name Field */}
+      &lt;div className="mb-4"&gt;
+        &lt;label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2"&gt;
+          Nombre *
+        &lt;/label&gt;
+        &lt;input
+          type="text"
+          id="name"
+          value={formData.name}
+          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      {/* Email Field */}
+      &lt;div className="mb-4"&gt;
+        &lt;label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2"&gt;
+          Email *
+        &lt;/label&gt;
+        &lt;input
+          type="email"
+          id="email"
+          value={formData.email}
+          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      {/* Role Field */}
+      &lt;div className="mb-6"&gt;
+        &lt;label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2"&gt;
+          Rol
+        &lt;/label&gt;
+        &lt;select
+          id="role"
+          value={formData.role}
+          onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value as 'admin' | 'user' }))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        &gt;
+          &lt;option value="user"&gt;Usuario&lt;/option&gt;
+          &lt;option value="admin"&gt;Administrador&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+
+      {/* Submit Button */}
+      &lt;button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+      &gt;
+        {isLoading ? 'Creando...' : 'Crear Usuario'}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+                </div>
+
+                <!-- Step 5: Page Integration -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-pink-400' : 'border-pink-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-pink-400' : 'text-pink-600'">
+                    5️⃣ Integrar en Página
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/app/users/create/page.tsx</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/app/users/create/page.tsx
+import CreateUserForm from '@/components/forms/CreateUserForm';
+
+export default function CreateUserPage() {
+  return (
+    &lt;div className="container mx-auto py-8"&gt;
+      &lt;div className="max-w-2xl mx-auto"&gt;
+        &lt;h1 className="text-3xl font-bold text-center mb-8 text-gray-800"&gt;
+          Nuevo Usuario
+        &lt;/h1&gt;
+        &lt;CreateUserForm /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Metadata para SEO
+export const metadata = {
+  title: 'Crear Usuario - Mi App',
+  description: 'Crear un nuevo usuario en el sistema',
+};</code></pre>
+                </div>
+
+                <!-- Step 6: Environment Variables -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-red-400' : 'border-red-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-red-400' : 'text-red-600'">
+                    6️⃣ Variables de Entorno
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >.env.local</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code># .env.local
+NEXT_PUBLIC_API_URL=http://localhost:3001
+
+# En producción
+# NEXT_PUBLIC_API_URL=https://mi-api.vercel.app</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Example 2: Display Users -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                📋 Ejemplo: Mostrar Lista de Usuarios
+              </h3>
+
+              <!-- Explicación para dummies -->
+              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-green-50'">
+                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-green-800'">
+                  🤔 ¿Qué vamos a hacer? - Para Dummies
+                </h4>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Problema:</strong> Tienes usuarios guardados en tu base de datos y necesitas mostrarlos en una
+                  página web de forma atractiva y funcional.
+                </p>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Solución:</strong> Crear una página React que consulte tu API y muestre los usuarios en una
+                  tabla o tarjetas con opciones para ver detalles.
+                </p>
+                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Flujo:</strong> Página carga → React consulta API endpoint /users → Backend devuelve lista →
+                  Frontend renderiza tabla → Usuario puede interactuar
+                </p>
+              </div>
+
+              <div class="space-y-6">
+                <!-- Users List Component -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-indigo-400' : 'border-indigo-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-indigo-400' : 'text-indigo-600'">
+                    📄 Lista de Usuarios (Server Component)
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/app/users/page.tsx</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/app/users/page.tsx
+import Link from 'next/link';
+import { getUsers } from '@/lib/api';
+
+export default async function UsersPage() {
+  // Esto se ejecuta en el servidor
+  const users = await getUsers();
+
+  return (
+    &lt;div className="container mx-auto py-8"&gt;
+      &lt;div className="flex justify-between items-center mb-6"&gt;
+        &lt;h1 className="text-3xl font-bold text-gray-800"&gt;Usuarios&lt;/h1&gt;
+        &lt;Link
+          href="/users/create"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        &gt;
+          ➕ Nuevo Usuario
+        &lt;/Link&gt;
+      &lt;/div&gt;
+
+      &lt;div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"&gt;
+        {users.map((user) => (
+          &lt;div
+            key={user.id}
+            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+          &gt;
+            &lt;h3 className="text-lg font-semibold text-gray-800 mb-2"&gt;
+              {user.name}
+            &lt;/h3&gt;
+            &lt;p className="text-gray-600 mb-1"&gt;{user.email}&lt;/p&gt;
+            &lt;p className="text-sm text-gray-500 mb-3"&gt;
+              Rol: {user.role === 'admin' ? '👑 Admin' : '👤 Usuario'}
+            &lt;/p&gt;
+            &lt;div className="flex space-x-2"&gt;
+              &lt;Link
+                href={\`/users/\${user.id}\`}
+                className="text-blue-500 hover:text-blue-700 text-sm"
+              &gt;
+                Ver detalles
+              &lt;/Link&gt;
+              &lt;Link
+                href={\`/users/\${user.id}/edit\`}
+                className="text-green-500 hover:text-green-700 text-sm"
+              &gt;
+                Editar
+              &lt;/Link&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+
+      {users.length === 0 && (
+        &lt;div className="text-center py-8"&gt;
+          &lt;p className="text-gray-500 mb-4"&gt;No hay usuarios registrados&lt;/p&gt;
+          &lt;Link
+            href="/users/create"
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+          &gt;
+            Crear primer usuario
+          &lt;/Link&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export const metadata = {
+  title: 'Usuarios - Mi App',
+  description: 'Lista de todos los usuarios del sistema',
+};</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Components Tab -->
+        <div x-show="referenceTab === 'components'">
+          <div class="space-y-6">
+            <!-- Reusable Components -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                🧩 Componentes Reutilizables
+              </h3>
+
+              <!-- Explicación para dummies -->
+              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-purple-50'">
+                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-purple-800'">
+                  🤔 ¿Qué son los componentes? - Para Dummies
+                </h4>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Concepto:</strong> Un componente es como una función reutilizable pero para HTML. En lugar de
+                  copiar y pegar botones, formularios o tarjetas, los creas una vez y los usas donde necesites.
+                </p>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Analogía backend:</strong> Como crear una función `sendEmail()` que usas en múltiples partes
+                  de tu aplicación, pero para elementos visuales.
+                </p>
+                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Beneficio:</strong> Cambias el diseño del botón en un solo lugar y se actualiza en toda la
+                  aplicación automáticamente.
+                </p>
+              </div>
+
+              <div class="space-y-6">
+                <!-- Button Component -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    🔘 Botón Reutilizable
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/components/ui/Button.tsx</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/components/ui/Button.tsx
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+export default function Button({
+  children,
+  variant = 'primary',
+  size = 'md',
+  isLoading = false,
+  disabled = false,
+  onClick,
+  type = 'button'
+}: ButtonProps) {
+  const baseClasses = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  
+  const variantClasses = {
+    primary: 'bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500',
+    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500',
+    danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500'
+  };
+  
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg'
+  };
+
+  return (
+    &lt;button
+      type={type}
+      onClick={onClick}
+      disabled={disabled || isLoading}
+      className={\`\${baseClasses} \${variantClasses[variant]} \${sizeClasses[size]} \${
+        (disabled || isLoading) ? 'opacity-50 cursor-not-allowed' : ''
+      }\`}
+    &gt;
+      {isLoading ? (
+        &lt;div className="flex items-center space-x-2"&gt;
+          &lt;div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"&gt;&lt;/div&gt;
+          &lt;span&gt;Cargando...&lt;/span&gt;
+        &lt;/div&gt;
+      ) : (
+        children
+      )}
+    &lt;/button&gt;
+  );
+}
+
+// Uso:
+// &lt;Button variant="primary" onClick={() => console.log('Click!')}&gt;
+//   Guardar
+// &lt;/Button&gt;</code></pre>
+                </div>
+
+                <!-- Input Component -->
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                    📝 Input Reutilizable
+                  </h4>
+                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    Archivo:
+                    <code
+                      class="px-1 py-0.5 rounded"
+                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
+                      >src/components/ui/Input.tsx</code
+                    >
+                  </p>
+                  <pre
+                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>// src/components/ui/Input.tsx
+interface InputProps {
+  label: string;
+  type?: 'text' | 'email' | 'password' | 'number';
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  error?: string;
+  required?: boolean;
+  disabled?: boolean;
+}
+
+export default function Input({
+  label,
+  type = 'text',
+  value,
+  onChange,
+  placeholder,
+  error,
+  required = false,
+  disabled = false
+}: InputProps) {
+  const id = label.toLowerCase().replace(/\s+/g, '-');
+
+  return (
+    &lt;div className="mb-4"&gt;
+      &lt;label 
+        htmlFor={id} 
+        className="block text-sm font-medium text-gray-700 mb-2"
+      &gt;
+        {label} {required && &lt;span className="text-red-500"&gt;*&lt;/span&gt;}
+      &lt;/label&gt;
+      
+      &lt;input
+        type={type}
+        id={id}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        required={required}
+        disabled={disabled}
+        className={\`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 transition-colors \${
+          error 
+            ? 'border-red-300 focus:ring-red-500' 
+            : 'border-gray-300 focus:ring-blue-500'
+        } \${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}\`}
+      /&gt;
+      
+      {error && (
+        &lt;p className="mt-1 text-sm text-red-600"&gt;{error}&lt;/p&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+// Uso:
+// &lt;Input
+//   label="Email"
+//   type="email"
+//   value={email}
+//   onChange={setEmail}
+//   required
+//   error={emailError}
+// /&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Styling Tab -->
+        <div x-show="referenceTab === 'styling'">
+          <div class="space-y-6">
+            <!-- Tailwind Patterns -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                🎨 Patrones de Tailwind CSS
+              </h3>
+
+              <!-- Explicación para dummies -->
+              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-pink-50'">
+                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-pink-800'">
+                  🤔 ¿Qué es Tailwind CSS? - Para Dummies
+                </h4>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Concepto:</strong> En lugar de escribir CSS tradicional, usas clases predefinidas directamente
+                  en tu HTML. Es como tener un kit de herramientas de estilos listos para usar.
+                </p>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Analogía backend:</strong> Como usar librerías de validación (joi, zod) en lugar de escribir
+                  toda la lógica de validación desde cero.
+                </p>
+                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Ejemplo:</strong> En lugar de crear una clase CSS para un botón azul, escribes `bg-blue-500
+                  text-white px-4 py-2 rounded`.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card Pattern -->
+                <div>
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    🃏 Patrón de Card
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                  ><code>&lt;div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"&gt;
+  &lt;h3 className="text-lg font-semibold mb-2"&gt;Título&lt;/h3&gt;
+  &lt;p className="text-gray-600"&gt;Contenido...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <!-- Form Pattern -->
+                <div>
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                    📋 Patrón de Formulario
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                  ><code>&lt;form className="max-w-md mx-auto space-y-4"&gt;
+  &lt;input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" /&gt;
+  &lt;button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+
+                <!-- Grid Pattern -->
+                <div>
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
+                    🏗️ Patrón de Grid
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                  ><code>&lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <!-- Flexbox Pattern -->
+                <div>
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
+                    🔄 Patrón Flexbox
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
+                  ><code>&lt;div className="flex items-center justify-between p-4"&gt;
+  &lt;div&gt;Contenido izquierda&lt;/div&gt;
+  &lt;div&gt;Contenido derecha&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deployment Tab -->
+        <div x-show="referenceTab === 'deployment'">
+          <div class="space-y-6">
+            <!-- Vercel Deployment -->
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                🚀 Despliegue en Vercel
+              </h3>
+
+              <!-- Explicación para dummies -->
+              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-orange-50'">
+                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-orange-800'">
+                  🤔 ¿Qué es el deployment? - Para Dummies
+                </h4>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Concepto:</strong> El deployment es poner tu aplicación frontend en internet para que
+                  cualquier persona pueda acceder a ella desde un dominio (como tuapp.vercel.app).
+                </p>
+                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Analogía backend:</strong> Como desplegar tu API en Heroku, Railway o AWS. Vercel es para
+                  frontend lo que esas plataformas son para backend.
+                </p>
+                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
+                  <strong>Flujo:</strong> Conectas tu repo GitHub → Vercel detecta automáticamente que es Next.js → Cada
+                  push se despliega automáticamente → Tu app está live en internet.
+                </p>
+              </div>
+
+              <div class="space-y-4">
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
+                    1️⃣ Preparar el Proyecto
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code># Asegúrate de que build funciona
+npm run build
+
+# Prueba localmente
+npm start</code></pre>
+                </div>
+
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
+                    2️⃣ Subir a GitHub
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code>git add .
+git commit -m "Ready for deployment"
+git push origin main</code></pre>
+                </div>
+
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
+                    3️⃣ Configurar en Vercel
+                  </h4>
+                  <div class="text-sm space-y-2" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
+                    <p>
+                      • Ve a
+                      <a href="https://vercel.com" target="_blank" class="text-blue-500 hover:underline">vercel.com</a>
+                    </p>
+                    <p>• Click en "Add New..." → "Project"</p>
+                    <p>• Conecta tu repositorio de GitHub</p>
+                    <p>• Vercel detectará automáticamente Next.js</p>
+                    <p>• Agrega variables de entorno si es necesario</p>
+                    <p>• Click "Deploy"</p>
+                  </div>
+                </div>
+
+                <div class="border-l-4 pl-4" :class="darkMode ? 'border-orange-400' : 'border-orange-500'">
+                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
+                    4️⃣ Variables de Entorno en Producción
+                  </h4>
+                  <pre
+                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
+                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
+                  ><code># En Vercel Dashboard → Settings → Environment Variables
+NEXT_PUBLIC_API_URL=https://mi-backend.herokuapp.com
+DATABASE_URL=postgresql://...
+JWT_SECRET=mi-secreto-super-seguro</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Prompts View -->
+      <div x-show="currentView === 'ai-prompts'" x-transition:enter.duration.300ms>
+        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+          🤖 Prompts para IA en Frontend
+        </h2>
+
+        <div class="grid grid-cols-1 gap-6">
+          <template x-for="prompt in aiPrompts" :key="prompt.title">
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <h3
+                class="text-xl font-semibold mb-3"
+                :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                x-text="prompt.title"
+              ></h3>
+              <p class="mb-4" :class="darkMode ? 'text-gray-300' : 'text-gray-600'" x-text="prompt.description"></p>
+              <div
+                class="rounded-lg p-4 relative transition-colors duration-300"
+                :class="darkMode ? 'bg-gray-900' : 'bg-gray-900'"
+              >
+                <button
+                  @click="copyToClipboard(prompt.prompt)"
+                  class="absolute top-2 right-2 px-3 py-1 rounded text-sm transition-colors duration-300"
+                  :class="darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-700 hover:bg-gray-600 text-white'"
+                >
+                  📋 Copiar
+                </button>
+                <pre class="text-green-400 text-sm overflow-x-auto pr-16"><code x-text="prompt.prompt"></code></pre>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Project View -->
+      <div x-show="currentView === 'project'" x-transition:enter.duration.300ms>
+        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+          🛠️ Proyecto Integrador: E-commerce
+        </h2>
+
+        <div
+          class="rounded-lg shadow-md p-8 mb-8 transition-colors duration-300"
+          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+        >
+          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            📋 Checklist del Proyecto
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <template x-for="(task, index) in projectTasks" :key="index">
+              <label
+                class="flex items-center p-3 border rounded-lg cursor-pointer transition-colors duration-300"
+                :class="darkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'"
+              >
+                <input
+                  type="checkbox"
+                  x-model="task.completed"
+                  @change="saveProgress()"
+                  class="w-5 h-5 text-blue-600 rounded mr-3"
+                />
+                <span
+                  :class="task.completed ? 'line-through text-gray-500' : (darkMode ? 'text-gray-200' : 'text-gray-800')"
+                  x-text="task.name"
+                  class="flex-1"
+                ></span>
+              </label>
+            </template>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-green-500 to-blue-600 rounded-lg p-6 text-white">
+          <h3 class="text-xl font-semibold mb-2">🎯 Objetivo del Proyecto</h3>
+          <p class="text-blue-100">
+            Construir un e-commerce completo que demuestre todos los conocimientos adquiridos: React, TypeScript,
+            Next.js, Tailwind CSS, integración con backend, gestión de estado y despliegue en producción.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="py-8 mt-16 transition-colors duration-300"
+      :class="darkMode ? 'bg-gray-900 text-gray-300' : 'bg-gray-800 text-white'"
+    >
+      <div class="container mx-auto px-4">
+        <div class="text-center">
+          <h3 class="text-lg font-semibold mb-2">Frontend Esencial</h3>
+          <p class="text-gray-400 mb-4">
+            Curso diseñado para desarrolladores backend por <span class="text-blue-400 font-medium">Ariel Righi</span>
+          </p>
+          <div class="flex justify-center space-x-4 text-sm">
+            <span>📅 18 semanas</span>
+            <span>•</span>
+            <span>🎯 Enfoque práctico</span>
+            <span>•</span>
+            <span>🤖 Asistido por IA</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
