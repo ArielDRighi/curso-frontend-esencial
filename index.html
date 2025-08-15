@@ -402,7 +402,7 @@
                           x-text="section.title"
                         ></h3>
                         <div class="prose max-w-none" :class="darkMode ? 'prose-invert' : ''">
-                          <template x-for="content in section.content" :key="content">
+                          <template x-for="(content, contentIndex) in section.content" :key="contentIndex">
                             <div
                               x-html="content"
                               class="mb-4"
