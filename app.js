@@ -10,7 +10,6 @@ function courseApp() {
         emoji: "🎨",
         title: "Módulo 0: Fundamentos de UI/UX para Frontend",
         shortTitle: "UI/UX",
-        duration: "⏱️ Duración: 2 semanas",
         objective:
           "Comprender los principios clave de diseño de interfaces y experiencia de usuario para optimizar la colaboración con IA.",
         completed: false,
@@ -121,7 +120,6 @@ function courseApp() {
         emoji: "🌐",
         title: "Módulo 1: Fundamentos del Desarrollo Web",
         shortTitle: "Web Fundamentals",
-        duration: "⏱️ Duración: 2 semanas",
         objective:
           "Dominar los fundamentos de HTML, CSS, JavaScript y el ecosistema frontend desde la perspectiva backend.",
         completed: false,
@@ -255,7 +253,6 @@ function courseApp() {
         emoji: "⚛️",
         title: "Módulo 2: React y TypeScript",
         shortTitle: "React + TS",
-        duration: "⏱️ Duración: 4 semanas",
         objective: "Dominar React con TypeScript para crear interfaces de usuario modernas y mantenibles.",
         completed: false,
         sections: [
@@ -325,6 +322,31 @@ function courseApp() {
               "<p><strong>Custom Hooks:</strong> Funciones que te permiten reutilizar lógica con estado</p>",
               "<p><em>El estado son datos que pueden cambiar durante la vida de un componente (como el valor de un input o si un modal está abierto). Los Custom Hooks te permiten extraer esta lógica para reutilizarla en múltiples componentes.</em></p>",
               '<div class="bg-gray-900 rounded p-4 my-4"><pre><code class="language-typescript">import { useState, useEffect, useRef } from "react";\n\n// useEffect para llamadas a API\nfunction UserProfile({ userId }) {\n  const [user, setUser] = useState(null);\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() =&gt; {\n    async function fetchUser() {\n      try {\n        const response = await fetch(`/api/users/${userId}`);\n        const userData = await response.json();\n        setUser(userData);\n      } finally {\n        setLoading(false);\n      }\n    }\n    \n    fetchUser();\n  }, [userId]); // Se ejecuta cuando userId cambia\n\n  return loading ? &lt;div&gt;Cargando...&lt;/div&gt; : &lt;div&gt;{user?.name}&lt;/div&gt;;\n}\n\n// useRef para acceso DOM\nfunction SearchInput() {\n  const inputRef = useRef(null);\n  \n  const focusInput = () =&gt; {\n    inputRef.current?.focus();\n  };\n  \n  return (\n    &lt;div&gt;\n      &lt;input ref={inputRef} type="text" /&gt;\n      &lt;button onClick={focusInput}&gt;Focus&lt;/button&gt;\n    &lt;/div&gt;\n  );\n}\n\n// Custom Hook\nfunction useApi(url) {\n  const [data, setData] = useState(null);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n  \n  useEffect(() =&gt; {\n    fetch(url)\n      .then(res =&gt; res.json())\n      .then(setData)\n      .catch(setError)\n      .finally(() =&gt; setLoading(false));\n  }, [url]);\n  \n  return { data, loading, error };\n}</code></pre></div>',
+              "<p><strong>Hooks Avanzados y Optimización:</strong></p>",
+              "<p><strong>• useMemo:</strong> Para memorizar valores computados costosos</p>",
+              "<p><em>Como cachear el resultado de operaciones pesadas. Solo recalcula cuando sus dependencias cambian.</em></p>",
+              "<p><strong>• useCallback:</strong> Para memorizar funciones y evitar re-renders innecesarios</p>",
+              "<p><em>Útil cuando pasas funciones como props a componentes hijos que usan React.memo.</em></p>",
+              "<p><strong>• useReducer:</strong> Para manejar estado complejo con lógica de actualización</p>",
+              "<p><em>Como Redux pero integrado. Ideal para estados con múltiples acciones y transiciones complejas.</em></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code class="language-typescript">// Hooks de optimización\nimport { useMemo, useCallback, useReducer } from "react";\n\n// useMemo - Memoriza cálculos costosos\nfunction ExpensiveComponent({ items, filter }) {\n  const expensiveValue = useMemo(() =&gt; {\n    console.log("Calculando valor costoso...");\n    return items\n      .filter(item =&gt; item.category === filter)\n      .reduce((sum, item) =&gt; sum + item.price, 0);\n  }, [items, filter]); // Solo recalcula si items o filter cambian\n  \n  return &lt;div&gt;Total: ${expensiveValue}&lt;/div&gt;;\n}\n\n// useCallback - Memoriza funciones\nfunction ParentComponent() {\n  const [count, setCount] = useState(0);\n  const [name, setName] = useState("");\n  \n  // Esta función se memoriza y no cambia entre renders\n  const handleClick = useCallback(() =&gt; {\n    console.log(`Clicked! Count: ${count}`);\n  }, [count]); // Solo cambia si count cambia\n  \n  return (\n    &lt;div&gt;\n      &lt;input value={name} onChange={(e) =&gt; setName(e.target.value)} /&gt;\n      &lt;MemoizedChild onClick={handleClick} /&gt;\n    &lt;/div&gt;\n  );\n}\n\n// useReducer - Estado complejo\ntype Action = \n  | { type: "LOAD_START" }\n  | { type: "LOAD_SUCCESS", payload: any[] }\n  | { type: "LOAD_ERROR", payload: string }\n  | { type: "RESET" };\n\nfunction dataReducer(state, action: Action) {\n  switch (action.type) {\n    case "LOAD_START":\n      return { ...state, loading: true, error: null };\n    case "LOAD_SUCCESS":\n      return { loading: false, data: action.payload, error: null };\n    case "LOAD_ERROR":\n      return { loading: false, data: [], error: action.payload };\n    case "RESET":\n      return { loading: false, data: [], error: null };\n    default:\n      return state;\n  }\n}\n\nfunction useDataFetcher(url: string) {\n  const [state, dispatch] = useReducer(dataReducer, {\n    loading: false,\n    data: [],\n    error: null\n  });\n  \n  const fetchData = useCallback(async () =&gt; {\n    dispatch({ type: "LOAD_START" });\n    try {\n      const response = await fetch(url);\n      const data = await response.json();\n      dispatch({ type: "LOAD_SUCCESS", payload: data });\n    } catch (error) {\n      dispatch({ type: "LOAD_ERROR", payload: error.message });\n    }\n  }, [url]);\n  \n  return { ...state, fetchData, reset: () =&gt; dispatch({ type: "RESET" }) };\n}</code></pre></div>',
+              "<p><strong>Custom Hooks Avanzados:</strong> Ejemplos prácticos y reutilizables</p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code class="language-typescript">// Custom Hook: useLocalStorage\nfunction useLocalStorage&lt;T&gt;(key: string, initialValue: T) {\n  const [storedValue, setStoredValue] = useState&lt;T&gt;(() =&gt; {\n    try {\n      const item = window.localStorage.getItem(key);\n      return item ? JSON.parse(item) : initialValue;\n    } catch (error) {\n      console.error(`Error reading localStorage key "${key}":`, error);\n      return initialValue;\n    }\n  });\n  \n  const setValue = useCallback((value: T | ((val: T) =&gt; T)) =&gt; {\n    try {\n      const valueToStore = value instanceof Function ? value(storedValue) : value;\n      setStoredValue(valueToStore);\n      window.localStorage.setItem(key, JSON.stringify(valueToStore));\n    } catch (error) {\n      console.error(`Error setting localStorage key "${key}":`, error);\n    }\n  }, [key, storedValue]);\n  \n  return [storedValue, setValue] as const;\n}\n\n// Custom Hook: useDebounce\nfunction useDebounce&lt;T&gt;(value: T, delay: number): T {\n  const [debouncedValue, setDebouncedValue] = useState&lt;T&gt;(value);\n  \n  useEffect(() =&gt; {\n    const handler = setTimeout(() =&gt; {\n      setDebouncedValue(value);\n    }, delay);\n    \n    return () =&gt; {\n      clearTimeout(handler);\n    };\n  }, [value, delay]);\n  \n  return debouncedValue;\n}\n\n// Custom Hook: useForm\nfunction useForm&lt;T extends Record&lt;string, any&gt;&gt;(initialValues: T) {\n  const [values, setValues] = useState&lt;T&gt;(initialValues);\n  const [errors, setErrors] = useState&lt;Partial&lt;Record&lt;keyof T, string&gt;&gt;&gt;({});\n  const [touched, setTouched] = useState&lt;Partial&lt;Record&lt;keyof T, boolean&gt;&gt;&gt;({});\n  \n  const setValue = useCallback((name: keyof T, value: any) =&gt; {\n    setValues(prev =&gt; ({ ...prev, [name]: value }));\n    // Limpiar error al cambiar valor\n    if (errors[name]) {\n      setErrors(prev =&gt; ({ ...prev, [name]: undefined }));\n    }\n  }, [errors]);\n  \n  const setError = useCallback((name: keyof T, error: string) =&gt; {\n    setErrors(prev =&gt; ({ ...prev, [name]: error }));\n  }, []);\n  \n  const setTouched = useCallback((name: keyof T) =&gt; {\n    setTouched(prev =&gt; ({ ...prev, [name]: true }));\n  }, []);\n  \n  const reset = useCallback(() =&gt; {\n    setValues(initialValues);\n    setErrors({});\n    setTouched({});\n  }, [initialValues]);\n  \n  const isValid = useMemo(() =&gt; {\n    return Object.keys(errors).length === 0;\n  }, [errors]);\n  \n  return {\n    values,\n    errors,\n    touched,\n    setValue,\n    setError,\n    setTouched,\n    reset,\n    isValid\n  };\n}</code></pre></div>',
+              "<p><strong>Reglas de los Hooks (Importante):</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li><strong>Solo en el nivel superior:</strong> No usar hooks dentro de bucles, condiciones o funciones anidadas</li>",
+              "<li><strong>Solo en componentes React:</strong> O en custom hooks, nunca en funciones regulares de JavaScript</li>",
+              "<li><strong>Orden consistente:</strong> Los hooks deben llamarse en el mismo orden en cada render</li>",
+              "<li><strong>Dependencias correctas:</strong> Incluir todas las dependencias en useEffect y useCallback</li>",
+              "</ul>",
+              "<p><strong>Mejores prácticas:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ Usar custom hooks para lógica reutilizable</li>",
+              "<li>✅ Memorizar con useMemo/useCallback solo cuando sea necesario</li>",
+              "<li>✅ Separar responsabilidades en diferentes hooks</li>",
+              "<li>✅ Usar useReducer para estado complejo con múltiples acciones</li>",
+              "<li>✅ Implementar cleanup en useEffect cuando sea necesario</li>",
+              "</ul>",
             ],
           },
           {
@@ -350,7 +372,6 @@ function courseApp() {
         emoji: "🎨",
         title: "Módulo 3: Tailwind CSS",
         shortTitle: "Tailwind",
-        duration: "⏱️ Duración: 2 semanas",
         objective: "Implementar diseños responsivos y consistentes usando el enfoque utility-first de Tailwind CSS.",
         completed: false,
         sections: [
@@ -422,7 +443,6 @@ function courseApp() {
         emoji: "🚀",
         title: "Módulo 4: Next.js",
         shortTitle: "Next.js",
-        duration: "⏱️ Duración: 3 semanas",
         objective:
           "Implementar aplicaciones React de producción con Next.js, incluyendo SSR, SSG y optimizaciones automáticas.",
         completed: false,
@@ -527,7 +547,6 @@ function courseApp() {
         emoji: "🔗",
         title: "Módulo 5: Conectando Frontend y Backend",
         shortTitle: "Frontend ↔ Backend",
-        duration: "⏱️ Duración: 2 semanas",
         objective:
           "Integrar frontend con APIs backend, manejo de autenticación, CORS y buenas prácticas de comunicación.",
         completed: false,
@@ -631,7 +650,6 @@ function courseApp() {
         emoji: "🛠️",
         title: "Módulo 6: Proyecto Práctico Integrador",
         shortTitle: "Proyecto",
-        duration: "⏱️ Duración: 3 semanas",
         objective:
           "Construir un e-commerce completo integrando todos los conocimientos: React, TypeScript, Next.js, Tailwind y backend.",
         completed: false,
@@ -744,7 +762,6 @@ function courseApp() {
         emoji: "🧪",
         title: "Módulo 7: Testing y Accesibilidad",
         shortTitle: "Testing & A11y",
-        duration: "⏱️ Duración: 1 semana",
         objective: "Implementar testing automatizado y garantizar accesibilidad WCAG 2.1 AA en las aplicaciones.",
         completed: false,
         sections: [
@@ -828,7 +845,6 @@ function courseApp() {
         emoji: "⚙️",
         title: "Módulo 8: Workflows y Despliegue",
         shortTitle: "DevOps",
-        duration: "⏱️ Duración: 1 semana",
         objective: "Establecer workflows de desarrollo eficientes con CI/CD, monitoring y analytics.",
         completed: false,
         sections: [
@@ -905,15 +921,30 @@ function courseApp() {
 
     aiPrompts: [
       {
-        title: "Generar Componente UI Accesible",
-        description: "Crear componentes React con TypeScript que cumplan estándares WCAG",
-        prompt: `Genera un componente React con TypeScript llamado "ProductCard".
-Debe recibir por props: name, price, imageUrl, onAddToCart.
-Usar TailwindCSS con diseño responsivo.
-Debe cumplir estándares WCAG 2.1 AA.
-Incluir estados hover y focus.
-Añadir loading state para la imagen.
-Incluir aria-labels apropiados.`,
+        title: "Generar Custom Hooks Avanzados React",
+        description: "Crear custom hooks TypeScript con optimización y patrones modernos",
+        prompt: `Genera custom hooks React TypeScript avanzados para casos de uso específicos:
+
+**Custom Hooks requeridos:**
+1. useLocalStorage<T> - Sincronización bidireccional con localStorage
+2. useDebounce<T> - Control de timing para búsquedas y validaciones
+3. useApi<T> - Gestión completa de estados HTTP (loading, data, error, retry)
+4. useForm<T> - Manejo avanzado de formularios con validación
+5. usePrevious<T> - Acceso al valor anterior de una variable
+
+**Requisitos:**
+- Tipado completo con TypeScript y generics
+- Implementar useMemo y useCallback para optimización
+- Manejo de cleanup apropiado en useEffect
+- Error boundaries y manejo robusto de errores
+- JSDoc documentation completa
+- Ejemplos de uso práctico para cada hook
+
+**Patrones avanzados a incluir:**
+- Lazy initialization en useState
+- Dependency arrays optimizadas
+- Cleanup functions para prevenir memory leaks
+- Integration con Context API si aplica`,
       },
       {
         title: "Refactorizar con Tailwind",
@@ -969,15 +1000,103 @@ Incluye:
 - Implementa virtualización si maneja listas grandes`,
       },
       {
-        title: "Testing Automatizado",
-        description: "Generar tests para componentes y funciones",
-        prompt: `Crea tests completos para este componente/función:
-- Unit tests con Jest/Vitest
-- Component tests con React Testing Library
-- Tests de accesibilidad con axe-core
-- Tests de integración si interactúa con APIs
-- Mocks apropiados para dependencias externas
-- Coverage de casos edge y errores`,
+        title: "Optimizar React Hooks Performance",
+        description: "Mejorar rendimiento con useMemo, useCallback y custom hooks",
+        prompt: `Optimiza este componente React para mejor performance usando hooks avanzados:
+- Implementa useMemo para cálculos costosos
+- Usa useCallback para memorizar funciones
+- Crea custom hooks para lógica reutilizable
+- Aplica React.memo donde sea necesario
+- Evita re-renders innecesarios
+- Incluye TypeScript para type safety
+
+Componente a optimizar: [PEGAR_CODIGO_AQUI]
+
+Asegúrate de explicar cada optimización aplicada.`,
+      },
+      {
+        title: "Custom Hooks Avanzados",
+        description: "Crear custom hooks para casos de uso específicos",
+        prompt: `Crea custom hooks TypeScript para los siguientes casos de uso:
+1. useLocalStorage - Sincronizar estado con localStorage
+2. useDebounce - Retrasar ejecución de operaciones
+3. useApi - Manejo completo de estados HTTP (loading, data, error)
+4. useForm - Gestión avanzada de formularios con validación
+5. usePrevious - Obtener valor anterior de una variable
+
+Incluye:
+- Tipado completo con TypeScript
+- Manejo de errores robusto
+- Cleanup apropiado en useEffect
+- Documentación con JSDoc
+- Ejemplos de uso práctico`,
+      },
+      {
+        title: "DevTools Mastery para Frontend",
+        description: "Dominar herramientas de desarrollo y debugging",
+        prompt: `Genera una guía completa para usar DevTools en desarrollo frontend:
+1. Chrome DevTools avanzado (Network, Performance, Memory)
+2. React Developer Tools para debugging
+3. Redux DevTools para estado global
+4. Lighthouse para auditorías de performance
+5. Wave para accesibilidad
+6. Técnicas de profiling y optimización
+
+Incluye ejemplos prácticos y screenshots descriptos para cada herramienta.
+Enfócate en casos de uso reales como debugging API calls, memory leaks, y performance bottlenecks.`,
+      },
+      {
+        title: "Server State Management 2025",
+        description: "Implementar gestión moderna de estado servidor con Tanstack Query",
+        prompt: `Implementa gestión de estado servidor usando Tanstack Query v5:
+- Setup y configuración inicial
+- Queries con cache, refetch y stale time
+- Mutations con optimistic updates
+- Invalidación inteligente de cache
+- Paginación infinita
+- Estados de loading y error
+- Integration con React Hook Form
+- Patterns para CRUD operations
+
+Incluye ejemplos TypeScript completos y mejores prácticas 2025.`,
+      },
+      {
+        title: "Testing Pyramid Frontend",
+        description: "Implementar estrategia completa de testing",
+        prompt: `Crea una estrategia de testing completa para aplicación React:
+
+1. **Unit Tests:**
+   - Funciones puras y utilities
+   - Custom hooks con testing-library/react-hooks
+   - Componentes aislados
+
+2. **Integration Tests:**
+   - Flujos de usuario completos
+   - API mocking con MSW
+   - Estado global y context
+
+3. **E2E Tests:**
+   - Casos críticos de negocio
+   - Cross-browser testing
+   - Visual regression testing
+
+Incluye setup, configuración y ejemplos prácticos con Vitest + Playwright.`,
+      },
+      {
+        title: "Accesibilidad WCAG 2.1 AA",
+        description: "Implementar accesibilidad completa en componentes React",
+        prompt: `Audita y mejora la accesibilidad de este componente para cumplir WCAG 2.1 AA:
+
+Verifica:
+- Contraste de colores (4.5:1 mínimo)
+- Navegación por teclado funcional
+- Lectores de pantalla (aria-labels, roles)
+- Focus management y skip links
+- Texto alternativo en imágenes
+- Formularios con labels apropiados
+
+Proporciona código corregido y test automatizado con axe-core.
+Componente: [PEGAR_CODIGO_AQUI]`,
       },
       {
         title: "Setup de Proyecto Next.js",
