@@ -651,7 +651,7 @@ function courseApp() {
         title: "Módulo 6: Proyecto Práctico Integrador",
         shortTitle: "Proyecto",
         objective:
-          "Construir un e-commerce completo integrando todos los conocimientos: React, TypeScript, Next.js, Tailwind y backend.",
+          "Construir un e-commerce completo integrando todos los conocimientos: React, TypeScript, Next.js, Tailwind y herramientas IA modernas.",
         completed: false,
         sections: [
           {
@@ -917,6 +917,354 @@ function courseApp() {
           },
         ],
       },
+      {
+        emoji: "🤖",
+        title: "Módulo 9: IA-Driven Frontend Development",
+        shortTitle: "IA-Driven",
+        objective: "Dominar el desarrollo frontend potenciado por IA: desde diseño hasta testing automático y deployment inteligente.",
+        completed: false,
+        sections: [
+          {
+            title: "9.1 Introducción al IA-Driven Frontend Development",
+            content: [
+              "<p><strong>🎯 El Nuevo Paradigma del Desarrollo Frontend</strong></p>",
+              "<p><em>Como desarrollador backend, ya conoces la eficiencia de las herramientas. Ahora aplicaremos IA para acelerar 10x el desarrollo frontend manteniendo calidad profesional.</em></p>",
+              "<p><strong>¿Qué es IA-Driven Development?</strong></p>",
+              "<p><em>Es integrar herramientas de IA en cada fase del desarrollo: desde ideación hasta deployment. Como tener un senior developer que te asiste 24/7.</em></p>",
+              "<p><strong>Herramientas del Stack IA-Frontend 2025:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎨 v0.dev:</strong> Generación de interfaces desde prompts naturales</li>",
+              "<li><em>Convierte 'Necesito un e-commerce moderno' en código React completo en minutos.</em></li>",
+              "<li><strong>💻 GitHub Copilot:</strong> Par programming inteligente</li>",
+              "<li><em>Como pair programming con un experto React/TypeScript que sugiere código en tiempo real.</em></li>",
+              "<li><strong>🧪 AI Visual Testing:</strong> Testing automático de UI</li>",
+              "<li><em>Detecta cambios visuales, problemas de accesibilidad y regresiones automáticamente.</em></li>",
+              "<li><strong>🖼️ AI Assets:</strong> Generación de imágenes, iconos y content</li>",
+              "<li><em>Crea assets optimizados sin depender de diseñadores para prototipos.</em></li>",
+              "<li><strong>📊 AI Analytics:</strong> Insights automáticos de performance</li>",
+              "<li><em>Análisis inteligente de Core Web Vitals y recomendaciones de optimización.</em></li>",
+              "</ul>",
+              "<p><strong>Beneficios Medibles:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>⚡ <strong>10x más rápido:</strong> De idea a MVP funcional en días, no semanas</li>",
+              "<li>🎯 <strong>95%+ calidad:</strong> Testing y validaciones automáticas</li>",
+              "<li>♿ <strong>100% accesible:</strong> Cumplimiento WCAG automático</li>",
+              "<li>🚀 <strong>Performance óptimo:</strong> Optimizaciones automáticas</li>",
+              "<li>📚 <strong>Documentación completa:</strong> Generada automáticamente</li>",
+              "</ul>",
+              "<p><strong>Mindset Shift Necesario:</strong></p>",
+              "<p><em>De 'escribir todo el código' a 'dirigir y validar la IA'. Como pasar de SQL manual a ORM inteligente.</em></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ <strong>Prompt Engineering:</strong> Saber pedir lo que necesitas</li>",
+              "<li>✅ <strong>Validación Crítica:</strong> Revisar y refinar el output de IA</li>",
+              "<li>✅ <strong>Iteración Rápida:</strong> Prototipar → Validar → Mejorar</li>",
+              "<li>✅ <strong>Quality Gates:</strong> Automatizar revisiones de calidad</li>",
+              "</ul>",
+              '<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">',
+              '<p class="text-blue-800"><strong>💡 Paradigma IA-First:</strong></p>',
+              '<p class="text-blue-700">En lugar de \'Cómo codifico esto?\' pregúntate \'Cómo le pido a la IA que me ayude a construir esto de forma óptima?\'</p>',
+              '</div>',
+            ],
+          },
+          {
+            title: "9.2 v0.dev: Diseño y Wireframing con IA",
+            content: [
+              "<p><strong>🎨 v0.dev: De Idea a Interfaz en Minutos</strong></p>",
+              "<p><em>Como generar APIs con código, pero para interfaces. v0.dev convierte descripciones naturales en componentes React funcionales.</em></p>",
+              "<p><strong>¿Qué es v0.dev?</strong></p>",
+              "<p><em>Herramienta de Vercel que genera interfaces React con Tailwind CSS desde prompts en lenguaje natural. Es como tener un frontend developer senior trabajando para ti.</em></p>",
+              "<p><strong>Casos de Uso Ideales:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🚀 Prototipado Rápido:</strong> De idea a wireframe funcional en minutos</li>",
+              "<li><strong>🎯 MVP Development:</strong> Interfaces completas para validar conceptos</li>",
+              "<li><strong>🔄 Iteración de Diseño:</strong> Probar variantes visuales rápidamente</li>",
+              "<li><strong>📚 Aprendizaje:</strong> Ver cómo se implementan patrones UI complejos</li>",
+              "</ul>",
+              "<p><strong>Anatomía de un Prompt Efectivo:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code># Template de Prompt para v0.dev\n\n## Contexto\n[Tipo de aplicación y audiencia]\n\n## Componente Específico\n[Qué componente necesitas]\n\n## Funcionalidades\n- [Lista específica de características]\n- [Estados y interacciones]\n- [Casos edge]\n\n## Estilo y UX\n- [Paleta de colores]\n- [Tipografía y espaciado]\n- [Responsive behavior]\n- [Animaciones sutiles]\n\n## Especificaciones Técnicas\n- [Props esperadas]\n- [Accesibilidad requerida]\n- [Performance considerations]</code></pre></div>',
+              "<p><strong>Ejemplo: E-commerce Product Card</strong></p>",
+              '<div class="bg-green-50 border border-green-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-green-800">Prompt Ejemplo:</p>',
+              '<p class="text-green-700 mt-2">"Crea una ProductCard para e-commerce moderno con imagen del producto, nombre, precio original y con descuento, rating con estrellas, botón de agregar al carrito con loading state, botón de favoritos, badge de descuento si aplica. Diseño limpio con hover effects sutiles, responsive para mobile. Usar Tailwind CSS y ser accesible WCAG 2.1."</p>',
+              '</div>',
+              "<p><strong>Flujo de Trabajo Optimizado:</strong></p>",
+              "<ol class='list-decimal pl-6 space-y-2'>",
+              "<li><strong>Ideación:</strong> Definir funcionalidad y UX requirements</li>",
+              "<li><strong>Prompt Engineering:</strong> Crear prompt específico y completo</li>",
+              "<li><strong>Generación:</strong> Obtener código base de v0.dev</li>",
+              "<li><strong>Refinamiento:</strong> Iterar con prompts de mejora</li>",
+              "<li><strong>Integración:</strong> Adaptar código a tu proyecto</li>",
+              "<li><strong>Testing:</strong> Validar funcionalidad y accesibilidad</li>",
+              "</ol>",
+              "<p><strong>Mejores Prácticas v0.dev:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ <strong>Sé específico:</strong> Detalles claros sobre funcionalidad y estilo</li>",
+              "<li>✅ <strong>Incluye contexto:</strong> Tipo de app, audiencia, casos de uso</li>",
+              "<li>✅ <strong>Menciona accesibilidad:</strong> Siempre incluir requisitos WCAG</li>",
+              "<li>✅ <strong>Especifica responsive:</strong> Comportamiento en mobile/desktop</li>",
+              "<li>✅ <strong>Itera gradualmente:</strong> Mejoras paso a paso, no todo junto</li>",
+              "</ul>",
+              "<p><strong>Limitaciones y Consideraciones:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>⚠️ <strong>Código base inicial:</strong> Siempre revisar y refactorizar</li>",
+              "<li>⚠️ <strong>Lógica compleja:</strong> Mejor para UI, no para business logic</li>",
+              "<li>⚠️ <strong>Consistency:</strong> Adaptar al design system existente</li>",
+              "<li>⚠️ <strong>Performance:</strong> Optimizar el código generado</li>",
+              "</ul>",
+            ],
+          },
+          {
+            title: "9.3 GitHub Copilot: Generación de Código Inteligente",
+            content: [
+              "<p><strong>💻 GitHub Copilot: Tu Pair Programming IA</strong></p>",
+              "<p><em>Como IntelliSense pero exponencialmente más inteligente. Copilot entiende contexto, patrones y mejores prácticas para generar código React/TypeScript de calidad.</em></p>",
+              "<p><strong>Configuración Óptima para Frontend:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🔧 VS Code Extensions:</strong> GitHub Copilot + Copilot Chat</li>",
+              "<li><strong>⚙️ Settings:</strong> Configurar para React/TypeScript/Tailwind</li>",
+              "<li><strong>🎯 Context Awareness:</strong> Aprovechar archivos abiertos para contexto</li>",
+              "<li><strong>💬 Copilot Chat:</strong> Para refactoring y debugging asistido</li>",
+              "</ul>",
+              "<p><strong>Estrategias de Prompting para Frontend:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>// 1. Comentarios descriptivos antes del código\n// Create a responsive product card component with:\n// - Image with lazy loading\n// - Product name, price, and rating\n// - Add to cart button with loading state\n// - Accessible markup following WCAG 2.1\n// - Hover animations using Tailwind CSS\n\nfunction ProductCard({ product, onAddToCart, isLoading }) {\n  // Copilot generará el componente completo\n}\n\n// 2. Usar TypeScript interfaces para contexto\ninterface User {\n  id: string;\n  name: string;\n  email: string;\n  role: \'admin\' | \'user\';\n}\n\n// Crear hook para gestión de usuarios con CRUD operations\nfunction useUsers() {\n  // Copilot infiere el patrón y genera el hook completo\n}</code></pre></div>',
+              "<p><strong>Patrones de Código que Copilot Domina:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎣 Custom Hooks:</strong> useLocalStorage, useApi, useDebounce</li>",
+              "<li><strong>📝 Form Handling:</strong> react-hook-form + zod validation</li>",
+              "<li><strong>🎨 Component Variants:</strong> Button, Card, Modal con props tipadas</li>",
+              "<li><strong>🔄 State Management:</strong> Zustand stores y Context providers</li>",
+              "<li><strong>🌐 API Integration:</strong> Fetch wrappers y error handling</li>",
+              "<li><strong>🧪 Testing:</strong> Unit tests con Testing Library</li>",
+              "</ul>",
+              "<p><strong>Copilot Chat: Casos de Uso Avanzados</strong></p>",
+              '<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-blue-800">Prompts Efectivos para Copilot Chat:</p>',
+              '<ul class="text-blue-700 mt-2 space-y-1">',
+              '<li>• "Refactoriza este componente para usar React.memo y useCallback"</li>',
+              '<li>• "Agrega validación con Zod a este formulario"</li>',
+              '<li>• "Convierte este CSS a clases de Tailwind manteniendo el diseño"</li>',
+              '<li>• "Genera tests unitarios para este custom hook"</li>',
+              '<li>• "Optimiza este componente para mejor performance"</li>',
+              '</ul>',
+              '</div>',
+              "<p><strong>Workflow de Desarrollo con Copilot:</strong></p>",
+              "<ol class='list-decimal pl-6 space-y-2'>",
+              "<li><strong>📋 Definir Interface:</strong> TypeScript types primero</li>",
+              "<li><strong>📝 Comentario Descriptivo:</strong> Explicar funcionalidad esperada</li>",
+              "<li><strong>⚡ Generación:</strong> Dejar que Copilot genere código base</li>",
+              "<li><strong>🔍 Revisión:</strong> Validar lógica y mejores prácticas</li>",
+              "<li><strong>✨ Refinamiento:</strong> Usar Chat para mejoras específicas</li>",
+              "<li><strong>🧪 Testing:</strong> Generar tests con Copilot</li>",
+              "</ol>",
+              "<p><strong>Mejores Prácticas:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ <strong>Context First:</strong> Proporcionar interfaces y types</li>",
+              "<li>✅ <strong>Specific Comments:</strong> Comentarios detallados sobre funcionalidad</li>",
+              "<li>✅ <strong>Incremental:</strong> Construir función por función</li>",
+              "<li>✅ <strong>Review Always:</strong> Nunca aceptar código sin revisar</li>",
+              "<li>✅ <strong>Test Generation:</strong> Usar para generar tests comprehensivos</li>",
+              "</ul>",
+              "<p><strong>Limitaciones y Cuidados:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>⚠️ <strong>Security:</strong> Revisar manejo de datos sensibles</li>",
+              "<li>⚠️ <strong>Performance:</strong> Validar optimizaciones propuestas</li>",
+              "<li>⚠️ <strong>Accessibility:</strong> Verificar cumplimiento WCAG</li>",
+              "<li>⚠️ <strong>Dependencies:</strong> Confirmar versiones y compatibilidad</li>",
+              "</ul>",
+            ],
+          },
+          {
+            title: "9.4 AI Visual Testing y Quality Assurance",
+            content: [
+              "<p><strong>🧪 Testing Automático con IA: Calidad Sin Esfuerzo Manual</strong></p>",
+              "<p><em>Como testing automatizado en backend, pero para UI. La IA detecta cambios visuales, problemas de accesibilidad y regresiones sin intervención manual.</em></p>",
+              "<p><strong>Stack de AI Testing Moderno:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎭 Playwright AI:</strong> Testing E2E con detección inteligente</li>",
+              "<li><strong>📸 Chromatic:</strong> Visual regression testing automático</li>",
+              "<li><strong>♿ axe-core AI:</strong> Auditoría de accesibilidad automatizada</li>",
+              "<li><strong>⚡ Lighthouse CI:</strong> Performance testing continuo</li>",
+              "<li><strong>🤖 AI Test Generation:</strong> Tests generados desde comportamiento de usuario</li>",
+              "</ul>",
+              "<p><strong>Configuración de Testing Pipeline IA:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code># package.json - Scripts de testing IA\n{\n  "scripts": {\n    "test:visual": "chromatic --exit-zero-on-changes",\n    "test:a11y": "axe-cli --playwright",\n    "test:e2e": "playwright test --ai-assisted",\n    "test:performance": "lighthouse-ci autorun",\n    "test:ai-full": "npm run test:visual && npm run test:a11y && npm run test:e2e",\n    "test:generate": "playwright codegen --ai-enhance"\n  }\n}</code></pre></div>',
+              "<p><strong>AI Visual Testing: Chromatic + Storybook</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>📸 Baseline Automático:</strong> Screenshots de referencia inteligentes</li>",
+              "<li><strong>🔍 Detección de Cambios:</strong> IA identifica cambios significativos vs. ruido</li>",
+              "<li><strong>🎯 Smart Diffing:</strong> Ignora cambios menores, resalta problemas reales</li>",
+              "<li><strong>📱 Cross-Browser:</strong> Testing automático en múltiples navegadores</li>",
+              "<li><strong>🔄 CI Integration:</strong> Bloquea deploys con regresiones visuales</li>",
+              "</ul>",
+              "<p><strong>AI Accessibility Testing:</strong></p>",
+              '<div class="bg-green-50 border border-green-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-green-800">Testing WCAG 2.1 AA Automatizado:</p>',
+              '<ul class="text-green-700 mt-2 space-y-1">',
+              '<li>• <strong>Contraste:</strong> Verificación automática de ratios de color</li>',
+              '<li>• <strong>Keyboard Nav:</strong> Testing de navegación por teclado</li>',
+              '<li>• <strong>Screen Readers:</strong> Validación de aria-labels y roles</li>',
+              '<li>• <strong>Focus Management:</strong> Orden lógico de tab navigation</li>',
+              '<li>• <strong>Form Labels:</strong> Asociación correcta de labels</li>',
+              '</ul>',
+              '</div>',
+              "<p><strong>AI Test Generation: Del Comportamiento a Tests</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>// Test generado automáticamente por IA\n// Basado en user journey: "Comprar producto como usuario"\n\ntest(\'complete purchase flow\', async ({ page }) => {\n  // IA detectó este flujo del comportamiento real de usuarios\n  await page.goto(\'/products\');\n  await page.getByRole(\'button\', { name: /add to cart/i }).first().click();\n  await page.getByRole(\'link\', { name: /cart/i }).click();\n  await page.getByRole(\'button\', { name: /checkout/i }).click();\n  \n  // IA generó validaciones inteligentes\n  await expect(page.getByText(/order summary/i)).toBeVisible();\n  await expect(page.getByRole(\'button\', { name: /place order/i })).toBeEnabled();\n});</code></pre></div>',
+              "<p><strong>Performance Testing con IA:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>📊 Core Web Vitals:</strong> Monitoreo automático de LCP, FID, CLS</li>",
+              "<li><strong>🎯 AI Recommendations:</strong> Sugerencias específicas de optimización</li>",
+              "<li><strong>📈 Trending Analysis:</strong> Detección de degradación de performance</li>",
+              "<li><strong>⚡ Auto-Optimization:</strong> Aplicación automática de mejoras</li>",
+              "</ul>",
+              "<p><strong>Quality Gates Automatizados:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ <strong>Visual Regression:</strong> 0 cambios no intencionales</li>",
+              "<li>✅ <strong>Accessibility Score:</strong> 95%+ WCAG 2.1 AA</li>",
+              "<li>✅ <strong>Performance Budget:</strong> LCP < 2.5s, FID < 100ms</li>",
+              "<li>✅ <strong>Cross-Browser:</strong> Funcional en Chrome, Firefox, Safari</li>",
+              "<li>✅ <strong>Mobile Responsive:</strong> UX optimizada en dispositivos móviles</li>",
+              "</ul>",
+              "<p><strong>Workflow Completo de QA con IA:</strong></p>",
+              "<ol class='list-decimal pl-6 space-y-2'>",
+              "<li><strong>🚀 Pre-Commit:</strong> Tests unitarios y linting automático</li>",
+              "<li><strong>📸 PR Review:</strong> Visual testing y accessibility check</li>",
+              "<li><strong>🧪 Staging:</strong> E2E testing completo con IA</li>",
+              "<li><strong>⚡ Performance:</strong> Lighthouse audit automático</li>",
+              "<li><strong>🎯 Production:</strong> Monitoring continuo con alertas IA</li>",
+              "</ol>",
+            ],
+          },
+          {
+            title: "9.5 AI Asset Generation y Optimización",
+            content: [
+              "<p><strong>🖼️ Generación Inteligente de Assets: Imágenes, Iconos y Content</strong></p>",
+              "<p><em>Como tener un diseñador y content creator trabajando 24/7. IA genera y optimiza todos los assets visuales que necesitas para tu frontend.</em></p>",
+              "<p><strong>Stack de AI Asset Generation:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎨 Midjourney/DALL-E:</strong> Imágenes personalizadas de alta calidad</li>",
+              "<li><strong>🔤 Iconify AI:</strong> Iconos vectoriales personalizados</li>",
+              "<li><strong>📝 ChatGPT/Claude:</strong> Copy, content y microcopy</li>",
+              "<li><strong>🖼️ AI Image Optimization:</strong> Compresión y formato automático</li>",
+              "<li><strong>🎭 AI Avatar Generation:</strong> Perfiles de usuario realistas</li>",
+              "</ul>",
+              "<p><strong>Generación de Imágenes para Frontend:</strong></p>",
+              '<div class="bg-purple-50 border border-purple-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-purple-800">Prompts Efectivos para E-commerce:</p>',
+              '<div class="text-purple-700 mt-2 space-y-2">',
+              '<p><strong>Hero Images:</strong> "Modern minimalist e-commerce hero section, clean white background, floating product, soft shadows, professional photography style, 16:9 aspect ratio"</p>',
+              '<p><strong>Product Mockups:</strong> "iPhone mockup showing [tu app], realistic hands holding device, neutral background, professional lighting, marketing style"</p>',
+              '<p><strong>Background Patterns:</strong> "Subtle geometric pattern for website background, light gray on white, minimal design, seamless tile"</p>',
+              '</div>',
+              '</div>',
+              "<p><strong>Optimización Automática de Assets:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>// AI Asset Optimization Pipeline\nconst optimizeAssets = {\n  images: {\n    // Compresión inteligente basada en contenido\n    compression: \'smart\', // IA detecta el nivel óptimo\n    formats: [\'webp\', \'avif\', \'jpg\'], // Fallbacks automáticos\n    sizes: [320, 640, 768, 1024, 1280], // Responsive automático\n    lazy: true, // Lazy loading automático\n  },\n  \n  icons: {\n    format: \'svg\', // Vectorial para escalabilidad\n    optimization: \'aggressive\', // Minificación inteligente\n    inlining: \'critical\', // Inline para iconos críticos\n  },\n  \n  content: {\n    language: \'es\', // Localización automática\n    tone: \'professional\', // Consistencia de tono\n    seo: true, // Optimización para SEO\n  }\n};</code></pre></div>',
+              "<p><strong>AI Icon Generation Workflow:</strong></p>",
+              "<ol class='list-decimal pl-6 space-y-2'>",
+              "<li><strong>🎯 Define Style:</strong> Consistent icon style (outline, filled, etc.)</li>",
+              "<li><strong>📝 Batch Generation:</strong> Generar set completo de iconos</li>",
+              "<li><strong>🔧 Optimization:</strong> SVG optimization automático</li>",
+              "<li><strong>📦 Integration:</strong> Icon component library automático</li>",
+              "<li><strong>🎨 Variants:</strong> Light/dark mode automático</li>",
+              "</ol>",
+              "<p><strong>Content Generation con IA:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>📝 Microcopy:</strong> Botones, labels, mensajes de error</li>",
+              "<li><strong>📄 Landing Pages:</strong> Headlines, descriptions, CTAs</li>",
+              "<li><strong>🛍️ Product Descriptions:</strong> Descriptions convincentes y SEO-optimized</li>",
+              "<li><strong>📧 Email Templates:</strong> Subject lines y copy personalizado</li>",
+              "<li><strong>🔍 SEO Content:</strong> Meta descriptions y alt texts</li>",
+              "</ul>",
+              '<div class="bg-green-50 border border-green-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-green-800">Ejemplo: Product Description Generator</p>',
+              '<div class="text-green-700 mt-2">',
+              '<p><strong>Input:</strong> "Smartphone, 128GB, cámara 48MP, batería 5000mAh"</p>',
+              '<p><strong>Output AI:</strong> "Captura cada momento con perfección gracias a su cámara de 48MP y disfruta de un día completo sin interrupciones con su batería de 5000mAh. Con 128GB de almacenamiento, tendrás espacio para todo lo que importa."</p>',
+              '</div>',
+              '</div>',
+              "<p><strong>Asset Performance Optimization:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>📱 <strong>Responsive Images:</strong> Tamaños automáticos por dispositivo</li>",
+              "<li>⚡ <strong>Format Selection:</strong> WebP/AVIF con fallbacks inteligentes</li>",
+              "<li>🎯 <strong>Critical Assets:</strong> Preload automático de assets críticos</li>",
+              "<li>💾 <strong>CDN Optimization:</strong> Distribución global automática</li>",
+              "<li>🔄 <strong>Cache Strategy:</strong> Headers de cache inteligentes</li>",
+              "</ul>",
+              "<p><strong>Herramientas y APIs Recomendadas:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>🎨 <strong>Imagen:</strong> Midjourney API, DALL-E 3, Stable Diffusion</li>",
+              "<li>🔤 <strong>Iconos:</strong> Heroicons AI, Iconify custom generation</li>",
+              "<li>📝 <strong>Content:</strong> OpenAI GPT-4, Claude 3, Gemini Pro</li>",
+              "<li>🖼️ <strong>Optimization:</strong> Tinify API, Cloudinary AI</li>",
+              "<li>📊 <strong>Analytics:</strong> Google PageSpeed Insights API</li>",
+              "</ul>",
+            ],
+          },
+          {
+            title: "9.6 Caso de Uso Real: E-commerce con IA de Principio a Fin",
+            content: [
+              "<p><strong>🛍️ Proyecto Real: TechStore - E-commerce Completo con IA</strong></p>",
+              "<p><em>Construcción completa de un e-commerce moderno usando todas las herramientas IA. De concepto a producción en 2-3 semanas.</em></p>",
+              "<p><strong>Proyecto Overview:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎯 Objetivo:</strong> E-commerce de productos tech con UX moderna</li>",
+              "<li><strong>⏱️ Timeline:</strong> 2-3 semanas (vs 2-3 meses tradicional)</li>",
+              "<li><strong>🤖 IA Integration:</strong> 90% del desarrollo asistido por IA</li>",
+              "<li><strong>📊 Resultado:</strong> Performance 95+, Accesibilidad AAA</li>",
+              "</ul>",
+              "<p><strong>Fase 1: Ideación y Diseño (2-4 horas)</strong></p>",
+              '<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-blue-800">v0.dev Prompt de Inicio:</p>',
+              '<p class="text-blue-700 mt-2">"Crea un e-commerce moderno para productos de tecnología. Necesito: homepage con hero section, grid de productos con filtros, product detail page, carrito de compras, checkout flow. Diseño limpio y minimalista, mobile-first, usando Tailwind CSS. Incluir estados de loading, empty states, y ser completamente accesible."</p>',
+              '</div>',
+              "<p><strong>Fase 2: Desarrollo de Componentes (1 semana)</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>// GitHub Copilot - Component Generation\n// Crear sistema de componentes reutilizables para e-commerce\n// Incluir: ProductCard, CartItem, CheckoutForm, UserProfile\n// Con TypeScript strict, Tailwind CSS, y accesibilidad WCAG 2.1\n\ninterface Product {\n  id: string;\n  name: string;\n  price: number;\n  image: string;\n  category: string;\n  rating: number;\n  stock: number;\n}\n\n// Copilot genera automáticamente:\nfunction ProductCard({ product, onAddToCart }: ProductCardProps) {\n  // Componente completo con loading states, accessibility, animations\n}</code></pre></div>',
+              "<p><strong>Fase 3: Testing y QA Automático (2-3 días)</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🧪 Visual Testing:</strong> Chromatic captura todas las variantes</li>",
+              "<li><strong>♿ Accessibility:</strong> axe-core valida WCAG 2.1 AA automáticamente</li>",
+              "<li><strong>⚡ Performance:</strong> Lighthouse CI asegura Core Web Vitals</li>",
+              "<li><strong>🎭 E2E Testing:</strong> Playwright genera tests del user journey</li>",
+              "</ul>",
+              "<p><strong>Fase 4: Content y Assets (1 día)</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🖼️ Product Images:</strong> Midjourney genera mockups profesionales</li>",
+              "<li><strong>📝 Copy:</strong> ChatGPT crea descriptions y microcopy</li>",
+              "<li><strong>🔤 Icons:</strong> Set completo de iconos consistentes</li>",
+              "<li><strong>🎨 Branding:</strong> Logo, colores, tipografía cohesivos</li>",
+              "</ul>",
+              "<p><strong>Fase 5: Deploy y Monitoring (2-4 horas)</strong></p>",
+              '<div class="bg-green-50 border border-green-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-green-800">Deployment Automático:</p>',
+              '<ul class="text-green-700 mt-2 space-y-1">',
+              '<li>• <strong>Vercel:</strong> Deploy automático desde GitHub</li>',
+              '<li>• <strong>Performance:</strong> Monitoring continuo con alertas</li>',
+              '<li>• <strong>Analytics:</strong> User behavior tracking automático</li>',
+              '<li>• <strong>Error Tracking:</strong> Sentry captura issues automáticamente</li>',
+              '</ul>',
+              '</div>',
+              "<p><strong>Resultados Medibles:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>⚡ <strong>Lighthouse Score:</strong> 95+ en todas las métricas</li>",
+              "<li>♿ <strong>Accessibility:</strong> 100% WCAG 2.1 AA compliance</li>",
+              "<li>📱 <strong>Mobile UX:</strong> Optimizado para todas las pantallas</li>",
+              "<li>🚀 <strong>Core Web Vitals:</strong> LCP < 2s, FID < 100ms, CLS < 0.1</li>",
+              "<li>🧪 <strong>Test Coverage:</strong> 90%+ con tests automáticos</li>",
+              "</ul>",
+              "<p><strong>Lecciones Aprendidas:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>✅ <strong>IA Acelera, No Reemplaza:</strong> Dirección humana es crucial</li>",
+              "<li>✅ <strong>Iteración Rápida:</strong> Prototipo → Test → Mejora en ciclos cortos</li>",
+              "<li>✅ <strong>Quality Gates:</strong> Automatización previene regresiones</li>",
+              "<li>✅ <strong>User-Centric:</strong> IA optimiza para métricas reales de UX</li>",
+              "</ul>",
+              '<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-yellow-800">🎯 Próximos Pasos:</p>',
+              '<p class="text-yellow-700 mt-2">Con este proyecto base, puedes escalar a funcionalidades avanzadas: AI-powered recommendations, dynamic pricing, automated A/B testing, y personalization inteligente.</p>',
+              '</div>',
+            ],
+          },
+        ],
+      },
     ],
 
     aiPrompts: [
@@ -987,6 +1335,214 @@ Incluye:
 - Cache strategy apropiada con Tanstack Query
 - Manejo de errores con toast notifications
 - Validación de datos con Zod`,
+      },
+      {
+        title: "Generación Avanzada con v0.dev",
+        description: "Crear interfaces complejas con prompts optimizados para v0.dev",
+        prompt: `Crea un prompt para v0.dev que genere un [TIPO_COMPONENTE] completo:
+
+**Contexto del Proyecto:**
+- Aplicación: [E-commerce/Dashboard/Landing/etc]
+- Audiencia: [Descripción del usuario objetivo]
+- Caso de uso: [Funcionalidad específica]
+
+**Especificaciones del Componente:**
+- Funcionalidades requeridas: [Lista detallada]
+- Estados necesarios: [Loading, error, empty, success]
+- Interacciones: [Clicks, hovers, forms, etc]
+- Data props: [Estructura de datos esperada]
+
+**Requisitos de Diseño:**
+- Estilo: [Moderno/Minimalista/Corporativo]
+- Colores: [Paleta específica o "brand colors"]
+- Responsive: [Mobile-first behavior]
+- Animaciones: [Sutiles/Sin animaciones/Específicas]
+
+**Especificaciones Técnicas:**
+- Framework: React + TypeScript
+- Styling: Tailwind CSS
+- Accesibilidad: WCAG 2.1 AA compliant
+- Props interface: [Definir estructura TypeScript]
+- Performance: Optimizado para Core Web Vitals
+
+Genera el prompt optimizado para v0.dev.`,
+      },
+      {
+        title: "GitHub Copilot: Custom Hooks Avanzados",
+        description: "Usar Copilot para generar custom hooks complejos con TypeScript",
+        prompt: `Usando GitHub Copilot, genera custom hooks TypeScript avanzados:
+
+**Hook 1: useApiWithCache<T>**
+- Fetch data con cache inteligente
+- Invalidación automática
+- Loading/error states
+- Retry logic
+- TypeScript generics
+
+**Hook 2: useFormWithValidation<T>**
+- Integration con react-hook-form
+- Validación con Zod
+- Estados de submission
+- Error handling
+- Reset functionality
+
+**Hook 3: useLocalStorageSync<T>**
+- Sincronización bidireccional
+- Type safety completo
+- SSR compatibility
+- Event listeners para changes
+
+**Comentarios para Copilot:**
+Incluir comentarios descriptivos antes de cada hook para guiar la generación.
+Enfocarse en TypeScript strict y mejores prácticas.
+Agregar ejemplos de uso y JSDoc documentation.`,
+      },
+      {
+        title: "AI Visual Testing Setup",
+        description: "Configurar testing visual automático con herramientas IA",
+        prompt: `Configura un pipeline completo de AI Visual Testing:
+
+**Herramientas requeridas:**
+- Chromatic para visual regression
+- Playwright para E2E con AI
+- axe-core para accessibility testing
+- Lighthouse CI para performance
+
+**Configuración necesaria:**
+1. Storybook setup con todas las variants
+2. GitHub Actions workflow
+3. Quality gates automáticos
+4. Configuración de thresholds
+
+**Tests específicos:**
+- Cross-browser compatibility
+- Responsive breakpoints
+- Dark/light mode variants
+- Interactive states (hover, focus, disabled)
+- Error states y empty states
+
+**Integration CI/CD:**
+- Pre-commit hooks
+- PR checks automáticos
+- Deployment blocking por regresiones
+- Reporting automático
+
+Genera la configuración completa con archivos y scripts.`,
+      },
+      {
+        title: "AI Asset Generation Workflow",
+        description: "Automatizar generación y optimización de assets",
+        prompt: `Crea un workflow completo de AI Asset Generation:
+
+**Generación de Imágenes:**
+- Prompts optimizados para Midjourney/DALL-E
+- Batch generation para consistency
+- Aspect ratios para diferentes casos de uso
+- Style guide para mantener coherencia visual
+
+**Optimización Automática:**
+- Conversión a formatos modernos (WebP, AVIF)
+- Responsive image generation
+- Compression inteligente
+- CDN integration
+
+**Icon System:**
+- Generación de iconos consistentes
+- SVG optimization
+- Component library automático
+- Dark/light variants
+
+**Content Generation:**
+- Copy para landing pages
+- Product descriptions
+- Microcopy y labels
+- SEO-optimized content
+
+**Pipeline de Integración:**
+- Scripts de generación automática
+- Validation de assets
+- Integration con build process
+- Version control para assets
+
+Incluye herramientas, APIs y código de automatización.`,
+      },
+      {
+        title: "Performance IA Optimization",
+        description: "Optimizar performance usando herramientas IA",
+        prompt: `Implementa optimización de performance con IA:
+
+**Core Web Vitals Monitoring:**
+- Lighthouse CI automático
+- Real User Monitoring (RUM)
+- Performance budgets
+- Alertas inteligentes
+
+**Optimizaciones Automáticas:**
+- Code splitting inteligente
+- Bundle analysis con recommendations
+- Image optimization pipeline
+- Preloading strategies
+
+**AI Performance Insights:**
+- Análisis de bottlenecks
+- Recommendations específicas
+- Comparative analysis
+- Trend detection
+
+**Implementation:**
+- Next.js optimizations
+- Webpack bundle analyzer
+- Performance monitoring dashboard
+- Automated fixes donde sea posible
+
+**Quality Gates:**
+- LCP < 2.5s
+- FID < 100ms  
+- CLS < 0.1
+- TTI < 3.5s
+
+Genera configuración completa y scripts de monitoring.`,
+      },
+      {
+        title: "E-commerce IA-Driven Complete Setup",
+        description: "Configurar e-commerce completo usando herramientas IA",
+        prompt: `Crea setup completo para e-commerce usando IA end-to-end:
+
+**Arquitectura del Proyecto:**
+- Next.js 14 + App Router
+- TypeScript strict
+- Tailwind CSS + custom design system
+- Zustand para state management
+- react-hook-form + Zod validation
+
+**Componentes Principales (usar v0.dev):**
+- ProductCard con variants
+- Cart sidebar con animations
+- Checkout multi-step form
+- User authentication flows
+- Admin dashboard components
+
+**IA Integration:**
+- GitHub Copilot para código
+- v0.dev para diseño inicial
+- AI testing para quality assurance
+- AI assets para imágenes y content
+- Performance monitoring automático
+
+**Features Específicas:**
+- Search con filters
+- Product recommendations
+- Real-time inventory
+- Order tracking
+- User reviews system
+
+**Deployment Pipeline:**
+- Vercel deployment
+- CI/CD con GitHub Actions
+- Performance monitoring
+- Error tracking con Sentry
+
+Genera estructura de proyecto, configuraciones y código inicial.`,
       },
       {
         title: "Optimización de Performance",
@@ -1132,6 +1688,12 @@ Componente: [PEGAR_CODIGO_AQUI]`,
       { name: "📊 Implementar analytics", completed: false },
       { name: "🌍 Desplegar en Vercel", completed: false },
       { name: "📝 Documentar el proyecto", completed: false },
+      { name: "🤖 Configurar herramientas IA (v0.dev, Copilot)", completed: false },
+      { name: "🎨 Generar assets con IA (imágenes, iconos)", completed: false },
+      { name: "🧪 Implementar AI Visual Testing", completed: false },
+      { name: "⚡ Configurar AI Performance Monitoring", completed: false },
+      { name: "📊 Setup AI Analytics y Insights", completed: false },
+      { name: "🔄 Optimizar workflow con IA", completed: false },
     ],
 
     init() {
