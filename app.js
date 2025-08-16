@@ -1263,6 +1263,101 @@ function courseApp() {
               '</div>',
             ],
           },
+          {
+            title: "9.7 Templates y Configuraciones IA-Ready",
+            content: [
+              "<p><strong>🛠️ Templates Listos para Producción: Acelera tu Setup IA</strong></p>",
+              "<p><em>Como boilerplates backend, pero optimizados para desarrollo frontend con IA. Templates pre-configurados con todas las herramientas IA integradas.</em></p>",
+              "<p><strong>Starter Templates Esenciales:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🚀 Next.js + IA Stack:</strong> Template completo con Copilot, v0.dev ready</li>",
+              "<li><strong>🎨 Component Library:</strong> Storybook + Chromatic pre-configurado</li>",
+              "<li><strong>🧪 Testing Suite:</strong> Playwright + axe-core + Lighthouse CI</li>",
+              "<li><strong>📊 Analytics Ready:</strong> Performance monitoring integrado</li>",
+              "</ul>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code># Estructura del Template Next.js + IA\nai-frontend-template/\n├── .github/\n│   └── workflows/\n│       ├── ai-visual-tests.yml     # Chromatic + Playwright\n│       ├── performance-audit.yml   # Lighthouse CI\n│       └── accessibility-check.yml # axe-core automation\n├── .vscode/\n│   ├── settings.json              # Copilot optimizado\n│   ├── extensions.json            # Extensions recomendadas\n│   └── ai-prompts.md              # Prompts personalizados\n├── components/\n│   ├── ui/                       # Componentes base v0.dev\n│   ├── forms/                    # Form components con IA\n│   └── layouts/                  # Layout templates\n├── lib/\n│   ├── ai-utils.ts               # Utilidades IA\n│   ├── performance.ts            # Monitoring tools\n│   └── testing-helpers.ts        # Testing utilities\n├── hooks/\n│   ├── use-ai-content.ts         # Content generation\n│   ├── use-performance.ts        # Performance tracking\n│   └── use-accessibility.ts      # A11y helpers\n├── config/\n│   ├── chromatic.config.js       # Visual testing\n│   ├── lighthouse.config.js      # Performance budget\n│   └── ai-tools.config.js        # API keys y settings\n└── docs/\n    ├── ai-workflow.md            # Workflow documentation\n    ├── prompts-library.md        # Prompt collection\n    └── deployment-guide.md       # Deploy con IA validation</code></pre></div>',
+              "<p><strong>Configuración VS Code Optimizada para IA:</strong></p>",
+              '<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-blue-800">settings.json para Máxima Productividad IA:</p>',
+              '<div class="bg-gray-900 rounded p-2 mt-2"><pre><code class="text-sm">{\n  "github.copilot.enable": {\n    "*": true,\n    "plaintext": false,\n    "markdown": true,\n    "scminput": false\n  },\n  "github.copilot.advanced": {\n    "secret_key": "github_copilot_extension_development",\n    "length": 500,\n    "temperature": 0.1,\n    "top_p": 1,\n    "stop": ["\\n\\n\\n"]\n  },\n  "editor.inlineSuggest.enabled": true,\n  "editor.suggestSelection": "first",\n  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",\n  "typescript.suggest.autoImports": true,\n  "typescript.preferences.importModuleSpecifier": "relative",\n  "emmet.includeLanguages": {\n    "typescript": "html",\n    "typescriptreact": "html"\n  },\n  "tailwindCSS.includeLanguages": {\n    "typescript": "html",\n    "typescriptreact": "html"\n  },\n  "files.associations": {\n    "*.css": "tailwindcss"\n  }\n}</code></pre></div>',
+              '</div>',
+              "<p><strong>Configuración de Herramientas IA:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code># .env.local - Variables de entorno para IA tools\nOPENAI_API_KEY=sk-your-key-here\nCHROMATIC_PROJECT_TOKEN=your-chromatic-token\nLIGHTHOUSE_SERVER_URL=your-lighthouse-server\nVERCEL_TOKEN=your-vercel-token\n\n# AI Configuration\nAI_CONTENT_PROVIDER=openai # openai | anthropic | google\nAI_IMAGE_PROVIDER=midjourney # midjourney | dalle | stable-diffusion\nAI_TESTING_ENABLED=true\nAI_PERFORMANCE_MONITORING=true\n\n# Performance Budgets\nLIGHTHOUSE_PERFORMANCE_BUDGET=90\nLIGHTHOUSE_ACCESSIBILITY_BUDGET=95\nLIGHTHOUSE_SEO_BUDGET=90</code></pre></div>',
+              "<p><strong>Package.json con Scripts IA:</strong></p>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>{\n  "scripts": {\n    "dev": "next dev",\n    "build": "next build",\n    "start": "next start",\n    \n    // === AI DEVELOPMENT SCRIPTS ===\n    "ai:generate": "node scripts/ai-component-generator.js",\n    "ai:content": "node scripts/ai-content-generator.js",\n    "ai:optimize": "node scripts/ai-optimization.js",\n    \n    // === AI TESTING SCRIPTS ===\n    "test:ai": "npm run test:visual && npm run test:a11y && npm run test:perf",\n    "test:visual": "chromatic --exit-zero-on-changes",\n    "test:a11y": "jest --testPathPattern=accessibility",\n    "test:perf": "lighthouse-ci autorun",\n    "test:e2e": "playwright test",\n    \n    // === AI QUALITY GATES ===\n    "quality:check": "npm run lint && npm run test:ai",\n    "pre-commit": "lint-staged && npm run quality:check",\n    "pre-push": "npm run build && npm run test:ai"\n  },\n  "dependencies": {\n    "next": "^14.0.0",\n    "react": "^18.0.0",\n    "typescript": "^5.0.0",\n    "tailwindcss": "^3.4.0",\n    \n    // === AI INTEGRATIONS ===\n    "openai": "^4.0.0",\n    "@anthropic-ai/sdk": "^0.20.0",\n    "@google/generative-ai": "^0.2.0"\n  },\n  "devDependencies": {\n    // === AI TESTING TOOLS ===\n    "@axe-core/playwright": "^4.8.0",\n    "@chromatic-com/storybook": "^1.0.0",\n    "@lighthouse-ci/cli": "^0.12.0",\n    "@playwright/test": "^1.40.0",\n    \n    // === AI DEVELOPMENT TOOLS ===\n    "prettier-plugin-tailwindcss": "^0.5.0",\n    "eslint-plugin-jsx-a11y": "^6.8.0",\n    "storybook": "^7.6.0"\n  }\n}</code></pre></div>',
+              "<p><strong>Templates de Componentes IA-Ready:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎨 UI Components:</strong> Button, Card, Modal con variants completas</li>",
+              "<li><strong>📝 Form Components:</strong> Input, Select, TextArea con validación</li>",
+              "<li><strong>📊 Data Components:</strong> Table, Chart, Dashboard con loading states</li>",
+              "<li><strong>🚀 Layout Components:</strong> Header, Sidebar, Footer responsive</li>",
+              "</ul>",
+              '<div class="bg-green-50 border border-green-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-green-800">Template de Componente Optimizado para IA:</p>',
+              '<div class="bg-gray-900 rounded p-2 mt-2"><pre><code class="text-sm">// components/ui/button.tsx\n// AI-ready component template con todas las variants\n\nimport { forwardRef } from "react";\nimport { cn } from "@/lib/utils";\n\ninterface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  variant?: "primary" | "secondary" | "destructive" | "ghost";\n  size?: "sm" | "md" | "lg";\n  loading?: boolean;\n  leftIcon?: React.ReactNode;\n  rightIcon?: React.ReactNode;\n}\n\n// Component con patterns que IA reconoce fácilmente\nconst Button = forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ variant = "primary", size = "md", loading = false, children, className, leftIcon, rightIcon, ...props }, ref) => {\n    return (\n      <button\n        ref={ref}\n        className={cn(\n          // Base styles - AI entiende estos patrones\n          "inline-flex items-center justify-center rounded-md font-medium transition-colors",\n          "focus:outline-none focus:ring-2 focus:ring-offset-2",\n          "disabled:opacity-50 disabled:pointer-events-none",\n          \n          // Variant styles - patterns reconocibles por IA\n          {\n            "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500": variant === "primary",\n            "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500": variant === "secondary",\n            "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500": variant === "destructive",\n            "hover:bg-gray-100 focus:ring-gray-500": variant === "ghost",\n          },\n          \n          // Size styles - IA aprende estos patterns\n          {\n            "h-8 px-3 text-sm": size === "sm",\n            "h-10 px-4 text-base": size === "md",\n            "h-12 px-6 text-lg": size === "lg",\n          },\n          \n          className\n        )}\n        disabled={loading || props.disabled}\n        {...props}\n      >\n        {loading ? (\n          <svg className="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">\n            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />\n            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />\n          </svg>\n        ) : leftIcon}\n        {children}\n        {rightIcon}\n      </button>\n    );\n  }\n);\n\nButton.displayName = "Button";\n\nexport { Button, type ButtonProps };</code></pre></div>',
+              '</div>',
+            ],
+          },
+          {
+            title: "9.8 Workflows Avanzados y Casos de Uso IA",
+            content: [
+              "<p><strong>🔄 Workflows Profesionales: De Desarrollo a Producción con IA</strong></p>",
+              "<p><em>Como pipelines CI/CD pero optimizados para desarrollo frontend. Automatización completa desde desarrollo hasta deployment con validaciones IA en cada paso.</em></p>",
+              "<p><strong>Workflow 1: Feature Development con IA</strong></p>",
+              "<ol class='list-decimal pl-6 space-y-2'>",
+              "<li><strong>📋 Planning:</strong> Definir requirements con IA assistance</li>",
+              "<li><strong>🎨 Design:</strong> v0.dev genera wireframes y componentes</li>",
+              "<li><strong>💻 Development:</strong> Copilot asiste en implementación</li>",
+              "<li><strong>🧪 Testing:</strong> AI testing suite valida automáticamente</li>",
+              "<li><strong>📊 Performance:</strong> Lighthouse CI verifica optimizations</li>",
+              "<li><strong>🚀 Deploy:</strong> CI/CD con quality gates IA</li>",
+              "</ol>",
+              '<div class="bg-purple-50 border border-purple-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-purple-800">GitHub Actions Workflow con IA:</p>',
+              '<div class="bg-gray-900 rounded p-2 mt-2"><pre><code class="text-sm"># .github/workflows/ai-feature-workflow.yml\nname: AI-Powered Feature Development\n\non:\n  pull_request:\n    branches: [main, develop]\n  push:\n    branches: [main]\n\njobs:\n  ai-quality-check:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      \n      - name: Setup Node.js\n        uses: actions/setup-node@v4\n        with:\n          node-version: 18\n          cache: npm\n      \n      - name: Install dependencies\n        run: npm ci\n      \n      - name: AI Code Analysis\n        run: |\n          # AI analiza el código para issues comunes\n          npm run ai:code-analysis\n          # AI sugiere optimizaciones\n          npm run ai:optimize-suggestions\n      \n      - name: Visual Regression Testing\n        run: npm run test:visual\n        env:\n          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}\n      \n      - name: Accessibility Testing\n        run: npm run test:a11y\n      \n      - name: Performance Audit\n        run: npm run test:perf\n        env:\n          LIGHTHOUSE_SERVER_URL: ${{ secrets.LIGHTHOUSE_SERVER_URL }}\n      \n      - name: AI Summary Report\n        run: |\n          # AI genera resumen de todos los tests\n          npm run ai:generate-report\n          # AI sugiere próximos pasos\n          npm run ai:next-steps</code></pre></div>',
+              '</div>',
+              "<p><strong>Workflow 2: A/B Testing Automático con IA</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🎯 Hypothesis Generation:</strong> IA sugiere variantes a testear</li>",
+              "<li><strong>🎨 Variant Creation:</strong> v0.dev genera versiones alternativas</li>",
+              "<li><strong>📊 Test Setup:</strong> Configuración automática de experimentos</li>",
+              "<li><strong>📈 Results Analysis:</strong> IA analiza métricas y sugiere ganadores</li>",
+              "</ul>",
+              '<div class="bg-gray-900 rounded p-4 my-4"><pre><code>// lib/ai-ab-testing.ts\ninterface ABTestConfig {\n  name: string;\n  variants: {\n    control: React.ComponentType;\n    treatment: React.ComponentType;\n  };\n  metrics: string[];\n  audienceSegments?: string[];\n}\n\nexport class AIABTestManager {\n  async generateVariants(component: string, goal: string) {\n    // IA genera múltiples variantes basadas en el goal\n    const prompt = `\n      Genera 3 variantes del componente ${component} optimizadas para ${goal}.\n      Incluye: copy variations, color schemes, layout changes.\n      Mantén funcionalidad idéntica, solo cambia elementos visuales/UX.\n    `;\n    \n    return await this.aiService.generateVariants(prompt);\n  }\n  \n  async analyzeResults(testResults: TestResults) {\n    // IA analiza resultados y sugiere próximos experimentos\n    const insights = await this.aiService.analyzeMetrics(testResults);\n    \n    return {\n      winner: insights.statisticallySignificant,\n      recommendations: insights.nextExperiments,\n      confidenceLevel: insights.confidence\n    };\n  }\n}</code></pre></div>',
+              "<p><strong>Workflow 3: Content Optimization Continua</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>📝 Content Audit:</strong> IA analiza performance de copy actual</li>",
+              "<li><strong>🎯 SEO Optimization:</strong> Generación automática de meta tags</li>",
+              "<li><strong>🌐 Localization:</strong> Traducción y adaptación cultural automática</li>",
+              "<li><strong>📊 Performance Tracking:</strong> Monitoring de engagement automático</li>",
+              "</ul>",
+              "<p><strong>Workflow 4: Performance Monitoring Inteligente</strong></p>",
+              '<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-blue-800">Real User Monitoring con IA:</p>',
+              '<div class="bg-gray-900 rounded p-2 mt-2"><pre><code class="text-sm">// lib/ai-performance-monitor.ts\nexport class AIPerformanceMonitor {\n  constructor() {\n    this.observer = new PerformanceObserver((list) => {\n      list.getEntries().forEach(entry => {\n        this.analyzeMetric(entry);\n      });\n    });\n    \n    this.observer.observe({ entryTypes: [\'navigation\', \'paint\', \'largest-contentful-paint\'] });\n  }\n  \n  async analyzeMetric(entry: PerformanceEntry) {\n    const analysis = await this.aiService.analyzePerformance({\n      metric: entry.name,\n      value: entry.startTime,\n      context: this.getPageContext()\n    });\n    \n    if (analysis.isRegression) {\n      await this.createPerformanceAlert(analysis);\n    }\n    \n    if (analysis.optimizationSuggestions.length > 0) {\n      await this.queueOptimizations(analysis.optimizationSuggestions);\n    }\n  }\n  \n  async createPerformanceAlert(analysis: PerformanceAnalysis) {\n    // IA genera alertas específicas con contexto\n    const alert = {\n      severity: analysis.impact,\n      description: `Performance regression detected: ${analysis.metric} increased by ${analysis.change}%`,\n      recommendations: analysis.quickFixes,\n      affectedUsers: analysis.impactedSegments\n    };\n    \n    await this.notificationService.send(alert);\n  }\n}</code></pre></div>',
+              '</div>',
+              "<p><strong>Workflow 5: Deployment Inteligente</strong></p>",
+              "<ul class='list-disc pl-6 space-y-2'>",
+              "<li><strong>🔍 Pre-Deploy Validation:</strong> IA verifica readiness para producción</li>",
+              "<li><strong>🚀 Progressive Rollout:</strong> Deploy gradual con monitoring IA</li>",
+              "<li><strong>📊 Health Monitoring:</strong> IA detecta issues post-deploy</li>",
+              "<li><strong>🔄 Auto-Rollback:</strong> Revert automático si IA detecta problemas</li>",
+              "</ul>",
+              "<p><strong>Casos de Uso Avanzados:</strong></p>",
+              "<ul class='list-disc pl-6 space-y-1'>",
+              "<li>🎯 <strong>Personalization:</strong> UI adaptativa basada en user behavior</li>",
+              "<li>🔍 <strong>Smart Search:</strong> Búsqueda inteligente con AI suggestions</li>",
+              "<li>💬 <strong>AI Chatbots:</strong> Soporte integrado en la interfaz</li>",
+              "<li>📊 <strong>Predictive Analytics:</strong> Anticipar needs del usuario</li>",
+              "<li>🛡️ <strong>Security Monitoring:</strong> Detección automática de amenazas</li>",
+              "<li>🛡️ <strong>Security Monitoring:</strong> Detección automática de amenazas</li>",
+              "</ul>",
+              '<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 my-4">',
+              '<p class="font-medium text-yellow-800">🚀 El Futuro es IA-First:</p>',
+              '<p class="text-yellow-700 mt-2">Estos workflows representan el futuro del desarrollo frontend. La IA no es solo una herramienta más, es el core que potencia todo el proceso de desarrollo, testing, y deployment.</p>',
+              '</div>',
+            ],
+          },
         ],
       },
     ],
@@ -1667,6 +1762,433 @@ Componente: [PEGAR_CODIGO_AQUI]`,
 - Estructura de carpetas escalable
 - Configuración de Vercel para despliegue`,
       },
+      // === PROMPTS AVANZADOS IA (PASO 2) ===
+      {
+        title: "🤖 v0.dev: Dashboard Completo",
+        description: "Generar dashboard administrativo complejo con v0.dev",
+        prompt: `Crea un dashboard administrativo para [TIPO_NEGOCIO] usando v0.dev:
+
+**Componentes Requeridos:**
+- Sidebar navegación responsivo con iconos
+- Header con profile dropdown y notificaciones
+- Cards de métricas principales (KPIs)
+- Gráficos interactivos (Chart.js/Recharts)
+- Tabla de datos con filtros y paginación
+- Formulario modal para agregar/editar
+
+**Especificaciones Técnicas:**
+- React + TypeScript + Tailwind CSS
+- Dark/Light mode toggle
+- Estados: loading, error, empty, success
+- Responsive design mobile-first
+- Accesibilidad WCAG 2.1
+
+**Funcionalidades:**
+- Filtros en tiempo real
+- Exportar datos CSV/PDF
+- Búsqueda global
+- Drag & drop para reordenar
+- Confirmaciones de acciones destructivas
+
+**Datos Mock:**
+Incluir estructura TypeScript para las interfaces y datos de ejemplo realistas.`,
+      },
+      {
+        title: "🤖 Copilot: Architecture Generator",
+        description: "Usar Copilot para generar arquitectura de aplicación completa",
+        prompt: `Usando GitHub Copilot, genera arquitectura completa para [TIPO_APP]:
+
+**Comentarios para guiar Copilot:**
+
+// TODO: Generate complete app architecture
+// Features: [LISTA_FUNCIONALIDADES]
+// Tech stack: Next.js 14, TypeScript, Tailwind, Prisma, tRPC
+
+// 1. Generate folder structure
+// Include: components, pages, hooks, utils, types, lib
+
+// 2. Generate core types and interfaces
+// User types, API responses, database schema
+
+// 3. Generate utility functions
+// Auth helpers, API clients, validation schemas
+
+// 4. Generate custom hooks
+// Data fetching, form handling, state management
+
+// 5. Generate component templates
+// Layout components, UI primitives, form components
+
+// 6. Generate configuration files
+// Next.js config, TypeScript config, Tailwind config
+
+**Prompt específico para Copilot:**
+"Generate a complete TypeScript interface for [ENTITY] including all CRUD operations and validation schemas"`,
+      },
+      {
+        title: "🎨 AI Asset Pipeline",
+        description: "Workflow completo de generación de assets con IA",
+        prompt: `Crea pipeline de generación de assets usando múltiples herramientas IA:
+
+**1. Generación de Imágenes (DALL-E/Midjourney):**
+- Hero images: "[DESCRIPCION] --style clean modern --ar 16:9 --v 6"
+- Product images: "[PRODUCTO] on white background --style product photography --ar 1:1"
+- Icons: "minimalist icon of [CONCEPTO] --style line art --black on white"
+
+**2. Optimización Automática:**
+\`\`\`bash
+# Script de conversión automática
+for img in *.png; do
+  # WebP para browsers modernos
+  cwebp -q 80 "$img" -o "\${img%.png}.webp"
+  # AVIF para máxima compresión
+  avifenc -q 60 "$img" "\${img%.png}.avif"
+done
+\`\`\`
+
+**3. Responsive Generation:**
+\`\`\`javascript
+// Generar múltiples tamaños
+const sizes = [320, 640, 1024, 1920];
+sizes.forEach(width => {
+  sharp(inputImage)
+    .resize(width)
+    .webp({ quality: 80 })
+    .toFile(\`output-\${width}w.webp\`);
+});
+\`\`\`
+
+**4. Component Integration:**
+\`\`\`typescript
+// Auto-generate responsive image component
+const ResponsiveImage = ({ src, alt, className }: ImageProps) => (
+  <picture>
+    <source srcSet={\`\${src}-1920w.avif 1920w, \${src}-1024w.avif 1024w\`} type="image/avif" />
+    <source srcSet={\`\${src}-1920w.webp 1920w, \${src}-1024w.webp 1024w\`} type="image/webp" />
+    <img src={\`\${src}.jpg\`} alt={alt} className={className} loading="lazy" />
+  </picture>
+);
+\`\`\`
+
+**5. Build Integration:**
+Incluir en package.json scripts para generar assets automáticamente en build.`,
+      },
+      {
+        title: "🧪 AI Testing Suite",
+        description: "Setup completo de testing automático con IA",
+        prompt: `Configura suite de testing completa con herramientas IA:
+
+**1. Visual Regression Testing:**
+\`\`\`yaml
+# .github/workflows/visual-tests.yml
+name: Visual Tests
+on: [push, pull_request]
+jobs:
+  visual-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Storybook
+        run: npm run build-storybook
+      - name: Run Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: \${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: build-storybook
+\`\`\`
+
+**2. AI-Powered E2E Tests:**
+\`\`\`typescript
+// tests/ai-e2e.spec.ts
+import { test, expect } from '@playwright/test';
+
+test('AI-generated user journey', async ({ page }) => {
+  // Test generado por IA basado en user stories
+  await page.goto('/');
+  
+  // AI identifica elementos críticos automáticamente
+  await page.getByRole('button', { name: /add to cart/i }).click();
+  await expect(page.getByText('Added to cart')).toBeVisible();
+  
+  // Validación inteligente de flujos
+  await page.getByTestId('cart-counter').locator('text=1').isVisible();
+});
+\`\`\`
+
+**3. Accessibility AI Testing:**
+\`\`\`typescript
+// Setup axe-core con AI recommendations
+import { configureAxe } from 'jest-axe';
+
+const axe = configureAxe({
+  rules: {
+    // Reglas específicas por tipo de app
+    'color-contrast': { enabled: true, tags: ['wcag2a', 'wcag2aa'] },
+    'keyboard-navigation': { enabled: true },
+    'focus-management': { enabled: true }
+  }
+});
+
+test('AI accessibility audit', async () => {
+  const results = await axe(document.body);
+  // AI genera reportes con sugerencias específicas
+  expect(results).toHaveNoViolations();
+});
+\`\`\`
+
+**4. Performance AI Monitoring:**
+\`\`\`javascript
+// lighthouse-ci.json
+{
+  "ci": {
+    "collect": {
+      "url": ["http://localhost:3000"],
+      "numberOfRuns": 3
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.9}],
+        "categories:accessibility": ["error", {"minScore": 0.9}],
+        "first-contentful-paint": ["error", {"maxNumericValue": 2000}],
+        "largest-contentful-paint": ["error", {"maxNumericValue": 2500}]
+      }
+    }
+  }
+}
+\`\`\``,
+      },
+      {
+        title: "⚡ AI Performance Optimizer",
+        description: "Optimización inteligente de performance con herramientas IA",
+        prompt: `Implementa optimización de performance usando IA:
+
+**1. Bundle Analysis Inteligente:**
+\`\`\`javascript
+// webpack-bundle-analyzer con AI insights
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+module.exports = {
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      openAnalyzer: true,
+      // AI genera recomendaciones automáticas
+      generateStatsFile: true,
+      statsOptions: {
+        source: false,
+        modules: false,
+        chunks: false,
+        chunkModules: false,
+        chunkOrigins: false,
+        depth: false,
+        providedExports: false,
+        optimizationBailout: false,
+        reasons: false,
+        usedExports: false
+      }
+    })
+  ]
+};
+\`\`\`
+
+**2. Smart Code Splitting:**
+\`\`\`typescript
+// AI-driven dynamic imports
+const LazyComponent = lazy(() => 
+  import('./HeavyComponent').then(module => ({
+    default: module.HeavyComponent
+  }))
+);
+
+// Preload crítico basado en user behavior
+const preloadCriticalComponents = async () => {
+  if (userBehaviorIndicatesNeed()) {
+    await import('./CriticalComponent');
+  }
+};
+
+// Route-based splitting inteligente
+const routeComponents = {
+  dashboard: () => import('./pages/Dashboard'),
+  profile: () => import('./pages/Profile'),
+  settings: () => import('./pages/Settings')
+};
+\`\`\`
+
+**3. AI Image Optimization:**
+\`\`\`typescript
+// next.config.js con optimización IA
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // AI determina quality óptima por imagen
+    quality: 80,
+    loader: 'custom',
+    loaderFile: './lib/ai-image-loader.js'
+  }
+};
+
+// AI Image Loader
+export default function aiImageLoader({ src, width, quality }) {
+  // AI decide formato óptimo basado en contenido
+  const format = determineOptimalFormat(src);
+  const optimalQuality = calculateOptimalQuality(src, width);
+  
+  return \`\${src}?w=\${width}&q=\${optimalQuality || quality}&f=\${format}\`;
+}
+\`\`\`
+
+**4. Real User Monitoring (RUM) IA:**
+\`\`\`typescript
+// lib/ai-rum.ts
+export class AIPerformanceMonitor {
+  private observer: PerformanceObserver;
+  
+  constructor() {
+    this.observer = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        this.analyzePerformanceEntry(entry);
+      });
+    });
+    
+    this.observer.observe({ entryTypes: ['navigation', 'paint', 'largest-contentful-paint'] });
+  }
+  
+  private analyzePerformanceEntry(entry: PerformanceEntry) {
+    // AI analiza patrones y sugiere optimizaciones
+    const insights = this.generateAIInsights(entry);
+    this.sendToAnalytics(insights);
+  }
+  
+  private generateAIInsights(entry: PerformanceEntry) {
+    // IA identifica problemas y sugiere soluciones
+    return {
+      metric: entry.name,
+      value: entry.duration || entry.startTime,
+      recommendation: this.getAIRecommendation(entry),
+      impact: this.calculateImpact(entry)
+    };
+  }
+}
+\`\`\``,
+      },
+      {
+        title: "🎯 AI Content Generator",
+        description: "Generación automática de contenido con IA especializada",
+        prompt: `Sistema de generación de contenido usando múltiples IAs:
+
+**1. Copy Generation (GPT-4):**
+\`\`\`typescript
+// lib/ai-content.ts
+interface ContentRequest {
+  type: 'landing' | 'product' | 'blog' | 'social';
+  audience: string;
+  tone: 'professional' | 'casual' | 'technical';
+  length: 'short' | 'medium' | 'long';
+  keywords: string[];
+}
+
+export async function generateContent(request: ContentRequest) {
+  const prompt = \`
+Generate \${request.type} content for \${request.audience}.
+Tone: \${request.tone}
+Include keywords: \${request.keywords.join(', ')}
+Length: \${request.length}
+
+Content should be:
+- SEO optimized
+- Conversion focused
+- Brand aligned
+- Accessible language
+\`;
+
+  return await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [{ role: "user", content: prompt }]
+  });
+}
+\`\`\`
+
+**2. Microcopy Automation:**
+\`\`\`typescript
+// Generación automática de labels, placeholders, error messages
+const microcopyTemplates = {
+  buttons: {
+    primary: ['Get Started', 'Continue', 'Save Changes'],
+    secondary: ['Learn More', 'Cancel', 'Go Back'],
+    destructive: ['Delete', 'Remove', 'Clear All']
+  },
+  errors: {
+    validation: 'Please check your input and try again',
+    network: 'Connection lost. Please check your internet',
+    server: 'Something went wrong. Our team has been notified'
+  },
+  loading: {
+    data: 'Loading your data...',
+    saving: 'Saving changes...',
+    processing: 'Processing your request...'
+  }
+};
+
+// Auto-generate basado en contexto
+export function generateMicrocopy(context: string, type: keyof typeof microcopyTemplates) {
+  // AI contextualiza el copy para el componente específico
+  return aiContextualize(microcopyTemplates[type], context);
+}
+\`\`\`
+
+**3. SEO Content Optimization:**
+\`\`\`typescript
+// AI SEO Optimizer
+export class AISEOOptimizer {
+  async optimizeContent(content: string, targetKeywords: string[]) {
+    return {
+      title: await this.generateSEOTitle(content, targetKeywords),
+      description: await this.generateMetaDescription(content),
+      headings: await this.optimizeHeadings(content, targetKeywords),
+      internalLinks: await this.suggestInternalLinks(content),
+      readabilityScore: await this.calculateReadability(content),
+      keywordDensity: this.analyzeKeywordDensity(content, targetKeywords)
+    };
+  }
+  
+  async generateSchema(contentType: string, content: string) {
+    // AI genera Schema.org markup automáticamente
+    const schema = await this.aiGenerateSchema(contentType, content);
+    return JSON.stringify(schema, null, 2);
+  }
+}
+\`\`\`
+
+**4. A/B Testing Copy Generation:**
+\`\`\`typescript
+// Generar variantes automáticamente para testing
+export async function generateABVariants(originalCopy: string, variants: number = 3) {
+  const variants = [];
+  
+  for (let i = 0; i < variants; i++) {
+    const variant = await generateContent({
+      type: 'conversion',
+      original: originalCopy,
+      variation: \`variant_\${i + 1}\`,
+      focus: ['clarity', 'urgency', 'benefit'][i] || 'clarity'
+    });
+    
+    variants.push({
+      id: \`variant_\${i + 1}\`,
+      copy: variant,
+      hypothesis: this.generateHypothesis(originalCopy, variant)
+    });
+  }
+  
+  return variants;
+}
+\`\`\``,
+      },
     ],
 
     projectTasks: [
@@ -1694,6 +2216,17 @@ Componente: [PEGAR_CODIGO_AQUI]`,
       { name: "⚡ Configurar AI Performance Monitoring", completed: false },
       { name: "📊 Setup AI Analytics y Insights", completed: false },
       { name: "🔄 Optimizar workflow con IA", completed: false },
+      // === TAREAS AVANZADAS IA (PASO 2) ===
+      { name: "🎯 Configurar AI Content Generation Pipeline", completed: false },
+      { name: "🤖 Setup GitHub Copilot Workflows Personalizados", completed: false },
+      { name: "🎨 Implementar AI Asset Optimization Pipeline", completed: false },
+      { name: "📐 Crear Templates de Componentes con IA", completed: false },
+      { name: "🧪 Configurar AI Testing Suite Completa", completed: false },
+      { name: "⚡ Implementar AI Performance Optimization", completed: false },
+      { name: "📊 Setup Real User Monitoring con IA", completed: false },
+      { name: "🎯 Configurar A/B Testing con IA", completed: false },
+      { name: "🔍 Implementar AI SEO Optimization", completed: false },
+      { name: "🚀 Setup CI/CD con validaciones IA", completed: false },
     ],
 
     init() {
