@@ -1476,830 +1476,598 @@ function courseApp() {
 
     aiPrompts: [
       {
-        title: "Generar Custom Hooks Avanzados React",
-        description: "Crear custom hooks TypeScript con optimización y patrones modernos",
-        prompt: `Genera custom hooks React TypeScript avanzados para casos de uso específicos:
+        title: "1. Analizar Backend para Frontend",
+        description: "Extraer información del backend para planificar el frontend",
+        prompt: `Analiza este backend/API para planificar el frontend correspondiente:
+
+**Información que necesito del backend:**
+- Endpoints disponibles y métodos HTTP
+- Estructura de datos (request/response schemas)
+- Autenticación y autorización (JWT, roles, permisos)
+- Websockets o real-time features
+- File upload capabilities
+- Rate limiting y paginación
+- Error handling patterns
+
+**Backend info/documentation:** [PEGAR_DOCUMENTACION_O_CODIGO_BACKEND]
+
+**Genera para el frontend:**
+1. TypeScript interfaces para todas las entities
+2. API client structure recommendations
+3. State management needs (global vs local)
+4. Required environment variables
+5. Authentication flow design
+6. Error handling strategy
+7. Data fetching patterns recommendation
+
+**Considera:**
+- Separación entre frontend y backend repos
+- CORS configuration needs
+- API versioning strategy
+- Development vs production endpoints`,
+      },
+      {
+        title: "2. Setup Inicial de Proyecto Frontend",
+        description: "Crear y configurar proyecto frontend desde cero",
+        prompt: `Configura un proyecto frontend completo conectado a backend existente:
+
+**Especificaciones:**
+- Next.js 14 con App Router + TypeScript strict
+- Tailwind CSS con design system personalizado
+- Configuración para conectar con backend en: [URL_BACKEND]
+- Autenticación: [JWT/OAuth/Auth0/etc]
+- State management: [Redux Toolkit/Zustand/Context]
+
+**Incluye configuración completa de:**
+- package.json con todas las dependencias necesarias
+- next.config.js optimizado para producción
+- tailwind.config.js con tokens personalizados
+- ESLint + Prettier + Husky pre-commit hooks
+- Estructura de carpetas escalable
+- Variables de entorno (.env.local, .env.production)
+- API client setup (axios/fetch wrapper)
+- Authentication context/provider
+- Error boundary global
+- Layout components base
+
+**Consideraciones especiales:**
+- CORS handling if different domains
+- Proxy configuration for development
+- Build optimization for deployment`,
+      },
+      {
+        title: "3. Crear API Client y Conectividad",
+        description: "Implementar capa de comunicación con el backend",
+        prompt: `Crea un API client robusto para conectar con el backend:
+
+**Backend endpoints:** [LISTAR_ENDPOINTS_PRINCIPALES]
+**Authentication type:** [JWT/Bearer/etc]
+**Base URL:** [URL_BACKEND]
+
+**Implementa:**
+- API client con interceptors para auth y errors
+- TypeScript interfaces para requests/responses
+- Custom hooks para cada endpoint principal
+- Error handling centralizado con toast notifications
+- Loading states management
+- Retry logic para requests fallidos
+- Cache strategy con Tanstack Query
+- Optimistic updates donde sea apropiado
+
+**Estructura requerida:**
+\`\`\`
+/lib
+  /api
+    client.ts       // Axios/fetch configuration
+    types.ts        // TypeScript interfaces
+    endpoints.ts    // API endpoints constants
+  /hooks
+    useAuth.ts      // Authentication logic
+    useUsers.ts     // Users CRUD operations
+    useProducts.ts  // Products operations
+    [otros hooks según entidades]
+\`\`\`
+
+**Features específicos:**
+- Automatic token refresh
+- Request/response logging in development
+- Network error handling
+- Timeout configuration
+- Request cancellation on component unmount`,
+      },
+      {
+        title: "4. Arquitectura de Componentes y Estado",
+        description: "Diseñar la estructura de componentes basada en datos del backend",
+        prompt: `Diseña la arquitectura de componentes para esta aplicación:
+
+**Datos del backend:** [DESCRIBIR_ENTIDADES_Y_RELACIONES]
+**Funcionalidades principales:** [LISTAR_FEATURES_PRINCIPALES]
+
+**Genera arquitectura completa:**
+
+**1. Component Hierarchy:**
+- Layout components (Header, Sidebar, Footer)
+- Page components (Home, Dashboard, Profile, etc)
+- Feature components (UserList, ProductCard, OrderForm)
+- UI primitives (Button, Input, Modal, etc)
+
+**2. State Management Strategy:**
+- Global state: [User session, app settings, notifications]
+- Server state: [API data con Tanstack Query]
+- Local state: [Form data, UI state, component state]
+- State flow diagrams entre componentes
+
+**3. Props Interfaces (TypeScript):**
+- Definir interfaces para cada componente
+- Composition patterns y compound components
+- Render props vs children patterns
+
+**4. Folder Structure:**
+\`\`\`
+/components
+  /ui           // Primitivos reutilizables
+  /forms        // Form components
+  /layouts      // Layout components
+  /features     // Business logic components
+/hooks          // Custom hooks
+/contexts       // React contexts
+/store          // Global state (si usas Redux/Zustand)
+\`\`\`
+
+**5. Component Communication Patterns:**
+- Parent-child props flow
+- Context providers para shared state
+- Custom hooks para business logic
+- Event handling patterns`,
+      },
+      {
+        title: "5. Implementar Autenticación y Autorización",
+        description: "Setup completo de auth conectado con backend",
+        prompt: `Implementa sistema de autenticación completo:
+
+**Backend auth info:** [JWT/OAuth/tipo_de_auth]
+**Endpoints de auth:** [login, register, refresh, logout]
+**Roles/permisos:** [admin, user, etc]
+
+**Implementa:**
+
+**1. Auth Context/Provider:**
+- Login/logout functionality
+- Token management (storage, refresh)
+- User session persistence
+- Role-based access control
+
+**2. Protected Routes:**
+- Route guards based on authentication
+- Role-based route protection
+- Redirect logic (login -> intended page)
+- Loading states during auth checks
+
+**3. Auth Components:**
+- LoginForm con validación
+- RegisterForm si aplica
+- PasswordReset flow
+- UserProfile management
+
+**4. Security Best Practices:**
+- Secure token storage (httpOnly cookies vs localStorage)
+- XSS protection
+- CSRF protection if needed
+- Session timeout handling
+- Automatic logout on token expiry
+
+**5. Integration con API Client:**
+- Automatic token attachment to requests
+- Token refresh interceptors
+- Logout on 401/403 responses
+- Auth error handling
+
+**Código TypeScript con:**
+- Auth interfaces y types
+- Custom hooks (useAuth, usePermissions)
+- HOC o wrapper para protected components
+- Error boundaries para auth errors`,
+      },
+      {
+        title: "6. Formularios y Validación de Datos",
+        description: "Implementar forms conectados con validación backend",
+        prompt: `Crea sistema de formularios robusto:
+
+**Backend validation rules:** [DESCRIBIR_REGLAS_DE_VALIDACION]
+**Forms requeridos:** [Login, Register, UserProfile, CreateProduct, etc]
+
+**Implementa con React Hook Form + Zod:**
+
+**1. Validation Schemas:**
+- Zod schemas que coincidan con backend validation
+- Custom validators para business rules
+- Async validation (email exists, username available)
+- Cross-field validation
+
+**2. Form Components:**
+- Reusable form controls (Input, Select, Checkbox, etc)
+- Form layouts responsivos
+- Error display patterns
+- Loading states durante submission
+
+**3. Form Submission:**
+- Optimistic updates donde sea apropiado
+- Error handling (validation vs server errors)
+- Success feedback (toast, redirect, etc)
+- Form reset después de éxito
+
+**4. Advanced Features:**
+- Multi-step forms con progress indicator
+- Autosave/draft functionality
+- File upload con progress
+- Conditional fields basados en otros valores
+
+**Estructura de archivos:**
+\`\`\`
+/forms
+  /schemas        // Zod validation schemas
+  /components     // Form components
+  /hooks          // useForm custom hooks
+  /utils          // Form utilities
+\`\`\`
+
+**Ejemplo TypeScript completo para:**
+- UserProfileForm
+- ProductCreateForm
+- Validation error handling
+- Integration con API mutations`,
+      },
+      {
+        title: "7. Gestión de Estado Servidor con Tanstack Query",
+        description: "Implementar cache y sincronización con backend",
+        prompt: `Configura gestión de estado servidor profesional:
+
+**Backend endpoints:** [LISTAR_ENDPOINTS_PRINCIPALES]
+**Data relationships:** [user->orders, product->reviews, etc]
+
+**Implementa Tanstack Query setup:**
+
+**1. Query Configuration:**
+- QueryClient setup con defaults optimizados
+- Query keys organization y patterns
+- Stale time y cache time apropiados
+- Error handling global
+
+**2. Data Fetching Patterns:**
+- useQuery para data fetching
+- Infinite queries para paginación
+- Dependent queries (fetch B after A)
+- Parallel queries con useQueries
+
+**3. Mutations y Updates:**
+- useMutation para CREATE/UPDATE/DELETE
+- Optimistic updates para mejor UX
+- Query invalidation strategies
+- Rollback en caso de errores
+
+**4. Advanced Features:**
+- Background refetching
+- Window focus refetching
+- Network status handling
+- Retry logic personalizado
+- Prefetching para rutas anticipadas
+
+**5. Integration Patterns:**
+\`\`\`typescript
+// Ejemplo de estructura
+const useUsers = () => {
+  return useQuery({
+    queryKey: ['users'],
+    queryFn: fetchUsers,
+    staleTime: 5 * 60 * 1000, // 5 minutos
+  });
+};
+
+const useCreateUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  });
+};
+\`\`\`
+
+**Performance optimizations:**
+- Selective query invalidation
+- Data normalization strategies
+- Memory management para large datasets`,
+      },
+      {
+        title: "8. Custom Hooks y Lógica Reutilizable",
+        description: "Crear hooks personalizados para la aplicación",
+        prompt: `Crea custom hooks TypeScript para esta aplicación:
+
+**Funcionalidades de la app:** [DESCRIBIR_FEATURES_PRINCIPALES]
+**Datos que maneja:** [user, products, orders, etc]
 
 **Custom Hooks requeridos:**
-1. useLocalStorage<T> - Sincronización bidireccional con localStorage
-2. useDebounce<T> - Control de timing para búsquedas y validaciones
-3. useApi<T> - Gestión completa de estados HTTP (loading, data, error, retry)
-4. useForm<T> - Manejo avanzado de formularios con validación
-5. usePrevious<T> - Acceso al valor anterior de una variable
 
-**Requisitos:**
-- Tipado completo con TypeScript y generics
-- Implementar useMemo y useCallback para optimización
-- Manejo de cleanup apropiado en useEffect
-- Error boundaries y manejo robusto de errores
-- JSDoc documentation completa
-- Ejemplos de uso práctico para cada hook
+**1. Data Hooks:**
+- useAuth() - Authentication state y methods
+- useUser(id) - Single user with caching
+- useUsers(filters) - Users list con filtering
+- useProducts(category) - Products by category
+- useCart() - Shopping cart management
 
-**Patrones avanzados a incluir:**
-- Lazy initialization en useState
-- Dependency arrays optimizadas
-- Cleanup functions para prevenir memory leaks
-- Integration con Context API si aplica`,
+**2. UI/UX Hooks:**
+- useLocalStorage<T>() - Persistent local state
+- useDebounce<T>() - Debounced values para search
+- useToggle() - Boolean state toggle
+- useDisclosure() - Modal/drawer open/close state
+- usePagination() - Pagination logic
+
+**3. Form Hooks:**
+- useFormPersist() - Auto-save form data
+- useFieldValidation() - Real-time field validation
+- useMultiStepForm() - Multi-step form navigation
+
+**4. Performance Hooks:**
+- useVirtualList() - Virtualization para large lists
+- useIntersectionObserver() - Lazy loading
+- useThrottle() - Throttled functions
+
+**Requirements:**
+- Full TypeScript support con generics
+- Error handling robusto
+- Cleanup en useEffect donde sea necesario
+- JSDoc documentation
+- Unit tests examples
+- Integration con existing API layer
+
+**Ejemplo de estructura:**
+\`\`\`typescript
+interface UseUserReturn {
+  user: User | null;
+  loading: boolean;
+  error: Error | null;
+  updateUser: (data: Partial<User>) => Promise<void>;
+  refreshUser: () => void;
+}
+
+const useUser = (userId: string): UseUserReturn => {
+  // Implementation
+};
+\`\`\``,
       },
       {
-        title: "Refactorizar con Tailwind",
-        description: "Convertir CSS tradicional a clases de utilidad de Tailwind",
-        prompt: `Refactoriza el siguiente código para usar clases de TailwindCSS en lugar de CSS puro.
-Mantén el diseño igual pero optimiza la semántica HTML.
-Añade etiquetas accesibles (aria-labels, roles).
-Asegúrate de que sea responsive y siga las mejores prácticas de Tailwind.
-Código a refactorizar: [PEGAR_CODIGO_AQUI]`,
-      },
-      {
-        title: "Validar Diseño Figma",
-        description: "Verificar si la implementación sigue el diseño original",
-        prompt: `Verifica si este código React con Tailwind sigue el diseño provisto en Figma.
-Comprueba: tamaños de fuente, colores y contrastes, espaciados, alineación.
-Sugiere cambios específicos para cumplir el diseño original.
-Valida que cumpla estándares de accesibilidad WCAG 2.1.
-Proporciona el código corregido.`,
-      },
-      {
-        title: "Arquitectura de Componentes",
-        description: "Diseñar la estructura de componentes para un módulo",
-        prompt: `Crea la arquitectura de componentes para un [MODULO_ESPECIFICO].
-Incluye:
-- Jerarquía de componentes (padre/hijo)
-- Props interfaces en TypeScript
-- Estados compartidos necesarios (Context/Zustand)
-- Patrones de composición
-- Considera reutilización y mantenibilidad
-- Estructura de carpetas recomendada`,
-      },
-      {
-        title: "Integración con Backend",
-        description: "Conectar componentes React con APIs backend",
-        prompt: `Genera el código para conectar este componente React con el endpoint [URL_API].
-Incluye:
-- Manejo de estados de loading/error/success
-- Tipos TypeScript basados en la respuesta de la API
-- Optimistic updates si aplica
-- Cache strategy apropiada con Tanstack Query
-- Manejo de errores con toast notifications
-- Validación de datos con Zod`,
-      },
-      {
-        title: "Generación Avanzada con v0.dev",
-        description: "Crear interfaces complejas con prompts optimizados para v0.dev",
-        prompt: `Crea un prompt para v0.dev que genere un [TIPO_COMPONENTE] completo:
+        title: "9. Testing Strategy Frontend-Backend",
+        description: "Implementar testing completo incluyendo integración con backend",
+        prompt: `Crea estrategia de testing completa para app frontend-backend:
 
-**Contexto del Proyecto:**
-- Aplicación: [E-commerce/Dashboard/Landing/etc]
-- Audiencia: [Descripción del usuario objetivo]
-- Caso de uso: [Funcionalidad específica]
+**Backend endpoints:** [LISTAR_ENDPOINTS_PRINCIPALES]
+**Funcionalidades críticas:** [auth, payments, data CRUD, etc]
 
-**Especificaciones del Componente:**
-- Funcionalidades requeridas: [Lista detallada]
-- Estados necesarios: [Loading, error, empty, success]
-- Interacciones: [Clicks, hovers, forms, etc]
-- Data props: [Estructura de datos esperada]
+**Testing Pyramid Implementation:**
 
-**Requisitos de Diseño:**
-- Estilo: [Moderno/Minimalista/Corporativo]
-- Colores: [Paleta específica o "brand colors"]
-- Responsive: [Mobile-first behavior]
-- Animaciones: [Sutiles/Sin animaciones/Específicas]
+**1. Unit Tests (Vitest):**
+- Utility functions
+- Custom hooks con @testing-library/react-hooks
+- Components aislados con mocking
+- Validation schemas (Zod)
+- API client functions
 
-**Especificaciones Técnicas:**
-- Framework: React + TypeScript
-- Styling: Tailwind CSS
-- Accesibilidad: WCAG 2.1 AA compliant
-- Props interface: [Definir estructura TypeScript]
-- Performance: Optimizado para Core Web Vitals
+**2. Integration Tests:**
+- Components + API calls con MSW (Mock Service Worker)
+- Form submission flows
+- Authentication flows
+- State management integration
+- Error boundary testing
 
-Genera el prompt optimizado para v0.dev.`,
-      },
-      {
-        title: "GitHub Copilot: Custom Hooks Avanzados",
-        description: "Usar Copilot para generar custom hooks complejos con TypeScript",
-        prompt: `Usando GitHub Copilot, genera custom hooks TypeScript avanzados:
-
-**Hook 1: useApiWithCache<T>**
-- Fetch data con cache inteligente
-- Invalidación automática
-- Loading/error states
-- Retry logic
-- TypeScript generics
-
-**Hook 2: useFormWithValidation<T>**
-- Integration con react-hook-form
-- Validación con Zod
-- Estados de submission
-- Error handling
-- Reset functionality
-
-**Hook 3: useLocalStorageSync<T>**
-- Sincronización bidireccional
-- Type safety completo
-- SSR compatibility
-- Event listeners para changes
-
-**Comentarios para Copilot:**
-Incluir comentarios descriptivos antes de cada hook para guiar la generación.
-Enfocarse en TypeScript strict y mejores prácticas.
-Agregar ejemplos de uso y JSDoc documentation.`,
-      },
-      {
-        title: "AI Visual Testing Setup",
-        description: "Configurar testing visual automático con herramientas IA",
-        prompt: `Configura un pipeline completo de AI Visual Testing:
-
-**Herramientas requeridas:**
-- Chromatic para visual regression
-- Playwright para E2E con AI
-- axe-core para accessibility testing
-- Lighthouse CI para performance
-
-**Configuración necesaria:**
-1. Storybook setup con todas las variants
-2. GitHub Actions workflow
-3. Quality gates automáticos
-4. Configuración de thresholds
-
-**Tests específicos:**
+**3. E2E Tests (Playwright):**
+- Critical user journeys
+- Authentication flow completo
+- Payment/checkout process
+- Admin workflows
 - Cross-browser compatibility
-- Responsive breakpoints
-- Dark/light mode variants
-- Interactive states (hover, focus, disabled)
-- Error states y empty states
 
-**Integration CI/CD:**
-- Pre-commit hooks
-- PR checks automáticos
-- Deployment blocking por regresiones
-- Reporting automático
+**4. API Contract Testing:**
+- Schema validation contra backend real
+- API response structure verification
+- Error handling verification
 
-Genera la configuración completa con archivos y scripts.`,
+**Setup Configuration:**
+\`\`\`
+/tests
+  /unit          // Component y utility tests
+  /integration   // Integration tests
+  /e2e          // Playwright tests
+  /mocks        // MSW handlers
+  /fixtures     // Test data
+  /utils        // Testing utilities
+\`\`\`
+
+**MSW Setup para API mocking:**
+- Handlers para todos los endpoints principales
+- Realistic error responses
+- Authentication mocking
+- Data persistence durante tests
+
+**CI/CD Integration:**
+- GitHub Actions workflow
+- Parallel test execution
+- Test coverage reporting
+- Visual regression testing con Chromatic`,
       },
       {
-        title: "AI Asset Generation Workflow",
-        description: "Automatizar generación y optimización de assets",
-        prompt: `Crea un workflow completo de AI Asset Generation:
+        title: "10. Componentes UI con v0.dev",
+        description: "Generar componentes de interfaz usando v0.dev",
+        prompt: `Crea prompts optimizados para v0.dev para generar componentes UI:
 
-**Generación de Imágenes:**
-- Prompts optimizados para Midjourney/DALL-E
-- Batch generation para consistency
-- Aspect ratios para diferentes casos de uso
-- Style guide para mantener coherencia visual
+**Datos del backend:** [DESCRIBIR_ENTITIES_Y_RELATIONSHIPS]
+**Brand/Design requirements:** [colors, typography, style guide]
 
-**Optimización Automática:**
-- Conversión a formatos modernos (WebP, AVIF)
-- Responsive image generation
-- Compression inteligente
-- CDN integration
+**Componentes a generar con v0.dev:**
 
-**Icon System:**
-- Generación de iconos consistentes
-- SVG optimization
-- Component library automático
-- Dark/light variants
-
-**Content Generation:**
-- Copy para landing pages
-- Product descriptions
-- Microcopy y labels
-- SEO-optimized content
-
-**Pipeline de Integración:**
-- Scripts de generación automática
-- Validation de assets
-- Integration con build process
-- Version control para assets
-
-Incluye herramientas, APIs y código de automatización.`,
-      },
-      {
-        title: "Performance IA Optimization",
-        description: "Optimizar performance usando herramientas IA",
-        prompt: `Implementa optimización de performance con IA:
-
-**Core Web Vitals Monitoring:**
-- Lighthouse CI automático
-- Real User Monitoring (RUM)
-- Performance budgets
-- Alertas inteligentes
-
-**Optimizaciones Automáticas:**
-- Code splitting inteligente
-- Bundle analysis con recommendations
-- Image optimization pipeline
-- Preloading strategies
-
-**AI Performance Insights:**
-- Análisis de bottlenecks
-- Recommendations específicas
-- Comparative analysis
-- Trend detection
-
-**Implementation:**
-- Next.js optimizations
-- Webpack bundle analyzer
-- Performance monitoring dashboard
-- Automated fixes donde sea posible
-
-**Quality Gates:**
-- LCP < 2.5s
-- FID < 100ms  
-- CLS < 0.1
-- TTI < 3.5s
-
-Genera configuración completa y scripts de monitoring.`,
-      },
-      {
-        title: "E-commerce IA-Driven Complete Setup",
-        description: "Configurar e-commerce completo usando herramientas IA",
-        prompt: `Crea setup completo para e-commerce usando IA end-to-end:
-
-**Arquitectura del Proyecto:**
-- Next.js 14 + App Router
-- TypeScript strict
-- Tailwind CSS + custom design system
-- Zustand para state management
-- react-hook-form + Zod validation
-
-**Componentes Principales (usar v0.dev):**
-- ProductCard con variants
-- Cart sidebar con animations
-- Checkout multi-step form
-- User authentication flows
-- Admin dashboard components
-
-**IA Integration:**
-- GitHub Copilot para código
-- v0.dev para diseño inicial
-- AI testing para quality assurance
-- AI assets para imágenes y content
-- Performance monitoring automático
-
-**Features Específicas:**
-- Search con filters
-- Product recommendations
-- Real-time inventory
-- Order tracking
-- User reviews system
-
-**Deployment Pipeline:**
-- Vercel deployment
-- CI/CD con GitHub Actions
-- Performance monitoring
-- Error tracking con Sentry
-
-Genera estructura de proyecto, configuraciones y código inicial.`,
-      },
-      {
-        title: "Optimización de Performance",
-        description: "Mejorar el rendimiento de componentes React",
-        prompt: `Optimiza este componente React para mejor performance:
-- Implementa React.memo si es necesario
-- Usa useCallback y useMemo apropiadamente
-- Aplica lazy loading para componentes pesados
-- Optimiza re-renders innecesarios
-- Sugiere mejoras en la estructura de datos
-- Implementa virtualización si maneja listas grandes`,
-      },
-      {
-        title: "Optimizar React Hooks Performance",
-        description: "Mejorar rendimiento con useMemo, useCallback y custom hooks",
-        prompt: `Optimiza este componente React para mejor performance usando hooks avanzados:
-- Implementa useMemo para cálculos costosos
-- Usa useCallback para memorizar funciones
-- Crea custom hooks para lógica reutilizable
-- Aplica React.memo donde sea necesario
-- Evita re-renders innecesarios
-- Incluye TypeScript para type safety
-
-Componente a optimizar: [PEGAR_CODIGO_AQUI]
-
-Asegúrate de explicar cada optimización aplicada.`,
-      },
-      {
-        title: "Custom Hooks Avanzados",
-        description: "Crear custom hooks para casos de uso específicos",
-        prompt: `Crea custom hooks TypeScript para los siguientes casos de uso:
-1. useLocalStorage - Sincronizar estado con localStorage
-2. useDebounce - Retrasar ejecución de operaciones
-3. useApi - Manejo completo de estados HTTP (loading, data, error)
-4. useForm - Gestión avanzada de formularios con validación
-5. usePrevious - Obtener valor anterior de una variable
-
-Incluye:
-- Tipado completo con TypeScript
-- Manejo de errores robusto
-- Cleanup apropiado en useEffect
-- Documentación con JSDoc
-- Ejemplos de uso práctico`,
-      },
-      {
-        title: "DevTools Mastery para Frontend",
-        description: "Dominar herramientas de desarrollo y debugging",
-        prompt: `Genera una guía completa para usar DevTools en desarrollo frontend:
-1. Chrome DevTools avanzado (Network, Performance, Memory)
-2. React Developer Tools para debugging
-3. Redux DevTools para estado global
-4. Lighthouse para auditorías de performance
-5. Wave para accesibilidad
-6. Técnicas de profiling y optimización
-
-Incluye ejemplos prácticos y screenshots descriptos para cada herramienta.
-Enfócate en casos de uso reales como debugging API calls, memory leaks, y performance bottlenecks.`,
-      },
-      {
-        title: "Server State Management 2025",
-        description: "Implementar gestión moderna de estado servidor con Tanstack Query",
-        prompt: `Implementa gestión de estado servidor usando Tanstack Query v5:
-- Setup y configuración inicial
-- Queries con cache, refetch y stale time
-- Mutations con optimistic updates
-- Invalidación inteligente de cache
-- Paginación infinita
-- Estados de loading y error
-- Integration con React Hook Form
-- Patterns para CRUD operations
-
-Incluye ejemplos TypeScript completos y mejores prácticas 2025.`,
-      },
-      {
-        title: "Testing Pyramid Frontend",
-        description: "Implementar estrategia completa de testing",
-        prompt: `Crea una estrategia de testing completa para aplicación React:
-
-1. **Unit Tests:**
-   - Funciones puras y utilities
-   - Custom hooks con testing-library/react-hooks
-   - Componentes aislados
-
-2. **Integration Tests:**
-   - Flujos de usuario completos
-   - API mocking con MSW
-   - Estado global y context
-
-3. **E2E Tests:**
-   - Casos críticos de negocio
-   - Cross-browser testing
-   - Visual regression testing
-
-Incluye setup, configuración y ejemplos prácticos con Vitest + Playwright.`,
-      },
-      {
-        title: "Accesibilidad WCAG 2.1 AA",
-        description: "Implementar accesibilidad completa en componentes React",
-        prompt: `Audita y mejora la accesibilidad de este componente para cumplir WCAG 2.1 AA:
-
-Verifica:
-- Contraste de colores (4.5:1 mínimo)
-- Navegación por teclado funcional
-- Lectores de pantalla (aria-labels, roles)
-- Focus management y skip links
-- Texto alternativo en imágenes
-- Formularios con labels apropiados
-
-Proporciona código corregido y test automatizado con axe-core.
-Componente: [PEGAR_CODIGO_AQUI]`,
-      },
-      {
-        title: "Setup de Proyecto Next.js",
-        description: "Configurar un proyecto Next.js desde cero",
-        prompt: `Configura un proyecto Next.js 14 con App Router incluyendo:
-- TypeScript estricto
-- Tailwind CSS con configuración personalizada
-- ESLint + Prettier
-- Husky para pre-commit hooks
-- Configuración de paths absolutos
-- Variables de entorno para dev/prod
-- Estructura de carpetas escalable
-- Configuración de Vercel para despliegue`,
-      },
-      // === PROMPTS AVANZADOS IA (PASO 2) ===
-      {
-        title: "🤖 v0.dev: Dashboard Completo",
-        description: "Generar dashboard administrativo complejo con v0.dev",
-        prompt: `Crea un dashboard administrativo para [TIPO_NEGOCIO] usando v0.dev:
-
-**Componentes Requeridos:**
-- Sidebar navegación responsivo con iconos
-- Header con profile dropdown y notificaciones
-- Cards de métricas principales (KPIs)
-- Gráficos interactivos (Chart.js/Recharts)
-- Tabla de datos con filtros y paginación
-- Formulario modal para agregar/editar
-
-**Especificaciones Técnicas:**
-- React + TypeScript + Tailwind CSS
-- Dark/Light mode toggle
-- Estados: loading, error, empty, success
+**1. Data Display Components:**
+Prompt: "Create a [UserCard/ProductCard/OrderCard] component showing:
+- [específicos data fields del backend]
+- Interactive actions: [edit, delete, view details]
+- Loading and error states
 - Responsive design mobile-first
-- Accesibilidad WCAG 2.1
+- Accessible WCAG 2.1 AA
+- Style: [modern/clean/professional]
+- Colors: [brand colors or palette]"
 
-**Funcionalidades:**
-- Filtros en tiempo real
-- Exportar datos CSV/PDF
-- Búsqueda global
-- Drag & drop para reordenar
-- Confirmaciones de acciones destructivas
+**2. Form Components:**
+Prompt: "Generate [UserForm/ProductForm] with:
+- Fields: [listar campos específicos del backend]
+- Validation states and error messages
+- Submit button with loading state
+- Multi-step layout if complex
+- Auto-save functionality visual feedback
+- Responsive form layout"
 
-**Datos Mock:**
-Incluir estructura TypeScript para las interfaces y datos de ejemplo realistas.`,
+**3. Layout Components:**
+Prompt: "Create dashboard layout for [tipo de usuario]:
+- Sidebar navigation with [menu items específicos]
+- Header with user profile and notifications
+- Main content area with [específicos widgets]
+- Mobile responsive with hamburger menu
+- Dark/light mode support
+- Role-based navigation visibility"
+
+**4. Data Table Components:**
+Prompt: "Build data table for [entity name]:
+- Columns: [específicos fields del backend]
+- Sorting, filtering, and pagination
+- Bulk actions: [delete, export, etc]
+- Row actions: [edit, view, delete]
+- Loading states and empty states
+- Export functionality
+- Mobile-responsive table design"
+
+**Refinement Strategy:**
+1. Generate base component con v0.dev
+2. Refine con GitHub Copilot para logic
+3. Add TypeScript interfaces
+4. Connect con backend API
+5. Add error handling y loading states`,
       },
       {
-        title: "🤖 Copilot: Architecture Generator",
-        description: "Usar Copilot para generar arquitectura de aplicación completa",
-        prompt: `Usando GitHub Copilot, genera arquitectura completa para [TIPO_APP]:
+        title: "11. Diseño UI/UX y Design System",
+        description: "Crear design system completo basado en la funcionalidad backend",
+        prompt: `Crea design system completo para esta aplicación:
 
-**Comentarios para guiar Copilot:**
+**App context:** [tipo de aplicación: dashboard, e-commerce, etc]
+**User types:** [admin, customer, vendor, etc]
+**Key features:** [login, products, orders, analytics, etc]
 
-// TODO: Generate complete app architecture
-// Features: [LISTA_FUNCIONALIDADES]
-// Tech stack: Next.js 14, TypeScript, Tailwind, Prisma, tRPC
+**Design System Components:**
 
-// 1. Generate folder structure
-// Include: components, pages, hooks, utils, types, lib
+**1. Design Tokens:**
+- Color palette (primary, secondary, success, error, warning)
+- Typography scale (headings, body, captions)
+- Spacing system (4px base grid)
+- Border radius values
+- Shadow/elevation system
+- Responsive breakpoints
 
-// 2. Generate core types and interfaces
-// User types, API responses, database schema
+**2. Component Library:**
+- Button variants (primary, secondary, ghost, danger)
+- Input controls (text, select, checkbox, radio, file)
+- Navigation (sidebar, tabs, breadcrumbs, pagination)
+- Feedback (alerts, toasts, loading states, empty states)
+- Layout (container, grid, card, modal, drawer)
+- Data display (table, list, stats cards, charts)
 
-// 3. Generate utility functions
-// Auth helpers, API clients, validation schemas
+**3. Patterns y Templates:**
+- Dashboard layouts para different user roles
+- Form layouts (single column, two column, multi-step)
+- List/grid patterns para data display
+- Detail page layouts
+- Error page templates
 
-// 4. Generate custom hooks
-// Data fetching, form handling, state management
+**4. Implementación Tailwind:**
+- tailwind.config.js con custom tokens
+- Component classes con @apply directives
+- Responsive utility classes
+- Dark mode configuration
 
-// 5. Generate component templates
-// Layout components, UI primitives, form components
+**5. Storybook Documentation:**
+- Component stories con all variants
+- Interactive props controls
+- Usage guidelines
+- Accessibility notes
+- Code examples
 
-// 6. Generate configuration files
-// Next.js config, TypeScript config, Tailwind config
+**6. Figma Integration:**
+- Design tokens sync
+- Component documentation
+- Handoff specifications
+- Responsive behavior documentation
 
-**Prompt específico para Copilot:**
-"Generate a complete TypeScript interface for [ENTITY] including all CRUD operations and validation schemas"`,
+**Consideraciones especiales:**
+- Accessibility (WCAG 2.1 AA minimum)
+- Performance (optimized CSS bundle)
+- Maintainability (clear naming conventions)
+- Scalability (easy to extend)
+- Brand consistency (matches company identity)`,
       },
       {
-        title: "🎨 AI Asset Pipeline",
-        description: "Workflow completo de generación de assets con IA",
-        prompt: `Crea pipeline de generación de assets usando múltiples herramientas IA:
+        title: "12. Performance y Optimización Final",
+        description: "Optimizar la aplicación completa frontend-backend",
+        prompt: `Optimiza la aplicación completa para máximo performance:
 
-**1. Generación de Imágenes (DALL-E/Midjourney):**
-- Hero images: "[DESCRIPCION] --style clean modern --ar 16:9 --v 6"
-- Product images: "[PRODUCTO] on white background --style product photography --ar 1:1"
-- Icons: "minimalist icon of [CONCEPTO] --style line art --black on white"
+**Current stack:** [Next.js, TypeScript, Tailwind, etc]
+**Backend info:** [API response times, data sizes, etc]
 
-**2. Optimización Automática:**
-\`\`\`bash
-# Script de conversión automática
-for img in *.png; do
-  # WebP para browsers modernos
-  cwebp -q 80 "$img" -o "\${img%.png}.webp"
-  # AVIF para máxima compresión
-  avifenc -q 60 "$img" "\${img%.png}.avif"
-done
-\`\`\`
+**Performance Optimization Strategy:**
 
-**3. Responsive Generation:**
-\`\`\`javascript
-// Generar múltiples tamaños
-const sizes = [320, 640, 1024, 1920];
-sizes.forEach(width => {
-  sharp(inputImage)
-    .resize(width)
-    .webp({ quality: 80 })
-    .toFile(\`output-\${width}w.webp\`);
-});
-\`\`\`
+**1. Bundle Optimization:**
+- Code splitting estratégico por rutas
+- Dynamic imports para heavy components
+- Tree shaking optimization
+- Bundle analyzer insights y recommendations
 
-**4. Component Integration:**
-\`\`\`typescript
-// Auto-generate responsive image component
-const ResponsiveImage = ({ src, alt, className }: ImageProps) => (
-  <picture>
-    <source srcSet={\`\${src}-1920w.avif 1920w, \${src}-1024w.avif 1024w\`} type="image/avif" />
-    <source srcSet={\`\${src}-1920w.webp 1920w, \${src}-1024w.webp 1024w\`} type="image/webp" />
-    <img src={\`\${src}.jpg\`} alt={alt} className={className} loading="lazy" />
-  </picture>
-);
-\`\`\`
+**2. Data Fetching Optimization:**
+- Request batching donde sea posible
+- Prefetching para rutas anticipadas
+- Infinite scrolling vs pagination analysis
+- Caching strategy optimization
 
-**5. Build Integration:**
-Incluir en package.json scripts para generar assets automáticamente en build.`,
-      },
-      {
-        title: "🧪 AI Testing Suite",
-        description: "Setup completo de testing automático con IA",
-        prompt: `Configura suite de testing completa con herramientas IA:
+**3. Image y Asset Optimization:**
+- Next.js Image component optimization
+- WebP/AVIF format conversion
+- Responsive image strategies
+- CDN integration recommendations
 
-**1. Visual Regression Testing:**
-\`\`\`yaml
-# .github/workflows/visual-tests.yml
-name: Visual Tests
-on: [push, pull_request]
-jobs:
-  visual-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
-      - name: Build Storybook
-        run: npm run build-storybook
-      - name: Run Chromatic
-        uses: chromaui/action@v1
-        with:
-          projectToken: \${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: build-storybook
-\`\`\`
+**4. Core Web Vitals Optimization:**
+- LCP improvement strategies
+- FID optimization techniques
+- CLS prevention patterns
+- Performance monitoring setup
 
-**2. AI-Powered E2E Tests:**
-\`\`\`typescript
-// tests/ai-e2e.spec.ts
-import { test, expect } from '@playwright/test';
+**5. Lighthouse Audit Implementation:**
+- Automated performance testing
+- CI/CD integration para performance budgets
+- Progressive Web App features
+- SEO optimization
 
-test('AI-generated user journey', async ({ page }) => {
-  // Test generado por IA basado en user stories
-  await page.goto('/');
-  
-  // AI identifica elementos críticos automáticamente
-  await page.getByRole('button', { name: /add to cart/i }).click();
-  await expect(page.getByText('Added to cart')).toBeVisible();
-  
-  // Validación inteligente de flujos
-  await page.getByTestId('cart-counter').locator('text=1').isVisible();
-});
-\`\`\`
+**6. Monitoring y Analytics:**
+- Real User Monitoring (RUM) setup
+- Performance tracking dashboard
+- Error tracking con Sentry
+- User behavior analytics
 
-**3. Accessibility AI Testing:**
-\`\`\`typescript
-// Setup axe-core con AI recommendations
-import { configureAxe } from 'jest-axe';
+**Configuration files:**
+- next.config.js optimizado
+- webpack optimizations
+- Performance budgets
+- Monitoring setup
 
-const axe = configureAxe({
-  rules: {
-    // Reglas específicas por tipo de app
-    'color-contrast': { enabled: true, tags: ['wcag2a', 'wcag2aa'] },
-    'keyboard-navigation': { enabled: true },
-    'focus-management': { enabled: true }
-  }
-});
-
-test('AI accessibility audit', async () => {
-  const results = await axe(document.body);
-  // AI genera reportes con sugerencias específicas
-  expect(results).toHaveNoViolations();
-});
-\`\`\`
-
-**4. Performance AI Monitoring:**
-\`\`\`javascript
-// lighthouse-ci.json
-{
-  "ci": {
-    "collect": {
-      "url": ["http://localhost:3000"],
-      "numberOfRuns": 3
-    },
-    "assert": {
-      "assertions": {
-        "categories:performance": ["error", {"minScore": 0.9}],
-        "categories:accessibility": ["error", {"minScore": 0.9}],
-        "first-contentful-paint": ["error", {"maxNumericValue": 2000}],
-        "largest-contentful-paint": ["error", {"maxNumericValue": 2500}]
-      }
-    }
-  }
-}
-\`\`\``,
-      },
-      {
-        title: "⚡ AI Performance Optimizer",
-        description: "Optimización inteligente de performance con herramientas IA",
-        prompt: `Implementa optimización de performance usando IA:
-
-**1. Bundle Analysis Inteligente:**
-\`\`\`javascript
-// webpack-bundle-analyzer con AI insights
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-module.exports = {
-  plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'server',
-      openAnalyzer: true,
-      // AI genera recomendaciones automáticas
-      generateStatsFile: true,
-      statsOptions: {
-        source: false,
-        modules: false,
-        chunks: false,
-        chunkModules: false,
-        chunkOrigins: false,
-        depth: false,
-        providedExports: false,
-        optimizationBailout: false,
-        reasons: false,
-        usedExports: false
-      }
-    })
-  ]
-};
-\`\`\`
-
-**2. Smart Code Splitting:**
-\`\`\`typescript
-// AI-driven dynamic imports
-const LazyComponent = lazy(() => 
-  import('./HeavyComponent').then(module => ({
-    default: module.HeavyComponent
-  }))
-);
-
-// Preload crítico basado en user behavior
-const preloadCriticalComponents = async () => {
-  if (userBehaviorIndicatesNeed()) {
-    await import('./CriticalComponent');
-  }
-};
-
-// Route-based splitting inteligente
-const routeComponents = {
-  dashboard: () => import('./pages/Dashboard'),
-  profile: () => import('./pages/Profile'),
-  settings: () => import('./pages/Settings')
-};
-\`\`\`
-
-**3. AI Image Optimization:**
-\`\`\`typescript
-// next.config.js con optimización IA
-module.exports = {
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // AI determina quality óptima por imagen
-    quality: 80,
-    loader: 'custom',
-    loaderFile: './lib/ai-image-loader.js'
-  }
-};
-
-// AI Image Loader
-export default function aiImageLoader({ src, width, quality }) {
-  // AI decide formato óptimo basado en contenido
-  const format = determineOptimalFormat(src);
-  const optimalQuality = calculateOptimalQuality(src, width);
-  
-  return \`\${src}?w=\${width}&q=\${optimalQuality || quality}&f=\${format}\`;
-}
-\`\`\`
-
-**4. Real User Monitoring (RUM) IA:**
-\`\`\`typescript
-// lib/ai-rum.ts
-export class AIPerformanceMonitor {
-  private observer: PerformanceObserver;
-  
-  constructor() {
-    this.observer = new PerformanceObserver((list) => {
-      list.getEntries().forEach((entry) => {
-        this.analyzePerformanceEntry(entry);
-      });
-    });
-    
-    this.observer.observe({ entryTypes: ['navigation', 'paint', 'largest-contentful-paint'] });
-  }
-  
-  private analyzePerformanceEntry(entry: PerformanceEntry) {
-    // AI analiza patrones y sugiere optimizaciones
-    const insights = this.generateAIInsights(entry);
-    this.sendToAnalytics(insights);
-  }
-  
-  private generateAIInsights(entry: PerformanceEntry) {
-    // IA identifica problemas y sugiere soluciones
-    return {
-      metric: entry.name,
-      value: entry.duration || entry.startTime,
-      recommendation: this.getAIRecommendation(entry),
-      impact: this.calculateImpact(entry)
-    };
-  }
-}
-\`\`\``,
-      },
-      {
-        title: "🎯 AI Content Generator",
-        description: "Generación automática de contenido con IA especializada",
-        prompt: `Sistema de generación de contenido usando múltiples IAs:
-
-**1. Copy Generation (GPT-4):**
-\`\`\`typescript
-// lib/ai-content.ts
-interface ContentRequest {
-  type: 'landing' | 'product' | 'blog' | 'social';
-  audience: string;
-  tone: 'professional' | 'casual' | 'technical';
-  length: 'short' | 'medium' | 'long';
-  keywords: string[];
-}
-
-export async function generateContent(request: ContentRequest) {
-  const prompt = \`
-Generate \${request.type} content for \${request.audience}.
-Tone: \${request.tone}
-Include keywords: \${request.keywords.join(', ')}
-Length: \${request.length}
-
-Content should be:
-- SEO optimized
-- Conversion focused
-- Brand aligned
-- Accessible language
-\`;
-
-  return await openai.chat.completions.create({
-    model: "gpt-4",
-    messages: [{ role: "user", content: prompt }]
-  });
-}
-\`\`\`
-
-**2. Microcopy Automation:**
-\`\`\`typescript
-// Generación automática de labels, placeholders, error messages
-const microcopyTemplates = {
-  buttons: {
-    primary: ['Get Started', 'Continue', 'Save Changes'],
-    secondary: ['Learn More', 'Cancel', 'Go Back'],
-    destructive: ['Delete', 'Remove', 'Clear All']
-  },
-  errors: {
-    validation: 'Please check your input and try again',
-    network: 'Connection lost. Please check your internet',
-    server: 'Something went wrong. Our team has been notified'
-  },
-  loading: {
-    data: 'Loading your data...',
-    saving: 'Saving changes...',
-    processing: 'Processing your request...'
-  }
-};
-
-// Auto-generate basado en contexto
-export function generateMicrocopy(context: string, type: keyof typeof microcopyTemplates) {
-  // AI contextualiza el copy para el componente específico
-  return aiContextualize(microcopyTemplates[type], context);
-}
-\`\`\`
-
-**3. SEO Content Optimization:**
-\`\`\`typescript
-// AI SEO Optimizer
-export class AISEOOptimizer {
-  async optimizeContent(content: string, targetKeywords: string[]) {
-    return {
-      title: await this.generateSEOTitle(content, targetKeywords),
-      description: await this.generateMetaDescription(content),
-      headings: await this.optimizeHeadings(content, targetKeywords),
-      internalLinks: await this.suggestInternalLinks(content),
-      readabilityScore: await this.calculateReadability(content),
-      keywordDensity: this.analyzeKeywordDensity(content, targetKeywords)
-    };
-  }
-  
-  async generateSchema(contentType: string, content: string) {
-    // AI genera Schema.org markup automáticamente
-    const schema = await this.aiGenerateSchema(contentType, content);
-    return JSON.stringify(schema, null, 2);
-  }
-}
-\`\`\`
-
-**4. A/B Testing Copy Generation:**
-\`\`\`typescript
-// Generar variantes automáticamente para testing
-export async function generateABVariants(originalCopy: string, variants: number = 3) {
-  const variants = [];
-  
-  for (let i = 0; i < variants; i++) {
-    const variant = await generateContent({
-      type: 'conversion',
-      original: originalCopy,
-      variation: \`variant_\${i + 1}\`,
-      focus: ['clarity', 'urgency', 'benefit'][i] || 'clarity'
-    });
-    
-    variants.push({
-      id: \`variant_\${i + 1}\`,
-      copy: variant,
-      hypothesis: this.generateHypothesis(originalCopy, variant)
-    });
-  }
-  
-  return variants;
-}
-\`\`\``,
+**Expected Results:**
+- Lighthouse score 95+
+- Core Web Vitals passing
+- Bundle size < [target size]
+- API response times < 200ms
+- Time to Interactive < 3s`,
       },
     ],
 
