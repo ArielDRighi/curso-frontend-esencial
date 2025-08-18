@@ -1576,7 +1576,74 @@ function courseApp() {
 - Request cancellation on component unmount`,
       },
       {
-        title: "4. Arquitectura de Componentes y Estado",
+        title: "4. Integración Completa de Módulos Backend-Frontend",
+        description: "Mapear y conectar todos los módulos backend con frontend",
+        prompt: `Implementa integración completa de módulos backend con frontend:
+
+**Backend Analysis:** [ANALIZAR_ESTRUCTURA_BACKEND_COMPLETA]
+**Modules Detected:** [LISTAR_TODOS_LOS_MODULOS: auth, users, products, orders, etc]
+**API Endpoints:** [DOCUMENTAR_TODOS_LOS_ENDPOINTS_POR_MODULO]
+**Entity Relationships:** [MAPEAR_RELACIONES_ENTRE_ENTIDADES]
+
+**Full Module Integration Strategy:**
+
+**1. Backend Module Mapping:**
+- Analyze backend folder structure y identify all modules
+- Document all API endpoints por cada módulo
+- Map entity relationships y data dependencies
+- Identify CRUD operations disponibles
+- Document authentication/authorization requirements per endpoint
+
+**2. Frontend Module Structure Creation:**
+- Create corresponding frontend modules para cada backend module
+- Implement service layer para cada grupo de endpoints
+- Create TypeScript interfaces para todas las entities
+- Setup API client methods con proper typing
+- Implement error handling específico por módulo
+
+**3. Page Implementation Strategy:**
+- List pages para cada entity (con pagination, filtering, sorting)
+- Detail/view pages para individual entities
+- Create/edit forms para cada entity
+- Dashboard pages con entity overviews
+- Admin pages para entity management
+
+**4. Component Library per Module:**
+- Entity cards para list displays
+- Entity forms con proper validation
+- Entity tables con actions
+- Entity modals/drawers para quick actions
+- Entity-specific widgets para dashboards
+
+**5. Navigation & Routing Integration:**
+- Create complete route structure para todos los módulos
+- Implement breadcrumb navigation
+- Setup module-based navigation menus
+- Configure role-based route access
+- Implement search across all entities
+
+**6. State Management per Module:**
+- Setup Zustand stores para cada módulo
+- Implement Tanstack Query hooks para all endpoints
+- Create optimistic updates para CRUD operations
+- Setup cross-module data synchronization
+- Implement global state para shared data
+
+**Implementation Approach:**
+\`\`\`typescript
+// Example structure per module
+/src/modules/[module-name]/
+  /api/           // API client methods
+  /components/    // Module-specific components
+  /hooks/         // Module-specific hooks
+  /pages/         // Module pages
+  /store/         // Module state management
+  /types/         // Module TypeScript types
+  /utils/         // Module utilities
+\`\`\``,
+      },
+      {
+        title: "5. Arquitectura de Componentes y Estado",
         description: "Diseñar la estructura de componentes basada en datos del backend",
         prompt: `Diseña la arquitectura de componentes para esta aplicación:
 
@@ -1621,7 +1688,7 @@ function courseApp() {
 - Event handling patterns`,
       },
       {
-        title: "5. Implementar Autenticación y Autorización",
+        title: "6. Implementar Autenticación y Autorización",
         description: "Setup completo de auth conectado con backend",
         prompt: `Implementa sistema de autenticación completo:
 
@@ -1669,7 +1736,7 @@ function courseApp() {
 - Error boundaries para auth errors`,
       },
       {
-        title: "6. Formularios y Validación de Datos",
+        title: "7. Formularios y Validación de Datos",
         description: "Implementar forms conectados con validación backend",
         prompt: `Crea sistema de formularios robusto:
 
@@ -1718,7 +1785,7 @@ function courseApp() {
 - Integration con API mutations`,
       },
       {
-        title: "7. Gestión de Estado Servidor con Tanstack Query",
+        title: "8. Gestión de Estado Servidor con Tanstack Query",
         description: "Implementar cache y sincronización con backend",
         prompt: `Configura gestión de estado servidor profesional:
 
@@ -1780,7 +1847,7 @@ const useCreateUser = () => {
 - Memory management para large datasets`,
       },
       {
-        title: "8. Custom Hooks y Lógica Reutilizable",
+        title: "9. Custom Hooks y Lógica Reutilizable",
         description: "Crear hooks personalizados para la aplicación",
         prompt: `Crea custom hooks TypeScript para esta aplicación:
 
@@ -1837,7 +1904,82 @@ const useUser = (userId: string): UseUserReturn => {
 \`\`\``,
       },
       {
-        title: "9. Testing Strategy Frontend-Backend",
+        title: "10. Funcionalidades de Dominio Específico",
+        description: "Implementar features avanzadas del negocio y características específicas del dominio",
+        prompt: `Implementa funcionalidades de dominio específico y características avanzadas:
+
+**Domain Context:** [DESCRIBIR_DOMINIO_DEL_NEGOCIO]
+**Core Entities:** [LISTAR_ENTIDADES_PRINCIPALES_Y_RELACIONES]
+**Business Rules:** [REGLAS_DE_NEGOCIO_ESPECÍFICAS]
+
+**Domain-Specific Features Implementation:**
+
+**1. Business Logic Layer:**
+- Domain services para business rules complejas
+- Validation rules específicas del dominio
+- Data transformation utilities
+- Business workflow implementations
+- Domain-specific error handling
+
+**2. Advanced Search & Filtering:**
+- Multi-criteria search implementation
+- Faceted search con dynamic filters
+- Search suggestions y autocomplete
+- Advanced sorting capabilities
+- Search result highlighting
+- Filter persistence y URL state sync
+
+**3. Data Visualization & Analytics:**
+- Interactive charts para business metrics
+- Dashboard widgets personalizables
+- Export functionality (PDF, Excel, CSV)
+- Real-time data visualization
+- Comparative analytics features
+- Custom report generation
+
+**4. Real-time Features:**
+- WebSocket integration para live updates
+- Real-time notifications system
+- Live data synchronization
+- Presence indicators
+- Real-time collaboration features
+- Push notification implementation
+
+**5. Media & File Management:**
+- File upload con drag & drop
+- Image processing y optimization
+- Multi-file upload con progress
+- File type validation y security
+- Media gallery components
+- Document preview functionality
+
+**6. Advanced UX Features:**
+- Bulk operations interface
+- Keyboard shortcuts implementation
+- Advanced tooltips y help system
+- Contextual actions y quick actions
+- Undo/redo functionality
+- User preferences y customization
+
+**Integration Requirements:**
+- Seamless integration con existing architecture
+- Performance optimization para large datasets
+- Error handling robusto para complex workflows
+- Accessibility compliance para advanced features
+- Mobile optimization para complex interactions
+- Offline capability donde sea apropiado
+
+**Expected Deliverables:**
+- Domain service layer implementation
+- Advanced UI components library
+- Real-time communication setup
+- Analytics dashboard framework
+- File management system
+- Comprehensive error handling
+- Performance monitoring para complex features`,
+      },
+      {
+        title: "11. Testing Strategy Frontend-Backend",
         description: "Implementar testing completo incluyendo integración con backend",
         prompt: `Crea estrategia de testing completa para app frontend-backend:
 
@@ -1896,7 +2038,7 @@ const useUser = (userId: string): UseUserReturn => {
 - Visual regression testing con Chromatic`,
       },
       {
-        title: "10. Componentes UI con v0.dev",
+        title: "12. Componentes UI con v0.dev",
         description: "Generar componentes de interfaz usando v0.dev",
         prompt: `Crea prompts optimizados para v0.dev para generar componentes UI:
 
@@ -1951,7 +2093,7 @@ Prompt: "Build data table for [entity name]:
 5. Add error handling y loading states`,
       },
       {
-        title: "11. Diseño UI/UX y Design System",
+        title: "13. Diseño UI/UX y Design System",
         description: "Crear design system completo basado en la funcionalidad backend",
         prompt: `Crea design system completo para esta aplicación:
 
@@ -2011,7 +2153,7 @@ Prompt: "Build data table for [entity name]:
 - Brand consistency (matches company identity)`,
       },
       {
-        title: "12. Performance y Optimización Final",
+        title: "14. Performance y Optimización Final",
         description: "Optimizar la aplicación completa frontend-backend",
         prompt: `Optimiza la aplicación completa para máximo performance:
 
