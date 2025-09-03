@@ -794,56 +794,336 @@ Optional<Product> mostExpensive = products.stream()
         emoji: "🌱",
         title: "Módulo 2: Introducción a Spring Framework y Spring Boot",
         shortTitle: "Spring Fundamentals",
-        duration: "10-12 horas",
+        duration: "12-14 horas",
         level: "Fundamental",
         completed: false,
         objective:
-          "Comprender el ecosistema Spring y dominar Spring Boot para desarrollo ágil de aplicaciones enterprise",
+          "Comprender el ecosistema Spring y dominar Spring Boot para desarrollo ágil de aplicaciones enterprise, comparando con Express/NestJS",
         description:
-          "Introducción completa a Spring Framework, IoC, DI, y creación del primer proyecto Spring Boot con comparaciones a Express/NestJS.",
+          "Domina Spring Framework, IoC, DI y crea tu primer proyecto Spring Boot. Incluye comparaciones detalladas con Express/NestJS y configuración enterprise.",
         sections: [
           {
             title: "🚀 Spring Framework vs Spring Boot",
-            duration: "2 horas",
+            duration: "4-5 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+**Spring Framework** es el ecosistema completo para Java enterprise. **Spring Boot** es una capa que simplifica la creación de aplicaciones "production-ready" con configuración mínima.
+
+## 🎯 ¿Por qué es importante?
+
+Para desarrolladores Node.js/TypeScript, Spring Boot es comparable a:
+
+- **Express:** Minimalista, pero Spring Boot incluye más "out of the box"
+- **NestJS:** Estructura opinionada similar, pero Spring Boot es más maduro
+- **Fastify:** Performance focus, pero Spring Boot es más enterprise-oriented
+
+## 🔄 Comparación de Ecosistemas
+
+| **Característica** | **Express**     | **NestJS**           | **Spring Boot**                |
+| ------------------ | --------------- | -------------------- | ------------------------------ |
+| **Filosofía**      | Minimalista     | Opinionado           | Convención sobre configuración |
+| **Configuración**  | Manual          | Decoradores          | Auto-configuración             |
+| **DI Container**   | No nativo       | Sí (similar Angular) | Sí (maduro)                    |
+| **Testing**        | Jest (externo)  | Jest integrado       | JUnit integrado                |
+| **ORM**            | TypeORM/Prisma  | TypeORM integrado    | JPA/Hibernate nativo           |
+| **Security**       | Passport/custom | Guards/Guards        | Spring Security                |
+| **Production**     | PM2/Docker      | Docker               | JAR ejecutable                 |
+
+## 🏗️ Arquitectura Spring Boot
+
+\`\`\`
+┌─────────────────────────────────────┐
+│           Spring Boot               │
+├─────────────────────────────────────┤
+│  Auto-Configuration, Starters      │
+├─────────────────────────────────────┤
+│           Spring Framework          │
+├─────────────────────────────────────┤
+│  Core, Context, AOP, Data, Security │
+├─────────────────────────────────────┤
+│               JVM                   │
+└─────────────────────────────────────┘
+\`\`\`
+
+## 💡 Ventajas Clave de Spring Boot
+
+### 1. Auto-configuración Inteligente:
+\`\`\`java
+// Solo esto necesitas para una aplicación web completa
+@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+// Automáticamente configura: servidor, JSON parsing, logging, métricas
+\`\`\`
+
+### 2. Starters - Dependency Management Simplificado:
+\`\`\`xml
+<!-- Una dependency trae todo un stack -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <!-- Incluye: Tomcat, Jackson, Logging, Metrics -->
+</dependency>
+\`\`\`
+
+### 3. Production Ready Features:
+- Health checks automáticos
+- Métricas (Actuator)
+- Configuración externalizada
+- JAR ejecutable
+- Logging estructurado
+            `,
             topics: [
               "Ecosistema Spring vs Express/NestJS",
               "Auto-configuración vs configuración manual",
               "Starters vs dependencies",
               "Arquitectura Spring Boot",
-              "Convención sobre configuración",
+              "Production ready features",
             ],
           },
           {
-            title: "🔄 Inversión de Control (IoC) e Inyección de Dependencias",
-            duration: "3 horas",
+            title: "🔄 Inversión de Control (IoC) e Inyección de Dependencias (DI)",
+            duration: "4-5 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+- **IoC:** El framework controla la creación y gestión de objetos
+- **DI:** Las dependencias se "inyectan" automáticamente donde se necesitan
+- **Beans:** Objetos gestionados por el contenedor de Spring
+
+## 🎯 ¿Por qué es importante?
+
+La DI es el **corazón de Spring** y es comparable a:
+
+- **NestJS:** \`@Injectable()\` y dependency injection
+- **Angular:** Service injection similar
+- **Node.js puro:** Requires manuales vs injection automática
+
+## 🔄 Comparación: Node.js vs Spring DI
+
+### NestJS - Dependency Injection:
+\`\`\`typescript
+@Injectable()
+export class UserService {
+  constructor(private userRepository: UserRepository, private emailService: EmailService) {}
+}
+
+@Controller("users")
+export class UserController {
+  constructor(private userService: UserService) {}
+}
+\`\`\`
+
+### Spring Boot - Dependency Injection:
+\`\`\`java
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+
+    public UserService(UserRepository userRepository,
+                      EmailService emailService) {
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+    }
+}
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+}
+\`\`\`
+
+## � Anotaciones Clave de Spring
+
+| **Anotación**     | **Propósito**        | **Equivalente NestJS** |
+| ----------------- | -------------------- | ---------------------- |
+| \`@Service\`        | Lógica de negocio    | \`@Injectable()\`        |
+| \`@Repository\`     | Acceso a datos       | Repository pattern     |
+| \`@Controller\`     | Web MVC              | \`@Controller()\`        |
+| \`@RestController\` | REST API             | \`@Controller()\`        |
+| \`@Component\`      | Bean genérico        | \`@Injectable()\`        |
+| \`@Autowired\`      | Inyección (opcional) | Constructor injection  |
+
+## 🎯 Best Practices DI en Spring
+
+### 1. Constructor Injection (Recomendado):
+\`\`\`java
+@Service
+public class OrderService {
+    private final UserService userService;
+    private final PaymentService paymentService;
+    
+    // Constructor injection - inmutable y testeable
+    public OrderService(UserService userService, PaymentService paymentService) {
+        this.userService = userService;
+        this.paymentService = paymentService;
+    }
+}
+\`\`\`
+
+### 2. Field Injection (Evitar):
+\`\`\`java
+@Service
+public class OrderService {
+    @Autowired
+    private UserService userService; // Difícil de testear, mutable
+}
+\`\`\`
+            `,
             topics: [
               "Concepto IoC vs manual dependency injection",
               "DI en Spring vs NestJS",
               "Anotaciones @Component, @Service, @Repository",
-              "@Autowired vs constructor injection",
-              "Scopes de beans",
+              "Constructor injection vs @Autowired",
+              "Bean scopes y lifecycle",
             ],
           },
           {
             title: "🎬 Creación del Primer Proyecto Spring Boot",
-            duration: "3 horas",
+            duration: "4-5 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+Uso de **Spring Initializr** para bootstrap de proyectos y comprensión de la estructura estándar de un proyecto Spring Boot.
+
+## 🎯 ¿Por qué es importante?
+
+Spring Initializr es el equivalente a:
+
+- **\`npm create\`** o **\`npx create-react-app\`** en Node.js
+- **\`nest new\`** en NestJS
+- Pero con **configuración enterprise** incluida
+
+## 🏗️ Estructura de Proyecto Spring Boot
+
+\`\`\`
+my-spring-app/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/myapp/
+│   │   │       ├── MyAppApplication.java      # Entry point
+│   │   │       ├── controller/                # REST controllers
+│   │   │       ├── service/                   # Business logic
+│   │   │       ├── repository/                # Data access
+│   │   │       └── model/                     # Entities/DTOs
+│   │   └── resources/
+│   │       ├── application.properties         # Configuration
+│   │       └── static/                        # Static files
+│   └── test/                                  # Tests
+├── target/                                    # Build output
+├── pom.xml                                    # Maven config
+└── README.md
+\`\`\`
+
+## 🔄 Comparación: Node.js vs Spring Boot Project
+
+### package.json (Node.js):
+\`\`\`json
+{
+  "name": "my-node-app",
+  "scripts": {
+    "start": "node dist/main.js",
+    "dev": "nodemon src/main.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "typeorm": "^0.3.0"
+  }
+}
+\`\`\`
+
+### pom.xml (Spring Boot):
+\`\`\`xml
+<project>
+    <groupId>com.example</groupId>
+    <artifactId>my-spring-app</artifactId>
+    <version>1.0.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+\`\`\`
+
+## 🚀 Hello World Comparison
+
+### Express.js:
+\`\`\`javascript
+const express = require('express');
+const app = express();
+
+app.get('/hello', (req, res) => {
+  res.json({ message: 'Hello World!' });
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+\`\`\`
+
+### Spring Boot:
+\`\`\`java
+@SpringBootApplication
+@RestController
+public class Application {
+    
+    @GetMapping("/hello")
+    public Map<String, String> hello() {
+        return Map.of("message", "Hello World!");
+    }
+    
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+\`\`\`
+
+## ⚙️ Configuración vs Convención
+
+### Node.js (Configuración manual):
+\`\`\`javascript
+// Todo manual
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use('/api', routes);
+\`\`\`
+
+### Spring Boot (Convención automática):
+\`\`\`properties
+# application.properties - solo lo que necesitas cambiar
+server.port=8080
+spring.datasource.url=jdbc:h2:mem:testdb
+\`\`\`
+            `,
             topics: [
               "Spring Initializr vs npm create",
               "Estructura de proyecto Maven",
               "Application.properties vs .env",
               "Hello World: Spring vs Express",
-              "Perfiles de desarrollo",
-            ],
-          },
-          {
-            title: "🏗️ Arquitectura y Best Practices",
-            duration: "2 horas",
-            topics: [
-              "Layered architecture pattern",
-              "Package organization",
-              "Configuration classes",
-              "Bean lifecycle",
-              "Testing setup básico",
+              "Configuración vs convención",
             ],
           },
         ],
