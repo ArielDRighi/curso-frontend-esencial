@@ -21,6 +21,72 @@ function courseApp() {
           {
             title: "📚 Node.js vs Java: Diferencias Filosóficas",
             duration: "45 min",
+            expanded: false,
+            content: `
+## 🎯 ¿Por qué este módulo?
+
+Como desarrollador de Node.js/TypeScript, vienes de un mundo de:
+
+- **Flexibilidad extrema:** Múltiples formas de hacer las cosas
+- **Configuración explícita:** Tu controlas cada aspecto
+- **Iteración rápida:** npm install y ya estás corriendo
+- **Ecosistema dinámico:** Frameworks que cambian constantemente
+
+Java y Spring Boot representan un paradigma diferente:
+
+- **Convención sobre configuración:** "Hay una forma correcta de hacerlo"
+- **Configuración implícita:** El framework decide por ti (sanamente)
+- **Estabilidad:** Cambios graduales, retrocompatibilidad
+- **Ecosistema maduro:** Herramientas probadas en batalla
+
+### 🔄 Flexibilidad vs Convención
+
+**En Node.js/Express:**
+\`\`\`javascript
+// Múltiples formas de estructurar rutas
+app.get('/users', handler);
+app.use('/users', userRouter);
+app.route('/users').get(handler);
+\`\`\`
+
+**En Spring Boot:**
+\`\`\`java
+// UNA forma estándar y predecible
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    @GetMapping
+    public List<User> getUsers() { }
+}
+\`\`\`
+
+### ⚙️ Configuración Explícita vs Implícita
+
+**Node.js (Tú configuras todo):**
+\`\`\`javascript
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+const app = express();
+app.use(cors());
+app.use(helmet());
+app.use(morgan('combined'));
+app.use(express.json());
+\`\`\`
+
+**Spring Boot (Auto-configuración inteligente):**
+\`\`\`java
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+        // CORS, seguridad, logging ya están configurados por defecto
+    }
+}
+\`\`\`
+            `,
             topics: [
               "Flexibilidad vs Convención",
               "Configuración explícita vs implícita",
@@ -31,6 +97,79 @@ function courseApp() {
           {
             title: "⚡ Compilado vs Interpretado: Más que Velocidad",
             duration: "30 min",
+            expanded: false,
+            content: `
+## 🔄 El Cambio de Paradigma
+
+**En Node.js:**
+\`\`\`bash
+# Escribes código, lo ejecutas inmediatamente
+echo "console.log('Hello')" > app.js
+node app.js  # Ejecuta directamente
+\`\`\`
+
+**En Java:**
+\`\`\`bash
+# Escribes código, lo compilas, luego lo ejecutas
+echo "public class App { public static void main(String[] args) { System.out.println(\\"Hello\\"); } }" > App.java
+javac App.java  # Compila a bytecode
+java App        # Ejecuta el bytecode en la JVM
+\`\`\`
+
+## 🎯 Ventajas Prácticas del Compilado
+
+### 1. El Compilador es tu Primer QA:
+
+\`\`\`java
+// Error detectado ANTES de ejecutar
+String nombre = "Juan";
+int edad = nombre;  // ❌ Error de compilación: Cannot convert String to int
+\`\`\`
+
+\`\`\`javascript
+// Error detectado DURANTE la ejecución
+const nombre = "Juan";
+const edad = nombre; // ✅ Compila, 💥 Runtime error después
+\`\`\`
+
+### 2. Optimizaciones Avanzadas:
+
+- **JIT Compilation:** El código se optimiza mientras corre
+- **HotSpot VM:** Detecta "hot paths" y los optimiza agresivamente
+- **Escape Analysis:** Optimiza allocations de memoria automáticamente
+
+### 3. Tooling Robusto:
+
+- **IDE Integration:** IntelliJ IDEA entiende tu código a nivel de compilador
+- **Refactoring Seguro:** Cambiar nombres de métodos en 500 archivos sin miedo
+- **Static Analysis:** Detectar bugs antes del runtime
+
+## 💪 Tipado Fuerte vs TypeScript
+
+**TypeScript (Opcional y Borrable):**
+\`\`\`typescript
+interface User {
+  name: string;
+  age: number;
+}
+
+const user: User = { name: "Juan", age: "30" }; // ❌ Error de TS, pero compila a JS
+// En runtime: { name: "Juan", age: "30" } - El tipo se "borra"
+\`\`\`
+
+**Java (Obligatorio y Runtime):**
+\`\`\`java
+public class User {
+    private String name;
+    private int age;  // DEBE ser int, no hay escape
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;  // Si pasas String aquí, ni compila
+    }
+}
+\`\`\`
+            `,
             topics: [
               "El compilador como primer QA",
               "Ventajas del bytecode y JVM",
@@ -41,6 +180,66 @@ function courseApp() {
           {
             title: "🏢 Mentalidad Enterprise",
             duration: "45 min",
+            expanded: false,
+            content: `
+## 🎯 Mindset: Preparado para el Cambio
+
+### ✅ Lo que Ganarás:
+
+1. **🛡️ Seguridad de Tipos:** Bugs detectados en compile-time
+2. **🏗️ Arquitectura Robusta:** Patterns probados en enterprise
+3. **⚡ Performance Escalable:** JVM optimizations + Virtual Threads
+4. **🔧 Tooling Avanzado:** IDEs que entienden tu código profundamente
+5. **📈 Ecosystem Maduro:** Libraries estables y documentadas
+6. **💼 Oportunidades Enterprise:** Demanda alta en corporations
+
+### ⚠️ Lo que Dejarás Atrás:
+
+1. **🚀 Velocidad de Iteración:** Compilación añade step extra
+2. **🎨 Flexibilidad Extrema:** Más convenciones, menos configuración
+3. **📦 Simplicity:** Archivos de configuración más verbosos
+4. **🆕 Bleeding Edge:** Ecosystem más conservador
+
+## 🏢 Enterprise vs Startup Mindset
+
+### Node.js - Startup Friendly:
+\`\`\`javascript
+// Iteración rápida
+npm init -y
+npm install express
+// 2 minutos después: servidor funcionando
+\`\`\`
+
+### Java Spring Boot - Enterprise Ready:
+\`\`\`java
+// Configuración inicial más lenta
+// Pero aplicación "production-ready" desde día 1
+@SpringBootApplication
+public class Application {
+    // Auto-configuración de:
+    // - Database pooling
+    // - Security headers
+    // - Metrics y health checks
+    // - Logging estructurado
+}
+\`\`\`
+
+## 🔒 Estabilidad a Largo Plazo
+
+**En Node.js:**
+- Dependencies que cambian API cada major version
+- Breaking changes frecuentes
+- Ecosystem fragmentado
+
+**En Java:**
+- Java 8 → 11 → 17: Solo adiciones, no breaking changes
+- Spring Boot: Migración guiada entre versiones
+- Libraries estables por décadas
+
+## 💡 El Secreto del Éxito:
+
+**Abraza las convenciones en lugar de luchar contra ellas.** Spring Boot no es "mágico" - es **predecible**. Una vez que entiendes los patrones, todo hace sentido y se vuelve increíblemente productivo.
+            `,
             topics: [
               "Estabilidad a largo plazo",
               "Mantenibilidad sobre agilidad",
@@ -51,6 +250,92 @@ function courseApp() {
           {
             title: "📐 Convención sobre Configuración",
             duration: "30 min",
+            expanded: false,
+            content: `
+## 🔄 El Cambio Filosófico
+
+### Node.js/Express (Configuración Explícita):
+
+\`\`\`javascript
+const express = require("express");
+const app = express();
+
+// TÚ decides todo
+app.use(express.json()); // Parser JSON manual
+app.use(cors()); // CORS manual
+app.use("/api/users", userRoutes); // Routing manual
+app.use(errorHandler); // Error handling manual
+
+app.listen(3000, () => {
+  // Puerto manual
+  console.log("Server running on 3000");
+});
+\`\`\`
+
+### Spring Boot (Convención Inteligente):
+
+\`\`\`java
+@SpringBootApplication  // ¡Una línea hace MAGIA controlada!
+public class EcommerceApplication {
+    public static void main(String[] args) {
+        SpringBootApplication.run(EcommerceApplication.class, args);
+    }
+}
+
+// Spring Boot automáticamente:
+// ✅ Configura servidor (Puerto 8080 por defecto, configurable)
+// ✅ Escanea @Controller, @Service, @Repository
+// ✅ Configura JSON parsing
+// ✅ Configura error handling básico
+// ✅ Configura logging con Logback
+// ✅ Configura metrics con Actuator (si está en classpath)
+\`\`\`
+
+## 🎯 La "Magia" es Predecible
+
+### 1. Nomenclatura Importa:
+
+\`\`\`java
+// Spring Boot BUSCA automáticamente:
+application.properties     // Configuración principal
+application-dev.properties // Configuración de desarrollo
+application-prod.properties // Configuración de producción
+
+@Controller                 // En package *.controller
+@Service                    // En package *.service
+@Repository                 // En package *.repository
+\`\`\`
+
+### 2. Dependencies Definen Comportamiento:
+
+\`\`\`xml
+<!-- Agregar en pom.xml automáticamente configura: -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <!-- ✅ Tomcat server, ✅ JSON parsing, ✅ Error handling -->
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+    <!-- ✅ Hibernate, ✅ Connection pooling, ✅ Transaction management -->
+</dependency>
+\`\`\`
+
+### 3. Configuración por Excepción:
+
+Solo configuras lo que es DIFERENTE de lo convencional. Si necesitas puerto 3000 en lugar de 8080:
+
+\`\`\`properties
+# application.properties
+server.port=3000
+\`\`\`
+
+## 💡 Abraza las Convenciones
+
+**La clave del éxito:** No luches contra las convenciones de Spring Boot. Aprende el "Spring Way" y serás increíblemente productivo.
+            `,
             topics: [
               "La magia es predecible",
               "Nomenclatura y estructura",
@@ -86,14 +371,83 @@ function courseApp() {
           "Transición completa de JavaScript/TypeScript a Java, cubriendo sintaxis, OOP, JVM, y conceptos fundamentales con comparaciones directas.",
         sections: [
           {
-            title: "🔄 Sintaxis: JavaScript/TypeScript → Java",
-            duration: "2 horas",
+            title: "⚡ JVM vs Node.js Runtime",
+            duration: "2.5 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+Comprende Java como lenguaje **compilado y multiplataforma**, y el rol central de la **JVM (Java Virtual Machine)** como entorno de ejecución robusto para aplicaciones enterprise.
+
+## 🎯 ¿Por qué es importante?
+
+Para desarrolladores Node.js, la **JVM es un cambio fundamental**:
+
+- **Node.js:** Interpretado en runtime por V8 Engine
+- **Java:** Compilado a bytecode, ejecutado en JVM optimizada
+- **Ventajas JVM:** Gestión avanzada de memoria, multithreading real, optimizaciones en runtime
+
+## 🔄 Comparación Clave: Node.js vs JVM
+
+| **Aspecto**       | **Node.js**                | **Java/JVM**                            |
+| ----------------- | -------------------------- | --------------------------------------- |
+| **Ejecución**     | Interpretado (V8)          | Compilado (Bytecode)                    |
+| **Concurrencia**  | Event Loop (single-thread) | Multithreading nativo + Virtual Threads |
+| **Memoria**       | Garbage Collection V8      | GC avanzado (G1, ZGC)                   |
+| **Performance**   | Excelente I/O              | Excelente procesamiento                 |
+| **Escalabilidad** | Horizontal                 | Vertical + Horizontal                   |
+
+## 🧵 Virtual Threads: El Game Changer de Java 21
+
+**El mayor breakthrough de Java moderna:** Virtual Threads resuelve el principal problema de concurrencia de Java tradicional y compite directamente con el Event Loop de Node.js.
+
+### Node.js (Event Loop):
+\`\`\`javascript
+// Maneja 10,000 conexiones concurrentes con 1 thread
+const server = require("http").createServer(async (req, res) => {
+  const userData = await fetchUserFromDB(req.userId); // Non-blocking
+  const preferences = await fetchUserPreferences(userData.id); // Non-blocking
+  const recommendations = await generateRecommendations(preferences); // Non-blocking
+
+  res.json({ user: userData, recommendations });
+});
+
+// ✅ 10,000+ concurrent connections
+// ❌ Callback complexity, debugging challenges
+\`\`\`
+
+### Java 21 (Virtual Threads - Lo mejor de ambos mundos):
+\`\`\`java
+@RestController
+public class UserController {
+
+    @GetMapping("/user/{id}")
+    public UserResponse getUser(@PathVariable Long id) {
+        User userData = userService.findById(id);              // LOOKS blocking, but isn't
+        Preferences prefs = preferencesService.findByUserId(id); // Virtual thread magic
+        List<Recommendation> recs = recommendationService.generate(prefs); // Scales massively
+
+        return new UserResponse(userData, recs);
+    }
+}
+
+// ✅ 100,000+ concurrent requests
+// ✅ Simple imperative code, easy debugging
+// ✅ No callback hell, no async/await complexity
+\`\`\`
+
+### Configuración de Virtual Threads en Spring Boot:
+\`\`\`java
+// application.properties
+spring.threads.virtual.enabled=true
+\`\`\`
+            `,
             topics: [
-              "Variables y tipos: let/const → final/var",
-              "Functions → Methods & Static",
-              "Destructuring → Pattern Matching",
-              "Arrow functions → Lambda expressions",
-              "Template literals → String formatting",
+              "Arquitectura JVM",
+              "Garbage Collection vs V8",
+              "Bytecode vs JavaScript engine",
+              "Memory management",
+              "Performance characteristics",
             ],
           },
           {
@@ -2189,6 +2543,58 @@ public class ReportService {
 
     saveDarkMode() {
       localStorage.setItem("java-course-dark-mode", JSON.stringify(this.darkMode));
+    },
+
+    // Section Management Functions
+    toggleSection(moduleIndex, sectionIndex) {
+      if (this.modules[moduleIndex] && this.modules[moduleIndex].sections[sectionIndex]) {
+        const section = this.modules[moduleIndex].sections[sectionIndex];
+        section.expanded = !section.expanded;
+      }
+    },
+
+    // Markdown Rendering Function (Simple)
+    renderMarkdown(content) {
+      if (!content) return "";
+
+      return (
+        content
+          // Headers
+          .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mb-2 mt-4">$1</h3>')
+          .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold mb-3 mt-5">$1</h2>')
+          .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold mb-4 mt-6">$1</h1>')
+
+          // Code blocks
+          .replace(
+            /```(\w+)?\n([\s\S]*?)```/g,
+            '<pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4"><code class="text-sm">$2</code></pre>'
+          )
+          .replace(/`([^`]+)`/g, '<code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm">$1</code>')
+
+          // Bold and italic
+          .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*(.*?)\*/g, "<em>$1</em>")
+
+          // Lists
+          .replace(/^- (.*$)/gim, '<li class="ml-4 mb-1">• $1</li>')
+          .replace(/^(\d+)\. (.*$)/gim, '<li class="ml-4 mb-1">$1. $2</li>')
+
+          // Tables (basic)
+          .replace(/\|(.+)\|/g, (match, content) => {
+            const cells = content
+              .split("|")
+              .map((cell) => cell.trim())
+              .filter((cell) => cell);
+            return "<tr>" + cells.map((cell) => `<td class="border px-3 py-2">${cell}</td>`).join("") + "</tr>";
+          })
+
+          // Line breaks
+          .replace(/\n\n/g, '</p><p class="mb-4">')
+          .replace(/\n/g, "<br/>")
+
+          // Wrap in paragraphs
+          .replace(/^(.+)$/gm, '<p class="mb-4">$1</p>')
+      );
     },
   };
 }

@@ -423,29 +423,72 @@
                         📋 Secciones del Módulo
                       </h3>
                       <div class="space-y-4">
-                        <template x-for="section in module.sections" :key="section.title">
-                          <div class="border rounded-lg p-3" :class="darkMode ? 'border-gray-600' : 'border-gray-200'">
-                            <div class="flex items-center justify-between mb-2">
-                              <h4
-                                class="font-medium"
-                                :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
-                                x-text="section.title"
-                              ></h4>
-                              <span
-                                class="text-sm px-2 py-1 bg-orange-100 text-orange-800 rounded"
-                                x-text="section.duration"
-                              ></span>
-                            </div>
-                            <div class="space-y-1">
-                              <template x-for="topic in section.topics" :key="topic">
-                                <div
-                                  class="flex items-center text-sm"
-                                  :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
+                        <template x-for="(section, sectionIndex) in module.sections" :key="section.title">
+                          <div
+                            class="border rounded-lg transition-colors duration-300"
+                            :class="darkMode ? 'border-gray-600 hover:border-gray-500' : 'border-gray-200 hover:border-gray-300'"
+                          >
+                            <!-- Section Header (Clickeable) -->
+                            <div class="p-4 cursor-pointer" @click="toggleSection(selectedModuleIndex, sectionIndex)">
+                              <div class="flex items-center justify-between mb-2">
+                                <h4
+                                  class="font-medium flex items-center"
+                                  :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
                                 >
-                                  <span class="mr-2 text-orange-500">•</span>
-                                  <span x-text="topic"></span>
-                                </div>
-                              </template>
+                                  <span x-text="section.title"></span>
+                                  <svg
+                                    class="ml-2 w-4 h-4 transition-transform duration-200"
+                                    :class="section.expanded ? 'rotate-180' : ''"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M19 9l-7 7-7-7"
+                                    ></path>
+                                  </svg>
+                                </h4>
+                                <span
+                                  class="text-sm px-2 py-1 bg-orange-100 text-orange-800 rounded"
+                                  x-text="section.duration"
+                                ></span>
+                              </div>
+
+                              <!-- Topics Preview -->
+                              <div class="space-y-1" x-show="!section.expanded">
+                                <template x-for="topic in section.topics" :key="topic">
+                                  <div
+                                    class="flex items-center text-sm"
+                                    :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
+                                  >
+                                    <span class="mr-2 text-orange-500">•</span>
+                                    <span x-text="topic"></span>
+                                  </div>
+                                </template>
+                              </div>
+                            </div>
+
+                            <!-- Section Content (Expandible) -->
+                            <div
+                              x-show="section.expanded"
+                              x-transition:enter="transition ease-out duration-300"
+                              x-transition:enter-start="opacity-0 transform scale-95"
+                              x-transition:enter-end="opacity-100 transform scale-100"
+                              x-transition:leave="transition ease-in duration-200"
+                              x-transition:leave-start="opacity-100 transform scale-100"
+                              x-transition:leave-end="opacity-0 transform scale-95"
+                              class="border-t p-4"
+                              :class="darkMode ? 'border-gray-600 bg-gray-700' : 'border-gray-200 bg-gray-50'"
+                            >
+                              <!-- Educational Content -->
+                              <div
+                                class="prose max-w-none"
+                                :class="darkMode ? 'prose-invert' : ''"
+                                x-html="renderMarkdown(section.content || 'Contenido educativo próximamente...')"
+                              ></div>
                             </div>
                           </div>
                         </template>
