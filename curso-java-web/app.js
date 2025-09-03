@@ -3,6 +3,7 @@ function courseApp() {
     currentView: "dashboard",
     selectedModule: 0,
     darkMode: false,
+    referenceTab: "📚 Documentación Oficial",
 
     modules: [
       {
@@ -765,82 +766,334 @@ function courseApp() {
 
     references: [
       {
+        category: "🏗️ Estructura de Proyecto",
+        items: [
+          {
+            title: "📁 Estructura Maven Standard",
+            description: "Organización estándar de un proyecto Spring Boot con Maven",
+            url: "#",
+            type: "structure",
+            content: `my-spring-app/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── company/
+│   │   │           └── myapp/
+│   │   │               ├── MyAppApplication.java      # Clase principal @SpringBootApplication
+│   │   │               ├── controller/               # Controllers REST (@RestController)
+│   │   │               │   ├── UserController.java
+│   │   │               │   └── ProductController.java
+│   │   │               ├── service/                  # Lógica de negocio (@Service)
+│   │   │               │   ├── UserService.java
+│   │   │               │   └── ProductService.java
+│   │   │               ├── repository/               # Acceso a datos (@Repository)
+│   │   │               │   ├── UserRepository.java
+│   │   │               │   └── ProductRepository.java
+│   │   │               ├── model/entity/             # Entidades JPA (@Entity)
+│   │   │               │   ├── User.java
+│   │   │               │   └── Product.java
+│   │   │               ├── model/dto/                # DTOs para transferencia
+│   │   │               │   ├── UserDTO.java
+│   │   │               │   ├── CreateUserRequest.java
+│   │   │               │   └── UserResponse.java
+│   │   │               ├── config/                   # Configuraciones (@Configuration)
+│   │   │               │   ├── DatabaseConfig.java
+│   │   │               │   ├── SecurityConfig.java
+│   │   │               │   └── WebConfig.java
+│   │   │               ├── exception/                # Manejo de errores
+│   │   │               │   ├── GlobalExceptionHandler.java
+│   │   │               │   └── CustomExceptions.java
+│   │   │               └── util/                     # Utilidades y helpers
+│   │   │                   ├── DateUtils.java
+│   │   │                   └── ValidationUtils.java
+│   │   └── resources/
+│   │       ├── application.properties               # Configuración principal
+│   │       ├── application-dev.properties          # Config desarrollo
+│   │       ├── application-prod.properties         # Config producción
+│   │       ├── data.sql                            # Datos iniciales
+│   │       ├── schema.sql                          # DDL base de datos
+│   │       ├── static/                             # Archivos estáticos
+│   │       │   ├── css/
+│   │       │   ├── js/
+│   │       │   └── images/
+│   │       └── templates/                          # Templates (si usas Thymeleaf)
+│   │           └── index.html
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── company/
+│                   └── myapp/
+│                       ├── MyAppApplicationTests.java      # Test de contexto Spring
+│                       ├── controller/                     # Tests de controllers
+│                       │   ├── UserControllerTest.java
+│                       │   └── ProductControllerTest.java
+│                       ├── service/                        # Tests de servicios
+│                       │   ├── UserServiceTest.java
+│                       │   └── ProductServiceTest.java
+│                       ├── repository/                     # Tests de repositorios
+│                       │   ├── UserRepositoryTest.java
+│                       │   └── ProductRepositoryTest.java
+│                       └── integration/                    # Tests de integración
+│                           └── UserIntegrationTest.java
+├── target/                                              # Archivos compilados (generado)
+├── .mvn/                                               # Maven wrapper
+├── mvnw                                                # Maven wrapper script (Unix)
+├── mvnw.cmd                                            # Maven wrapper script (Windows)
+├── pom.xml                                             # Dependencias y configuración Maven
+├── .gitignore                                          # Archivos ignorados por Git
+├── README.md                                           # Documentación del proyecto
+├── Dockerfile                                          # Para containerización
+└── docker-compose.yml                                 # Para desarrollo local con Docker`,
+          },
+          {
+            title: "📋 Comparación con Node.js",
+            description: "Equivalencias entre estructura Node.js/Express vs Spring Boot",
+            url: "#",
+            type: "comparison",
+            content: `Node.js/Express Project          →    Spring Boot Project
+├── src/                          →    src/main/java/com/company/app/
+│   ├── controllers/              →    controller/
+│   ├── services/                 →    service/
+│   ├── models/                   →    model/entity/ (JPA entities)
+│   ├── routes/                   →    controller/ (endpoints en @RestController)
+│   ├── middleware/               →    config/ + filter/ (Spring Security)
+│   ├── utils/                    →    util/
+│   └── config/                   →    config/
+├── tests/                        →    src/test/java/
+├── public/                       →    src/main/resources/static/
+├── views/                        →    src/main/resources/templates/
+├── package.json                  →    pom.xml (Maven) o build.gradle (Gradle)
+├── .env                          →    application.properties
+├── node_modules/                 →    target/ (archivos compilados)
+└── server.js                     →    Application.java (@SpringBootApplication)
+
+Conceptos equivalentes:
+• Express app.js            →  @SpringBootApplication class
+• Express routes            →  @RestController + @RequestMapping
+• Express middleware        →  @Component + @Filter o @Interceptor
+• Mongoose schemas          →  @Entity + @Column JPA
+• Express req/res           →  @RequestBody/@ResponseBody + ResponseEntity
+• npm install               →  mvn clean install
+• npm start                 →  mvn spring-boot:run
+• Express error handling    →  @ControllerAdvice + @ExceptionHandler`,
+          },
+          {
+            title: "⚙️ Archivos de Configuración Clave",
+            description: "Principales archivos de configuración y su propósito",
+            url: "#",
+            type: "config",
+            content: `📄 pom.xml (Maven)
+├── Gestión de dependencias (como package.json)
+├── Plugins de construcción
+├── Perfiles (dev, test, prod)
+└── Propiedades del proyecto
+
+📄 application.properties
+├── server.port=8080                    # Puerto del servidor
+├── spring.datasource.url=...          # Conexión base de datos
+├── spring.jpa.hibernate.ddl-auto=...  # Estrategia DDL
+├── logging.level.com.company=DEBUG    # Nivel de logs
+└── spring.profiles.active=dev         # Perfil activo
+
+📄 Application.java (@SpringBootApplication)
+├── Punto de entrada de la aplicación
+├── Configuración automática
+├── Escaneo de componentes
+└── Método main() para ejecutar
+
+📄 SecurityConfig.java
+├── Configuración de autenticación
+├── Configuración de autorización
+├── CORS y CSRF settings
+└── Password encoding
+
+📄 DatabaseConfig.java
+├── Configuración de DataSource
+├── Configuración de JPA/Hibernate
+├── Configuración de transacciones
+└── Connection pooling
+
+📄 WebConfig.java
+├── Configuración MVC
+├── Interceptors
+├── Message converters
+└── View resolvers
+
+📄 Dockerfile
+├── FROM openjdk:17-jdk-slim
+├── COPY target/*.jar app.jar
+├── EXPOSE 8080
+└── ENTRYPOINT ["java", "-jar", "/app.jar"]`,
+          },
+        ],
+      },
+      {
         category: "📚 Documentación Oficial",
         items: [
           {
-            title: "Oracle Java Documentation",
-            description: "Documentación oficial de Java",
-            url: "https://docs.oracle.com/en/java/",
+            title: "Oracle Java SE Documentation",
+            description: "Documentación oficial de Java SE - API y especificaciones",
+            url: "https://docs.oracle.com/en/java/javase/",
             type: "documentation",
           },
           {
-            title: "Spring Boot Reference",
-            description: "Guía completa de Spring Boot",
+            title: "Spring Boot Reference Guide",
+            description: "Guía de referencia completa de Spring Boot 3.x",
             url: "https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/",
             type: "documentation",
           },
           {
             title: "Spring Framework Documentation",
-            description: "Documentación del ecosistema Spring",
+            description: "Core Spring Framework - IoC, AOP, Data Access",
             url: "https://docs.spring.io/spring-framework/docs/current/reference/html/",
+            type: "documentation",
+          },
+          {
+            title: "Spring Data JPA Reference",
+            description: "Persistencia de datos simplificada con JPA",
+            url: "https://docs.spring.io/spring-data/jpa/docs/current/reference/html/",
+            type: "documentation",
+          },
+          {
+            title: "Spring Security Reference",
+            description: "Seguridad integral para aplicaciones Spring",
+            url: "https://docs.spring.io/spring-security/reference/",
+            type: "documentation",
+          },
+          {
+            title: "Hibernate ORM Documentation",
+            description: "ORM más popular de Java - Guía completa",
+            url: "https://hibernate.org/orm/documentation/",
             type: "documentation",
           },
         ],
       },
       {
-        category: "🛠️ Herramientas y IDEs",
+        category: "🛠️ Herramientas Esenciales",
         items: [
           {
             title: "IntelliJ IDEA",
-            description: "IDE premium para Java (Community Edition gratuita)",
+            description: "IDE premium para Java (Community gratuita)",
             url: "https://www.jetbrains.com/idea/",
             type: "tool",
           },
           {
-            title: "Eclipse IDE",
-            description: "IDE gratuito y open source para Java",
-            url: "https://www.eclipse.org/",
+            title: "Spring Tool Suite (STS)",
+            description: "IDE basado en Eclipse optimizado para Spring",
+            url: "https://spring.io/tools",
             type: "tool",
           },
           {
             title: "VS Code Extension Pack for Java",
-            description: "Extensiones de Java para VS Code",
+            description: "Desarrollo Java completo en VS Code",
             url: "https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack",
             type: "tool",
           },
           {
-            title: "Maven",
-            description: "Herramienta de build y gestión de dependencias",
-            url: "https://maven.apache.org/",
+            title: "Spring Initializr",
+            description: "Generador web de proyectos Spring Boot",
+            url: "https://start.spring.io/",
             type: "tool",
           },
           {
-            title: "Gradle",
-            description: "Build tool moderno para proyectos Java",
-            url: "https://gradle.org/",
+            title: "Maven Central Repository",
+            description: "Repositorio central de librerías Java",
+            url: "https://search.maven.org/",
+            type: "tool",
+          },
+          {
+            title: "JUnit 5 User Guide",
+            description: "Framework de testing moderno para Java",
+            url: "https://junit.org/junit5/docs/current/user-guide/",
+            type: "tool",
+          },
+          {
+            title: "Testcontainers",
+            description: "Testing de integración con contenedores",
+            url: "https://www.testcontainers.org/",
+            type: "tool",
+          },
+          {
+            title: "Docker for Java Developers",
+            description: "Containerización de aplicaciones Java",
+            url: "https://docs.docker.com/language/java/",
             type: "tool",
           },
         ],
       },
       {
-        category: "📖 Tutoriales y Guías",
+        category: "📖 Guías de Migración",
         items: [
           {
-            title: "Baeldung",
-            description: "Tutoriales premium de Java y Spring",
-            url: "https://www.baeldung.com/",
+            title: "JavaScript to Java Migration Guide",
+            description: "Guía completa para desarrolladores JavaScript",
+            url: "https://www.baeldung.com/java-vs-javascript",
             type: "tutorial",
           },
           {
-            title: "Spring.io Guides",
+            title: "Node.js vs Spring Boot Comparison",
+            description: "Comparativa arquitectural y de rendimiento",
+            url: "https://reflectoring.io/nodejs-vs-spring-boot/",
+            type: "tutorial",
+          },
+          {
+            title: "Express.js to Spring Boot Migration",
+            description: "Migración de APIs REST desde Express",
+            url: "https://medium.com/@sairam.krish/migrating-from-express-to-spring-boot",
+            type: "tutorial",
+          },
+          {
+            title: "TypeScript Developer's Java Guide",
+            description: "Java para desarrolladores con experiencia en TypeScript",
+            url: "https://devblogs.microsoft.com/java/java-for-typescript-developers/",
+            type: "tutorial",
+          },
+          {
+            title: "Microservices: Node.js vs Java",
+            description: "Arquitectura de microservicios en ambos ecosistemas",
+            url: "https://www.baeldung.com/java-microservices-vs-nodejs",
+            type: "tutorial",
+          },
+        ],
+      },
+      {
+        category: "� Tutoriales Spring Boot",
+        items: [
+          {
+            title: "Baeldung Spring Boot Tutorials",
+            description: "Tutoriales premium y ejemplos prácticos",
+            url: "https://www.baeldung.com/spring-boot",
+            type: "tutorial",
+          },
+          {
+            title: "Spring.io Getting Started Guides",
             description: "Guías oficiales paso a paso",
             url: "https://spring.io/guides",
             type: "tutorial",
           },
           {
-            title: "Java Code Geeks",
-            description: "Artículos y ejemplos de código",
-            url: "https://www.javacodegeeks.com/",
+            title: "Spring Boot REST API Tutorial",
+            description: "Construcción de APIs REST desde cero",
+            url: "https://spring.io/guides/tutorials/rest/",
+            type: "tutorial",
+          },
+          {
+            title: "Spring Security Tutorial",
+            description: "Implementación de autenticación y autorización",
+            url: "https://www.baeldung.com/spring-security-tutorial",
+            type: "tutorial",
+          },
+          {
+            title: "Spring Data JPA Tutorial",
+            description: "Persistencia de datos simplificada",
+            url: "https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa",
+            type: "tutorial",
+          },
+          {
+            title: "Spring Boot Testing Tutorial",
+            description: "Testing completo en Spring Boot",
+            url: "https://spring.io/guides/gs/testing-web/",
             type: "tutorial",
           },
         ],
@@ -849,38 +1102,74 @@ function courseApp() {
         category: "🎥 Video Cursos",
         items: [
           {
-            title: "Spring Boot Tutorial (YouTube)",
-            description: "Canal de Java Brains",
+            title: "Java Brains YouTube Channel",
+            description: "Spring Boot, Microservices y Java moderno",
             url: "https://www.youtube.com/c/JavaBrainsChannel",
             type: "video",
           },
           {
-            title: "Amigoscode",
-            description: "Cursos prácticos de Java y Spring Boot",
-            url: "https://amigoscode.com/",
+            title: "Amigoscode Spring Boot Course",
+            description: "Curso completo desde básico a avanzado",
+            url: "https://amigoscode.com/courses/spring-boot",
+            type: "video",
+          },
+          {
+            title: "Dan Vega - Spring Developer",
+            description: "Contenido oficial de Spring por Dan Vega",
+            url: "https://www.youtube.com/@danvega",
+            type: "video",
+          },
+          {
+            title: "Spring Tips by Josh Long",
+            description: "Tips y tricks del ecosistema Spring",
+            url: "https://www.youtube.com/c/SpringTips",
+            type: "video",
+          },
+          {
+            title: "Java + Spring Boot Masterclass",
+            description: "Curso intensivo de backend con Java",
+            url: "https://www.youtube.com/watch?v=VVn9OG9nfH0",
             type: "video",
           },
         ],
       },
       {
-        category: "📚 Libros Recomendados",
+        category: "📚 Libros Especializados",
         items: [
           {
-            title: "Effective Java (Joshua Bloch)",
-            description: "Best practices y patrones en Java",
-            url: "#",
+            title: "Effective Java by Joshua Bloch",
+            description: "Best practices esenciales para Java moderno",
+            url: "https://www.oreilly.com/library/view/effective-java/9780134686097/",
             type: "book",
           },
           {
             title: "Spring Boot in Action",
-            description: "Guía práctica de Spring Boot",
-            url: "#",
+            description: "Guía práctica y completa de Spring Boot",
+            url: "https://www.manning.com/books/spring-boot-in-action",
             type: "book",
           },
           {
-            title: "Java: The Complete Reference",
-            description: "Referencia completa del lenguaje",
-            url: "#",
+            title: "Spring in Action (6th Edition)",
+            description: "Spring Framework completo - edición actualizada",
+            url: "https://www.manning.com/books/spring-in-action-sixth-edition",
+            type: "book",
+          },
+          {
+            title: "Java Performance: In-Depth Advice",
+            description: "Optimización y tuning de aplicaciones Java",
+            url: "https://www.oreilly.com/library/view/java-performance-2nd/9781492056102/",
+            type: "book",
+          },
+          {
+            title: "Microservices Patterns",
+            description: "Patrones para arquitecturas de microservicios",
+            url: "https://www.manning.com/books/microservices-patterns",
+            type: "book",
+          },
+          {
+            title: "Cloud Native Java",
+            description: "Desarrollo Java para cloud y contenedores",
+            url: "https://www.oreilly.com/library/view/cloud-native-java/9781449374631/",
             type: "book",
           },
         ],
@@ -890,21 +1179,74 @@ function courseApp() {
         items: [
           {
             title: "r/java",
-            description: "Comunidad de Java en Reddit",
+            description: "Comunidad activa de Java en Reddit",
             url: "https://www.reddit.com/r/java/",
             type: "community",
           },
           {
-            title: "Stack Overflow",
-            description: "Q&A técnico sobre Java",
+            title: "r/SpringBoot",
+            description: "Subreddit dedicado a Spring Boot",
+            url: "https://www.reddit.com/r/SpringBoot/",
+            type: "community",
+          },
+          {
+            title: "Stack Overflow - Java",
+            description: "Q&A técnico sobre Java y Spring",
             url: "https://stackoverflow.com/questions/tagged/java",
             type: "community",
           },
           {
-            title: "Java Discord",
-            description: "Servidor de Discord para desarrolladores Java",
+            title: "Java Discord Server",
+            description: "Comunidad Discord para desarrolladores Java",
             url: "https://discord.gg/java",
             type: "community",
+          },
+          {
+            title: "Spring Community",
+            description: "Foro oficial de la comunidad Spring",
+            url: "https://community.spring.io/",
+            type: "community",
+          },
+          {
+            title: "JetBrains Academy",
+            description: "Plataforma de aprendizaje Java interactiva",
+            url: "https://www.jetbrains.com/academy/",
+            type: "community",
+          },
+        ],
+      },
+      {
+        category: "⚡ Cheat Sheets",
+        items: [
+          {
+            title: "Java Syntax Cheat Sheet",
+            description: "Sintaxis Java vs JavaScript comparativa",
+            url: "https://introcs.cs.princeton.edu/java/11cheatsheet/",
+            type: "tutorial",
+          },
+          {
+            title: "Spring Boot Annotations",
+            description: "Guía rápida de anotaciones más usadas",
+            url: "https://springframework.guru/spring-boot-annotations/",
+            type: "tutorial",
+          },
+          {
+            title: "JPA/Hibernate Quick Reference",
+            description: "Anotaciones y configuraciones JPA esenciales",
+            url: "https://vladmihalcea.com/jpa-hibernate-cheat-sheet/",
+            type: "tutorial",
+          },
+          {
+            title: "Maven Commands Cheat Sheet",
+            description: "Comandos Maven más utilizados",
+            url: "https://maven.apache.org/guides/MavenQuickReferenceCard.pdf",
+            type: "tutorial",
+          },
+          {
+            title: "Spring Security Configuration",
+            description: "Configuraciones comunes de seguridad",
+            url: "https://github.com/spring-projects/spring-security/wiki/Spring-Security-Reference",
+            type: "tutorial",
           },
         ],
       },
