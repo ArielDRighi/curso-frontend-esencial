@@ -729,7 +729,7 @@
       <!-- Project View -->
       <div x-show="currentView === 'project'" x-transition:enter.duration.300ms>
         <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-          🛠️ Proyecto Integrador: API REST Java
+          🛠️ Proyecto Final: API Ecommerce Spring Boot
         </h2>
 
         <div
@@ -737,7 +737,7 @@
           :class="darkMode ? 'bg-gray-800' : 'bg-white'"
         >
           <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-            ☕ Checklist del Proyecto Java
+            🛒 Checklist del Proyecto Ecommerce
           </h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <template x-for="(task, index) in projectTasks" :key="index">
@@ -761,12 +761,77 @@
           </div>
         </div>
 
-        <div class="bg-gradient-to-r from-orange-500 to-red-600 rounded-lg p-6 text-white">
+        <div class="bg-gradient-to-r from-orange-500 to-red-600 rounded-lg p-6 text-white mb-8">
           <h3 class="text-xl font-semibold mb-2">🎯 Objetivo del Proyecto</h3>
-          <p class="text-orange-100">
-            Construir una API REST completa con Spring Boot que demuestre todos los conocimientos adquiridos:
-            JPA/Hibernate, Spring Security, testing, documentación con Swagger y deployment con Docker.
+          <p class="text-orange-100 mb-4">
+            Construir una API REST completa para un sistema de ecommerce usando Spring Boot, que demuestre todos los
+            conocimientos adquiridos en el curso.
           </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <h4 class="font-semibold mb-2">🏗️ Arquitectura:</h4>
+              <ul class="space-y-1 text-orange-100">
+                <li>• Spring Boot 3.x con Java 17+</li>
+                <li>• PostgreSQL para persistencia</li>
+                <li>• Spring Security + JWT</li>
+                <li>• Spring Data JPA</li>
+                <li>• OpenAPI/Swagger docs</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-2">⚡ Funcionalidades:</h4>
+              <ul class="space-y-1 text-orange-100">
+                <li>• Catálogo de productos con búsqueda</li>
+                <li>• Carrito de compras</li>
+                <li>• Gestión de pedidos</li>
+                <li>• Pagos con Stripe/PayPal</li>
+                <li>• Panel de administración</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="rounded-lg shadow-md p-6 transition-colors duration-300"
+          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+        >
+          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            🚀 Stack Tecnológico
+          </h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="p-3 bg-gradient-to-br from-orange-100 to-red-100 rounded-lg">
+              <div class="text-2xl mb-2">☕</div>
+              <div class="font-medium text-gray-800">Java 17+</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg">
+              <div class="text-2xl mb-2">🚀</div>
+              <div class="font-medium text-gray-800">Spring Boot</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg">
+              <div class="text-2xl mb-2">🗄️</div>
+              <div class="font-medium text-gray-800">PostgreSQL</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg">
+              <div class="text-2xl mb-2">🔒</div>
+              <div class="font-medium text-gray-800">Security + JWT</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg">
+              <div class="text-2xl mb-2">🧪</div>
+              <div class="font-medium text-gray-800">JUnit 5</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-red-100 to-pink-100 rounded-lg">
+              <div class="text-2xl mb-2">⚡</div>
+              <div class="font-medium text-gray-800">Redis Cache</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-lg">
+              <div class="text-2xl mb-2">🐳</div>
+              <div class="font-medium text-gray-800">Docker</div>
+            </div>
+            <div class="p-3 bg-gradient-to-br from-green-100 to-teal-100 rounded-lg">
+              <div class="text-2xl mb-2">📊</div>
+              <div class="font-medium text-gray-800">Swagger/OpenAPI</div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

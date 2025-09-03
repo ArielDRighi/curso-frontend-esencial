@@ -1942,37 +1942,92 @@ public class ReportService {
     ],
 
     projectTasks: [
-      { name: "📋 Configurar entorno de desarrollo Java", completed: false },
-      { name: "☕ Instalar JDK 17+ y configurar JAVA_HOME", completed: false },
-      { name: "🛠️ Configurar IDE (IntelliJ/Eclipse/VS Code)", completed: false },
-      { name: "📦 Crear proyecto Spring Boot con Spring Initializr", completed: false },
-      { name: "🏗️ Configurar estructura Maven/Gradle", completed: false },
-      { name: "🗄️ Configurar base de datos (H2/MySQL/PostgreSQL)", completed: false },
-      { name: "🌐 Crear primera API REST", completed: false },
-      { name: "📊 Implementar entidades JPA", completed: false },
-      { name: "🔧 Configurar repositorios Spring Data", completed: false },
-      { name: "🎯 Implementar services y lógica de negocio", completed: false },
-      { name: "✅ Añadir validaciones con Bean Validation", completed: false },
-      { name: "🛡️ Configurar Spring Security básico", completed: false },
-      { name: "🔐 Implementar autenticación JWT", completed: false },
-      { name: "🧪 Escribir tests unitarios con JUnit 5", completed: false },
-      { name: "🔄 Crear tests de integración", completed: false },
-      { name: "📋 Documentar API con Swagger/OpenAPI", completed: false },
-      { name: "🐳 Crear Dockerfile para la aplicación", completed: false },
+      // === CONFIGURACIÓN INICIAL ===
+      { name: "☕ Configurar entorno Java 17+ y Maven/Gradle", completed: false },
+      { name: "🛠️ Configurar IDE (IntelliJ IDEA recomendado)", completed: false },
+      { name: "� Crear proyecto Spring Boot en Spring Initializr", completed: false },
+      { name: "📁 Configurar estructura de paquetes del ecommerce", completed: false },
+      { name: "🗄️ Configurar PostgreSQL y application.properties", completed: false },
+
+      // === MODELO DE DATOS ===
+      { name: "🛒 Crear entidad Product con validaciones", completed: false },
+      { name: "📂 Crear entidad Category con jerarquía", completed: false },
+      { name: "👤 Crear entidad User con roles", completed: false },
+      { name: "🧾 Crear entidad Order y OrderItem", completed: false },
+      { name: "� Crear entidad Payment", completed: false },
+      { name: "📍 Crear entidad Address", completed: false },
+      { name: "⭐ Crear entidad Review (opcional)", completed: false },
+      { name: "� Configurar relaciones JPA entre entidades", completed: false },
+
+      // === REPOSITORIOS Y SERVICIOS ===
+      { name: "📊 Crear repositorios Spring Data JPA", completed: false },
+      { name: "🎯 Implementar ProductService con lógica de negocio", completed: false },
+      { name: "🛍️ Implementar CategoryService", completed: false },
+      { name: "👥 Implementar UserService", completed: false },
+      { name: "🧾 Implementar OrderService con validaciones", completed: false },
+      { name: "💰 Implementar PaymentService", completed: false },
+
+      // === API REST ===
+      { name: "🌐 Crear ProductController con CRUD completo", completed: false },
+      { name: "📂 Crear CategoryController con endpoints anidados", completed: false },
+      { name: "🔐 Crear AuthController (login/register)", completed: false },
+      { name: "🛒 Crear CartController para carrito de compras", completed: false },
+      { name: "🧾 Crear OrderController para gestión de pedidos", completed: false },
+      { name: "💳 Crear PaymentController", completed: false },
+      { name: "👤 Crear UserController para perfil", completed: false },
+
+      // === SEGURIDAD ===
+      { name: "� Configurar Spring Security", completed: false },
+      { name: "🎫 Implementar autenticación JWT", completed: false },
+      { name: "🛡️ Configurar autorización por roles (USER/ADMIN)", completed: false },
+      { name: "🌐 Configurar CORS para frontend", completed: false },
+      { name: "🔐 Implementar password encoding", completed: false },
+
+      // === FUNCIONALIDADES ECOMMERCE ===
+      { name: "� Implementar búsqueda de productos", completed: false },
+      { name: "🏷️ Implementar filtros (categoría, precio, marca)", completed: false },
+      { name: "� Implementar paginación en listados", completed: false },
+      { name: "⭐ Sistema de reviews y ratings", completed: false },
+      { name: "� Gestión de inventario/stock", completed: false },
+      { name: "🏪 Carrito de compras persistente", completed: false },
+      { name: "� Proceso de checkout completo", completed: false },
+
+      // === INTEGRACIONES ===
+      { name: "💳 Integrar pasarela de pagos (Stripe/PayPal)", completed: false },
+      { name: "� Configurar envío de emails", completed: false },
+      { name: "📱 Integrar notificaciones", completed: false },
+      { name: "🖼️ Gestión de imágenes de productos", completed: false },
+
+      // === TESTING ===
+      { name: "🧪 Tests unitarios de servicios", completed: false },
+      { name: "🔧 Tests de repositorios con @DataJpaTest", completed: false },
+      { name: "🌐 Tests de controllers con MockMvc", completed: false },
+      { name: "🔒 Tests de seguridad y JWT", completed: false },
+      { name: "📡 Tests de integración end-to-end", completed: false },
+      { name: "🐳 Tests con TestContainers", completed: false },
+
+      // === DOCUMENTACIÓN ===
+      { name: "📋 Documentar API con OpenAPI/Swagger", completed: false },
+      { name: "📝 Crear README con instrucciones", completed: false },
+      { name: "📊 Documentar modelo de datos", completed: false },
+
+      // === DEPLOYMENT ===
+      { name: "🐳 Crear Dockerfile optimizado", completed: false },
+      { name: "📦 Crear docker-compose.yml", completed: false },
       { name: "🚀 Configurar CI/CD con GitHub Actions", completed: false },
-      { name: "☁️ Deploy en cloud (AWS/Azure/Heroku)", completed: false },
-      { name: "📊 Configurar monitoring y logs", completed: false },
-      // === TAREAS AVANZADAS ===
-      { name: "🏗️ Implementar patrón Repository custom", completed: false },
-      { name: "🔄 Configurar caching con Redis", completed: false },
-      { name: "📡 Implementar WebSockets con STOMP", completed: false },
-      { name: "🌐 Crear cliente Feign para APIs externas", completed: false },
-      { name: "⚡ Configurar async processing", completed: false },
-      { name: "🧪 Implementar TestContainers", completed: false },
-      { name: "📈 Configurar métricas con Micrometer", completed: false },
-      { name: "🔍 Implementar full-text search", completed: false },
-      { name: "📊 Configurar audit con JPA Auditing", completed: false },
-      { name: "🛡️ Implementar rate limiting", completed: false },
+      { name: "☁️ Deploy en cloud (Heroku/Railway/AWS)", completed: false },
+      { name: "📊 Configurar monitoring con Actuator", completed: false },
+      { name: "📈 Configurar métricas y logs", completed: false },
+
+      // === CARACTERÍSTICAS AVANZADAS ===
+      { name: "⚡ Implementar cache con Redis", completed: false },
+      { name: "🔍 Implementar Elasticsearch para búsqueda", completed: false },
+      { name: "📊 Dashboard de admin", completed: false },
+      { name: "📈 Reportes de ventas", completed: false },
+      { name: "🎯 Sistema de cupones/descuentos", completed: false },
+      { name: "� API para mobile app", completed: false },
+      { name: "🌐 Internacionalización (i18n)", completed: false },
+      { name: "🛡️ Rate limiting y security headers", completed: false },
     ],
 
     init() {
