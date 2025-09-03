@@ -469,19 +469,19 @@ spring.threads.virtual.enabled=true
       {
         id: 1,
         emoji: "☕",
-        title: "Módulo 1: Fundamentos Java para Backend Developers",
+        title: "Módulo 1: Fundamentos de Java para Desarrolladores Experimentados",
         shortTitle: "Java Fundamentals",
-        duration: "8-10 horas",
+        duration: "10-12 horas",
         level: "Fundamental",
         completed: false,
         objective:
-          "Dominar la sintaxis Java y conceptos OOP desde la perspectiva de un desarrollador Node.js/TypeScript",
+          "Transición efectiva de JavaScript/TypeScript a Java, enfocándose en diferencias clave y ventajas del ecosistema Java para desarrollo backend enterprise",
         description:
-          "Transición completa de JavaScript/TypeScript a Java, cubriendo sintaxis, OOP, JVM, y conceptos fundamentales con comparaciones directas.",
+          "Comprende Java como lenguaje compilado y multiplataforma, domina OOP avanzada, Collections Framework y Streams API con comparaciones directas a JavaScript/TypeScript.",
         sections: [
           {
-            title: "⚡ JVM vs Node.js Runtime",
-            duration: "2.5 horas",
+            title: "🔥 Introducción a Java y la JVM",
+            duration: "3-4 horas",
             expanded: false,
             content: `
 ## 📖 Concepto
@@ -552,44 +552,222 @@ spring.threads.virtual.enabled=true
 \`\`\`
             `,
             topics: [
-              "Arquitectura JVM",
-              "Garbage Collection vs V8",
-              "Bytecode vs JavaScript engine",
-              "Memory management",
-              "Performance characteristics",
+              "Java como lenguaje compilado y multiplataforma",
+              "JVM vs V8 Engine: diferencias fundamentales",
+              "Virtual Threads vs Event Loop",
+              "Gestión avanzada de memoria y GC",
             ],
           },
           {
-            title: "🏗️ POO: Clases y Objetos en Java",
-            duration: "2.5 horas",
+            title: "⚡ Sintaxis y Programación Orientada a Objetos",
+            duration: "4-5 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+Revisión de sintaxis Java y profundización en **POO avanzada**: clases, herencia, polimorfismo, encapsulamiento, interfaces y clases abstractas.
+
+## 🎯 ¿Por qué es importante?
+
+Aunque conoces TypeScript (que soporta OOP), **Java tiene convenciones específicas**:
+
+- **Interfaces:** Contratos más estrictos que TypeScript
+- **Herencia:** Single inheritance + múltiples interfaces
+- **Polimorfismo:** Más explícito que en JavaScript
+- **Encapsulamiento:** Modificadores de acceso más rigurosos
+
+## 🔄 Comparación: TypeScript vs Java OOP
+
+### TypeScript - Flexibilidad:
+\`\`\`typescript
+interface User {
+  name: string;
+  email?: string; // Opcional
+}
+
+class AdminUser implements User {
+  name: string;
+  email: string;
+
+  constructor(name: string, email?: string) {
+    this.name = name;
+    this.email = email || "";
+  }
+}
+\`\`\`
+
+### Java - Estructura más rígida:
+\`\`\`java
+public interface User {
+    String getName();
+    String getEmail();
+}
+
+public class AdminUser implements User {
+    private final String name;
+    private final String email;
+
+    public AdminUser(String name, String email) {
+        this.name = name;
+        this.email = email != null ? email : "";
+    }
+
+    @Override
+    public String getName() { return name; }
+
+    @Override
+    public String getEmail() { return email; }
+}
+\`\`\`
+
+## 🏗️ Conceptos Clave de POO en Java
+
+### 1. Herencia y Polimorfismo:
+\`\`\`java
+public abstract class Employee {
+    protected String name;
+    protected double baseSalary;
+    
+    public abstract double calculateSalary();
+}
+
+public class Developer extends Employee {
+    private int experienceYears;
+    
+    @Override
+    public double calculateSalary() {
+        return baseSalary + (experienceYears * 1000);
+    }
+}
+
+public class Manager extends Employee {
+    private int teamSize;
+    
+    @Override
+    public double calculateSalary() {
+        return baseSalary + (teamSize * 500);
+    }
+}
+\`\`\`
+
+### 2. Interfaces y Composición:
+\`\`\`java
+public interface Payable {
+    void processPayment(double amount);
+}
+
+public class Freelancer implements User, Payable {
+    private PaymentMethod paymentMethod;
+    
+    @Override
+    public void processPayment(double amount) {
+        paymentMethod.transfer(amount);
+    }
+}
+\`\`\`
+            `,
             topics: [
-              "Classes vs TypeScript classes",
-              "Constructores y overloading",
-              "Encapsulación: getters/setters",
-              "Herencia vs Composition",
-              "Interfaces vs TypeScript interfaces",
+              "Sintaxis Java vs TypeScript",
+              "Herencia single vs múltiple",
+              "Interfaces más estrictas",
+              "Polimorfismo explícito",
+              "Modificadores de acceso rigurosos",
             ],
           },
           {
-            title: "🔧 Tipos de Datos y Colecciones",
-            duration: "2 horas",
+            title: "�️ Colecciones y APIs Modernas de Java",
+            duration: "3-4 horas",
+            expanded: false,
+            content: `
+## 📖 Concepto
+
+Dominio de **Collections Framework** (List, Set, Map), **Streams API** para procesamiento funcional, y manejo de I/O básico.
+
+## 🎯 ¿Por qué es importante?
+
+Las colecciones son el equivalente a **arrays y objects en JavaScript**, pero con:
+
+- **Tipado fuerte:** Generics para type safety
+- **Performance optimizada:** Diferentes implementaciones según uso
+- **Streams API:** Programación funcional similar a map/filter/reduce
+
+## 🔄 Comparación: JavaScript vs Java Collections
+
+### JavaScript - Flexible pero sin tipado:
+\`\`\`javascript
+const products = [
+  { name: "Laptop", price: 1200, category: "tech" },
+  { name: "Phone", price: 800, category: "tech" },
+  { name: "Book", price: 25, category: "education" },
+];
+
+const expensiveProducts = products
+  .filter((p) => p.price > 100)
+  .map((p) => p.name)
+  .sort();
+\`\`\`
+
+### Java - Tipado fuerte y expresivo:
+\`\`\`java
+List<Product> products = Arrays.asList(
+    new Product("Laptop", 1200, "tech"),
+    new Product("Phone", 800, "tech"),
+    new Product("Book", 25, "education")
+);
+
+List<String> expensiveProducts = products.stream()
+    .filter(p -> p.getPrice() > 100)
+    .map(Product::getName)
+    .sorted()
+    .collect(Collectors.toList());
+\`\`\`
+
+## 📚 Collections Framework
+
+### Principales Interfaces:
+\`\`\`java
+// List - Ordenada, permite duplicados
+List<String> names = new ArrayList<>();
+List<String> names = new LinkedList<>();
+
+// Set - Sin duplicados
+Set<String> uniqueNames = new HashSet<>();
+Set<String> sortedNames = new TreeSet<>();
+
+// Map - Key-Value pairs
+Map<String, User> userMap = new HashMap<>();
+Map<String, User> sortedUserMap = new TreeMap<>();
+\`\`\`
+
+### Streams API - Programación Funcional:
+\`\`\`java
+// Operaciones complejas de manera fluida
+Map<String, Double> avgPriceByCategory = products.stream()
+    .filter(p -> p.isInStock())
+    .collect(Collectors.groupingBy(
+        Product::getCategory,
+        Collectors.averagingDouble(Product::getPrice)
+    ));
+
+// Equivalente a múltiples loops y condiciones
+Optional<Product> mostExpensive = products.stream()
+    .filter(p -> p.getCategory().equals("tech"))
+    .max(Comparator.comparing(Product::getPrice));
+\`\`\`
+
+## 🎯 Ventajas del Tipado Fuerte
+
+- **Compile-time safety:** Errores detectados antes de runtime
+- **IDE Support:** Autocompletado y refactoring seguro
+- **Performance:** Optimizaciones del compilador
+- **Documentación viva:** El tipo ES la documentación
+            `,
             topics: [
-              "Primitivos vs Objects",
-              "Arrays vs JavaScript arrays",
-              "Collections Framework",
-              "Generics vs TypeScript generics",
-              "Streams API vs array methods",
-            ],
-          },
-          {
-            title: "⚡ JVM vs Node.js Runtime",
-            duration: "1.5 horas",
-            topics: [
-              "Arquitectura JVM",
-              "Garbage Collection vs V8",
-              "Bytecode vs JavaScript engine",
-              "Memory management",
-              "Performance characteristics",
+              "Collections Framework: List, Set, Map",
+              "Generics para type safety",
+              "Streams API vs array methods de JS",
+              "Programación funcional en Java",
+              "Performance y optimizaciones",
             ],
           },
         ],
