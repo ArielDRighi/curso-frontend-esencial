@@ -1502,57 +1502,326 @@ public class UserService {
       {
         id: 4,
         emoji: "💾",
-        title: "Módulo 4: Gestión de Bases de Datos con Spring Data JPA",
+        title: "Módulo 4: Gestión de Bases de Datos con Spring Data JPA y PostgreSQL",
         shortTitle: "Spring Data JPA",
-        duration: "14-16 horas",
+        duration: "13-15 horas",
         level: "Intermedio",
         completed: false,
-        objective: "Gestionar persistencia de datos con JPA, Hibernate y PostgreSQL de manera enterprise",
+        objective:
+          "Dominar la persistencia de datos en Java enterprise, comparando JPA/Hibernate con TypeORM y aprendiendo patrones avanzados de acceso a datos",
         description:
-          "Dominio completo de Spring Data JPA para persistencia, desde configuración básica hasta optimización de queries y transacciones.",
+          "Gestión completa de persistencia con Spring Data JPA, desde JDBC hasta transacciones avanzadas, comparando constantemente con TypeORM y Node.js.",
         sections: [
           {
-            title: "🔗 JPA vs TypeORM: Configuración y Setup",
-            duration: "3 horas",
+            title: "🗃️ Introducción a JDBC, JPA y Hibernate",
+            duration: "4.5 horas",
+            expanded: false,
+            content: `
+## 📖 Fundamentos de Persistencia en Java
+
+**JDBC** es la base para conectividad con bases de datos en Java. **JPA** (Java Persistence API) es la especificación estándar para ORMs. **Hibernate** es la implementación más popular de JPA, equivalente a TypeORM pero más maduro.
+
+## 🎯 ¿Por qué es importante?
+
+Para desarrolladores TypeScript/TypeORM, entender la jerarquía Java es crucial:
+- **JDBC ↔ Database drivers** en Node.js (pg, mysql2)
+- **JPA ↔ ORM specification** (como ActiveRecord pattern)
+- **Hibernate ↔ TypeORM** pero con 20+ años de madurez enterprise
+
+## 🔄 Comparación: Ecosistemas de Persistencia
+
+| **Aspecto**     | **Node.js/TypeORM**             | **Java/JPA/Hibernate**           |
+| --------------- | ------------------------------- | -------------------------------- |
+| **Madurez**     | ~5 años, comunidad activa       | 20+ años, ultra estable          |
+| **Performance** | Buena, optimizaciones limitadas | Excelente, lazy loading avanzado |
+| **Migrations**  | TypeORM migrations              | Flyway/Liquibase (más robustos)  |
+| **Caching**     | Redis manual                    | L1/L2 cache automático           |
+| **Relations**   | Decoradores (@OneToMany)        | Anotaciones (@OneToMany)         |
+| **Queries**     | QueryBuilder + raw SQL          | JPQL + Criteria API + native     |
+| **Enterprise**  | Limitado                        | Connection pooling, JTA, etc.    |
+
+## 🏗️ Arquitectura de Persistencia Java
+
+\`\`\`
+┌─────────────────────────────────────┐
+│          Spring Data JPA            │  ← Repository pattern
+├─────────────────────────────────────┤
+│               JPA                   │  ← Specification
+├─────────────────────────────────────┤
+│            Hibernate                │  ← ORM Implementation
+├─────────────────────────────────────┤
+│              JDBC                   │  ← Database connectivity
+├─────────────────────────────────────┤
+│         PostgreSQL Driver           │  ← Specific database
+└─────────────────────────────────────┘
+\`\`\`
+
+## 💡 Configuración vs TypeORM
+
+### TypeORM:
+\`\`\`typescript
+// ormconfig.json
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "user",
+  "password": "pass",
+  "database": "mydb",
+  "entities": ["src/entity/*.ts"],
+  "synchronize": true
+}
+\`\`\`
+
+### Spring Boot:
+\`\`\`properties
+# application.properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/mydb
+spring.datasource.username=user
+spring.datasource.password=pass
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+\`\`\`
+            `,
             topics: [
-              "JPA configuration vs TypeORM",
-              "DataSource y connection pooling",
-              "Entity scanning y packages",
-              "Database initialization",
-              "Multiple datasources",
+              "JDBC vs database drivers Node.js",
+              "JPA specification vs TypeORM",
+              "Hibernate como implementación ORM",
+              "Configuración vs TypeORM setup",
+              "Arquitectura de capas de persistencia",
             ],
           },
           {
-            title: "🏗️ Entidades y Relaciones",
-            duration: "4 horas",
+            title: "🛠️ Spring Data JPA y Repositorios",
+            duration: "5 horas",
+            expanded: false,
+            content: `
+## 📖 Repository Pattern Automático
+
+**Spring Data JPA** simplifica el acceso a datos implementando automáticamente interfaces de repositorio. Reduce drásticamente el código boilerplate comparado con DAOs tradicionales o repositorios TypeORM.
+
+## 🎯 Ventajas sobre TypeORM
+
+Spring Data JPA ofrece ventajas significativas:
+- **Query methods automáticos** - Generados por nombres de método
+- **Custom queries** - JPQL y SQL nativo cuando se necesita
+- **Paginación built-in** - PageRequest y Sort automáticos
+- **Auditing automático** - CreatedDate, LastModified, etc.
+- **Projections** - DTOs automáticos para performance
+
+## 🔄 Comparación: Repository Patterns
+
+### TypeORM Repository:
+\`\`\`typescript
+@Injectable()
+export class UserRepository extends Repository<User> {
+  constructor(
+    @InjectRepository(User)
+    private repository: Repository<User>
+  ) {
+    super();
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return this.repository.findOne({ where: { email } });
+  }
+
+  async findActiveUsers(): Promise<User[]> {
+    return this.repository
+      .createQueryBuilder("user")
+      .where("user.isActive = :isActive", { isActive: true })
+      .orderBy("user.createdAt", "DESC")
+      .getMany();
+  }
+
+  async findUsersWithPosts(page: number, limit: number): Promise<[User[], number]> {
+    return this.repository
+      .createQueryBuilder("user")
+      .leftJoinAndSelect("user.posts", "posts")
+      .skip(page * limit)
+      .take(limit)
+      .getManyAndCount();
+  }
+}
+\`\`\`
+
+### Spring Data JPA Repository:
+\`\`\`java
+@Repository
+public interface UserRepository extends JpaRepository<User, UUID> {
+
+    // Query method automático - no código necesario!
+    Optional<User> findByEmail(String email);
+
+    // Query method con múltiples criterios
+    List<User> findByIsActiveTrueOrderByCreatedAtDesc();
+
+    // Query method con paginación automática
+    Page<User> findByIsActive(boolean isActive, Pageable pageable);
+
+    // Custom query con JPQL
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.posts WHERE u.isActive = true")
+    List<User> findActiveUsersWithPosts();
+
+    // Native SQL cuando sea necesario
+    @Query(value = "SELECT * FROM users WHERE created_at > ?1", nativeQuery = true)
+    List<User> findUsersCreatedAfter(LocalDateTime date);
+
+    // Projection para performance
+    @Query("SELECT new com.example.dto.UserSummaryDto(u.id, u.name, u.email) FROM User u")
+    List<UserSummaryDto> findUserSummaries();
+
+    // Modifying queries
+    @Modifying
+    @Query("UPDATE User u SET u.isActive = false WHERE u.lastLoginAt < ?1")
+    int deactivateInactiveUsers(LocalDateTime cutoffDate);
+}
+\`\`\`
+
+## � Ventajas de Spring Data JPA
+
+| **Feature**         | **TypeORM**              | **Spring Data JPA**         |
+| ------------------- | ------------------------ | --------------------------- |
+| **Query Methods**   | Manual QueryBuilder      | Automático por nombre       |
+| **Paginación**      | Manual skip/take         | PageRequest built-in        |
+| **Sorting**         | Manual ORDER BY          | Sort parameter automático   |
+| **Projections**     | Manual select            | Interface/Class projections |
+| **Auditing**        | Manual @CreateDateColumn | @CreatedDate automático     |
+| **Custom Queries**  | @Query decorator         | @Query annotation           |
+| **Bulk Operations** | QueryBuilder update      | @Modifying automático       |
+            `,
             topics: [
-              "@Entity vs TypeORM entities",
-              "Primary keys y generation strategies",
-              "@OneToMany, @ManyToOne vs TypeORM relations",
-              "Lazy vs Eager loading",
-              "Cascade operations y orphan removal",
+              "JpaRepository vs TypeORM Repository",
+              "Query methods automáticos por nombre",
+              "Paginación y sorting built-in",
+              "Custom queries con JPQL",
+              "Projections y DTOs para performance",
             ],
           },
           {
-            title: "📊 Repositories y Custom Queries",
-            duration: "4 horas",
+            title: "🔄 Gestión Transaccional Avanzada con @Transactional",
+            duration: "3.5 horas",
+            expanded: false,
+            content: `
+## 🎯 El Game Changer: Transacciones Declarativas
+
+**El poder real de Spring:** mientras que en Node.js cada transacción de DB requiere manejo manual, Spring Boot automatiza completamente la gestión transaccional.
+
+## 🔄 Comparación: Spring Data vs Prisma
+
+### Prisma (Node.js) - Control Manual:
+\`\`\`typescript
+// Manual transaction management
+const result = await prisma.$transaction(async (tx) => {
+  const user = await tx.user.create({
+    data: { email: "user@example.com", name: "John" },
+  });
+
+  const order = await tx.order.create({
+    data: {
+      userId: user.id,
+      total: 100.0,
+      status: "PENDING",
+    },
+  });
+
+  await tx.inventory.update({
+    where: { productId: order.productId },
+    data: { quantity: { decrement: order.quantity } },
+  });
+
+  return { user, order };
+});
+
+// ❌ Manual transaction boundaries
+// ❌ Verbose transaction syntax
+// ❌ Error-prone rollback handling
+\`\`\`
+
+### Spring Data JPA - Automático:
+\`\`\`java
+@Service
+@Transactional  // ✨ Automático: Begin, Commit, Rollback
+public class OrderService {
+
+    @Autowired private UserRepository userRepository;
+    @Autowired private OrderRepository orderRepository;
+    @Autowired private InventoryService inventoryService;
+
+    public OrderResult createOrder(CreateOrderRequest request) {
+        // Todo dentro de UNA transacción automática
+        User user = userRepository.save(new User(request.getEmail(), request.getName()));
+
+        Order order = orderRepository.save(Order.builder()
+            .userId(user.getId())
+            .total(request.getTotal())
+            .status(OrderStatus.PENDING)
+            .build());
+
+        inventoryService.decrementStock(request.getProductId(), request.getQuantity());
+
+        return new OrderResult(user, order);
+        // ✅ Si ANY operation falla, TODO se hace rollback automáticamente
+    }
+}
+
+// ✅ Transacciones declarativas
+// ✅ Rollback automático en exceptions
+// ✅ Configuración por anotaciones
+\`\`\`
+
+## 🎚️ Propagation Levels (Crucial para Microservicios)
+
+\`\`\`java
+@Service
+public class OrderService {
+
+    // 🔄 REQUIRED (Default): Si existe TX, úsala; si no, crea nueva
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void processOrder(Order order) {
+        orderRepository.save(order);
+        emailService.sendConfirmation(order.getUserEmail()); // Parte de la misma TX
+    }
+
+    // 🆕 REQUIRES_NEW: Siempre crea nueva TX (útil para auditoría)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void auditOrderCreation(Order order) {
+        auditRepository.save(new AuditLog("ORDER_CREATED", order.getId()));
+        // Esta TX es independiente, se commitea aunque processOrder() falle
+    }
+
+    // 🚫 NOT_SUPPORTED: Suspende TX existente (para operaciones read-only costosas)
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public List<Order> generateExpensiveReport() {
+        // Sin transacción, no bloquea otros procesos
+        return orderRepository.findAllWithComplexCalculations();
+    }
+}
+\`\`\`
+
+## 💡 Isolation Levels
+
+\`\`\`java
+// Para evitar dirty reads en operaciones críticas
+@Transactional(isolation = Isolation.READ_COMMITTED)
+public void processPayment(PaymentRequest request) {
+    // Garantiza que solo lee datos committeados
+}
+
+// Para operaciones de reporte que requieren snapshot consistente
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+public ReportData generateFinancialReport() {
+    // Los datos no cambian durante la transacción
+}
+\`\`\`
+            `,
             topics: [
-              "JpaRepository vs TypeORM repositories",
-              "Query methods derivation",
-              "@Query y JPQL vs SQL",
-              "Native queries cuando necesario",
-              "Projections y DTOs",
-            ],
-          },
-          {
-            title: "⚡ Transacciones y Performance",
-            duration: "3 horas",
-            topics: [
-              "@Transactional vs TypeORM transactions",
-              "Isolation levels y propagation",
-              "N+1 problem solutions",
-              "Query optimization",
-              "Second level cache",
+              "Transacciones declarativas vs manuales",
+              "Propagation levels para microservicios",
+              "Isolation levels y consistency",
+              "Rollback automático en exceptions",
+              "Performance vs consistencia de datos",
             ],
           },
         ],
