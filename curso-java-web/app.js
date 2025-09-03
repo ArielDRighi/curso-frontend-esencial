@@ -874,7 +874,7 @@ function courseApp() {
 
     exportProgress() {
       const progressData = {
-        course: "Java/Spring Boot para Desarrolladores Node.js",
+        course: "Java Spring Boot para Desarrolladores Backend",
         completedModules: this.getCompletedModules().map((m) => m.title),
         completedTasks: this.projectTasks.filter((t) => t.completed).map((t) => t.name),
         progressPercentage: Math.round((this.calculateProgress() * 100) / 88),
