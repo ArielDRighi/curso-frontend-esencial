@@ -168,6 +168,15 @@
             🤖 Prompts IA
           </button>
           <button
+            @click="currentView = 'migration'"
+            :class="currentView === 'migration' ? 
+              (darkMode ? 'border-b-2 border-orange-400 text-orange-400' : 'border-b-2 border-orange-500 text-orange-600') : 
+              (darkMode ? 'text-gray-300 hover:text-orange-400' : 'text-gray-600 hover:text-orange-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🔄 Migración
+          </button>
+          <button
             @click="currentView = 'project'"
             :class="currentView === 'project' ? 
               (darkMode ? 'border-b-2 border-orange-400 text-orange-400' : 'border-b-2 border-orange-500 text-orange-600') : 
@@ -618,7 +627,7 @@
       <!-- AI Prompts View -->
       <div x-show="currentView === 'ai-prompts'" x-transition:enter.duration.300ms>
         <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-          🤖 Prompts IA para Java Spring Boot
+          🤖 Prompts IA para Desarrollo Ecommerce
         </h2>
 
         <div class="grid grid-cols-1 gap-6">
@@ -636,12 +645,62 @@
                 <span
                   class="px-3 py-1 text-xs rounded-full"
                   :class="prompt.category === 'setup' ? 'bg-blue-100 text-blue-800' :
-                         prompt.category === 'migration' ? 'bg-green-100 text-green-800' :
+                         prompt.category === 'api' ? 'bg-green-100 text-green-800' :
+                         prompt.category === 'security' ? 'bg-red-100 text-red-800' :
+                         prompt.category === 'payments' ? 'bg-yellow-100 text-yellow-800' :
+                         prompt.category === 'admin' ? 'bg-purple-100 text-purple-800' :
+                         prompt.category === 'search' ? 'bg-indigo-100 text-indigo-800' :
+                         'bg-gray-100 text-gray-800'"
+                  x-text="prompt.category"
+                ></span>
+              </div>
+              <p class="mb-4" :class="darkMode ? 'text-gray-300' : 'text-gray-600'" x-text="prompt.usage"></p>
+              <div
+                class="rounded-lg p-4 relative transition-colors duration-300"
+                :class="darkMode ? 'bg-gray-900' : 'bg-gray-900'"
+              >
+                <button
+                  @click="copyToClipboard(prompt.prompt)"
+                  class="absolute top-2 right-2 px-3 py-1 rounded text-sm transition-colors duration-300"
+                  :class="darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-700 hover:bg-gray-600 text-white'"
+                >
+                  📋 Copiar
+                </button>
+                <pre
+                  class="text-green-400 text-sm overflow-x-auto pr-16 whitespace-pre-wrap"
+                ><code x-text="prompt.prompt"></code></pre>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Migration Guides View -->
+      <div x-show="currentView === 'migration'" x-transition:enter.duration.300ms>
+        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+          🔄 Guías de Migración Node.js → Java Spring Boot
+        </h2>
+
+        <div class="grid grid-cols-1 gap-6">
+          <template x-for="prompt in migrationGuides" :key="prompt.title">
+            <div
+              class="rounded-lg shadow-md p-6 transition-colors duration-300"
+              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+            >
+              <div class="flex items-start justify-between mb-3">
+                <h3
+                  class="text-xl font-semibold"
+                  :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                  x-text="prompt.title"
+                ></h3>
+                <span
+                  class="px-3 py-1 text-xs rounded-full"
+                  :class="prompt.category === 'migration' ? 'bg-orange-100 text-orange-800' :
                          prompt.category === 'database' ? 'bg-purple-100 text-purple-800' :
                          prompt.category === 'security' ? 'bg-red-100 text-red-800' :
                          prompt.category === 'testing' ? 'bg-yellow-100 text-yellow-800' :
-                         prompt.category === 'optimization' ? 'bg-indigo-100 text-indigo-800' :
-                         prompt.category === 'architecture' ? 'bg-pink-100 text-pink-800' :
+                         prompt.category === 'devops' ? 'bg-blue-100 text-blue-800' :
+                         prompt.category === 'architecture' ? 'bg-green-100 text-green-800' :
                          'bg-gray-100 text-gray-800'"
                   x-text="prompt.category"
                 ></span>

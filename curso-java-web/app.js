@@ -1252,276 +1252,692 @@ Conceptos equivalentes:
       },
     ],
 
-    aiPrompts: [
+    migrationGuides: [
       {
-        title: "🏗️ Generador de Proyecto Spring Boot",
-        category: "setup",
-        prompt: `Genera la estructura completa de un proyecto Spring Boot con las siguientes características:
-
-**Contexto:** Soy desarrollador Node.js migrando a Java/Spring Boot
-
-**Requerimientos del proyecto:**
-- [Describir funcionalidad: ej. API REST para gestión de usuarios]
-- [Base de datos: MySQL/PostgreSQL/MongoDB]
-- [Autenticación: JWT/OAuth2/Basic]
-- [Testing: Unit + Integration]
-
-**Genera:**
-1. Estructura de carpetas Maven/Gradle
-2. pom.xml o build.gradle con dependencias
-3. application.properties configurado
-4. Clases principales (Controller, Service, Repository)
-5. DTOs y entidades JPA
-6. Configuración de seguridad básica
-7. Tests unitarios ejemplo
-8. Dockerfile para containerización
-
-**Comparaciones:**
-- Mapea conceptos de Express.js a Spring Boot
-- Equivalencias de middleware a filtros
-- ORM: Mongoose/Prisma vs JPA/Hibernate`,
-        usage: "Ideal para iniciar proyectos nuevos con configuración completa",
-      },
-      {
-        title: "🔄 Conversor Node.js → Java",
+        title: "🔄 Migrador Express.js → Spring Boot",
         category: "migration",
-        prompt: `Convierte este código Node.js/Express a Java/Spring Boot:
+        prompt: `Eres un experto en migración de backend. Convierte esta API Express.js a Spring Boot:
 
-**Código Node.js:**
+**CÓDIGO NODE.JS/EXPRESS:**
 \`\`\`javascript
-[Pegar código de Express/Node.js aquí]
+[Pegar aquí tu código Express.js]
 \`\`\`
 
-**Genera el equivalente en Java/Spring Boot:**
-1. Controller con endpoints REST
-2. Service layer con lógica de negocio
-3. Repository pattern para datos
-4. DTOs para request/response
-5. Manejo de errores y validaciones
-6. Tests unitarios
-7. Configuración de dependencias
+**GENERA EL EQUIVALENTE SPRING BOOT COMPLETO:**
 
-**Explica las diferencias:**
-- Async/await vs CompletableFuture
-- Middleware vs Interceptors/Filters
-- npm packages vs Maven dependencies
-- Estructuras de datos equivalentes
+1. **Controller REST (@RestController)**
+   - Mapea rutas Express a @RequestMapping/@GetMapping/etc
+   - Convierte req/res a @RequestBody/@PathVariable/@RequestParam
+   - Manejo de headers y status codes
 
-**Optimizaciones Java:**
-- Uso de Streams
-- Patrones Spring específicos
-- Best practices de performance`,
-        usage: "Para migrar código existente de Node.js a Java",
+2. **Service Layer (@Service)**  
+   - Lógica de negocio extraída de routes/controllers
+   - Manejo de transacciones con @Transactional
+   - Inyección de dependencias con @Autowired
+
+3. **Repository Layer (@Repository)**
+   - Convierte operaciones de base de datos
+   - Mongoose/Prisma → Spring Data JPA
+   - Queries personalizadas con @Query
+
+4. **DTOs y Entidades**
+   - Request/Response DTOs 
+   - Entidades JPA con @Entity
+   - Validaciones con @Valid y Bean Validation
+
+5. **Configuración**
+   - application.properties equivalente a .env
+   - Dependencias Maven para pom.xml
+
+**EQUIVALENCIAS CLAVE:**
+- \`app.get('/users', handler)\` → \`@GetMapping("/users")\`
+- \`req.body\` → \`@RequestBody UserDTO\`
+- \`res.json(data)\` → \`ResponseEntity.ok(data)\`
+- \`next(error)\` → \`throw new BusinessException()\`
+- \`mongoose.Schema\` → \`@Entity class\`
+- \`async/await\` → \`CompletableFuture\` o métodos síncronos
+
+**INCLUYE:**
+- Manejo de errores con @ControllerAdvice
+- Tests unitarios JUnit 5 equivalentes  
+- Configuración de CORS si aplica`,
+        usage: "Convierte APIs Express.js completas a Spring Boot con todas las capas",
       },
       {
-        title: "🗄️ Diseñador de Esquema JPA",
+        title: "🗄️ Migrador Mongoose → JPA/Hibernate",
         category: "database",
-        prompt: `Diseña el esquema de base de datos JPA para esta aplicación:
+        prompt: `Convierte estos schemas Mongoose a entidades JPA con relaciones optimizadas:
 
-**Descripción del dominio:**
-[Describir entidades y relaciones del negocio]
-
-**Requerimientos:**
-- Entidades principales y sus atributos
-- Relaciones (OneToMany, ManyToMany, etc.)
-- Validaciones y constraints
-- Índices para performance
-- Audit trail (created_at, updated_at)
-
-**Genera:**
-1. Clases @Entity con anotaciones JPA
-2. Repositorios Spring Data JPA
-3. DTOs para transferencia de datos
-4. Mappers entre Entity y DTO
-5. Scripts de migración Flyway/Liquibase
-6. Queries personalizadas optimizadas
-7. Tests de repositorio
-
-**Comparación con Node.js:**
-- Mongoose Schema vs JPA Entity
-- Populate vs JOIN FETCH
-- Agregaciones vs JPQL/Criteria API`,
-        usage: "Para diseñar la capa de persistencia completa",
-      },
-      {
-        title: "🔐 Configurador de Spring Security",
-        category: "security",
-        prompt: `Configura Spring Security para esta aplicación:
-
-**Requerimientos de seguridad:**
-- [Tipo de auth: JWT/OAuth2/Session]
-- [Roles y permisos necesarios]
-- [Endpoints públicos vs protegidos]
-- [Integración con redes sociales]
-
-**Genera:**
-1. SecurityConfig con configuración completa
-2. JwtTokenProvider y validación
-3. UserDetailsService custom
-4. Filters y authentication handlers
-5. CORS y CSRF configuration
-6. Method-level security annotations
-7. Integration tests de seguridad
-
-**Equivalencias Node.js:**
-- Passport.js strategies vs Authentication providers
-- JWT middleware vs JWT filters
-- Role-based access vs @PreAuthorize
-
-**Best practices:**
-- Password encoding con BCrypt
-- Rate limiting
-- Security headers`,
-        usage: "Para implementar autenticación y autorización robusta",
-      },
-      {
-        title: "🧪 Generador de Tests Completos",
-        category: "testing",
-        prompt: `Genera una suite de tests completa para esta clase/funcionalidad:
-
-**Código a testear:**
-\`\`\`java
-[Pegar código Java aquí]
+**SCHEMAS MONGOOSE:**
+\`\`\`javascript
+[Pegar schemas de Mongoose aquí]
 \`\`\`
 
-**Genera tests para:**
-1. Unit tests con JUnit 5 y Mockito
-2. Integration tests con @SpringBootTest
-3. Web layer tests con @WebMvcTest
-4. Repository tests con @DataJpaTest
-5. Security tests con @WithMockUser
-6. Contract tests con Spring Cloud Contract
+**GENERA EQUIVALENTE JPA:**
 
-**Casos de prueba:**
-- Happy path scenarios
-- Edge cases y error conditions
-- Validation testing
-- Performance tests básicos
+1. **Entidades JPA (@Entity)**
+   - Convierte Schema a @Entity class
+   - Mapea tipos de datos Mongoose → Java
+   - Relaciones con @OneToMany, @ManyToOne, @ManyToMany
 
-**Configuración:**
-- TestContainers para base de datos
-- Mock configuration
-- Test data builders
+2. **Repositorios Spring Data**
+   - Interface que extiende JpaRepository
+   - Queries custom con @Query
+   - Métodos derived queries
+
+3. **DTOs de transferencia**
+   - Request DTOs para crear/actualizar
+   - Response DTOs para APIs
+   - Mappers Entity ↔ DTO
+
+4. **Configuración de BD**
+   - application.properties con conexión
+   - Configuración JPA/Hibernate
+   - Scripts de inicialización
+
+**EQUIVALENCIAS:**
+- \`String\` → \`@Column String\`
+- \`Number\` → \`@Column Integer/Long/BigDecimal\`
+- \`Date\` → \`@Column @Temporal LocalDateTime\`
+- \`Boolean\` → \`@Column Boolean\`
+- \`ObjectId\` → \`@Id @GeneratedValue Long\`
+- \`ref: 'User'\` → \`@ManyToOne @JoinColumn User\`
+- \`[{ type: ObjectId, ref: 'Tag' }]\` → \`@ManyToMany List<Tag>\`
+
+**VALIDACIONES:**
+- \`required: true\` → \`@NotNull/@NotBlank\`
+- \`unique: true\` → \`@Column(unique = true)\`
+- \`min/max\` → \`@Min/@Max/@Size\`
+
+**QUERIES POPULARES:**
+- \`.populate()\` → \`@Query con JOIN FETCH\`
+- \`.aggregate()\` → \`@Query con GROUP BY\`
+- \`.find().sort()\` → \`findAllByOrderBy...\``,
+        usage: "Migra schemas completos de base de datos Mongoose a JPA",
+      },
+      {
+        title: "🔐 Migrador JWT: Node.js → Spring Security",
+        category: "security",
+        prompt: `Convierte esta implementación JWT de Node.js a Spring Security:
+
+**CÓDIGO JWT NODE.JS:**
+\`\`\`javascript
+[Pegar implementación JWT de Express/Node.js]
+\`\`\`
+
+**GENERA SPRING SECURITY COMPLETO:**
+
+1. **SecurityConfig (@Configuration)**
+   - Configuración de filtros de seguridad
+   - Configuración CORS y CSRF
+   - Endpoints públicos vs protegidos
+   - Password encoder BCrypt
+
+2. **JWT Components**
+   - JwtTokenProvider para generar/validar tokens
+   - JwtAuthenticationFilter para interceptar requests
+   - JwtAuthenticationEntryPoint para errores 401
+
+3. **UserDetailsService**
+   - Implementación custom de UserDetailsService
+   - UserPrincipal con roles y autoridades
+   - Carga de usuario desde base de datos
+
+4. **Controllers de Auth**
+   - LoginController con @PostMapping("/login")
+   - RegisterController con validaciones
+   - RefreshTokenController
+
+5. **DTOs y Responses**
+   - LoginRequest/LoginResponse DTOs
+   - JwtAuthenticationResponse
+   - ErrorResponse para manejo de errores
+
+**EQUIVALENCIAS:**
+- \`jwt.sign(payload, secret)\` → \`Jwts.builder().setSubject().signWith()\`
+- \`jwt.verify(token, secret)\` → \`Jwts.parser().setSigningKey().parseClaimsJws()\`
+- \`req.user = decoded\` → \`SecurityContextHolder.getContext().setAuthentication()\`
+- \`middleware authenticate\` → \`@PreAuthorize("hasRole('USER')")\`
+- \`bcrypt.hash(password)\` → \`passwordEncoder.encode(password)\`
+
+**CONFIGURACIÓN:**
+- JWT secret en application.properties
+- Tiempo de expiración configurable
+- Refresh token strategy
+- Role-based access control
+
+**INCLUYE:**
+- Tests de seguridad con @WithMockUser
+- Manejo de errores JWT custom
+- Logout con blacklist de tokens`,
+        usage: "Migra autenticación JWT completa de Node.js a Spring Security",
+      },
+      {
+        title: "🧪 Migrador Tests: Jest/Supertest → JUnit/MockMvc",
+        category: "testing",
+        prompt: `Convierte estos tests de Jest/Supertest a JUnit 5 con MockMvc:
+
+**TESTS NODE.JS:**
+\`\`\`javascript
+[Pegar tests de Jest/Supertest aquí]
+\`\`\`
+
+**GENERA TESTS SPRING BOOT:**
+
+1. **Unit Tests (@ExtendWith(MockitoExtension.class))**
+   - Tests de servicios con @Mock
+   - Tests de repositorios con @MockBean
+   - Assertions con JUnit 5
+
+2. **Integration Tests (@SpringBootTest)**
+   - Tests de controllers con @AutoConfigureTestDatabase
+   - TestContainers para base de datos real
+   - @Transactional para rollback
+
+3. **Web Layer Tests (@WebMvcTest)**
+   - MockMvc para simular requests HTTP
+   - @MockBean para dependencias
+   - Tests de endpoints REST completos
+
+4. **Security Tests**
+   - @WithMockUser para roles
+   - Tests de autenticación/autorización
+   - JWT token validation tests
+
+**EQUIVALENCIAS:**
+- \`describe('UserService')\` → \`@DisplayName("UserService Tests")\`
+- \`test('should create user')\` → \`@Test void shouldCreateUser()\`
+- \`expect(result).toBe(expected)\` → \`assertThat(result).isEqualTo(expected)\`
+- \`request(app).get('/api/users')\` → \`mockMvc.perform(get("/api/users"))\`
+- \`jest.fn()\` → \`@Mock UserRepository\`
+- \`beforeEach\` → \`@BeforeEach\`
+
+**CONFIGURACIÓN TEST:**
+- application-test.properties
+- TestContainers configuration
+- Mock data builders
 - Custom assertions
 
-**Comparación con Node.js:**
-- Jest vs JUnit 5
-- Supertest vs MockMvc
-- Test databases vs TestContainers`,
-        usage: "Para crear tests completos y robustos",
+**COBERTURA:**
+- Happy path scenarios
+- Error conditions
+- Edge cases
+- Validation testing
+- Security testing
+
+**INCLUYE:**
+- Test slices (@WebMvcTest, @DataJpaTest)
+- Parametrized tests con @ParameterizedTest
+- Tests de performance básicos`,
+        usage: "Convierte suite completa de tests Node.js a Spring Boot",
       },
       {
-        title: "⚡ Optimizador de Performance",
-        category: "optimization",
-        prompt: `Analiza y optimiza este código Java/Spring Boot:
+        title: "🚀 Migrador de Deployment: Node.js → Spring Boot",
+        category: "devops",
+        prompt: `Convierte esta configuración de deployment Node.js a Spring Boot:
 
-**Código actual:**
-\`\`\`java
-[Pegar código a optimizar]
+**CONFIGURACIÓN NODE.JS ACTUAL:**
+\`\`\`yaml
+[Pegar docker-compose.yml, Dockerfile, CI/CD de Node.js]
 \`\`\`
 
-**Analiza:**
-1. N+1 query problems
-2. Lazy loading issues
-3. Memory leaks potenciales
-4. CPU bottlenecks
-5. Database query performance
-6. Caching opportunities
+**GENERA DEPLOYMENT SPRING BOOT:**
 
-**Optimizaciones:**
-1. Query optimization con JPQL/Criteria
-2. Caching con Redis/EhCache
-3. Async processing con @Async
-4. Connection pooling tuning
-5. JVM tuning parameters
-6. Profiling con Micrometer
+1. **Dockerfile Multi-stage**
+   - Build stage con Maven/Gradle
+   - Runtime stage con OpenJDK optimizado
+   - Health checks y non-root user
+   - Optimizaciones para tamaño de imagen
 
-**Métricas:**
-- Response time improvements
-- Memory usage reduction
-- Database query analysis
-- Throughput optimization
+2. **docker-compose.yml**
+   - Servicio Spring Boot
+   - Base de datos (PostgreSQL/MySQL)
+   - Redis para cache (si aplica)
+   - Variables de entorno
 
-**Comparación Node.js:**
-- V8 optimization vs JVM optimization
-- Event loop vs Thread pools
-- npm packages vs Java libraries`,
-        usage: "Para optimizar performance de aplicaciones existentes",
+3. **Kubernetes Manifests**
+   - Deployment con resource limits
+   - Service y Ingress
+   - ConfigMap para properties
+   - Secrets para credenciales
+
+4. **CI/CD Pipeline**
+   - GitHub Actions para Maven/Gradle
+   - Tests automatizados
+   - Build y push de imagen Docker
+   - Deploy automatizado
+
+5. **Monitoring & Observability**
+   - Spring Boot Actuator endpoints
+   - Prometheus metrics
+   - Grafana dashboards
+   - Logs con Logback
+
+**EQUIVALENCIAS:**
+- \`npm start\` → \`java -jar app.jar\`
+- \`NODE_ENV\` → \`SPRING_PROFILES_ACTIVE\`
+- \`process.env.PORT\` → \`server.port\`
+- \`pm2\` → \`java -server -Xmx512m\`
+- \`node:16-alpine\` → \`openjdk:17-jdk-slim\`
+
+**OPTIMIZACIONES:**
+- JVM tuning parameters
+- GraalVM native image (opcional)
+- Layer caching en Docker
+- Multi-arch builds
+
+**INCLUYE:**
+- Production-ready configuration
+- Security scanning en pipeline
+- Blue-green deployment strategy
+- Backup y restore procedures`,
+        usage: "Migra infrastructure completa Node.js a Spring Boot production-ready",
       },
       {
-        title: "🏗️ Arquitecto de Microservicios",
+        title: "🏗️ Arquitecto: Monolito Node.js → Microservicios Spring",
         category: "architecture",
-        prompt: `Diseña la arquitectura de microservicios para esta aplicación:
+        prompt: `Descompón esta aplicación Node.js monolítica en microservicios Spring Boot:
 
-**Dominio de negocio:**
-[Describir funcionalidades y contextos bounded]
+**APLICACIÓN MONOLÍTICA NODE.JS:**
+\`\`\`javascript
+[Describir estructura actual de la app Node.js]
+\`\`\`
 
-**Requerimientos:**
-- Número de servicios estimado
-- Comunicación síncrona vs asíncrona
-- Datos compartidos vs separados
-- Patrones de resilencia
-- Observabilidad y monitoring
+**DISEÑA ARQUITECTURA DE MICROSERVICIOS:**
 
-**Genera:**
-1. Diagrama de arquitectura
-2. Spring Cloud configuration
-3. API Gateway setup (Zuul/Gateway)
-4. Service Discovery (Eureka/Consul)
-5. Circuit Breaker (Hystrix/Resilience4j)
-6. Config Server setup
-7. Message brokers (RabbitMQ/Kafka)
-8. Distributed tracing (Zipkin/Jaeger)
+1. **Identificación de Bounded Contexts**
+   - Análisis de dominio de negocio
+   - Separación por responsabilidades
+   - Identificación de servicios independientes
+   - Estrategia de datos por servicio
 
-**Estrategia de deployment:**
-- Docker containers
+2. **Spring Cloud Stack**
+   - Config Server para configuración centralizada
+   - Eureka Server para service discovery
+   - API Gateway (Spring Cloud Gateway)
+   - Circuit Breaker (Resilience4j)
+
+3. **Servicios Individuales**
+   - Estructura Spring Boot por servicio
+   - Base de datos independiente por servicio
+   - APIs REST con OpenAPI documentation
+   - Event-driven communication
+
+4. **Comunicación Entre Servicios**
+   - REST synchronous calls con Feign
+   - Async messaging con RabbitMQ/Kafka
+   - Event sourcing patterns
+   - Saga pattern para transacciones distribuidas
+
+5. **Observabilidad Distribuida**
+   - Distributed tracing con Sleuth/Zipkin
+   - Centralized logging con ELK Stack
+   - Metrics con Micrometer/Prometheus
+   - Health checks distribuidos
+
+**ESTRATEGIA DE MIGRACIÓN:**
+1. Strangler Fig pattern
+2. Database decomposition strategy  
+3. Gradual extraction of services
+4. API versioning strategy
+
+**PATRONES IMPLEMENTADOS:**
+- Database per Service
+- API Gateway
+- Circuit Breaker
+- Event Sourcing
+- CQRS (si aplica)
+
+**DEPLOYMENT:**
 - Kubernetes manifests
-- Helm charts
-- CI/CD pipelines
+- Helm charts por servicio
+- Service mesh (Istio opcional)
+- CI/CD pipeline distribuido`,
+        usage: "Transforma monolito Node.js en arquitectura de microservicios Spring",
+      },
+    ],
 
-**Comparación Node.js:**
-- Express microservices vs Spring Boot
-- npm workspaces vs Maven multi-module
-- Node.js clustering vs Spring Cloud`,
-        usage: "Para diseñar arquitecturas escalables y resilientes",
+    aiPrompts: [
+      {
+        title: "🛒 Generador de Entidades Ecommerce",
+        category: "setup",
+        prompt: `Genera las entidades JPA completas para un sistema de ecommerce:
+
+**DOMINIO ECOMMERCE:**
+Sistema de comercio electrónico con productos, categorías, usuarios, pedidos y pagos.
+
+**GENERA ENTIDADES PRINCIPALES:**
+
+1. **Product (@Entity)**
+   - id, name, description, price, stock, sku
+   - category (relación @ManyToOne)
+   - images (List<String>)
+   - active, featured
+   - timestamps (createdAt, updatedAt)
+
+2. **Category (@Entity)**
+   - id, name, description, slug
+   - parentCategory (@ManyToOne self-reference)
+   - products (@OneToMany mappedBy="category")
+   - active
+
+3. **User (@Entity)**
+   - id, email, password, firstName, lastName
+   - roles (@Enumerated UserRole)
+   - addresses (@OneToMany)
+   - orders (@OneToMany)
+   - enabled, accountNonLocked
+
+4. **Order (@Entity)**
+   - id, orderNumber, status (@Enumerated)
+   - user (@ManyToOne)
+   - orderItems (@OneToMany)
+   - totalAmount, shippingAddress
+   - orderDate, deliveryDate
+
+5. **OrderItem (@Entity)**
+   - id, quantity, unitPrice, totalPrice
+   - order (@ManyToOne), product (@ManyToOne)
+
+6. **Payment (@Entity)**
+   - id, paymentMethod, amount, status
+   - order (@OneToOne), transactionId
+   - paymentDate
+
+**INCLUYE:**
+- Validaciones Bean Validation (@NotNull, @Size, @Email)
+- Auditing con @CreationTimestamp, @UpdateTimestamp
+- Índices para performance (@Index)
+- Repositorios Spring Data JPA
+- DTOs para Request/Response
+- Enums para Status, Roles, PaymentMethod`,
+        usage: "Crea modelo de datos completo para sistema ecommerce",
       },
       {
-        title: "🐳 DevOps Configurator",
-        category: "devops",
-        prompt: `Configura el pipeline DevOps completo para esta aplicación Java:
+        title: "🛍️ Generador de Controllers REST Ecommerce",
+        category: "api",
+        prompt: `Genera controllers REST completos para la API ecommerce:
 
-**Aplicación:**
-[Describir tipo de app y requerimientos de deploy]
+**FUNCIONALIDADES REQUERIDAS:**
+- CRUD productos con búsqueda y filtros
+- Gestión de categorías
+- Autenticación y registro de usuarios
+- Carrito de compras
+- Gestión de pedidos
+- Procesamiento de pagos
 
-**Tecnologías target:**
-- [Cloud provider: AWS/Azure/GCP]
-- [Container orchestration: Docker/Kubernetes]
-- [CI/CD: GitHub Actions/Jenkins/GitLab]
-- [Monitoring: Prometheus/Grafana]
+**GENERA CONTROLLERS:**
 
-**Genera:**
-1. Dockerfile optimizado para Java
-2. docker-compose para desarrollo
-3. Kubernetes manifests (deployment, service, ingress)
-4. GitHub Actions workflow
-5. Helm charts para diferentes entornos
-6. Prometheus metrics configuration
-7. Grafana dashboards
-8. Health checks y readiness probes
+1. **ProductController (@RestController)**
+   - GET /api/products (lista con paginación)
+   - GET /api/products/{id}
+   - GET /api/products/search?q=...&category=...
+   - POST /api/products (admin only)
+   - PUT /api/products/{id} (admin only)
+   - DELETE /api/products/{id} (admin only)
 
-**Pipeline stages:**
-- Build con Maven/Gradle
-- Tests automatizados
-- Security scanning
-- Image building y registry push
-- Deployment automatizado
-- Smoke tests post-deploy
+2. **CategoryController (@RestController)**
+   - GET /api/categories (árbol de categorías)
+   - GET /api/categories/{id}/products
+   - POST /api/categories (admin only)
 
-**Comparación Node.js:**
-- npm scripts vs Maven goals
-- Node.js base images vs OpenJDK images
-- PM2 vs Spring Boot actuator`,
-        usage: "Para automatizar build, test y deployment",
+3. **AuthController (@RestController)**
+   - POST /api/auth/register
+   - POST /api/auth/login
+   - POST /api/auth/refresh-token
+   - POST /api/auth/logout
+
+4. **CartController (@RestController)**
+   - GET /api/cart (usuario autenticado)
+   - POST /api/cart/items
+   - PUT /api/cart/items/{productId}
+   - DELETE /api/cart/items/{productId}
+
+5. **OrderController (@RestController)**
+   - GET /api/orders (mis pedidos)
+   - GET /api/orders/{id}
+   - POST /api/orders (checkout)
+   - PUT /api/orders/{id}/cancel
+
+**INCLUYE:**
+- Validaciones con @Valid
+- Manejo de errores con @ControllerAdvice
+- Paginación con Pageable
+- Seguridad con @PreAuthorize
+- DTOs para requests/responses
+- Documentación OpenAPI con @Operation`,
+        usage: "Genera API REST completa para sistema ecommerce",
+      },
+      {
+        title: "🔐 Configurador de Seguridad Ecommerce",
+        category: "security",
+        prompt: `Configura Spring Security completo para la aplicación ecommerce:
+
+**REQUERIMIENTOS DE SEGURIDAD:**
+- Autenticación JWT
+- Roles: USER, ADMIN
+- Endpoints públicos: productos, categorías (lectura)
+- Endpoints protegidos: carrito, pedidos, admin
+- CORS para frontend React/Angular
+
+**GENERA CONFIGURACIÓN COMPLETA:**
+
+1. **SecurityConfig (@Configuration)**
+   - Configuración de filtros
+   - Endpoints públicos vs protegidos
+   - CORS configuration
+   - JWT authentication filter
+
+2. **JWT Components**
+   - JwtTokenProvider (generar/validar)
+   - JwtAuthenticationFilter
+   - JwtAuthenticationEntryPoint
+
+3. **UserDetailsService**
+   - Implementación custom
+   - Carga de usuario con roles
+   - UserPrincipal class
+
+4. **Auth Controllers**
+   - Login con email/password
+   - Registro de nuevos usuarios
+   - Refresh token endpoint
+
+**CONFIGURACIÓN ESPECÍFICA:**
+\`\`\`java
+// Endpoints públicos
+.requestMatchers("/api/products/**").permitAll()
+.requestMatchers("/api/categories/**").permitAll()
+.requestMatchers("/api/auth/**").permitAll()
+
+// Endpoints protegidos
+.requestMatchers("/api/cart/**").hasRole("USER")
+.requestMatchers("/api/orders/**").hasRole("USER")
+.requestMatchers("/api/admin/**").hasRole("ADMIN")
+\`\`\`
+
+**INCLUYE:**
+- Password encoding con BCrypt
+- Role-based access control
+- Exception handling
+- CORS para múltiples orígenes
+- Session management stateless
+- Tests de seguridad`,
+        usage: "Configura autenticación y autorización para ecommerce",
+      },
+      {
+        title: "💳 Generador de Servicio de Pagos",
+        category: "payments",
+        prompt: `Implementa servicio completo de procesamiento de pagos:
+
+**PROVEEDORES DE PAGO:**
+- Stripe, PayPal, MercadoPago
+- Tarjetas de crédito/débito
+- Transferencias bancarias
+
+**GENERA SERVICIOS:**
+
+1. **PaymentService (@Service)**
+   - processPayment(PaymentRequest)
+   - refundPayment(paymentId)
+   - getPaymentStatus(paymentId)
+   - handleWebhooks()
+
+2. **PaymentStrategy Pattern**
+   - PaymentStrategy interface
+   - StripePaymentStrategy
+   - PayPalPaymentStrategy
+   - MercadoPagoPaymentStrategy
+
+3. **DTOs y Entities**
+   - PaymentRequest/PaymentResponse
+   - Payment entity con audit
+   - PaymentMethod enum
+   - PaymentStatus enum
+
+4. **Controllers**
+   - PaymentController para procesar pagos
+   - WebhookController para callbacks
+
+**INTEGRACIÓN CON ORDEN:**
+\`\`\`java
+@Transactional
+public OrderResponse processOrder(OrderRequest request) {
+    // 1. Validar stock
+    // 2. Crear orden pendiente
+    // 3. Procesar pago
+    // 4. Confirmar orden si pago exitoso
+    // 5. Actualizar stock
+    // 6. Enviar confirmación
+}
+\`\`\`
+
+**INCLUYE:**
+- Manejo de errores de pago
+- Logs de auditoría
+- Retry logic para fallos
+- Webhooks de confirmación
+- Tests con mocks de APIs
+- Configuration properties para keys
+- Exception handling específico`,
+        usage: "Implementa procesamiento seguro de pagos en ecommerce",
+      },
+      {
+        title: "📊 Generador de Dashboard Admin",
+        category: "admin",
+        prompt: `Crea dashboard de administración completo para ecommerce:
+
+**FUNCIONALIDADES ADMIN:**
+- Gestión de productos y categorías
+- Gestión de usuarios y pedidos
+- Reportes de ventas
+- Estadísticas en tiempo real
+
+**GENERA CONTROLLERS ADMIN:**
+
+1. **AdminProductController**
+   - CRUD completo productos
+   - Bulk operations (activar/desactivar)
+   - Import/export CSV
+   - Gestión de imágenes
+
+2. **AdminOrderController**
+   - Lista de pedidos con filtros
+   - Cambio de estado de pedidos
+   - Reportes de ventas
+   - Cancelaciones y reembolsos
+
+3. **AdminUserController**
+   - Gestión de usuarios
+   - Activar/desactivar cuentas
+   - Estadísticas de usuarios
+
+4. **AdminDashboardController**
+   - Métricas en tiempo real
+   - Gráficos de ventas
+   - Top productos
+   - Estadísticas generales
+
+**SERVICIOS DE REPORTES:**
+\`\`\`java
+@Service
+public class ReportService {
+    public SalesReportDTO getSalesReport(LocalDate from, LocalDate to);
+    public List<ProductStatsDTO> getTopSellingProducts();
+    public DashboardStatsDTO getDashboardStats();
+    public byte[] exportOrdersToExcel(OrderFilterDTO filter);
+}
+\`\`\`
+
+**INCLUYE:**
+- Paginación y filtros avanzados
+- Export a Excel/PDF
+- Cache para reportes
+- Validación de permisos admin
+- Audit logging de operaciones
+- Tests de integración
+- OpenAPI documentation`,
+        usage: "Crea panel de administración completo para ecommerce",
+      },
+      {
+        title: "🔍 Optimizador de Búsqueda y Filtros",
+        category: "search",
+        prompt: `Implementa búsqueda avanzada y filtros para el catálogo de productos:
+
+**FUNCIONALIDADES DE BÚSQUEDA:**
+- Búsqueda por texto (nombre, descripción)
+- Filtros por categoría, precio, marca
+- Ordenamiento (precio, nombre, popularidad)
+- Paginación optimizada
+
+**GENERA IMPLEMENTACIÓN:**
+
+1. **ProductSearchService (@Service)**
+   - Búsqueda con Specification API
+   - Filters builder pattern
+   - Elasticsearch integration (opcional)
+
+2. **Search DTOs**
+   - ProductSearchCriteria
+   - ProductSearchResult
+   - FilterOptions
+
+3. **Repository Custom**
+   \`\`\`java
+   public interface ProductRepositoryCustom {
+       Page<Product> findWithFilters(ProductSearchCriteria criteria, Pageable pageable);
+       List<String> getAvailableBrands();
+       PriceRangeDTO getPriceRange(Long categoryId);
+   }
+   \`\`\`
+
+4. **Controller Endpoint**
+   \`\`\`java
+   @GetMapping("/api/products/search")
+   public PagedResponse<ProductDTO> searchProducts(
+       @RequestParam(required = false) String query,
+       @RequestParam(required = false) Long categoryId,
+       @RequestParam(required = false) BigDecimal minPrice,
+       @RequestParam(required = false) BigDecimal maxPrice,
+       @RequestParam(defaultValue = "name") String sortBy,
+       Pageable pageable
+   )
+   \`\`\`
+
+**OPTIMIZACIONES:**
+- Índices de base de datos
+- Cache de filtros populares
+- Autocomplete con Redis
+- Full-text search con PostgreSQL
+- Faceted search
+
+**INCLUYE:**
+- Tests de performance
+- Métricas de búsqueda
+- Logs de queries populares
+- Configuration properties
+- Error handling robusto`,
+        usage: "Implementa búsqueda y filtros optimizados para productos",
       },
     ],
 
