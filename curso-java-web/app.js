@@ -2547,9 +2547,14 @@ public class ReportService {
 
     // Section Management Functions
     toggleSection(moduleIndex, sectionIndex) {
+      console.log('toggleSection called:', moduleIndex, sectionIndex);
       if (this.modules[moduleIndex] && this.modules[moduleIndex].sections[sectionIndex]) {
         const section = this.modules[moduleIndex].sections[sectionIndex];
+        console.log('Before toggle:', section.expanded);
         section.expanded = !section.expanded;
+        console.log('After toggle:', section.expanded);
+      } else {
+        console.log('Module or section not found');
       }
     },
 
