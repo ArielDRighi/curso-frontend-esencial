@@ -1147,59 +1147,337 @@ spring.datasource.url=jdbc:h2:mem:testdb
       },
       {
         id: 3,
-        emoji: "🌐",
-        title: "Módulo 3: APIs REST con Spring Boot Web",
-        shortTitle: "REST APIs",
-        duration: "12-14 horas",
+        emoji: "📡",
+        title: "Módulo 3: Desarrollo de APIs RESTful con Spring Boot",
+        shortTitle: "APIs REST",
+        duration: "10-12 horas",
         level: "Intermedio",
         completed: false,
         objective:
-          "Desarrollar APIs REST robustas y escalables con Spring Boot Web, validación y manejo de errores enterprise",
+          "Construir APIs REST robustas y escalables, comparando patrones y best practices con Express/NestJS para crear servicios enterprise-grade",
         description:
-          "Construcción completa de APIs REST con Spring Boot, desde controladores básicos hasta manejo avanzado de errores y validación.",
+          "Desarrollo completo de APIs RESTful con controladores robustos, manejo global de errores, validaciones automáticas e integración con APIs de terceros.",
         sections: [
           {
-            title: "🎮 Controllers y Request Mapping",
-            duration: "3 horas",
+            title: "🎯 Controladores REST y Buenas Prácticas",
+            duration: "4 horas",
+            expanded: false,
+            content: `
+## 📖 Controladores REST con @RestController
+
+Creación de **controladores REST** con \`@RestController\`, mapeo de solicitudes HTTP, manejo de parámetros, y aplicación de principios RESTful para APIs intuitivas y escalables.
+
+## 🔄 Comparación: Express vs NestJS vs Spring Boot
+
+### Express - Manual y flexible:
+\`\`\`javascript
+app.get("/api/users/:id", async (req, res) => {
+  try {
+    const user = await userService.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    res.status(404).json({ error: "User not found" });
+  }
+});
+
+app.post("/api/users", async (req, res) => {
+  try {
+    const user = await userService.create(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+\`\`\`
+
+### NestJS - Estructurado con decoradores:
+\`\`\`typescript
+@Controller("users")
+export class UserController {
+  constructor(private userService: UserService) {}
+
+  @Get(":id")
+  async findOne(@Param("id") id: string): Promise<User> {
+    return this.userService.findById(id);
+  }
+
+  @Post()
+  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.userService.create(createUserDto);
+  }
+}
+\`\`\`
+
+### Spring Boot - Enterprise y robusto:
+\`\`\`java
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findOne(@PathVariable String id) {
+        UserDto user = userService.findById(id);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> create(@Valid @RequestBody CreateUserDto dto) {
+        UserDto user = userService.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+}
+\`\`\`
+
+## 🏗️ Principios RESTful en Spring Boot
+
+| **HTTP Method** | **Endpoint**      | **Propósito**       | **Spring Annotation**     |
+| --------------- | ----------------- | ------------------- | ------------------------- |
+| GET             | \`/api/users\`      | Listar todos        | \`@GetMapping\`             |
+| GET             | \`/api/users/{id}\` | Obtener uno         | \`@GetMapping("/{id}")\`    |
+| POST            | \`/api/users\`      | Crear nuevo         | \`@PostMapping\`            |
+| PUT             | \`/api/users/{id}\` | Actualizar completo | \`@PutMapping("/{id}")\`    |
+| PATCH           | \`/api/users/{id}\` | Actualizar parcial  | \`@PatchMapping("/{id}")\`  |
+| DELETE          | \`/api/users/{id}\` | Eliminar            | \`@DeleteMapping("/{id}")\` |
+            `,
             topics: [
               "@RestController vs Express routes",
-              "@RequestMapping, @GetMapping, @PostMapping",
-              "Path variables vs Express params",
-              "Query parameters y request body",
-              "Response customization",
+              "Mapeo HTTP con @GetMapping, @PostMapping",
+              "Path variables y query parameters",
+              "ResponseEntity y códigos HTTP",
+              "Principios RESTful y buenas prácticas",
             ],
           },
           {
-            title: "✅ Validación de Datos",
-            duration: "3 horas",
+            title: "🛡️ Manejo de Errores y Validaciones",
+            duration: "3.5 horas",
+            expanded: false,
+            content: `
+## 📖 Manejo Global de Errores y Validación Automática
+
+Implementación de **manejo global de errores** con \`@ControllerAdvice\` y **validación automática** de datos con JSR 303 (Bean Validation) para APIs robustas y consistentes.
+
+## 🎯 ¿Por qué es importante?
+
+La robustez de una API enterprise depende de:
+- **Error handling consistente** - Respuestas uniformes vs errores ad-hoc
+- **Validación automática** - Menos código boilerplate vs validación manual
+- **Logging estructurado** - Trazabilidad vs console.log dispersos
+- **Security by default** - Protección automática vs implementación manual
+
+## 🔄 Comparación: Manejo de Errores
+
+### Express - Manual en cada endpoint:
+\`\`\`javascript
+app.post("/api/users", async (req, res) => {
+  try {
+    // Validación manual
+    if (!req.body.email) {
+      return res.status(400).json({
+        error: "Email is required",
+        code: "VALIDATION_ERROR",
+      });
+    }
+
+    const user = await userService.create(req.body);
+    res.status(201).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Internal server error",
+      code: "INTERNAL_ERROR",
+    });
+  }
+});
+\`\`\`
+
+### Spring Boot - Automático y centralizado:
+\`\`\`java
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    @PostMapping
+    public ResponseEntity<UserDto> create(@Valid @RequestBody CreateUserDto dto) {
+        // Validación automática con @Valid
+        // Exception handling automático con @ControllerAdvice
+        UserDto user = userService.create(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+}
+
+// Global exception handler
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationException(
+            MethodArgumentNotValidException ex) {
+
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+            errors.put(error.getField(), error.getDefaultMessage())
+        );
+
+        ErrorResponse errorResponse = ErrorResponse.builder()
+            .message("Validation failed")
+            .code("VALIDATION_ERROR")
+            .details(errors)
+            .timestamp(Instant.now())
+            .build();
+
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+}
+\`\`\`
+
+## 🔒 Validaciones con Bean Validation
+
+\`\`\`java
+public class CreateUserDto {
+
+    @NotBlank(message = "Name is required")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+    private String name;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
+    private String email;
+
+    @NotNull(message = "Age is required")
+    @Min(value = 18, message = "Age must be at least 18")
+    @Max(value = 120, message = "Age must be less than 120")
+    private Integer age;
+}
+\`\`\`
+            `,
             topics: [
-              "@Valid vs middleware validation",
-              "Bean Validation (JSR-303)",
-              "Custom validators",
-              "Validation groups",
-              "Error handling para validación",
+              "@ControllerAdvice para manejo global",
+              "Bean Validation con JSR-303",
+              "Custom exceptions y @ExceptionHandler",
+              "ErrorResponse estructurado",
+              "Validaciones automáticas con @Valid",
             ],
           },
           {
-            title: "🚨 Manejo de Errores y Excepciones",
-            duration: "3 horas",
+            title: "🌐 Interacción con APIs de Terceros",
+            duration: "2.5 horas",
+            expanded: false,
+            content: `
+## 📖 Consumo de Servicios Externos
+
+Consumo de servicios externos usando **RestTemplate** (sincrónico) y **WebClient** (reactivo) para integración con APIs de terceros, microservicios y servicios cloud.
+
+## 🎯 Casos de Uso Enterprise
+
+Las aplicaciones enterprise requieren integración con:
+- **APIs de terceros** - Pagos, emails, notificaciones, analytics
+- **Microservicios internos** - Comunicación entre servicios
+- **Servicios cloud** - AWS, Azure, GCP APIs
+- **Legacy systems** - Integración con sistemas existentes
+
+## 🔄 Comparación: HTTP Clients
+
+### Node.js con axios:
+\`\`\`javascript
+const axios = require("axios");
+
+class UserService {
+  async getUserProfile(userId) {
+    try {
+      const response = await axios.get(\`https://api.external.com/users/\${userId}\`, {
+        headers: {
+          Authorization: \`Bearer \${this.apiKey}\`,
+          "Content-Type": "application/json",
+        },
+        timeout: 5000,
+      });
+      return response.data;
+    } catch (error) {
+      if (error.code === "ECONNABORTED") {
+        throw new Error("Request timeout");
+      }
+      throw new Error(\`API Error: \${error.response?.status}\`);
+    }
+  }
+}
+\`\`\`
+
+### Spring Boot con RestTemplate (Sincrónico):
+\`\`\`java
+@Service
+public class UserService {
+    private final RestTemplate restTemplate;
+    private final String apiKey;
+
+    public UserService(RestTemplate restTemplate,
+                      @Value("\${external.api.key}") String apiKey) {
+        this.restTemplate = restTemplate;
+        this.apiKey = apiKey;
+    }
+
+    public UserProfileDto getUserProfile(String userId) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        try {
+            ResponseEntity<UserProfileDto> response = restTemplate.exchange(
+                "https://api.external.com/users/{userId}",
+                HttpMethod.GET,
+                entity,
+                UserProfileDto.class,
+                userId
+            );
+
+            return response.getBody();
+        } catch (HttpClientErrorException e) {
+            throw new ExternalApiException("User not found", e);
+        } catch (ResourceAccessException e) {
+            throw new ExternalApiException("API timeout", e);
+        }
+    }
+}
+\`\`\`
+
+### Spring Boot con WebClient (Reactivo):
+\`\`\`java
+@Service
+public class UserService {
+    private final WebClient webClient;
+
+    public UserService(WebClient.Builder webClientBuilder,
+                      @Value("\${external.api.key}") String apiKey) {
+        this.webClient = webClientBuilder
+            .baseUrl("https://api.external.com")
+            .defaultHeader("Authorization", "Bearer " + apiKey)
+            .build();
+    }
+
+    public Mono<UserProfileDto> getUserProfile(String userId) {
+        return webClient.get()
+            .uri("/users/{userId}", userId)
+            .retrieve()
+            .onStatus(HttpStatus::is4xxClientError, response ->
+                Mono.error(new ExternalApiException("User not found")))
+            .bodyToMono(UserProfileDto.class)
+            .timeout(Duration.ofSeconds(5));
+    }
+}
+\`\`\`
+            `,
             topics: [
-              "@ExceptionHandler vs Express error middleware",
-              "Custom exceptions",
-              "Global exception handling",
-              "Response status y error codes",
-              "API error responses structure",
-            ],
-          },
-          {
-            title: "⚙️ Configuración Avanzada Web",
-            duration: "3 horas",
-            topics: [
-              "CORS configuration",
-              "Content negotiation",
-              "Custom serialization",
-              "Interceptors vs middleware",
-              "Rate limiting y security headers",
+              "RestTemplate vs axios",
+              "WebClient para programación reactiva",
+              "Configuración de headers y autenticación",
+              "Timeout y manejo de errores HTTP",
+              "Integración con APIs de terceros",
             ],
           },
         ],
