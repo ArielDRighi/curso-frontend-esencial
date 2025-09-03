@@ -404,20 +404,40 @@
                     </div>
                   </div>
 
-                  <!-- Module Topics -->
+                  <!-- Module Sections -->
                   <div class="space-y-6">
                     <div
                       class="border-l-4 border-orange-200 pl-6"
                       :class="darkMode ? 'border-orange-400' : 'border-orange-200'"
                     >
                       <h3 class="text-lg font-semibold mb-3" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                        📋 Temas del Módulo
+                        📋 Secciones del Módulo
                       </h3>
-                      <div class="space-y-2">
-                        <template x-for="topic in module.topics" :key="topic">
-                          <div class="flex items-center" :class="darkMode ? 'text-gray-300' : 'text-gray-700'">
-                            <span class="mr-2 text-orange-500">▶</span>
-                            <span x-text="topic"></span>
+                      <div class="space-y-4">
+                        <template x-for="section in module.sections" :key="section.title">
+                          <div class="border rounded-lg p-3" :class="darkMode ? 'border-gray-600' : 'border-gray-200'">
+                            <div class="flex items-center justify-between mb-2">
+                              <h4
+                                class="font-medium"
+                                :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
+                                x-text="section.title"
+                              ></h4>
+                              <span
+                                class="text-sm px-2 py-1 bg-orange-100 text-orange-800 rounded"
+                                x-text="section.duration"
+                              ></span>
+                            </div>
+                            <div class="space-y-1">
+                              <template x-for="topic in section.topics" :key="topic">
+                                <div
+                                  class="flex items-center text-sm"
+                                  :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
+                                >
+                                  <span class="mr-2 text-orange-500">•</span>
+                                  <span x-text="topic"></span>
+                                </div>
+                              </template>
+                            </div>
                           </div>
                         </template>
                       </div>
@@ -433,14 +453,24 @@
                       </h3>
                       <div class="space-y-2">
                         <template x-for="resource in module.resources" :key="resource.title">
-                          <div class="flex items-center" :class="darkMode ? 'text-gray-300' : 'text-gray-700'">
+                          <a
+                            :href="resource.url"
+                            target="_blank"
+                            class="flex items-center p-2 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                            :class="darkMode ? 'text-gray-300' : 'text-gray-700'"
+                          >
                             <span class="mr-2 text-blue-500">🔗</span>
-                            <span x-text="resource.title"></span>
+                            <span x-text="resource.title" class="flex-1"></span>
                             <span
-                              class="ml-2 px-2 py-1 text-xs rounded bg-blue-100 text-blue-800"
+                              class="ml-2 px-2 py-1 text-xs rounded"
+                              :class="resource.type === 'guide' ? 'bg-blue-100 text-blue-800' : 
+                                     resource.type === 'examples' ? 'bg-green-100 text-green-800' : 
+                                     resource.type === 'checklist' ? 'bg-purple-100 text-purple-800' : 
+                                     resource.type === 'article' ? 'bg-yellow-100 text-yellow-800' : 
+                                     'bg-gray-100 text-gray-800'"
                               x-text="resource.type"
                             ></span>
-                          </div>
+                          </a>
                         </template>
                       </div>
                     </div>
