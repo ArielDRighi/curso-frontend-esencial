@@ -11,92 +11,17 @@ function courseApp() {
         emoji: "🧠",
         title: "Módulo 0: Mindset Java para Desarrolladores Backend",
         shortTitle: "Mindset Java",
-        duration: "2-3 horas",
+        duration: "3.5-4 horas",
         level: "Conceptual",
         completed: false,
-        objective: "Preparar la mentalidad para la transición de Node.js/TypeScript a Java/Spring Boot",
+        objective:
+          "Preparar mentalmente para la transición del mundo ágil y flexible de Node.js al ecosistema estructurado y convencional de Java Enterprise",
         description:
-          "Comprende las diferencias filosóficas entre JavaScript y Java, el paradigma compilado vs interpretado, y cómo adoptar el mindset enterprise.",
+          "Comprende las diferencias fundamentales entre JavaScript y Java: paradigma compilado vs interpretado, tipado fuerte, convenciones Spring Boot, Maven, Virtual Threads y el poder del IDE.",
         sections: [
           {
-            title: "📚 Node.js vs Java: Diferencias Filosóficas",
-            duration: "45 min",
-            expanded: false,
-            content: `
-## 🎯 ¿Por qué este módulo?
-
-Como desarrollador de Node.js/TypeScript, vienes de un mundo de:
-
-- **Flexibilidad extrema:** Múltiples formas de hacer las cosas
-- **Configuración explícita:** Tu controlas cada aspecto
-- **Iteración rápida:** npm install y ya estás corriendo
-- **Ecosistema dinámico:** Frameworks que cambian constantemente
-
-Java y Spring Boot representan un paradigma diferente:
-
-- **Convención sobre configuración:** "Hay una forma correcta de hacerlo"
-- **Configuración implícita:** El framework decide por ti (sanamente)
-- **Estabilidad:** Cambios graduales, retrocompatibilidad
-- **Ecosistema maduro:** Herramientas probadas en batalla
-
-### 🔄 Flexibilidad vs Convención
-
-**En Node.js/Express:**
-\`\`\`javascript
-// Múltiples formas de estructurar rutas
-app.get('/users', handler);
-app.use('/users', userRouter);
-app.route('/users').get(handler);
-\`\`\`
-
-**En Spring Boot:**
-\`\`\`java
-// UNA forma estándar y predecible
-@RestController
-@RequestMapping("/users")
-public class UserController {
-    @GetMapping
-    public List<User> getUsers() { }
-}
-\`\`\`
-
-### ⚙️ Configuración Explícita vs Implícita
-
-**Node.js (Tú configuras todo):**
-\`\`\`javascript
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-
-const app = express();
-app.use(cors());
-app.use(helmet());
-app.use(morgan('combined'));
-app.use(express.json());
-\`\`\`
-
-**Spring Boot (Auto-configuración inteligente):**
-\`\`\`java
-@SpringBootApplication
-public class Application {
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-        // CORS, seguridad, logging ya están configurados por defecto
-    }
-}
-\`\`\`
-            `,
-            topics: [
-              "Flexibilidad vs Convención",
-              "Configuración explícita vs implícita",
-              "Ecosistema dinámico vs maduro",
-              "Iteración rápida vs estabilidad",
-            ],
-          },
-          {
             title: "⚡ Compilado vs Interpretado: Más que Velocidad",
-            duration: "30 min",
+            duration: "45 min",
             expanded: false,
             content: `
 ## 🔄 El Cambio de Paradigma
@@ -143,8 +68,20 @@ const edad = nombre; // ✅ Compila, 💥 Runtime error después
 - **IDE Integration:** IntelliJ IDEA entiende tu código a nivel de compilador
 - **Refactoring Seguro:** Cambiar nombres de métodos en 500 archivos sin miedo
 - **Static Analysis:** Detectar bugs antes del runtime
-
-## 💪 Tipado Fuerte vs TypeScript
+            `,
+            topics: [
+              "El compilador como primer QA",
+              "Optimizaciones JIT y HotSpot VM",
+              "Tooling y análisis estático",
+              "Bytecode vs JavaScript runtime",
+            ],
+          },
+          {
+            title: "💪 La Tiranía (Bendita) del Tipado Fuerte",
+            duration: "30 min",
+            expanded: false,
+            content: `
+## 🔄 Más Allá de TypeScript
 
 **TypeScript (Opcional y Borrable):**
 \`\`\`typescript
@@ -169,82 +106,118 @@ public class User {
     }
 }
 \`\`\`
-            `,
-            topics: [
-              "El compilador como primer QA",
-              "Ventajas del bytecode y JVM",
-              "Feedback inmediato vs runtime",
-              "Performance predictible",
-            ],
-          },
-          {
-            title: "🏢 Mentalidad Enterprise",
-            duration: "45 min",
-            expanded: false,
-            content: `
-## 🎯 Mindset: Preparado para el Cambio
 
-### ✅ Lo que Ganarás:
+## 🎯 Beneficios del Tipado Runtime
 
-1. **🛡️ Seguridad de Tipos:** Bugs detectados en compile-time
-2. **🏗️ Arquitectura Robusta:** Patterns probados en enterprise
-3. **⚡ Performance Escalable:** JVM optimizations + Virtual Threads
-4. **🔧 Tooling Avanzado:** IDEs que entienden tu código profundamente
-5. **📈 Ecosystem Maduro:** Libraries estables y documentadas
-6. **💼 Oportunidades Enterprise:** Demanda alta en corporations
-
-### ⚠️ Lo que Dejarás Atrás:
-
-1. **🚀 Velocidad de Iteración:** Compilación añade step extra
-2. **🎨 Flexibilidad Extrema:** Más convenciones, menos configuración
-3. **📦 Simplicity:** Archivos de configuración más verbosos
-4. **🆕 Bleeding Edge:** Ecosystem más conservador
-
-## 🏢 Enterprise vs Startup Mindset
-
-### Node.js - Startup Friendly:
-\`\`\`javascript
-// Iteración rápida
-npm init -y
-npm install express
-// 2 minutos después: servidor funcionando
-\`\`\`
-
-### Java Spring Boot - Enterprise Ready:
+### 1. APIs Autodocumentadas:
 \`\`\`java
-// Configuración inicial más lenta
-// Pero aplicación "production-ready" desde día 1
-@SpringBootApplication
-public class Application {
-    // Auto-configuración de:
-    // - Database pooling
-    // - Security headers
-    // - Metrics y health checks
-    // - Logging estructurado
+// No necesitas documentación extra, el tipo LO ES TODO
+public List<OrderDTO> getOrdersByUserId(Long userId,
+                                       Pageable pageable,
+                                       Optional<OrderStatus> status) {
+    // El compilador garantiza que devuelvas List<OrderDTO>
 }
 \`\`\`
 
-## 🔒 Estabilidad a Largo Plazo
+### 2. Refactoring Masivo Seguro:
+\`\`\`java
+// Cambiar getAge() → getBirthYear() en 200 archivos
+// IntelliJ lo hace en segundos, garantizando zero errores
+\`\`\`
 
-**En Node.js:**
-- Dependencies que cambian API cada major version
-- Breaking changes frecuentes
-- Ecosystem fragmentado
-
-**En Java:**
-- Java 8 → 11 → 17: Solo adiciones, no breaking changes
-- Spring Boot: Migración guiada entre versiones
-- Libraries estables por décadas
-
-## 💡 El Secreto del Éxito:
-
-**Abraza las convenciones en lugar de luchar contra ellas.** Spring Boot no es "mágico" - es **predecible**. Una vez que entiendes los patrones, todo hace sentido y se vuelve increíblemente productivo.
+### 3. Serialización Robusta:
+\`\`\`java
+// Jackson sabe EXACTAMENTE qué esperar
+@Entity
+public class Product {
+    private Long id;
+    private String name;
+    private BigDecimal price;  // Nunca será null/undefined por error
+}
+\`\`\`
             `,
             topics: [
-              "Estabilidad a largo plazo",
-              "Mantenibilidad sobre agilidad",
-              "Documentación y contratos",
-              "Escalabilidad empresarial",
+              "TypeScript vs Java: opcional vs obligatorio",
+              "APIs autodocumentadas",
+              "Refactoring masivo seguro",
+              "Serialización robusta",
+            ],
+          },
+          {
+            title: "� El IDE como Universo Central",
+            duration: "45 min",
+            expanded: false,
+            content: `
+## 🔄 Cambio de Herramientas
+
+**En Node.js (VS Code es suficiente):**
+- Editor de texto inteligente
+- Terminal integrada
+- Extensions para frameworks
+
+**En Java (IntelliJ IDEA es el estándar):**
+- **Build Management:** Maneja Maven/Gradle
+- **Database Integration:** Conecta y consulta DBs directamente
+- **Debugging Avanzado:** Step debugging, expression evaluation
+- **Code Generation:** Genera getters/setters, constructores, tests
+- **Refactoring Engine:** Extract method, inline variable, move class
+- **Spring Integration:** Navegación entre beans, dependency injection visualization
+
+## � Ejemplos de Poder del IDE
+
+### 1. Navegación Inteligente:
+\`\`\`java
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;  // Ctrl+Click va directo al repo
+
+    public User findById(Long id) {
+        return userRepository.findById(id);  // IntelliJ sabe que devuelve Optional<User>
+    }
+}
+\`\`\`
+
+### 2. Generación Automática:
+\`\`\`java
+// Escribes solo esto:
+public class Product {
+    private String name;
+    private BigDecimal price;
+}
+
+// Alt+Insert genera automáticamente:
+// - Constructor
+// - Getters/Setters
+// - equals() y hashCode()
+// - toString()
+// - Builder pattern
+\`\`\`
+
+### 3. Testing Integrado:
+\`\`\`java
+// Right-click en cualquier método → "Generate Test"
+// IntelliJ crea automáticamente:
+@Test
+void shouldFindUserById() {
+    // Given
+    Long userId = 1L;
+
+    // When
+    User result = userService.findById(userId);
+
+    // Then
+    assertThat(result).isNotNull();
+}
+\`\`\`
+            `,
+            topics: [
+              "VS Code vs IntelliJ IDEA",
+              "Build management integrado",
+              "Navegación inteligente de código",
+              "Generación automática de código",
+              "Testing integrado",
             ],
           },
           {
@@ -254,8 +227,7 @@ public class Application {
             content: `
 ## 🔄 El Cambio Filosófico
 
-### Node.js/Express (Configuración Explícita):
-
+**Node.js/Express (Configuración Explícita):**
 \`\`\`javascript
 const express = require("express");
 const app = express();
@@ -272,8 +244,7 @@ app.listen(3000, () => {
 });
 \`\`\`
 
-### Spring Boot (Convención Inteligente):
-
+**Spring Boot (Convención Inteligente):**
 \`\`\`java
 @SpringBootApplication  // ¡Una línea hace MAGIA controlada!
 public class EcommerceApplication {
@@ -294,7 +265,6 @@ public class EcommerceApplication {
 ## 🎯 La "Magia" es Predecible
 
 ### 1. Nomenclatura Importa:
-
 \`\`\`java
 // Spring Boot BUSCA automáticamente:
 application.properties     // Configuración principal
@@ -307,7 +277,6 @@ application-prod.properties // Configuración de producción
 \`\`\`
 
 ### 2. Dependencies Definen Comportamiento:
-
 \`\`\`xml
 <!-- Agregar en pom.xml automáticamente configura: -->
 <dependency>
@@ -324,23 +293,163 @@ application-prod.properties // Configuración de producción
 \`\`\`
 
 ### 3. Configuración por Excepción:
+\`\`\`java
+// Solo configuras lo que es DIFERENTE de lo convencional
+@Configuration
+public class CustomConfig {
 
-Solo configuras lo que es DIFERENTE de lo convencional. Si necesitas puerto 3000 en lugar de 8080:
-
-\`\`\`properties
-# application.properties
-server.port=3000
+    @Bean
+    @Primary  // Solo cuando necesitas override del comportamiento por defecto
+    public ObjectMapper customObjectMapper() {
+        return new ObjectMapper()
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+    }
+}
 \`\`\`
-
-## 💡 Abraza las Convenciones
-
-**La clave del éxito:** No luches contra las convenciones de Spring Boot. Aprende el "Spring Way" y serás increíblemente productivo.
             `,
             topics: [
-              "La magia es predecible",
-              "Nomenclatura y estructura",
+              "Configuración explícita vs implícita",
               "Auto-configuración Spring Boot",
-              "Abraza las convenciones",
+              "Nomenclatura y convenciones",
+              "Dependencies que definen comportamiento",
+            ],
+          },
+          {
+            title: "📦 El Ciclo de Vida de Maven: Más que npm scripts",
+            duration: "30 min",
+            expanded: false,
+            content: `
+## 🔄 npm scripts vs Maven Phases
+
+**Node.js (npm scripts - Simples y Flexibles):**
+\`\`\`json
+{
+  "scripts": {
+    "dev": "nodemon app.js",
+    "build": "tsc",
+    "test": "jest",
+    "start": "node dist/app.js"
+  }
+}
+\`\`\`
+
+**Maven (Fases Estándar del Ciclo de Vida):**
+\`\`\`bash
+mvn clean       # Limpia target/ (como rm -rf dist/)
+mvn compile     # Compila source code a bytecode
+mvn test        # Ejecuta unit tests (fase que incluye compile)
+mvn package     # Crea JAR/WAR (incluye compile + test)
+mvn install     # Instala en repositorio local (~/.m2/)
+mvn deploy      # Sube a repositorio remoto (Nexus/Artifactory)
+\`\`\`
+
+## 🎯 Ventajas del Ciclo Formal
+
+### 1. Reproducibilidad Garantizada:
+\`\`\`bash
+# En cualquier máquina del mundo:
+git clone https://github.com/company/ecommerce-api.git
+cd ecommerce-api
+mvn clean package  # SIEMPRE produce el mismo resultado
+
+# vs Node.js:
+npm install  # Puede diferir según npm version, node version, OS
+\`\`\`
+
+### 2. Dependency Management Robusto:
+\`\`\`xml
+<!-- Maven resuelve conflictos automáticamente -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>3.1.0</version>
+    <!-- Trae automáticamente 40+ dependencies compatibles -->
+</dependency>
+\`\`\`
+
+### 3. Multi-module Projects:
+\`\`\`
+ecommerce-parent/
+├── user-service/     # mvn package solo user-service
+├── product-service/  # mvn package solo product-service
+├── order-service/    # mvn package solo order-service
+└── pom.xml          # mvn package desde aquí construye TODO
+\`\`\`
+            `,
+            topics: [
+              "npm scripts vs Maven phases",
+              "Reproducibilidad garantizada",
+              "Dependency management robusto",
+              "Multi-module projects",
+            ],
+          },
+          {
+            title: "🧵 Virtual Threads: La Respuesta a Node.js Event Loop",
+            duration: "45 min",
+            expanded: false,
+            content: `
+## 🔄 Concurrencia: Event Loop vs Virtual Threads
+
+**Node.js (Event Loop - Asíncrono):**
+\`\`\`javascript
+// 10,000 requests concurrentes
+const server = http.createServer(async (req, res) => {
+  const data = await fetch("http://slow-api.com/data"); // No bloquea el thread
+  const result = await processData(data); // Event loop sigue libre
+  res.json(result);
+});
+
+// ✅ Ventaja: Un solo thread maneja todo
+// ❌ Desventaja: Callback hell, debugging complejo
+\`\`\`
+
+**Java Tradicional (Platform Threads - Bloqueante):**
+\`\`\`java
+// PROBLEMÁTICO: 1 request = 1 OS thread
+@RestController
+public class DataController {
+
+    @GetMapping("/data")
+    public ResponseEntity<String> getData() {
+        String data = restTemplate.getForObject("http://slow-api.com/data", String.class);  // BLOQUEA el thread
+        String result = processData(data);                                                   // Thread sigue bloqueado
+        return ResponseEntity.ok(result);
+    }
+}
+
+// ❌ Limitado a ~200-1000 concurrent requests (OS thread limit)
+// ✅ Código simple imperativo, debugging fácil
+\`\`\`
+
+**Java 21 (Virtual Threads - Lo mejor de ambos mundos):**
+\`\`\`java
+@RestController
+public class DataController {
+
+    @GetMapping("/data")
+    public ResponseEntity<String> getData() {
+        String data = restTemplate.getForObject("http://slow-api.com/data", String.class);  // LOOKS blocking, but isn't
+        String result = processData(data);                                                   // Virtual thread magic
+        return ResponseEntity.ok(result);
+    }
+}
+
+// ✅ 100,000+ concurrent requests
+// ✅ Código simple imperativo, debugging fácil
+// ✅ Sin callback hell, sin async/await complexity
+\`\`\`
+
+## ⚙️ Configuración de Virtual Threads en Spring Boot:
+\`\`\`java
+// application.properties
+spring.threads.virtual.enabled=true
+\`\`\`
+            `,
+            topics: [
+              "Event Loop vs Virtual Threads",
+              "Platform threads vs Virtual threads",
+              "Configuración en Spring Boot",
+              "Ventajas sobre Node.js async/await",
             ],
           },
         ],
@@ -2547,14 +2656,14 @@ public class ReportService {
 
     // Section Management Functions
     toggleSection(moduleIndex, sectionIndex) {
-      console.log('toggleSection called:', moduleIndex, sectionIndex);
+      console.log("toggleSection called:", moduleIndex, sectionIndex);
       if (this.modules[moduleIndex] && this.modules[moduleIndex].sections[sectionIndex]) {
         const section = this.modules[moduleIndex].sections[sectionIndex];
-        console.log('Before toggle:', section.expanded);
+        console.log("Before toggle:", section.expanded);
         section.expanded = !section.expanded;
-        console.log('After toggle:', section.expanded);
+        console.log("After toggle:", section.expanded);
       } else {
-        console.log('Module or section not found');
+        console.log("Module or section not found");
       }
     },
 
