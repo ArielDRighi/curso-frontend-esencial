@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+  <defs>
+    <linearGradient id="frontendGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="url(#frontendGrad)" stroke="#fff" stroke-width="2"/>
+  
+  <!-- HTML bracket -->
+  <path d="M20 30 L15 35 L15 40 L20 45" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M80 30 L85 35 L85 40 L80 45" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- React-like icon -->
+  <circle cx="50" cy="40" r="3" fill="#fff"/>
+  <ellipse cx="50" cy="40" rx="15" ry="8" stroke="#fff" stroke-width="2" fill="none"/>
+  <ellipse cx="50" cy="40" rx="15" ry="8" stroke="#fff" stroke-width="2" fill="none" transform="rotate(60 50 40)"/>
+  <ellipse cx="50" cy="40" rx="15" ry="8" stroke="#fff" stroke-width="2" fill="none" transform="rotate(-60 50 40)"/>
+  
+  <!-- CSS curly brace -->
+  <path d="M25 55 C20 55 20 60 25 60 C20 60 20 65 25 65" stroke="#fff" stroke-width="2" fill="none"/>
+  <path d="M75 55 C80 55 80 60 75 60 C80 60 80 65 75 65" stroke="#fff" stroke-width="2" fill="none"/>
+  
+  <!-- JS code symbols -->
+  <text x="35" y="75" font-family="monospace" font-size="12" fill="#fff" font-weight="bold">JS</text>
+  <text x="55" y="75" font-family="monospace" font-size="12" fill="#fff" font-weight="bold">TS</text>
+</svg>

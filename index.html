@@ -3,2707 +3,533 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontend Esencial - Guía de Consulta</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <link href="styles.css" rel="stylesheet" />
+    <title>🎓 Portal de Cursos de Programación | Desarrollo Frontend y Backend</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Portal educativo con cursos profesionales de programación: Frontend (React, Vue, Angular) y Java Spring Boot. Contenido actualizado 2025."
+    />
+    <meta
+      name="keywords"
+      content="cursos programación, frontend, java spring boot, react, vue, angular, typescript, desarrollo web, programming courses"
+    />
+    <meta name="author" content="Portal de Cursos de Programación" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arieldrigh.github.io/curso-frontend-esencial/" />
+    <meta property="og:title" content="🎓 Portal de Cursos de Programación" />
+    <meta
+      property="og:description"
+      content="Cursos profesionales de Frontend y Java Spring Boot. Contenido actualizado 2025."
+    />
+    <meta
+      property="og:image"
+      content="https://arieldrigh.github.io/curso-frontend-esencial/assets/images/og-image.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://arieldrigh.github.io/curso-frontend-esencial/" />
+    <meta property="twitter:title" content="🎓 Portal de Cursos de Programación" />
+    <meta
+      property="twitter:description"
+      content="Cursos profesionales de Frontend y Java Spring Boot. Contenido actualizado 2025."
+    />
+    <meta
+      property="twitter:image"
+      content="https://arieldrigh.github.io/curso-frontend-esencial/assets/images/og-image.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/landing.css" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/css/landing.css" as="style" />
+    <link rel="preload" href="assets/icons/frontend.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="assets/icons/java.svg" as="image" type="image/svg+xml" />
+
+    <!-- Analytics (GitHub Pages compatible) -->
+    <script defer data-domain="arieldrigh.github.io" src="https://plausible.io/js/plausible.js"></script>
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Portal de Cursos de Programación",
+        "description": "Portal educativo con cursos profesionales de programación",
+        "url": "https://arieldrigh.github.io/curso-frontend-esencial/",
+        "sameAs": ["https://github.com/ArielDRighi/curso-frontend-esencial"],
+        "offers": [
+          {
+            "@type": "Course",
+            "name": "Curso Frontend Esencial",
+            "description": "Desarrollo Frontend con React, Vue, Angular y TypeScript",
+            "provider": "Portal de Cursos de Programación",
+            "educationalLevel": "Intermedio-Avanzado"
+          },
+          {
+            "@type": "Course",
+            "name": "Curso Java Spring Boot",
+            "description": "Desarrollo Backend empresarial con Java Spring Boot",
+            "provider": "Portal de Cursos de Programación",
+            "educationalLevel": "Intermedio-Avanzado"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <p>Iniciando Portal de Cursos...</p>
+    </div>
+
+    <!-- Main Desktop Container -->
+    <div class="desktop-container" id="desktop">
+      <!-- Taskbar -->
+      <div class="taskbar">
+        <div class="start-menu" id="startMenu">
+          <span>📚</span>
+          <span>Portal de Cursos</span>
+        </div>
+        <div class="clock" id="clock">
+          <!-- JavaScript will populate this -->
+        </div>
+      </div>
+
+      <!-- Desktop Grid with Course Icons -->
+      <div class="desktop-grid">
+        <!-- Frontend Course -->
+        <div class="course-icon" data-course="frontend" id="frontend-course">
+          <div class="icon-image">
+            <img src="assets/icons/frontend.svg" alt="Curso Frontend Esencial" loading="lazy" />
+          </div>
+          <span class="icon-label">Curso Frontend Esencial</span>
+          <div class="course-tooltip">
+            <h4>🎨 Desarrollo Frontend Esencial</h4>
+            <p><strong>Tecnologías:</strong> React, Vue, Angular, TypeScript, Tailwind CSS</p>
+            <p><strong>Duración:</strong> 10 módulos • 40+ horas de contenido</p>
+            <p><strong>Nivel:</strong> Intermedio a Avanzado</p>
+            <p><strong>Estado:</strong> ✅ Disponible y Completo</p>
+            <p><strong>Actualizado:</strong> Septiembre 2025</p>
+          </div>
+        </div>
+
+        <!-- Java Spring Boot Course -->
+        <div class="course-icon" data-course="java" id="java-course">
+          <div class="icon-image">
+            <img src="assets/icons/java.svg" alt="Curso Java Spring Boot" loading="lazy" />
+          </div>
+          <span class="icon-label">Curso Java Spring Boot</span>
+          <div class="course-tooltip">
+            <h4>☕ Java Spring Boot Empresarial</h4>
+            <p><strong>Tecnologías:</strong> Spring Boot, JPA, Security, Microservices, Docker</p>
+            <p><strong>Duración:</strong> 11 módulos • 50+ horas de contenido</p>
+            <p><strong>Nivel:</strong> Intermedio a Avanzado</p>
+            <p><strong>Estado:</strong> 🚧 En desarrollo activo</p>
+            <p><strong>Actualizado:</strong> Septiembre 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="footer-info">
+        <p>
+          🎓 Portal de Cursos de Programación • Frontend & Java Spring Boot • Septiembre 2025 •
+          <a
+            href="https://github.com/ArielDRighi/curso-frontend-esencial"
+            target="_blank"
+            style="color: #fff; text-decoration: underline"
+            >GitHub</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- Success Modal for Course Access -->
+    <div id="course-modal" class="course-modal" style="display: none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">🎯 Accediendo al Curso</h3>
+          <button id="close-modal" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-message">Preparando el contenido del curso...</p>
+          <div class="modal-buttons">
+            <button id="continue-btn" class="btn-primary">Continuar al Curso</button>
+            <button id="cancel-btn" class="btn-secondary">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // ===============================================
+      // 🕒 CLOCK FUNCTIONALITY
+      // ===============================================
+      function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString("es-ES", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+        const dateString = now.toLocaleDateString("es-ES", {
+          weekday: "short",
+          day: "2-digit",
+          month: "2-digit",
+        });
+
+        document.getElementById("clock").innerHTML = `
+                <div style="text-align: right;">
+                    <div>${timeString}</div>
+                    <div style="font-size: 12px; opacity: 0.8;">${dateString}</div>
+                </div>
+            `;
+      }
+
+      // ===============================================
+      // 🚀 LOADING SCREEN
+      // ===============================================
+      function hideLoadingScreen() {
+        const loadingScreen = document.getElementById("loading-screen");
+        const desktop = document.getElementById("desktop");
+
+        setTimeout(() => {
+          loadingScreen.style.opacity = "0";
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+            desktop.style.opacity = "1";
+          }, 300);
+        }, 1500);
+      }
+
+      // ===============================================
+      // 🎯 COURSE NAVIGATION
+      // ===============================================
+      function setupCourseNavigation() {
+        // Frontend Course
+        const frontendCourse = document.getElementById("frontend-course");
+        frontendCourse.addEventListener("click", () => {
+          showCourseModal(
+            "🎨 Curso Frontend Esencial",
+            "Accediendo al curso completo de desarrollo Frontend...",
+            "cursos/frontend/index.html"
+          );
+        });
+
+        // Java Course
+        const javaCourse = document.getElementById("java-course");
+        javaCourse.addEventListener("click", () => {
+          showCourseModal(
+            "☕ Curso Java Spring Boot",
+            "Accediendo al curso de Java Spring Boot empresarial...",
+            "cursos/java/index.html"
+          );
+        });
+      }
+
+      // ===============================================
+      // 📱 MODAL FUNCTIONALITY
+      // ===============================================
+      function showCourseModal(title, message, courseUrl) {
+        const modal = document.getElementById("course-modal");
+        const modalTitle = document.getElementById("modal-title");
+        const modalMessage = document.getElementById("modal-message");
+        const continueBtn = document.getElementById("continue-btn");
+
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+
+        // Setup continue button
+        continueBtn.onclick = () => {
+          window.location.href = courseUrl;
+        };
+
+        // Show modal
+        modal.style.display = "flex";
+        modal.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.opacity = "1";
+        }, 10);
+      }
+
+      function hideModal() {
+        const modal = document.getElementById("course-modal");
+        modal.style.opacity = "0";
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 300);
+      }
+
+      // ===============================================
+      // 🎮 EVENT LISTENERS
+      // ===============================================
+      function setupEventListeners() {
+        // Modal close buttons
+        document.getElementById("close-modal").addEventListener("click", hideModal);
+        document.getElementById("cancel-btn").addEventListener("click", hideModal);
+
+        // Close modal on background click
+        document.getElementById("course-modal").addEventListener("click", (e) => {
+          if (e.target.id === "course-modal") {
+            hideModal();
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            hideModal();
+          }
+        });
+
+        // Start menu click
+        document.getElementById("startMenu").addEventListener("click", () => {
+          // Could add start menu functionality here
+          console.log("Start menu clicked");
+        });
+      }
+
+      // ===============================================
+      // 🚀 INITIALIZATION
+      // ===============================================
+      document.addEventListener("DOMContentLoaded", () => {
+        // Start clock
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Setup navigation
+        setupCourseNavigation();
+
+        // Setup event listeners
+        setupEventListeners();
+
+        // Hide loading screen
+        hideLoadingScreen();
+
+        // Console greeting
+        console.log("🎓 Portal de Cursos de Programación");
+        console.log("📚 Cursos disponibles: Frontend Esencial, Java Spring Boot");
+        console.log("🔗 GitHub: https://github.com/ArielDRighi/curso-frontend-esencial");
+      });
+
+      // ===============================================
+      // 📊 ANALYTICS (Privacy-friendly)
+      // ===============================================
+      function trackCourseAccess(courseName) {
+        // Simple privacy-friendly analytics
+        if (typeof plausible !== "undefined") {
+          plausible("Course Access", { props: { course: courseName } });
+        }
+      }
+
+      // ===============================================
+      // 🎨 THEME SWITCHING (Future enhancement)
+      // ===============================================
+      function toggleTheme() {
+        // Future implementation for dark/light theme
+        console.log("Theme switching - Coming soon");
+      }
+
+      // Service Worker Registration (for future PWA capabilities)
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log("SW registered: ", registration);
+            })
+            .catch((registrationError) => {
+              console.log("SW registration failed: ", registrationError);
+            });
+        });
+      }
+    </script>
+
+    <!-- Additional CSS for Modal -->
     <style>
-      .gradient-bg {
+      /* Loading Screen */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
       }
-      .module-card {
-        transition: all 0.3s ease;
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
       }
-      .module-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
-      .progress-ring {
-        transition: stroke-dasharray 0.35s;
-        transform: rotate(-90deg);
-        transform-origin: 50% 50%;
+
+      .loading-screen p {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .desktop-container {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      /* Course Modal */
+      .course-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-content {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow: hidden;
+      }
+
+      .modal-header {
+        padding: 24px 24px 16px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .close-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #333;
+      }
+
+      .modal-body {
+        padding: 24px;
+      }
+
+      .modal-body p {
+        margin: 0 0 24px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .modal-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-secondary {
+        background: rgba(0, 0, 0, 0.1);
+        color: #666;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(0, 0, 0, 0.15);
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .modal-content {
+          margin: 20px;
+          width: calc(100% - 40px);
+        }
+
+        .modal-buttons {
+          flex-direction: column;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+        }
       }
     </style>
-  </head>
-  <body
-    class="font-sans transition-colors duration-300"
-    :class="darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'"
-    x-data="courseApp()"
-  >
-    <!-- Header -->
-    <header class="gradient-bg text-white shadow-lg">
-      <div class="container mx-auto px-4 py-6">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <div class="text-3xl font-bold">🚀</div>
-            <div>
-              <h1 class="text-2xl font-bold">Frontend Esencial</h1>
-              <p class="text-blue-100">Guía de Consulta para Desarrolladores Backend</p>
-            </div>
-            <!-- Mobile Theme Toggle -->
-            <button
-              @click="toggleDarkMode()"
-              class="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white ml-auto"
-              title="Cambiar tema"
-            >
-              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="hidden md:flex items-center space-x-4">
-            <!-- Theme Toggle Button -->
-            <button
-              @click="toggleDarkMode()"
-              class="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white"
-              title="Cambiar tema"
-            >
-              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            </button>
-
-            <div class="text-right">
-              <p class="text-sm text-blue-100">Progreso Total</p>
-              <div class="flex items-center space-x-2">
-                <svg class="w-8 h-8">
-                  <circle cx="16" cy="16" r="14" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" />
-                  <circle
-                    cx="16"
-                    cy="16"
-                    r="14"
-                    stroke="white"
-                    stroke-width="2"
-                    fill="none"
-                    class="progress-ring"
-                    :stroke-dasharray="calculateProgress() + ' 88'"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <span class="font-semibold" x-text="Math.round(calculateProgress() * 100 / 88) + '%'"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav
-      class="shadow-md sticky top-0 z-40 transition-colors duration-300"
-      :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-    >
-      <div class="container mx-auto px-4">
-        <div class="flex space-x-8 overflow-x-auto">
-          <button
-            @click="currentView = 'dashboard'"
-            :class="currentView === 'dashboard' ? 
-              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
-              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
-            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
-          >
-            📊 Dashboard
-          </button>
-          <button
-            @click="currentView = 'modules'"
-            :class="currentView === 'modules' ? 
-              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
-              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
-            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
-          >
-            📚 Módulos
-          </button>
-          <button
-            @click="currentView = 'reference'"
-            :class="currentView === 'reference' ? 
-              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
-              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
-            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
-          >
-            🔍 Referencia
-          </button>
-          <button
-            @click="currentView = 'ai-prompts'"
-            :class="currentView === 'ai-prompts' ? 
-              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
-              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
-            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
-          >
-            🤖 Prompts IA
-          </button>
-          <button
-            @click="currentView = 'project'"
-            :class="currentView === 'project' ? 
-              (darkMode ? 'border-b-2 border-blue-400 text-blue-400' : 'border-b-2 border-blue-500 text-blue-600') : 
-              (darkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600')"
-            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
-          >
-            🛠️ Proyecto
-          </button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-      <!-- Dashboard View -->
-      <div x-show="currentView === 'dashboard'" x-transition:enter.duration.300ms>
-        <div class="mb-8">
-          <h2 class="text-3xl font-bold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-            Dashboard de la Guía
-          </h2>
-          <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white mb-8">
-            <h3 class="text-xl font-semibold mb-2">🎯 Objetivo General</h3>
-            <p class="text-blue-100">
-              Capacitar a desarrolladores backend en los fundamentos, mejores prácticas e implementación del desarrollo
-              frontend moderno, utilizando React, TypeScript, Next.js y Tailwind CSS.
-            </p>
-          </div>
-        </div>
-
-        <!-- Course Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div
-            class="rounded-lg p-6 shadow-md transition-colors duration-300"
-            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-          >
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Módulos</p>
-                <p
-                  class="text-2xl font-bold"
-                  :class="darkMode ? 'text-gray-100' : 'text-gray-900'"
-                  x-text="modules.length"
-                ></p>
-              </div>
-              <div class="text-3xl">📚</div>
-            </div>
-          </div>
-          <div
-            class="rounded-lg p-6 shadow-md transition-colors duration-300"
-            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-          >
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Completados</p>
-                <p class="text-2xl font-bold text-green-600" x-text="getCompletedModules().length"></p>
-              </div>
-              <div class="text-3xl">✅</div>
-            </div>
-          </div>
-          <div
-            class="rounded-lg p-6 shadow-md transition-colors duration-300"
-            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-          >
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Progreso</p>
-                <p
-                  class="text-2xl font-bold text-blue-600"
-                  x-text="Math.round(calculateProgress() * 100 / 88) + '%'"
-                ></p>
-              </div>
-              <div class="text-3xl">📈</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Frontend 2025 Update Notice -->
-        <div class="rounded-lg shadow-md p-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white mb-8">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-xl font-semibold">🚀 Actualización Frontend Developer 2025</h3>
-            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">NUEVO</span>
-          </div>
-          <p class="text-blue-100 mb-4">
-            El contenido ha sido actualizado con el roadmap Frontend Developer 2025. Nuevas secciones incluyen React
-            Hooks avanzados con custom hooks, DevTools mastery, performance optimization, testing pyramid y desarrollo
-            con IA.
-          </p>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-            <div class="flex items-center"><span class="mr-2">✅</span>Custom Hooks Avanzados</div>
-            <div class="flex items-center"><span class="mr-2">✅</span>useMemo & useCallback</div>
-            <div class="flex items-center"><span class="mr-2">✅</span>DevTools Mastery</div>
-            <div class="flex items-center"><span class="mr-2">✅</span>Server State Management</div>
-            <div class="flex items-center"><span class="mr-2">✅</span>Testing Comprehensive</div>
-            <div class="flex items-center"><span class="mr-2">✅</span>AI-Driven Development</div>
-          </div>
-        </div>
-
-        <!-- Gestión de Progreso -->
-        <div
-          class="rounded-lg p-6 shadow-md mb-8 transition-colors duration-300"
-          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-        >
-          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-            ⚙️ Gestión de Progreso
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            <button
-              @click="resetAllProgress()"
-              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300 flex items-center gap-2"
-            >
-              🔄 Reiniciar Todo
-            </button>
-            <button
-              @click="exportProgress()"
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 flex items-center gap-2"
-            >
-              📥 Exportar Progreso
-            </button>
-          </div>
-          <p class="text-sm mt-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-            También puedes reiniciar módulos individuales desde cada sección del curso.
-          </p>
-        </div>
-
-        <!-- Learning Path -->
-        <div
-          class="rounded-lg p-6 shadow-md mb-8 transition-colors duration-300"
-          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-        >
-          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-            🛣️ Ruta de Aprendizaje
-          </h3>
-          <div class="space-y-4">
-            <template x-for="(module, index) in modules" :key="index">
-              <div
-                class="flex items-center p-4 border rounded-lg cursor-pointer transition-colors duration-300"
-                :class="darkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'"
-                @click="selectModule(index); currentView = 'modules'"
-              >
-                <div
-                  class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-4"
-                  :class="module.completed ? 'bg-green-500 text-white' : (darkMode ? 'bg-gray-600 text-gray-300' : 'bg-gray-200 text-gray-600')"
-                >
-                  <span x-text="module.completed ? '✓' : index + 1"></span>
-                </div>
-                <div class="flex-1">
-                  <h4
-                    class="font-medium"
-                    :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
-                    x-text="module.title"
-                  ></h4>
-                  <p class="text-sm" :class="darkMode ? 'text-gray-400' : 'text-gray-600'" x-text="module.duration"></p>
-                </div>
-                <div class="text-2xl" x-text="module.emoji"></div>
-              </div>
-            </template>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modules View -->
-      <div x-show="currentView === 'modules'" x-transition:enter.duration.300ms>
-        <div class="flex flex-col lg:flex-row gap-8">
-          <!-- Module Sidebar -->
-          <div class="lg:w-1/4">
-            <div
-              class="rounded-lg shadow-md p-4 sticky top-24 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                📚 Módulos del Curso
-              </h3>
-              <div class="space-y-2">
-                <template x-for="(module, index) in modules" :key="index">
-                  <button
-                    @click="selectModule(index)"
-                    :class="selectedModule === index ? 
-                      'bg-blue-500 text-white' : 
-                      (darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-gray-100 hover:bg-gray-200 text-gray-800')"
-                    class="w-full text-left p-3 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    <div class="flex items-center">
-                      <span x-text="module.emoji" class="mr-2"></span>
-                      <span x-text="module.shortTitle || module.title"></span>
-                      <span x-show="module.completed" class="ml-auto text-green-400">✓</span>
-                    </div>
-                  </button>
-                </template>
-              </div>
-            </div>
-          </div>
-
-          <!-- Module Content -->
-          <div class="lg:w-3/4">
-            <div
-              x-show="selectedModule !== null"
-              class="rounded-lg shadow-md p-8 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <template x-for="(module, index) in modules" :key="index">
-                <div x-show="selectedModule === index">
-                  <!-- Module Header -->
-                  <div class="flex items-start justify-between mb-6">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-2">
-                        <span x-text="module.emoji" class="text-3xl mr-3"></span>
-                        <h2
-                          class="text-2xl font-bold"
-                          :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
-                          x-text="module.title"
-                        ></h2>
-                      </div>
-                      <p
-                        class="mb-2"
-                        :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
-                        x-text="module.duration"
-                      ></p>
-                      <p :class="darkMode ? 'text-gray-300' : 'text-gray-700'" x-text="module.objective"></p>
-                    </div>
-                    <div class="ml-4 flex gap-2">
-                      <button
-                        @click="toggleModuleComplete(index)"
-                        :class="module.completed ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'"
-                        class="px-4 py-2 text-white rounded-lg font-medium transition-colors"
-                      >
-                        <span x-text="module.completed ? 'Completado ✓' : 'Marcar Completo'"></span>
-                      </button>
-                      <button
-                        @click="resetModuleProgress(index)"
-                        class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors"
-                        title="Reiniciar progreso de este módulo"
-                      >
-                        🔄
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- Module Sections -->
-                  <div class="space-y-6">
-                    <template x-for="(section, sectionIndex) in module.sections" :key="sectionIndex">
-                      <div
-                        class="border-l-4 border-blue-200 pl-6"
-                        :class="darkMode ? 'border-blue-400' : 'border-blue-200'"
-                      >
-                        <h3
-                          class="text-lg font-semibold mb-3"
-                          :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
-                          x-text="section.title"
-                        ></h3>
-                        <div class="prose max-w-none" :class="darkMode ? 'prose-invert' : ''">
-                          <template x-for="(content, contentIndex) in section.content" :key="contentIndex">
-                            <div
-                              x-html="content"
-                              class="mb-4"
-                              :class="darkMode ? 'text-gray-300' : 'text-gray-700'"
-                            ></div>
-                          </template>
-                        </div>
-                      </div>
-                    </template>
-                  </div>
-
-                  <!-- Navigation -->
-                  <div
-                    class="flex justify-between mt-8 pt-6 transition-colors duration-300"
-                    :class="darkMode ? 'border-gray-600' : 'border-gray-200'"
-                    style="border-top-width: 1px"
-                  >
-                    <button
-                      x-show="index > 0"
-                      @click="selectModule(index - 1)"
-                      class="px-4 py-2 rounded-lg font-medium transition-colors"
-                      :class="darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-gray-200 hover:bg-gray-300 text-gray-800'"
-                    >
-                      ← Módulo Anterior
-                    </button>
-                    <button
-                      x-show="index < modules.length - 1"
-                      @click="selectModule(index + 1)"
-                      class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition-colors ml-auto"
-                    >
-                      Siguiente Módulo →
-                    </button>
-                  </div>
-                </div>
-              </template>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Reference View -->
-      <div x-show="currentView === 'reference'" x-transition:enter.duration.300ms>
-        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-          🔍 Guía de Referencia Práctica
-        </h2>
-
-        <!-- Quick Access Tabs -->
-        <div class="mb-8">
-          <div class="flex flex-wrap gap-2 mb-6">
-            <button
-              @click="referenceTab = 'cheatsheet'"
-              :class="referenceTab === 'cheatsheet' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
-              class="px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              📋 Cheatsheet
-            </button>
-            <button
-              @click="referenceTab = 'fullstack'"
-              :class="referenceTab === 'fullstack' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
-              class="px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              🔗 Backend → Frontend
-            </button>
-            <button
-              @click="referenceTab = 'components'"
-              :class="referenceTab === 'components' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
-              class="px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              🧩 Componentes
-            </button>
-            <button
-              @click="referenceTab = 'styling'"
-              :class="referenceTab === 'styling' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
-              class="px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              🎨 Estilos
-            </button>
-            <button
-              @click="referenceTab = 'deployment'"
-              :class="referenceTab === 'deployment' ? 'bg-blue-500 text-white' : (darkMode ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300')"
-              class="px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              🚀 Despliegue
-            </button>
-          </div>
-        </div>
-
-        <!-- Cheatsheet Tab -->
-        <div x-show="referenceTab === 'cheatsheet'">
-          <!-- Explicación inicial para dummies -->
-          <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
-            <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
-              🤔 ¿Qué son estos comandos? - Para Dummies
-            </h4>
-            <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-              <strong>Concepto:</strong> Estos son comandos de terminal que usarás constantemente para crear, instalar y
-              ejecutar aplicaciones frontend.
-            </p>
-            <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-              <strong>Analogía backend:</strong> Como `npm init`, `npm install express` o `node server.js`, pero
-              específicos para proyectos frontend con Next.js y React.
-            </p>
-          </div>
-
-          <div class="space-y-8">
-            <!-- Quick Commands -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                ⚡ Comandos Rápidos
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    Crear proyecto Next.js
-                  </h4>
-                  <code
-                    class="block p-2 rounded text-sm transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    >npx create-next-app@latest mi-app --typescript --tailwind --app</code
-                  >
-                </div>
-                <div>
-                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    Instalar dependencias comunes
-                  </h4>
-                  <code
-                    class="block p-2 rounded text-sm transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    >npm install zod @tanstack/react-query lucide-react</code
-                  >
-                </div>
-                <div>
-                  <h4 class="font-medium mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    Ejecutar en desarrollo
-                  </h4>
-                  <code
-                    class="block p-2 rounded text-sm transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    >npm run dev</code
-                  >
-                </div>
-              </div>
-            </div>
-
-            <!-- File Structure -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                📁 Estructura de Proyecto Next.js - Guía Completa
-              </h3>
-
-              <!-- Explicación inicial -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
-                  🤔 ¿Cómo funciona la estructura? - Para Backend Developers
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Concepto:</strong> Next.js usa carpetas para crear rutas automáticamente (file-system based
-                  routing), similar a como Spring Boot puede usar anotaciones @GetMapping("/users/{id}").
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Analogía:</strong> Si en tu backend tienes /api/users/{id}, aquí tendrás
-                  src/app/users/[id]/page.tsx
-                </p>
-              </div>
-
-              <!-- Estructura básica generada por Next.js -->
-              <div class="mb-6">
-                <h4 class="font-semibold mb-3 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                  🏗️ Lo que Next.js crea automáticamente
-                </h4>
-                <pre
-                  class="p-4 rounded-lg text-xs overflow-x-auto transition-colors duration-300 mb-4"
-                  :class="darkMode ? 'bg-gray-900 text-green-400' : 'bg-gray-900 text-green-400'"
-                ><code>mi-proyecto-frontend/
-├── src/                       # 📂 Código fuente (opcional, pero recomendado)
-│   └── app/                   # 🚀 App Router (Next.js 14+)
-│       ├── favicon.ico        # 🔸 Icono del sitio
-│       ├── globals.css        # 🎨 Estilos CSS globales
-│       ├── layout.tsx         # 📋 Layout HTML base (obligatorio)
-│       └── page.tsx           # 🏠 Página principal "/" (obligatorio)
-├── public/                    # 📁 Archivos estáticos públicos
-│   ├── images/                # 🖼️ Imágenes
-│   ├── icons/                 # 🔸 Iconos
-│   └── robots.txt             # 🤖 SEO - robots
-├── node_modules/              # 📦 Dependencias (generado por npm)
-├── .next/                     # 🏗️ Build artifacts (generado por Next.js)
-├── package.json               # 📋 Configuración del proyecto
-├── package-lock.json          # 🔒 Lock de dependencias
-├── next.config.js             # ⚙️ Configuración de Next.js
-├── tailwind.config.js         # 🎨 Configuración de Tailwind CSS
-├── tsconfig.json              # 📘 Configuración de TypeScript
-├── .eslintrc.json             # 🔍 Reglas de código
-├── .gitignore                 # 🚫 Archivos ignorados por Git
-└── README.md                  # 📖 Documentación</code></pre>
-
-                <div class="text-xs mb-4" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-                  ✨ <strong>Generado por:</strong>
-                  <code>npx create-next-app@latest mi-proyecto --typescript --tailwind --app</code>
-                </div>
-              </div>
-
-              <!-- Carpetas y su funcionalidad -->
-              <div class="space-y-6">
-                <!-- App Router -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-green-400' : 'text-green-600'"
-                  >
-                    🚀 <strong>src/app/</strong> - Sistema de Rutas (App Router)
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Funcionalidad:</strong> Cada carpeta = ruta URL. Next.js convierte automáticamente la
-                    estructura de carpetas en rutas web.
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>src/app/
-├── layout.tsx              # 📋 Layout global (HTML base)
-├── page.tsx               # 🏠 Página "/" (home)
-├── loading.tsx            # ⏳ UI de carga global
-├── error.tsx              # ❌ UI de errores global
-├── not-found.tsx          # 🔍 Página 404 personalizada
-├── users/                 # 👥 Ruta "/users"
-│   ├── page.tsx          # 📄 Lista de usuarios "/users"
-│   ├── loading.tsx       # ⏳ Carga para esta sección
-│   ├── [id]/             # 🎯 Ruta dinámica "/users/123"
-│   │   ├── page.tsx      # 📄 Detalle usuario "/users/[id]"
-│   │   └── edit/         # ✏️ Ruta anidada "/users/123/edit"
-│   │       └── page.tsx  # 📄 Editar usuario
-│   └── new/              # ➕ Ruta "/users/new"
-│       └── page.tsx      # 📄 Crear usuario
-├── dashboard/            # 📊 Ruta "/dashboard"
-│   ├── layout.tsx        # 📋 Layout específico del dashboard
-│   ├── page.tsx          # 📄 Dashboard principal
-│   └── (tabs)/           # 📁 Grupo de rutas (no afecta URL)
-│       ├── analytics/    # 📈 "/dashboard/analytics"
-│       └── settings/     # ⚙️ "/dashboard/settings"
-└── api/                  # 🔌 API Routes (endpoints internos)
-    ├── users/
-    │   ├── route.ts       # GET/POST "/api/users"
-    │   └── [id]/
-    │       └── route.ts   # GET/PUT/DELETE "/api/users/[id]"
-    └── auth/
-        └── route.ts       # POST "/api/auth"</code></pre>
-                </div>
-
-                <!-- Components -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-green-400' : 'text-green-600'"
-                  >
-                    🧩 <strong>src/components/</strong> - Componentes Reutilizables
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Funcionalidad:</strong> Piezas de UI reutilizables, como tus clases de servicio pero para
-                    interfaz.
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>src/components/
-├── ui/                    # 🎨 Componentes básicos de UI
-│   ├── Button.tsx         # 🔘 Botón reutilizable
-│   ├── Input.tsx          # 📝 Campo de texto
-│   ├── Modal.tsx          # 🪟 Ventana modal
-│   ├── Card.tsx           # 📋 Tarjeta de contenido
-│   └── Table.tsx          # 📊 Tabla de datos
-├── forms/                 # 📋 Formularios específicos
-│   ├── UserForm.tsx       # 👤 Formulario de usuario
-│   ├── LoginForm.tsx      # 🔑 Formulario de login
-│   └── ContactForm.tsx    # 📧 Formulario de contacto
-├── layout/                # 📐 Componentes de estructura
-│   ├── Header.tsx         # 📋 Cabecera del sitio
-│   ├── Footer.tsx         # 📄 Pie de página
-│   ├── Sidebar.tsx        # 📑 Barra lateral
-│   └── Navigation.tsx     # 🧭 Navegación principal
-└── features/              # 🎯 Componentes por funcionalidad
-    ├── auth/              # 🔐 Componentes de autenticación
-    ├── users/             # 👥 Componentes de usuarios
-    └── dashboard/         # 📊 Componentes del dashboard</code></pre>
-                </div>
-
-                <!-- Lib -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-green-400' : 'text-green-600'"
-                  >
-                    📚 <strong>src/lib/</strong> - Lógica de Negocio y Utilidades
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Funcionalidad:</strong> Equivalente a tus services, repositories y utils del backend.
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>src/lib/
-├── api.ts                 # 🔌 Cliente HTTP (axios/fetch)
-├── auth.ts                # 🔐 Lógica de autenticación
-├── validations.ts         # ✅ Esquemas de validación (Zod)
-├── utils.ts               # 🛠️ Funciones de utilidad
-├── constants.ts           # 📋 Constantes de la app
-├── types.ts               # 📘 Tipos TypeScript globales
-├── db.ts                  # 🗄️ Configuración de BD (si usas)
-└── services/              # 🏗️ Servicios organizados
-    ├── userService.ts     # 👤 Lógica de usuarios
-    ├── authService.ts     # 🔑 Lógica de auth
-    └── apiService.ts      # 🔌 Llamadas a APIs</code></pre>
-                </div>
-
-                <!-- Hooks -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-green-400' : 'text-green-600'"
-                  >
-                    🪝 <strong>src/hooks/</strong> - Lógica Reutilizable
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Funcionalidad:</strong> Lógica de estado y efectos reutilizable entre componentes.
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>src/hooks/
-├── useAuth.ts             # 🔐 Hook de autenticación
-├── useUsers.ts            # 👥 Hook para gestión de usuarios
-├── useLocalStorage.ts     # 💾 Hook para localStorage
-├── useDebounce.ts         # ⏱️ Hook para debounce de búsquedas
-└── useApi.ts              # 🔌 Hook para llamadas a API</code></pre>
-                </div>
-
-                <!-- Public -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-green-400' : 'text-green-600'"
-                  >
-                    🌐 <strong>public/</strong> - Archivos Estáticos
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Funcionalidad:</strong> Archivos servidos directamente por el servidor, como tu carpeta
-                    static en backend.
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto"
-                    :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>public/
-├── images/                # 🖼️ Imágenes del sitio
-│   ├── logo.png          # 🏢 Logo de la empresa
-│   ├── hero-bg.jpg       # 🎨 Imagen de fondo
-│   └── avatars/          # 👤 Avatares de usuario
-├── icons/                 # 🔸 Iconos del sitio
-│   ├── favicon.ico       # 🔸 Icono del navegador
-│   ├── apple-icon.png    # 🍎 Icono de iOS
-│   └── android-icon.png  # 🤖 Icono de Android
-├── documents/             # 📄 Documentos descargables
-│   ├── terms.pdf         # 📋 Términos y condiciones
-│   └── manual.pdf        # 📖 Manual de usuario
-├── robots.txt             # 🤖 Instrucciones para crawlers
-└── sitemap.xml            # 🗺️ Mapa del sitio para SEO</code></pre>
-                </div>
-              </div>
-            </div>
-
-            <!-- Configuration Files Content -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-                ⚙️ Contenido de Archivos de Configuración
-              </h3>
-
-              <!-- Explicación inicial -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
-                  🤔 ¿Para qué sirve cada archivo de configuración?
-                </h4>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Concepto:</strong> Estos archivos configuran cómo funciona tu proyecto, similar a
-                  application.properties o application.yml en Spring Boot.
-                </p>
-              </div>
-
-              <div class="space-y-6">
-                <!-- Package.json -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-blue-400' : 'text-blue-600'"
-                  >
-                    📦 <strong>package.json</strong> - El Corazón del Proyecto
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Función:</strong> Define dependencias, scripts y metadatos del proyecto (como pom.xml en
-                    Maven)
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>{
-  "name": "mi-proyecto-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",           // 🚀 Ejecutar servidor de desarrollo
-    "build": "next build",       // 🏗️ Construir para producción
-    "start": "next start",       // ▶️ Ejecutar servidor de producción
-    "lint": "next lint",         // 🔍 Revisar calidad del código
-    "type-check": "tsc --noEmit" // 📘 Verificar tipos TypeScript
-  },
-  "dependencies": {
-    "react": "^18.0.0",          // ⚛️ Librería principal de UI
-    "react-dom": "^18.0.0",      // 🌐 React para navegadores
-    "next": "14.0.0",            // 🚀 Framework Next.js
-    "@types/node": "^20.0.0",    // 📘 Tipos de Node.js
-    "@types/react": "^18.0.0",   // 📘 Tipos de React
-    "typescript": "^5.0.0",      // 📘 Lenguaje TypeScript
-    "tailwindcss": "^3.3.0",     // 🎨 Framework CSS
-    "zod": "^3.22.0",           // ✅ Validación de esquemas
-    "@tanstack/react-query": "^5.0.0" // 🔄 Cache de datos
-  },
-  "devDependencies": {
-    "eslint": "^8.0.0",          // 🔍 Herramienta de linting
-    "eslint-config-next": "14.0.0", // ⚙️ Configuración ESLint
-    "@types/jest": "^29.0.0",    // 📘 Tipos para testing
-    "jest": "^29.0.0"            // 🧪 Framework de testing
-  }
-}</code></pre>
-                </div>
-
-                <!-- Next.config.js -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-blue-400' : 'text-blue-600'"
-                  >
-                    🚀 <strong>next.config.js</strong> - Configuración de Next.js
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Función:</strong> Configurar comportamiento del framework (como server.xml en Tomcat)
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // 🖼️ Optimización de imágenes
-  images: {
-    domains: ['api.miapp.com', 'cdn.miapp.com'], // Dominios permitidos
-    formats: ['image/webp', 'image/avif']        // Formatos modernos
-  },
-  
-  // 🔐 Variables de entorno públicas
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-    API_URL: process.env.API_URL
-  },
-  
-  // 🔀 Redirects automáticos (como @RequestMapping redirect)
-  async redirects() {
-    return [
-      {
-        source: '/old-dashboard',
-        destination: '/dashboard',
-        permanent: true, // HTTP 301
-      },
-    ]
-  },
-  
-  // 🛡️ Headers de seguridad (como CORS en Spring)
-  async headers() {
-    return [
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://miapp.com',
-          },
-        ],
-      },
-    ]
-  }
-}
-
-module.exports = nextConfig</code></pre>
-                </div>
-
-                <!-- TypeScript Config -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-blue-400' : 'text-blue-600'"
-                  >
-                    📘 <strong>tsconfig.json</strong> - Configuración de TypeScript
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Función:</strong> Define cómo TypeScript compila el código (como javac options)
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>{
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],      // 📚 APIs disponibles
-    "allowJs": true,                               // ✅ Permitir archivos .js
-    "skipLibCheck": true,                          // ⏭️ Saltar libs externas
-    "strict": true,                                // 🔒 Modo estricto (recomendado)
-    "noEmit": true,                               // 🚫 No generar .js (Next.js lo hace)
-    "esModuleInterop": true,                      // 🔄 Compatibilidad modules
-    "module": "esnext",                           // 📦 Sistema de módulos
-    "moduleResolution": "bundler",                // 🔍 Resolución de imports
-    "resolveJsonModule": true,                    // 📄 Importar archivos .json
-    "isolatedModules": true,                      // 🏝️ Cada archivo independiente
-    "jsx": "preserve",                            // ⚛️ Preservar JSX
-    "incremental": true,                          // ⚡ Compilación incremental
-    "plugins": [{"name": "next"}],                // 🚀 Plugin de Next.js
-    "baseUrl": ".",                               // 📂 Ruta base para imports
-    "paths": {
-      "@/*": ["./src/*"],                         // 🛤️ Alias: import from "@/components"
-      "@/components/*": ["./src/components/*"],   // 🧩 Componentes
-      "@/lib/*": ["./src/lib/*"],                 // 📚 Librerías
-      "@/hooks/*": ["./src/hooks/*"]              // 🪝 Custom hooks
-    }
-  },
-  "include": [
-    "next-env.d.ts",                              // 🔧 Tipos de Next.js
-    "**/*.ts",                                    // 📘 Archivos TypeScript
-    "**/*.tsx",                                   // ⚛️ Componentes React
-    ".next/types/**/*.ts"                         // 🏗️ Tipos auto-generados
-  ],
-  "exclude": ["node_modules"]                     // 🚫 Excluir dependencias
-}</code></pre>
-                </div>
-
-                <!-- Tailwind Config -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-blue-400' : 'text-blue-600'"
-                  >
-                    🎨 <strong>tailwind.config.js</strong> - Configuración de CSS
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Función:</strong> Define tema, colores y estilos del sitio
-                  </div>
-                  <pre
-                    class="p-3 rounded text-xs overflow-x-auto mb-2"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>/** @type {import('tailwindcss').Config} */
-module.exports = {
-  // 📂 Archivos donde buscar clases CSS
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  
-  darkMode: 'class', // 🌙 Dark mode por clase CSS
-  
-  theme: {
-    extend: {
-      // 🎨 Colores de marca personalizados
-      colors: {
-        primary: {
-          50: '#eff6ff',   // Muy claro
-          500: '#3b82f6',  // Base
-          600: '#2563eb',  // Oscuro
-          900: '#1e3a8a',  // Muy oscuro
-        }
-      },
-      
-      // 📏 Espaciados personalizados
-      spacing: {
-        '18': '4.5rem',    // Para margin, padding: m-18, p-18
-        '128': '32rem',    // Para layouts grandes
-      },
-      
-      // 🔤 Tipografías
-      fontFamily: {
-        'sans': ['Inter', 'sans-serif'],
-      }
-    },
-  },
-  
-  // 🔌 Plugins adicionales
-  plugins: [
-    require('@tailwindcss/forms'),      // 📝 Estilos formularios
-    require('@tailwindcss/typography'), // 📚 Estilos texto
-  ],
-}</code></pre>
-                </div>
-
-                <!-- Archivos Especiales Next.js -->
-                <div>
-                  <h5
-                    class="font-semibold mb-2 text-base flex items-center gap-2"
-                    :class="darkMode ? 'text-purple-400' : 'text-purple-600'"
-                  >
-                    🎯 <strong>Archivos Especiales de Next.js</strong> - Funciones Automáticas
-                  </h5>
-                  <div class="text-xs mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <strong>🎯 Función:</strong> Next.js reconoce estos nombres automáticamente y les da comportamientos
-                    especiales
-                  </div>
-
-                  <!-- Layout -->
-                  <div class="mb-4">
-                    <h6 class="font-medium mb-1 text-sm" :class="darkMode ? 'text-purple-300' : 'text-purple-700'">
-                      📋 <strong>layout.tsx</strong> - Estructura HTML Base
-                    </h6>
-                    <pre
-                      class="p-2 rounded text-xs overflow-x-auto mb-1"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    ><code>// Se ejecuta en TODAS las páginas de tu app
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    &lt;html lang="es"&gt;
-      &lt;body&gt;
-        &lt;header&gt;Navegación Global&lt;/header&gt;  {/* Aparece siempre */}
-        &lt;main&gt;{children}&lt;/main&gt;            {/* Contenido específico */}
-        &lt;footer&gt;Footer Global&lt;/footer&gt;     {/* Aparece siempre */}
-      &lt;/body&gt;
-    &lt;/html&gt;
-  )
-}</code></pre>
-                  </div>
-
-                  <!-- Page -->
-                  <div class="mb-4">
-                    <h6 class="font-medium mb-1 text-sm" :class="darkMode ? 'text-purple-300' : 'text-purple-700'">
-                      🏠 <strong>page.tsx</strong> - Contenido de la Página
-                    </h6>
-                    <pre
-                      class="p-2 rounded text-xs overflow-x-auto mb-1"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    ><code>// src/app/page.tsx = Página principal "/"
-// src/app/users/page.tsx = Página "/users"
-export default function HomePage() {
-  return (
-    &lt;div&gt;
-      &lt;h1&gt;Bienvenido a Mi App&lt;/h1&gt;
-      &lt;p&gt;Este contenido aparece en la ruta /&lt;/p&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                  </div>
-
-                  <!-- Loading -->
-                  <div class="mb-4">
-                    <h6 class="font-medium mb-1 text-sm" :class="darkMode ? 'text-purple-300' : 'text-purple-700'">
-                      ⏳ <strong>loading.tsx</strong> - UI de Carga Automática
-                    </h6>
-                    <pre
-                      class="p-2 rounded text-xs overflow-x-auto mb-1"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    ><code>// Next.js muestra esto automáticamente mientras carga
-export default function Loading() {
-  return (
-    &lt;div className="flex justify-center items-center h-64"&gt;
-      &lt;div className="animate-spin rounded-full h-12 w-12 border-b-2"&gt;&lt;/div&gt;
-      &lt;p&gt;Cargando datos...&lt;/p&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                  </div>
-
-                  <!-- Error -->
-                  <div class="mb-4">
-                    <h6 class="font-medium mb-1 text-sm" :class="darkMode ? 'text-purple-300' : 'text-purple-700'">
-                      ❌ <strong>error.tsx</strong> - Manejo de Errores
-                    </h6>
-                    <pre
-                      class="p-2 rounded text-xs overflow-x-auto"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                    ><code>'use client' // Los error boundaries necesitan interactividad
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error
-  reset: () =&gt; void
-}) {
-  return (
-    &lt;div className="text-center p-8"&gt;
-      &lt;h2&gt;¡Algo salió mal!&lt;/h2&gt;
-      &lt;p&gt;{error.message}&lt;/p&gt;
-      &lt;button onClick={reset}&gt;Intentar de nuevo&lt;/button&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Backend to Frontend Tab -->
-        <div x-show="referenceTab === 'fullstack'">
-          <div class="space-y-8">
-            <!-- Example 1: Create User -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                📋 Ejemplo Completo: Crear Usuario
-              </h3>
-
-              <!-- Explicación para dummies -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-blue-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-blue-800'">
-                  🤔 ¿Qué vamos a hacer? - Para Dummies
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Problema:</strong> Tu aplicación backend tiene un endpoint para crear usuarios, pero necesitas
-                  que los usuarios puedan crear cuentas desde una página web bonita.
-                </p>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Solución:</strong> Crear un formulario en React que tome los datos, los valide y los envíe a
-                  tu API backend.
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Flujo:</strong> Usuario llena formulario → React valida datos → Se envían al backend → Backend
-                  crea usuario en base de datos → Frontend muestra confirmación
-                </p>
-              </div>
-
-              <div class="space-y-6">
-                <!-- Step 1: Backend -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-green-600">🔧 BACKEND</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                      1️⃣ API Endpoint (Node.js/Express)
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >routes/users.js</code
-                      >
-                      o
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >controllers/userController.js</code
-                      >
-                    </p>
-                    <p class="mb-1">
-                      <strong>🎯 Propósito:</strong> Recibe datos del frontend, valida y guarda usuario en BD
-                    </p>
-                    <p class="mb-1">
-                      <strong>🔗 Endpoint:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >POST /api/users</code
-                      >
-                      - Crea un nuevo usuario
-                    </p>
-                    <p><strong>🧠 ¿Por qué aquí?</strong> Es tu lógica de backend familiar, como siempre has hecho</p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// routes/users.js - Tu backend Express familiar
-app.post('/api/users', async (req, res) => {
-  try {
-    const { name, email, role } = req.body;
-    
-    // Validación básica (como siempre haces)
-    if (!name || !email) {
-      return res.status(400).json({ 
-        success: false,
-        error: 'Name and email are required' 
-      });
-    }
-    
-    // Crear usuario en base de datos (Mongoose, Sequelize, Prisma, etc.)
-    const user = await User.create({ name, email, role: role || 'user' });
-    
-    // Respuesta estructurada para el frontend
-    res.status(201).json({
-      success: true,
-      data: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        createdAt: user.createdAt
-      },
-      message: 'Usuario creado exitosamente'
-    });
-  } catch (error) {
-    // Manejo de errores para el frontend
-    res.status(500).json({ 
-      success: false,
-      error: error.message,
-      code: 'USER_CREATION_FAILED'
-    });
-  }
-});</code></pre>
-                </div>
-
-                <!-- Step 2: Types -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-blue-600">📘 SHARED</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                      2️⃣ Tipos TypeScript Compartidos
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >src/lib/types.ts</code
-                      >
-                    </p>
-                    <p class="mb-1">
-                      <strong>🎯 Propósito:</strong> Definir interfaces que frontend y backend comparten
-                    </p>
-                    <p class="mb-1"><strong>🔗 Uso:</strong> Tanto en componentes React como en validaciones de API</p>
-                    <p><strong>🧠 ¿Por qué aquí?</strong> Como tus DTOs en backend, pero para TypeScript</p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/lib/types.ts - Contratos de datos compartidos
-// Como tus interfaces/DTOs en backend, pero para el frontend
-
-// Usuario completo (respuesta de la API)
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: 'admin' | 'user';
-  createdAt: string;
-  updatedAt: string;
-}
-
-// Datos para crear usuario (request al backend)
-export interface CreateUserRequest {
-  name: string;
-  email: string;
-  role?: 'admin' | 'user';
-}
-
-// Respuesta estándar de tu API (como siempre estructuras tus responses)
-export interface ApiResponse&lt;T&gt; {
-  success: boolean;
-  data?: T;
-  error?: string;
-  code?: string;
-  message?: string;
-}
-
-// Estados del formulario (para React)
-export interface CreateUserFormData {
-  name: string;
-  email: string;
-  role: 'admin' | 'user';
-  // Estados de UI
-  isSubmitting?: boolean;
-  errors?: Record&lt;string, string&gt;;
-}</code></pre>
-                </div>
-
-                <!-- Step 3: API Client -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-purple-600">🌐 FRONTEND</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
-                      3️⃣ Cliente API (HTTP Client)
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >src/lib/api.ts</code
-                      >
-                    </p>
-                    <p class="mb-1"><strong>🎯 Propósito:</strong> Funciones que conectan frontend con tu backend</p>
-                    <p class="mb-1"><strong>🔗 Uso:</strong> Wrapper de fetch() con manejo de errores y tipos</p>
-                    <p>
-                      <strong>🧠 ¿Por qué aquí?</strong> Como Axios/HTTP client, pero con TypeScript y específico para
-                      tu API
-                    </p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/lib/api.ts - Cliente HTTP para comunicarse con tu backend
-import { User, CreateUserRequest, ApiResponse } from './types';
-
-// URL base de tu API backend
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-
-// Función para crear usuario (llama a tu endpoint backend)
-export async function createUser(userData: CreateUserRequest): Promise&lt;User&gt; {
-  try {
-    const response = await fetch(\`\${API_BASE_URL}/api/users\`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // Si usas auth: 'Authorization': \`Bearer \${token}\`
-      },
-      body: JSON.stringify(userData),
-    });
-
-    // Parsear respuesta JSON
-    const result: ApiResponse&lt;User&gt; = await response.json();
-    
-    // Manejar errores del backend
-    if (!response.ok || !result.success) {
-      throw new Error(result.error || 'Error creating user');
-    }
-
-    return result.data!; // Retornar solo los datos del usuario
-    
-  } catch (error) {
-    // Re-throw con mensaje más descriptivo
-    throw new Error(
-      error instanceof Error ? error.message : 'Network error'
-    );
-  }
-}
-
-// Función para obtener usuarios (para el siguiente ejemplo)
-export async function getUsers(): Promise&lt;User[]&gt; {
-  const response = await fetch(\`\${API_BASE_URL}/api/users\`);
-  const result: ApiResponse&lt;User[]&gt; = await response.json();
-  
-  if (!result.success) throw new Error(result.error);
-  return result.data || [];
-}</code></pre>
-                </div>
-
-                <!-- Step 4: Form Component -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-orange-400' : 'border-orange-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-orange-600">⚛️ FRONTEND</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
-                      4️⃣ Componente React (Formulario)
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >src/components/forms/CreateUserForm.tsx</code
-                      >
-                    </p>
-                    <p class="mb-1">
-                      <strong>🎯 Propósito:</strong> Interfaz de usuario para crear usuarios con validación
-                    </p>
-                    <p class="mb-1"><strong>🔗 Uso:</strong> Se importa en páginas que necesiten crear usuarios</p>
-                    <p>
-                      <strong>🧠 ¿Por qué aquí?</strong> Componente reutilizable que maneja estado, validación y envío a
-                      la API
-                    </p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>'use client';
-
-import { useState } from 'react';
-import { createUser } from '@/lib/api';
-import { CreateUserRequest } from '@/lib/types';
-
-export default function CreateUserForm() {
-  const [formData, setFormData] = useState&lt;CreateUserRequest&gt;({
-    name: '',
-    email: '',
-    role: 'user'
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState&lt;{ type: 'success' | 'error'; text: string } | null&gt;(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setMessage(null);
-
-    try {
-      const newUser = await createUser(formData);
-      setMessage({ type: 'success', text: 'Usuario creado exitosamente!' });
-      setFormData({ name: '', email: '', role: 'user' }); // Reset form
-    } catch (error) {
-      setMessage({ 
-        type: 'error', 
-        text: error instanceof Error ? error.message : 'Error desconocido' 
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  return (
-    &lt;form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"&gt;
-      &lt;h2 className="text-2xl font-bold mb-6 text-gray-800"&gt;Crear Usuario&lt;/h2&gt;
-      
-      {/* Message */}
-      {message && (
-        &lt;div className={\`mb-4 p-3 rounded \${
-          message.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-        }\`}&gt;
-          {message.text}
-        &lt;/div&gt;
-      )}
-
-      {/* Name Field */}
-      &lt;div className="mb-4"&gt;
-        &lt;label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2"&gt;
-          Nombre *
-        &lt;/label&gt;
-        &lt;input
-          type="text"
-          id="name"
-          value={formData.name}
-          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        /&gt;
-      &lt;/div&gt;
-
-      {/* Email Field */}
-      &lt;div className="mb-4"&gt;
-        &lt;label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2"&gt;
-          Email *
-        &lt;/label&gt;
-        &lt;input
-          type="email"
-          id="email"
-          value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        /&gt;
-      &lt;/div&gt;
-
-      {/* Role Field */}
-      &lt;div className="mb-6"&gt;
-        &lt;label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2"&gt;
-          Rol
-        &lt;/label&gt;
-        &lt;select
-          id="role"
-          value={formData.role}
-          onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value as 'admin' | 'user' }))}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        &gt;
-          &lt;option value="user"&gt;Usuario&lt;/option&gt;
-          &lt;option value="admin"&gt;Administrador&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/div&gt;
-
-      {/* Submit Button */}
-      &lt;button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-      &gt;
-        {isLoading ? 'Creando...' : 'Crear Usuario'}
-      &lt;/button&gt;
-    &lt;/form&gt;
-  );
-}</code></pre>
-                </div>
-
-                <!-- Step 5: Page Integration -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-pink-400' : 'border-pink-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-pink-600">⚛️ FRONTEND</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-pink-400' : 'text-pink-600'">
-                      5️⃣ Integrar en Página
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >src/app/users/create/page.tsx</code
-                      >
-                    </p>
-                    <p class="mb-1">
-                      <strong>🎯 Propósito:</strong> Página de Next.js que usa el componente CreateUserForm
-                    </p>
-                    <p class="mb-1"><strong>🔗 Ruta:</strong> Se accede en <code>/users/create</code></p>
-                    <p>
-                      <strong>🧠 ¿Por qué aquí?</strong> Next.js crea rutas automáticamente basado en la estructura de
-                      carpetas
-                    </p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/app/users/create/page.tsx
-import CreateUserForm from '@/components/forms/CreateUserForm';
-
-export default function CreateUserPage() {
-  return (
-    &lt;div className="container mx-auto py-8"&gt;
-      &lt;div className="max-w-2xl mx-auto"&gt;
-        &lt;h1 className="text-3xl font-bold text-center mb-8 text-gray-800"&gt;
-          Nuevo Usuario
-        &lt;/h1&gt;
-        &lt;CreateUserForm /&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-}
-
-// Metadata para SEO
-export const metadata = {
-  title: 'Crear Usuario - Mi App',
-  description: 'Crear un nuevo usuario en el sistema',
-};</code></pre>
-                </div>
-
-                <!-- Step 6: Environment Variables -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-red-400' : 'border-red-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-red-600">⚙️ CONFIG</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-red-400' : 'text-red-600'">
-                      6️⃣ Variables de Entorno
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >.env.local</code
-                      >
-                    </p>
-                    <p class="mb-1"><strong>🎯 Propósito:</strong> Configuración de URLs y variables de entorno</p>
-                    <p class="mb-1"><strong>🔗 Uso:</strong> Variables accesibles desde components y API routes</p>
-                    <p><strong>🧠 ¿Por qué aquí?</strong> Como variables de entorno en backend, pero para frontend</p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code># .env.local - Variables de desarrollo
-NEXT_PUBLIC_API_URL=http://localhost:3001
-NEXT_PUBLIC_APP_NAME=Mi App Local
-
-# En producción (.env.production)
-# NEXT_PUBLIC_API_URL=https://api.miapp.com
-# NEXT_PUBLIC_APP_NAME=Mi App</code></pre>
-                </div>
-
-                <!-- Step 7: Next.js Project Structure -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-cyan-400' : 'border-cyan-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-cyan-600">🏗️ ESTRUCTURA</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-cyan-400' : 'text-cyan-600'">
-                      7️⃣ Estructura de Proyecto Next.js
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>🎯 Propósito:</strong> Organización estándar de carpetas y archivos en Next.js
-                    </p>
-                    <p>
-                      <strong>🧠 ¿Por qué así?</strong> Next.js usa convenciones para routing automático y
-                      optimizaciones
-                    </p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>mi-proyecto/
-├── src/app/                     # 🚀 App Router (Next.js 13+) - Routing automático
-│   ├── layout.tsx              # 📋 Layout global (Header/Footer compartidos)
-│   ├── page.tsx                # 🏠 Página principal (/)
-│   ├── loading.tsx             # ⏳ UI de loading global
-│   ├── error.tsx               # ❌ UI de error global
-│   ├── not-found.tsx           # 404 Page personalizada
-│   ├── globals.css             # 🎨 Estilos globales (Tailwind)
-│   ├── users/                  # 👥 Funcionalidades de usuarios
-│   │   ├── page.tsx           # Lista usuarios (/users)
-│   │   ├── create/
-│   │   │   └── page.tsx       # Crear usuario (/users/create)
-│   │   └── [id]/
-│   │       ├── page.tsx       # Ver usuario (/users/123)
-│   │       └── edit/
-│   │           └── page.tsx   # Editar usuario (/users/123/edit)
-│   └── api/                    # 🔌 API Routes (endpoints internos)
-│       └── users/
-│           └── route.ts       # POST/GET /api/users
-├── src/components/             # ⚛️ Componentes React reutilizables
-│   ├── ui/                    # 🧩 Componentes UI básicos
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   └── Modal.tsx
-│   ├── forms/                 # 📝 Componentes de formularios
-│   │   └── CreateUserForm.tsx
-│   └── layout/                # 📐 Componentes de layout
-│       ├── Header.tsx
-│       └── Footer.tsx
-├── src/lib/                    # 🛠️ Utilidades y configuraciones
-│   ├── api.ts                 # 🌐 Cliente HTTP para API calls
-│   ├── types.ts               # 📘 Tipos TypeScript compartidos
-│   └── utils.ts               # 🔧 Funciones utilitarias
-├── public/                     # 📂 Archivos estáticos
-│   ├── favicon.ico
-│   └── images/
-├── .env.local                  # 🔐 Variables de entorno locales
-├── next.config.js              # ⚙️ Configuración de Next.js
-├── tailwind.config.js          # 🎨 Configuración de Tailwind
-├── tsconfig.json              # 📘 Configuración de TypeScript
-└── package.json               # 📦 Dependencias y scripts</code></pre>
-                </div>
-
-                <!-- Step 8: Configuration Files Details -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-yellow-400' : 'border-yellow-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-yellow-600">📋 DETALLES</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-yellow-400' : 'text-yellow-600'">
-                      8️⃣ Archivos de Configuración - Contenido Detallado
-                    </h4>
-                  </div>
-                  <div class="mb-4 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p>
-                      <strong>🧠 ¿Qué aprenderás?</strong> El contenido exacto de cada archivo de configuración y por
-                      qué es necesario
-                    </p>
-                  </div>
-
-                  <!-- Package.json -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      📦 package.json - El corazón del proyecto
-                    </h5>
-                    <div class="mb-2 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                      <p><strong>🎯 Función:</strong> Define dependencias, scripts y metadatos del proyecto</p>
-                      <p><strong>🔧 Creado por:</strong> <code>npm create next-app@latest</code></p>
-                    </div>
-                    <pre
-                      class="p-3 rounded text-xs overflow-x-auto mb-4"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                    ><code>{
-  "name": "mi-proyecto-frontend",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",           // 🚀 Servidor de desarrollo
-    "build": "next build",       // 🏗️ Build para producción  
-    "start": "next start",       // ▶️ Servidor de producción
-    "lint": "next lint",         // 🔍 Revisar código
-    "type-check": "tsc --noEmit" // 📘 Verificar tipos TS
-  },
-  "dependencies": {
-    "react": "^18.0.0",          // ⚛️ Librería principal
-    "react-dom": "^18.0.0",      // 🌐 React para DOM
-    "next": "14.0.0",            // 🚀 Framework Next.js
-    "@types/node": "^20.0.0",    // 📘 Tipos para Node.js
-    "@types/react": "^18.0.0",   // 📘 Tipos para React
-    "typescript": "^5.0.0",      // 📘 TypeScript
-    "tailwindcss": "^3.3.0"      // 🎨 Framework CSS
-  },
-  "devDependencies": {
-    "eslint": "^8.0.0",          // 🔍 Linter para JS/TS
-    "eslint-config-next": "14.0.0" // ⚙️ Configuración ESLint para Next.js
-  }
-}</code></pre>
-                  </div>
-
-                  <!-- Next.config.js -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      ⚙️ next.config.js - Configuración de Next.js
-                    </h5>
-                    <div class="mb-2 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                      <p>
-                        <strong>🎯 Función:</strong> Configurar comportamiento de Next.js, optimizaciones, redirects
-                      </p>
-                      <p><strong>🔧 Creado por:</strong> Tú lo creas según necesidades del proyecto</p>
-                    </div>
-                    <pre
-                      class="p-3 rounded text-xs overflow-x-auto mb-4"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                    ><code>/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // 🖼️ Configuración de optimización de imágenes
-  images: {
-    domains: ['api.miapp.com', 'cdn.miapp.com'], // Dominios permitidos
-    formats: ['image/webp', 'image/avif']        // Formatos modernos
-  },
-  
-  // 🔐 Variables de entorno públicas
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
-  
-  // 🔀 Redirects automáticos
-  async redirects() {
-    return [
-      {
-        source: '/old-page',
-        destination: '/new-page',
-        permanent: true, // 301 redirect
-      },
-    ]
-  },
-  
-  // 🛡️ Headers de seguridad
-  async headers() {
-    return [
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://miapp.com',
-          },
-        ],
-      },
-    ]
-  },
-  
-  // ⚡ Configuración experimental
-  experimental: {
-    serverActions: true, // Habilitar Server Actions
-  },
-}
-
-module.exports = nextConfig</code></pre>
-                  </div>
-
-                  <!-- TypeScript config -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      📘 tsconfig.json - Configuración de TypeScript
-                    </h5>
-                    <div class="mb-2 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                      <p><strong>🎯 Función:</strong> Define cómo TypeScript compila y valida el código</p>
-                      <p><strong>🔧 Creado por:</strong> Next.js automáticamente al detectar archivos .ts/.tsx</p>
-                    </div>
-                    <pre
-                      class="p-3 rounded text-xs overflow-x-auto mb-4"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                    ><code>{
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],      // 📚 Librerías disponibles
-    "allowJs": true,                               // ✅ Permitir archivos JS
-    "skipLibCheck": true,                          // ⏭️ Saltar verificación de libs
-    "strict": true,                                // 🔒 Modo estricto (recomendado)
-    "noEmit": true,                               // 🚫 No generar archivos JS (Next.js lo hace)
-    "esModuleInterop": true,                      // 🔄 Interop con CommonJS
-    "module": "esnext",                           // 📦 Sistema de módulos
-    "moduleResolution": "bundler",                // 🔍 Resolución de módulos
-    "resolveJsonModule": true,                    // 📄 Importar archivos JSON
-    "isolatedModules": true,                      // 🏝️ Cada archivo como módulo
-    "jsx": "preserve",                            // ⚛️ Preservar JSX para Next.js
-    "incremental": true,                          // ⚡ Compilación incremental
-    "plugins": [
-      {
-        "name": "next"                            // 🚀 Plugin oficial de Next.js
-      }
-    ],
-    "baseUrl": ".",                               // 📂 Ruta base
-    "paths": {
-      "@/*": ["./src/*"],                         // 🛤️ Alias para imports
-      "@/components/*": ["./src/components/*"],
-      "@/lib/*": ["./src/lib/*"]
-    }
-  },
-  "include": [
-    "next-env.d.ts",                              // 🔧 Tipos de Next.js
-    "**/*.ts",                                    // 📘 Todos los archivos TS
-    "**/*.tsx",                                   // ⚛️ Todos los archivos TSX
-    ".next/types/**/*.ts"                         // 🏗️ Tipos generados por Next.js
-  ],
-  "exclude": [
-    "node_modules"                                // 🚫 Excluir dependencias
-  ]
-}</code></pre>
-                  </div>
-
-                  <!-- Tailwind config -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      🎨 tailwind.config.js - Configuración de Tailwind CSS
-                    </h5>
-                    <div class="mb-2 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                      <p><strong>🎯 Función:</strong> Define tema, colores, breakpoints y plugins de Tailwind</p>
-                      <p><strong>🔧 Creado por:</strong> <code>npx tailwindcss init -p</code></p>
-                    </div>
-                    <pre
-                      class="p-3 rounded text-xs overflow-x-auto mb-4"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                    ><code>/** @type {import('tailwindcss').Config} */
-module.exports = {
-  // 📂 Archivos donde buscar clases de Tailwind
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  
-  // 🌙 Configuración de dark mode
-  darkMode: 'class', // o 'media' para automático
-  
-  theme: {
-    extend: {
-      // 🎨 Colores personalizados (además de los por defecto)
-      colors: {
-        primary: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          900: '#1e3a8a',
-        },
-        brand: {
-          light: '#f3f4f6',
-          dark: '#1f2937',
-        }
-      },
-      
-      // 📏 Espaciados personalizados
-      spacing: {
-        '18': '4.5rem',    // space-18, p-18, m-18, etc.
-        '88': '22rem',
-        '128': '32rem',
-      },
-      
-      // 🔤 Fuentes personalizadas
-      fontFamily: {
-        'custom': ['Inter', 'sans-serif'],
-      },
-      
-      // 📱 Breakpoints personalizados
-      screens: {
-        'xs': '475px',     // @media (min-width: 475px)
-        '3xl': '1600px',   // @media (min-width: 1600px)
-      },
-      
-      // 🎭 Animaciones personalizadas
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-      },
-      
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        }
-      }
-    },
-  },
-  
-  // 🔌 Plugins adicionales
-  plugins: [
-    require('@tailwindcss/forms'),      // 📝 Estilos para formularios
-    require('@tailwindcss/typography'), // 📚 Estilos tipográficos
-    require('@tailwindcss/aspect-ratio'), // 📐 Ratios de aspecto
-  ],
-}</code></pre>
-                  </div>
-
-                  <!-- ESLint config -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      🔍 .eslintrc.json - Configuración del Linter
-                    </h5>
-                    <div class="mb-2 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                      <p><strong>🎯 Función:</strong> Define reglas de calidad de código y estilo</p>
-                      <p><strong>🔧 Creado por:</strong> Next.js automáticamente (opcional personalizar)</p>
-                    </div>
-                    <pre
-                      class="p-3 rounded text-xs overflow-x-auto mb-4"
-                      :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                    ><code>{
-  "extends": [
-    "next/core-web-vitals",        // 🚀 Reglas de Next.js para performance
-    "next/typescript"              // 📘 Reglas específicas para TypeScript
-  ],
-  "rules": {
-    // 🚫 Errores que queremos evitar
-    "no-unused-vars": "error",           // Variables no utilizadas
-    "no-console": "warn",                // Console.log en producción
-    
-    // ⚛️ Reglas específicas de React
-    "react/no-unescaped-entities": "off",  // Permitir entidades HTML
-    "react/display-name": "off",           // No requerir displayName
-    
-    // 📘 Reglas de TypeScript
-    "@typescript-eslint/no-unused-vars": ["error", { 
-      "argsIgnorePattern": "^_" 
-    }],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    
-    // 📝 Reglas de formateo (mejor usar Prettier)
-    "indent": ["error", 2],              // Indentación de 2 espacios
-    "quotes": ["error", "single"],       // Comillas simples
-    "semi": ["error", "always"],         // Siempre punto y coma
-  },
-  
-  // 🌍 Variables globales disponibles
-  "globals": {
-    "React": "readonly",
-    "JSX": "readonly"
-  },
-  
-  // 📂 Archivos donde aplicar las reglas
-  "overrides": [
-    {
-      "files": ["**/*.ts", "**/*.tsx"],
-      "rules": {
-        // Reglas específicas solo para TypeScript
-        "@typescript-eslint/no-explicit-any": "warn"
-      }
-    }
-  ]
-}</code></pre>
-                  </div>
-
-                  <!-- Archivos especiales de Next.js -->
-                  <div class="mb-6">
-                    <h5 class="font-semibold mb-2 text-lg" :class="darkMode ? 'text-yellow-300' : 'text-yellow-700'">
-                      🚀 Archivos Especiales de Next.js (creados automáticamente)
-                    </h5>
-
-                    <!-- Layout file -->
-                    <div class="mb-4">
-                      <h6 class="font-medium mb-1 text-base" :class="darkMode ? 'text-yellow-200' : 'text-yellow-800'">
-                        📋 src/app/layout.tsx - Layout Global
-                      </h6>
-                      <p class="text-xs mb-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-                        <strong>Función:</strong> Estructura HTML base que envuelve todas las páginas
-                      </p>
-                      <pre
-                        class="p-2 rounded text-xs overflow-x-auto"
-                        :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                      ><code>// Se aplica a TODAS las páginas de tu app
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    &lt;html lang="es"&gt;
-      &lt;body&gt;
-        &lt;header&gt;Nav global&lt;/header&gt;  {/* Aparece en todas las páginas */}
-        &lt;main&gt;{children}&lt;/main&gt;      {/* Contenido específico de cada página */}
-        &lt;footer&gt;Footer global&lt;/footer&gt; {/* Aparece en todas las páginas */}
-      &lt;/body&gt;
-    &lt;/html&gt;
-  )
-}</code></pre>
-                    </div>
-
-                    <!-- Page file -->
-                    <div class="mb-4">
-                      <h6 class="font-medium mb-1 text-base" :class="darkMode ? 'text-yellow-200' : 'text-yellow-800'">
-                        🏠 src/app/page.tsx - Página Principal
-                      </h6>
-                      <p class="text-xs mb-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-                        <strong>Función:</strong> Contenido de la ruta raíz (/), equivale a index.html
-                      </p>
-                      <pre
-                        class="p-2 rounded text-xs overflow-x-auto"
-                        :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                      ><code>// Esta función se ejecuta cuando alguien visita "/"
-export default function HomePage() {
-  return (
-    &lt;div&gt;
-      &lt;h1&gt;Bienvenido a Mi App&lt;/h1&gt;
-      &lt;p&gt;Esta es la página principal&lt;/p&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                    </div>
-
-                    <!-- Loading file -->
-                    <div class="mb-4">
-                      <h6 class="font-medium mb-1 text-base" :class="darkMode ? 'text-yellow-200' : 'text-yellow-800'">
-                        ⏳ src/app/loading.tsx - UI de Carga
-                      </h6>
-                      <p class="text-xs mb-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-                        <strong>Función:</strong> Se muestra automáticamente mientras cargan las páginas
-                      </p>
-                      <pre
-                        class="p-2 rounded text-xs overflow-x-auto"
-                        :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                      ><code>// Next.js muestra esto automáticamente durante cargas
-export default function Loading() {
-  return (
-    &lt;div className="flex justify-center items-center h-screen"&gt;
-      &lt;div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"&gt;&lt;/div&gt;
-      &lt;p&gt;Cargando...&lt;/p&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                    </div>
-
-                    <!-- Error file -->
-                    <div class="mb-4">
-                      <h6 class="font-medium mb-1 text-base" :class="darkMode ? 'text-yellow-200' : 'text-yellow-800'">
-                        ❌ src/app/error.tsx - UI de Error
-                      </h6>
-                      <p class="text-xs mb-2" :class="darkMode ? 'text-gray-400' : 'text-gray-600'">
-                        <strong>Función:</strong> Se muestra cuando ocurre un error en cualquier página
-                      </p>
-                      <pre
-                        class="p-2 rounded text-xs overflow-x-auto"
-                        :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-800 text-gray-200'"
-                      ><code>'use client' // Los error boundaries requieren ser Client Components
-
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error
-  reset: () =&gt; void
-}) {
-  return (
-    &lt;div className="text-center p-8"&gt;
-      &lt;h2 className="text-2xl font-bold text-red-600 mb-4"&gt;¡Algo salió mal!&lt;/h2&gt;
-      &lt;p className="text-gray-600 mb-4"&gt;{error.message}&lt;/p&gt;
-      &lt;button 
-        onClick={reset}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      &gt;
-        Intentar de nuevo
-      &lt;/button&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Example 2: Display Users -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                📋 Ejemplo: Mostrar Lista de Usuarios
-              </h3>
-
-              <!-- Explicación para dummies -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-green-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-green-800'">
-                  🤔 ¿Qué vamos a hacer? - Para Dummies
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Problema:</strong> Tienes usuarios guardados en tu base de datos y necesitas mostrarlos en una
-                  página web de forma atractiva y funcional.
-                </p>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Solución:</strong> Crear una página React que consulte tu API y muestre los usuarios en una
-                  tabla o tarjetas con opciones para ver detalles.
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Flujo:</strong> Página carga → React consulta API endpoint /users → Backend devuelve lista →
-                  Frontend renderiza tabla → Usuario puede interactuar
-                </p>
-              </div>
-
-              <div class="space-y-6">
-                <!-- Users List Component -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-indigo-400' : 'border-indigo-500'">
-                  <div class="flex items-center gap-2 mb-2">
-                    <span class="px-2 py-1 rounded text-xs font-bold text-white bg-indigo-600">⚛️ FRONTEND</span>
-                    <h4 class="font-bold" :class="darkMode ? 'text-indigo-400' : 'text-indigo-600'">
-                      📄 Lista de Usuarios (Server Component)
-                    </h4>
-                  </div>
-                  <div class="mb-3 text-sm" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p class="mb-1">
-                      <strong>📁 Archivo:</strong>
-                      <code
-                        class="px-1 py-0.5 rounded"
-                        :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                        >src/app/users/page.tsx</code
-                      >
-                    </p>
-                    <p class="mb-1"><strong>🎯 Propósito:</strong> Página que muestra lista de usuarios desde la API</p>
-                    <p class="mb-1"><strong>🔗 Ruta:</strong> Se accede en <code>/users</code></p>
-                    <p>
-                      <strong>🧠 ¿Por qué aquí?</strong> Server Component de Next.js - se ejecuta en servidor, más
-                      rápido
-                    </p>
-                  </div>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/app/users/page.tsx
-import Link from 'next/link';
-import { getUsers } from '@/lib/api';
-
-export default async function UsersPage() {
-  // Esto se ejecuta en el servidor
-  const users = await getUsers();
-
-  return (
-    &lt;div className="container mx-auto py-8"&gt;
-      &lt;div className="flex justify-between items-center mb-6"&gt;
-        &lt;h1 className="text-3xl font-bold text-gray-800"&gt;Usuarios&lt;/h1&gt;
-        &lt;Link
-          href="/users/create"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-        &gt;
-          ➕ Nuevo Usuario
-        &lt;/Link&gt;
-      &lt;/div&gt;
-
-      &lt;div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"&gt;
-        {users.map((user) => (
-          &lt;div
-            key={user.id}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
-          &gt;
-            &lt;h3 className="text-lg font-semibold text-gray-800 mb-2"&gt;
-              {user.name}
-            &lt;/h3&gt;
-            &lt;p className="text-gray-600 mb-1"&gt;{user.email}&lt;/p&gt;
-            &lt;p className="text-sm text-gray-500 mb-3"&gt;
-              Rol: {user.role === 'admin' ? '👑 Admin' : '👤 Usuario'}
-            &lt;/p&gt;
-            &lt;div className="flex space-x-2"&gt;
-              &lt;Link
-                href={\`/users/\${user.id}\`}
-                className="text-blue-500 hover:text-blue-700 text-sm"
-              &gt;
-                Ver detalles
-              &lt;/Link&gt;
-              &lt;Link
-                href={\`/users/\${user.id}/edit\`}
-                className="text-green-500 hover:text-green-700 text-sm"
-              &gt;
-                Editar
-              &lt;/Link&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        ))}
-      &lt;/div&gt;
-
-      {users.length === 0 && (
-        &lt;div className="text-center py-8"&gt;
-          &lt;p className="text-gray-500 mb-4"&gt;No hay usuarios registrados&lt;/p&gt;
-          &lt;Link
-            href="/users/create"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-          &gt;
-            Crear primer usuario
-          &lt;/Link&gt;
-        &lt;/div&gt;
-      )}
-    &lt;/div&gt;
-  );
-}
-
-export const metadata = {
-  title: 'Usuarios - Mi App',
-  description: 'Lista de todos los usuarios del sistema',
-};</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Components Tab -->
-        <div x-show="referenceTab === 'components'">
-          <div class="space-y-6">
-            <!-- Reusable Components -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                🧩 Componentes Reutilizables
-              </h3>
-
-              <!-- Explicación para dummies -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-purple-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-purple-800'">
-                  🤔 ¿Qué son los componentes? - Para Dummies
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Concepto:</strong> Un componente es como una función reutilizable pero para HTML. En lugar de
-                  copiar y pegar botones, formularios o tarjetas, los creas una vez y los usas donde necesites.
-                </p>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Analogía backend:</strong> Como crear una función `sendEmail()` que usas en múltiples partes
-                  de tu aplicación, pero para elementos visuales.
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Beneficio:</strong> Cambias el diseño del botón en un solo lugar y se actualiza en toda la
-                  aplicación automáticamente.
-                </p>
-              </div>
-
-              <div class="space-y-6">
-                <!-- Button Component -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    🔘 Botón Reutilizable
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/components/ui/Button.tsx</code
-                    >
-                  </p>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/components/ui/Button.tsx
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-  isLoading?: boolean;
-  disabled?: boolean;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-}
-
-export default function Button({
-  children,
-  variant = 'primary',
-  size = 'md',
-  isLoading = false,
-  disabled = false,
-  onClick,
-  type = 'button'
-}: ButtonProps) {
-  const baseClasses = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
-  const variantClasses = {
-    primary: 'bg-blue-500 text-white hover:bg-blue-600 focus:ring-blue-500',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500',
-    danger: 'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500'
-  };
-  
-  const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg'
-  };
-
-  return (
-    &lt;button
-      type={type}
-      onClick={onClick}
-      disabled={disabled || isLoading}
-      className={\`\${baseClasses} \${variantClasses[variant]} \${sizeClasses[size]} \${
-        (disabled || isLoading) ? 'opacity-50 cursor-not-allowed' : ''
-      }\`}
-    &gt;
-      {isLoading ? (
-        &lt;div className="flex items-center space-x-2"&gt;
-          &lt;div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"&gt;&lt;/div&gt;
-          &lt;span&gt;Cargando...&lt;/span&gt;
-        &lt;/div&gt;
-      ) : (
-        children
-      )}
-    &lt;/button&gt;
-  );
-}
-
-// Uso:
-// &lt;Button variant="primary" onClick={() => console.log('Click!')}&gt;
-//   Guardar
-// &lt;/Button&gt;</code></pre>
-                </div>
-
-                <!-- Input Component -->
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                    📝 Input Reutilizable
-                  </h4>
-                  <p class="text-sm mb-3" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    Archivo:
-                    <code
-                      class="px-1 py-0.5 rounded"
-                      :class="darkMode ? 'bg-gray-700 text-yellow-300' : 'bg-gray-200 text-gray-800'"
-                      >src/components/ui/Input.tsx</code
-                    >
-                  </p>
-                  <pre
-                    class="p-4 rounded-lg text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>// src/components/ui/Input.tsx
-interface InputProps {
-  label: string;
-  type?: 'text' | 'email' | 'password' | 'number';
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  error?: string;
-  required?: boolean;
-  disabled?: boolean;
-}
-
-export default function Input({
-  label,
-  type = 'text',
-  value,
-  onChange,
-  placeholder,
-  error,
-  required = false,
-  disabled = false
-}: InputProps) {
-  const id = label.toLowerCase().replace(/\s+/g, '-');
-
-  return (
-    &lt;div className="mb-4"&gt;
-      &lt;label 
-        htmlFor={id} 
-        className="block text-sm font-medium text-gray-700 mb-2"
-      &gt;
-        {label} {required && &lt;span className="text-red-500"&gt;*&lt;/span&gt;}
-      &lt;/label&gt;
-      
-      &lt;input
-        type={type}
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        required={required}
-        disabled={disabled}
-        className={\`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 transition-colors \${
-          error 
-            ? 'border-red-300 focus:ring-red-500' 
-            : 'border-gray-300 focus:ring-blue-500'
-        } \${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}\`}
-      /&gt;
-      
-      {error && (
-        &lt;p className="mt-1 text-sm text-red-600"&gt;{error}&lt;/p&gt;
-      )}
-    &lt;/div&gt;
-  );
-}
-
-// Uso:
-// &lt;Input
-//   label="Email"
-//   type="email"
-//   value={email}
-//   onChange={setEmail}
-//   required
-//   error={emailError}
-// /&gt;</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Styling Tab -->
-        <div x-show="referenceTab === 'styling'">
-          <div class="space-y-6">
-            <!-- Tailwind Patterns -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                🎨 Patrones de Tailwind CSS
-              </h3>
-
-              <!-- Explicación para dummies -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-pink-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-pink-800'">
-                  🤔 ¿Qué es Tailwind CSS? - Para Dummies
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Concepto:</strong> En lugar de escribir CSS tradicional, usas clases predefinidas directamente
-                  en tu HTML. Es como tener un kit de herramientas de estilos listos para usar.
-                </p>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Analogía backend:</strong> Como usar librerías de validación (joi, zod) en lugar de escribir
-                  toda la lógica de validación desde cero.
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Ejemplo:</strong> En lugar de crear una clase CSS para un botón azul, escribes `bg-blue-500
-                  text-white px-4 py-2 rounded`.
-                </p>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Card Pattern -->
-                <div>
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    🃏 Patrón de Card
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>&lt;div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"&gt;
-  &lt;h3 className="text-lg font-semibold mb-2"&gt;Título&lt;/h3&gt;
-  &lt;p className="text-gray-600"&gt;Contenido...&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-
-                <!-- Form Pattern -->
-                <div>
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                    📋 Patrón de Formulario
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>&lt;form className="max-w-md mx-auto space-y-4"&gt;
-  &lt;input className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" /&gt;
-  &lt;button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"&gt;Enviar&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-                </div>
-
-                <!-- Grid Pattern -->
-                <div>
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
-                    🏗️ Patrón de Grid
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>&lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
-  &lt;div&gt;Item 1&lt;/div&gt;
-  &lt;div&gt;Item 2&lt;/div&gt;
-  &lt;div&gt;Item 3&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-
-                <!-- Flexbox Pattern -->
-                <div>
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
-                    🔄 Patrón Flexbox
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-100 text-gray-800'"
-                  ><code>&lt;div className="flex items-center justify-between p-4"&gt;
-  &lt;div&gt;Contenido izquierda&lt;/div&gt;
-  &lt;div&gt;Contenido derecha&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deployment Tab -->
-        <div x-show="referenceTab === 'deployment'">
-          <div class="space-y-6">
-            <!-- Vercel Deployment -->
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                🚀 Despliegue en Vercel
-              </h3>
-
-              <!-- Explicación para dummies -->
-              <div class="mb-6 p-4 rounded-lg" :class="darkMode ? 'bg-gray-700' : 'bg-orange-50'">
-                <h4 class="font-bold mb-2" :class="darkMode ? 'text-yellow-300' : 'text-orange-800'">
-                  🤔 ¿Qué es el deployment? - Para Dummies
-                </h4>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Concepto:</strong> El deployment es poner tu aplicación frontend en internet para que
-                  cualquier persona pueda acceder a ella desde un dominio (como tuapp.vercel.app).
-                </p>
-                <p class="text-sm mb-2" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Analogía backend:</strong> Como desplegar tu API en Heroku, Railway o AWS. Vercel es para
-                  frontend lo que esas plataformas son para backend.
-                </p>
-                <p class="text-sm" :class="darkMode ? 'text-gray-200' : 'text-gray-700'">
-                  <strong>Flujo:</strong> Conectas tu repo GitHub → Vercel detecta automáticamente que es Next.js → Cada
-                  push se despliega automáticamente → Tu app está live en internet.
-                </p>
-              </div>
-
-              <div class="space-y-4">
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-green-400' : 'border-green-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-green-400' : 'text-green-600'">
-                    1️⃣ Preparar el Proyecto
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code># Asegúrate de que build funciona
-npm run build
-
-# Prueba localmente
-npm start</code></pre>
-                </div>
-
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-blue-400' : 'border-blue-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-blue-400' : 'text-blue-600'">
-                    2️⃣ Subir a GitHub
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code>git add .
-git commit -m "Ready for deployment"
-git push origin main</code></pre>
-                </div>
-
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-purple-400' : 'border-purple-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-purple-400' : 'text-purple-600'">
-                    3️⃣ Configurar en Vercel
-                  </h4>
-                  <div class="text-sm space-y-2" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">
-                    <p>
-                      • Ve a
-                      <a href="https://vercel.com" target="_blank" class="text-blue-500 hover:underline">vercel.com</a>
-                    </p>
-                    <p>• Click en "Add New..." → "Project"</p>
-                    <p>• Conecta tu repositorio de GitHub</p>
-                    <p>• Vercel detectará automáticamente Next.js</p>
-                    <p>• Agrega variables de entorno si es necesario</p>
-                    <p>• Click "Deploy"</p>
-                  </div>
-                </div>
-
-                <div class="border-l-4 pl-4" :class="darkMode ? 'border-orange-400' : 'border-orange-500'">
-                  <h4 class="font-bold mb-2" :class="darkMode ? 'text-orange-400' : 'text-orange-600'">
-                    4️⃣ Variables de Entorno en Producción
-                  </h4>
-                  <pre
-                    class="p-3 rounded text-sm overflow-x-auto transition-colors duration-300"
-                    :class="darkMode ? 'bg-gray-900 text-gray-200' : 'bg-gray-900 text-gray-200'"
-                  ><code># En Vercel Dashboard → Settings → Environment Variables
-NEXT_PUBLIC_API_URL=https://mi-backend.herokuapp.com
-DATABASE_URL=postgresql://...
-JWT_SECRET=mi-secreto-super-seguro</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AI Prompts View -->
-      <div x-show="currentView === 'ai-prompts'" x-transition:enter.duration.300ms>
-        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-          🤖 Prompts para IA en Frontend
-        </h2>
-
-        <div class="grid grid-cols-1 gap-6">
-          <template x-for="prompt in aiPrompts" :key="prompt.title">
-            <div
-              class="rounded-lg shadow-md p-6 transition-colors duration-300"
-              :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-            >
-              <h3
-                class="text-xl font-semibold mb-3"
-                :class="darkMode ? 'text-gray-100' : 'text-gray-800'"
-                x-text="prompt.title"
-              ></h3>
-              <p class="mb-4" :class="darkMode ? 'text-gray-300' : 'text-gray-600'" x-text="prompt.description"></p>
-              <div
-                class="rounded-lg p-4 relative transition-colors duration-300"
-                :class="darkMode ? 'bg-gray-900' : 'bg-gray-900'"
-              >
-                <button
-                  @click="copyToClipboard(prompt.prompt)"
-                  class="absolute top-2 right-2 px-3 py-1 rounded text-sm transition-colors duration-300"
-                  :class="darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-700 hover:bg-gray-600 text-white'"
-                >
-                  📋 Copiar
-                </button>
-                <pre class="text-green-400 text-sm overflow-x-auto pr-16"><code x-text="prompt.prompt"></code></pre>
-              </div>
-            </div>
-          </template>
-        </div>
-      </div>
-
-      <!-- Project View -->
-      <div x-show="currentView === 'project'" x-transition:enter.duration.300ms>
-        <h2 class="text-3xl font-bold mb-8" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-          🛠️ Proyecto Integrador: E-commerce
-        </h2>
-
-        <div
-          class="rounded-lg shadow-md p-8 mb-8 transition-colors duration-300"
-          :class="darkMode ? 'bg-gray-800' : 'bg-white'"
-        >
-          <h3 class="text-xl font-semibold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
-            📋 Checklist del Proyecto
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <template x-for="(task, index) in projectTasks" :key="index">
-              <label
-                class="flex items-center p-3 border rounded-lg cursor-pointer transition-colors duration-300"
-                :class="darkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'"
-              >
-                <input
-                  type="checkbox"
-                  x-model="task.completed"
-                  @change="saveProgress()"
-                  class="w-5 h-5 text-blue-600 rounded mr-3"
-                />
-                <span
-                  :class="task.completed ? 'line-through text-gray-500' : (darkMode ? 'text-gray-200' : 'text-gray-800')"
-                  x-text="task.name"
-                  class="flex-1"
-                ></span>
-              </label>
-            </template>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-r from-green-500 to-blue-600 rounded-lg p-6 text-white">
-          <h3 class="text-xl font-semibold mb-2">🎯 Objetivo del Proyecto</h3>
-          <p class="text-blue-100">
-            Construir un e-commerce completo que demuestre todos los conocimientos adquiridos: React, TypeScript,
-            Next.js, Tailwind CSS, integración con backend, gestión de estado y despliegue en producción.
-          </p>
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer
-      class="py-8 mt-16 transition-colors duration-300"
-      :class="darkMode ? 'bg-gray-900 text-gray-300' : 'bg-gray-800 text-white'"
-    >
-      <div class="container mx-auto px-4">
-        <div class="text-center">
-          <h3 class="text-lg font-semibold mb-2">Frontend Esencial</h3>
-          <p class="text-gray-400 mb-4">
-            Curso diseñado para desarrolladores backend por <span class="text-blue-400 font-medium">Ariel Righi</span>
-          </p>
-          <div class="flex justify-center space-x-4 text-sm">
-            <span>🎯 Enfoque práctico</span>
-            <span>•</span>
-            <span>🤖 Asistido por IA</span>
-            <span>•</span>
-            <span>🚀 Frontend Developer 2025</span>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script src="app.js"></script>
-    <!-- Updated: 2025-08-16 - Prompts IA reorganizados -->
   </body>
 </html>
