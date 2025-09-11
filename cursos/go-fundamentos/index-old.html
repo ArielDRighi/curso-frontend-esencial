@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Transición al Backend con Golang - Dirigiendo a la GenIA</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Para desarrolladores JavaScript/TypeScript: aprende a migrar a Go y dirigir asistentes de IA como GitHub Copilot."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <style>
+      .gradient-bg {
+        background: linear-gradient(135deg, #00ADD8 0%, #007BA7 100%);
+      }
+      .module-card {
+        transition: all 0.3s ease;
+      }
+      .module-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .progress-ring {
+        transition: stroke-dasharray 0.35s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+      }
+      .referenceTab {
+        cursor: pointer;
+      }
+    </style>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>"
+    />
+  </head>
+
+  <body
+    class="font-sans transition-colors duration-300"
+    :class="darkMode ? 'bg-gray-900 text-gray-100' : 'bg-gray-50 text-gray-900'"
+    x-data="courseApp()"
+    x-init="referenceTab = '📚 Documentación Oficial'"
+  >
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+      <div class="container mx-auto px-4 py-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <div class="text-3xl font-bold">🐹</div>
+            <div>
+              <h1 class="text-2xl font-bold">Transición al Backend con Golang</h1>
+              <p class="text-blue-100">Dirigiendo a la GenIA</p>
+            </div>
+            <!-- Mobile Theme Toggle -->
+            <button
+              @click="toggleDarkMode()"
+              class="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white ml-auto"
+              title="Cambiar tema"
+            >
+              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <!-- Theme Toggle Button -->
+            <button
+              @click="toggleDarkMode()"
+              class="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 text-white"
+              title="Cambiar tema"
+            >
+              <svg x-show="!darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+              <svg x-show="darkMode" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </button>
+
+            <div class="text-right">
+              <p class="text-sm text-blue-100">Progreso Total</p>
+              <div class="flex items-center space-x-2">
+                <svg class="w-8 h-8">
+                  <circle cx="16" cy="16" r="14" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" />
+                  <circle
+                    cx="16"
+                    cy="16"
+                    r="14"
+                    stroke="white"
+                    stroke-width="2"
+                    fill="none"
+                    class="progress-ring"
+                    :stroke-dasharray="calculateProgress() + ' 88'"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span class="font-semibold" x-text="Math.round(calculateProgress() * 100 / 88) + '%'"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav
+      class="shadow-md sticky top-0 z-40 transition-colors duration-300"
+      :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+    >
+      <div class="container mx-auto px-4">
+        <div class="flex space-x-8 overflow-x-auto">
+          <button
+            @click="currentView = 'dashboard'"
+            :class="currentView === 'dashboard' ? 
+              (darkMode ? 'border-b-2 border-cyan-400 text-cyan-400' : 'border-b-2 border-cyan-500 text-cyan-600') : 
+              (darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            📊 Dashboard
+          </button>
+          <button
+            @click="currentView = 'modules'"
+            :class="currentView === 'modules' ? 
+              (darkMode ? 'border-b-2 border-cyan-400 text-cyan-400' : 'border-b-2 border-cyan-500 text-cyan-600') : 
+              (darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            📚 Módulos
+          </button>
+          <button
+            @click="currentView = 'reference'"
+            :class="currentView === 'reference' ? 
+              (darkMode ? 'border-b-2 border-cyan-400 text-cyan-400' : 'border-b-2 border-cyan-500 text-cyan-600') : 
+              (darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🔍 Referencia
+          </button>
+          <button
+            @click="currentView = 'ai-prompts'"
+            :class="currentView === 'ai-prompts' ? 
+              (darkMode ? 'border-b-2 border-cyan-400 text-cyan-400' : 'border-b-2 border-cyan-500 text-cyan-600') : 
+              (darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🤖 Prompts IA
+          </button>
+          <button
+            @click="currentView = 'project'"
+            :class="currentView === 'project' ? 
+              (darkMode ? 'border-b-2 border-cyan-400 text-cyan-400' : 'border-b-2 border-cyan-500 text-cyan-600') : 
+              (darkMode ? 'text-gray-300 hover:text-cyan-400' : 'text-gray-600 hover:text-cyan-600')"
+            class="py-4 px-2 font-medium whitespace-nowrap transition-colors"
+          >
+            🛠️ Proyecto
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Dashboard View -->
+      <div x-show="currentView === 'dashboard'" x-transition:enter.duration.300ms>
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold mb-4" :class="darkMode ? 'text-gray-100' : 'text-gray-800'">
+            Dashboard del Curso Go
+          </h2>
+          <div class="bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg p-6 text-white mb-8">
+            <h3 class="text-xl font-semibold mb-2">🎯 Objetivo General</h3>
+            <p class="text-cyan-100">
+              Capacitar a desarrolladores JavaScript/TypeScript en Go y dirigir asistentes de IA como GitHub Copilot para desarrollo backend moderno y eficiente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Módulos</p>
+                <p
+                  class="text-2xl font-bold"
+                  :class="darkMode ? 'text-gray-100' : 'text-gray-900'"
+                  x-text="modules.length"
+                ></p>
+              </div>
+              <div class="text-3xl">🐹</div>
+            </div>
+          </div>
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Completados</p>
+                <p class="text-2xl font-bold text-green-600" x-text="getCompletedModules().length"></p>
+              </div>
+              <div class="text-3xl">✅</div>
+            </div>
+          </div>
+          <div
+            class="rounded-lg p-6 shadow-md transition-colors duration-300"
+            :class="darkMode ? 'bg-gray-800' : 'bg-white'"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium" :class="darkMode ? 'text-gray-300' : 'text-gray-600'">Progreso</p>
+                <p
+                  class="text-2xl font-bold text-cyan-600"
+                  x-text="Math.round(calculateProgress() * 100 / 88) + '%'"
+                ></p>
+              </div>
+              <div class="text-3xl">📈</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Go 2025 Update Notice -->
+        <div class="rounded-lg shadow-md p-6 bg-gradient-to-r from-cyan-600 to-blue-600 text-white mb-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold">� Curso Go Backend 2025</h3>
+            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">ACTUALIZADO</span>
+          </div>
+          <p class="text-cyan-100 mb-4">
+            Aprende a migrar de JavaScript/TypeScript a Go y dirigir asistentes de IA como miembros de tu equipo de desarrollo.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white bg-opacity-10 rounded-lg p-4">
+              <div class="text-lg font-semibold mb-2">🚀 Migración Guiada</div>
+              <div class="text-sm text-cyan-100">De Node.js/TypeScript a Go con comparaciones lado a lado</div>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-4">
+              <div class="text-lg font-semibold mb-2">🤖 Dirigiendo IA</div>
+              <div class="text-sm text-cyan-100">GitHub Copilot y Claude como miembros del equipo</div>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-4">
+              <div class="text-lg font-semibold mb-2">🔧 Proyecto Real</div>
+              <div class="text-sm text-cyan-100">API REST completa con PostgreSQL y JWT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script src="course-config.js"></script>
+    <script src="../shared/js/course-engine-standalone.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

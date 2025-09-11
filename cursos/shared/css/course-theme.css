@@ -243,6 +243,30 @@
   font-size: 1.1rem;
 }
 
+/* ===== Secciones de Contenido ===== */
+.content-section {
+  display: none;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.content-section.active {
+  display: block !important;
+}
+
+/* Animación de transición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ===== Welcome Banner Go ===== */
 .welcome-banner {
   background: var(--go-gradient);
@@ -472,6 +496,36 @@
   justify-content: center;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+/* ===== Módulos Grid ===== */
+.modules-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.module-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--shadow-color);
+  border-color: var(--primary-color);
 }
 
 .module-title {

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Debug - Curso Go</title>
+    <style>
+      .nav-btn {
+        padding: 10px 20px;
+        margin: 5px;
+        background: #00add8;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .nav-btn.active {
+        background: #007ba7;
+      }
+      .content-section {
+        display: none;
+        padding: 20px;
+        border: 2px solid #ccc;
+        margin: 10px 0;
+      }
+      .content-section.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 Test Debug - Curso Go</h1>
+
+    <nav>
+      <button class="nav-btn active" data-section="dashboard" id="dashboardBtn">📊 Dashboard</button>
+      <button class="nav-btn" data-section="modules" id="modulesBtn">📚 Módulos</button>
+      <button class="nav-btn" data-section="project" id="projectBtn">🚀 Proyecto</button>
+    </nav>
+
+    <main>
+      <section class="content-section active" id="dashboardSection">
+        <h2>📊 Dashboard</h2>
+        <p>Esta es la sección del dashboard</p>
+        <button id="startLearningBtn">🚀 Comenzar Aprendizaje</button>
+      </section>
+
+      <section class="content-section" id="modulesSection">
+        <h2>📚 Módulos</h2>
+        <div id="modulesGrid">Aquí se cargarán los módulos...</div>
+      </section>
+
+      <section class="content-section" id="projectSection">
+        <h2>🚀 Proyecto</h2>
+        <p>Esta es la sección del proyecto</p>
+      </section>
+    </main>
+
+    <div id="logs" style="background: #f0f0f0; padding: 10px; margin: 20px 0; height: 200px; overflow-y: auto">
+      <h3>🔧 Logs:</h3>
+    </div>
+
+    <script>
+      // Sistema de logs simple
+      function addLog(message) {
+        const logsDiv = document.getElementById("logs");
+        const logEntry = document.createElement("div");
+        logEntry.textContent = new Date().toLocaleTimeString() + " - " + message;
+        logsDiv.appendChild(logEntry);
+        logsDiv.scrollTop = logsDiv.scrollHeight;
+      }
+
+      // Configuración del curso (simplificada)
+      const courseConfig = {
+        modules: [
+          {
+            id: "modulo-1",
+            title: "Módulo 1: Introducción a Go",
+            description: "Fundamentos y migración",
+            emoji: "📋",
+            estimatedHours: 9,
+            sections: [
+              { id: "por-que-go", title: "¿Por qué Go?" },
+              { id: "configuracion", title: "Configuración" },
+            ],
+          },
+          {
+            id: "modulo-2",
+            title: "Módulo 2: Sintaxis Básica",
+            description: "Variables, funciones y estructuras",
+            emoji: "⚡",
+            estimatedHours: 6,
+            sections: [],
+          },
+        ],
+      };
+
+      // CourseEngine simplificado
+      class CourseEngine {
+        constructor(config) {
+          this.config = config;
+          this.modules = new Map();
+          this.currentView = "dashboard";
+          addLog("CourseEngine creado");
+        }
+
+        async initialize() {
+          addLog("Inicializando CourseEngine...");
+          this.loadModules();
+          this.setupNavigationButtons();
+          addLog("CourseEngine inicializado correctamente");
+        }
+
+        loadModules() {
+          if (this.config.modules) {
+            this.config.modules.forEach((module) => {
+              this.modules.set(module.id, module);
+            });
+            addLog(`Cargados ${this.modules.size} módulos`);
+          }
+        }
+
+        setupNavigationButtons() {
+          addLog("Configurando botones de navegación...");
+
+          const navButtons = document.querySelectorAll(".nav-btn[data-section]");
+          addLog(`Encontrados ${navButtons.length} botones de navegación`);
+
+          navButtons.forEach((button) => {
+            const section = button.getAttribute("data-section");
+            addLog(`Configurando botón: ${section}`);
+
+            button.addEventListener("click", (e) => {
+              e.preventDefault();
+              addLog(`Click en botón: ${section}`);
+              this.switchView(section);
+            });
+          });
+
+          const startBtn = document.getElementById("startLearningBtn");
+          if (startBtn) {
+            addLog("Configurando botón de comenzar aprendizaje");
+            startBtn.addEventListener("click", () => {
+              addLog("Click en comenzar aprendizaje");
+              this.switchView("modules");
+            });
+          }
+        }
+
+        async switchView(viewName) {
+          addLog(`Cambiando a vista: ${viewName}`);
+          this.currentView = viewName;
+
+          // Ocultar todas las secciones
+          document.querySelectorAll(".content-section").forEach((section) => {
+            section.classList.remove("active");
+          });
+
+          // Actualizar navegación
+          document.querySelectorAll(".nav-btn").forEach((btn) => {
+            btn.classList.remove("active");
+          });
+
+          const activeButton = document.querySelector(`.nav-btn[data-section="${viewName}"]`);
+          if (activeButton) {
+            activeButton.classList.add("active");
+            addLog(`Botón ${viewName} marcado como activo`);
+          }
+
+          // Mostrar la sección correspondiente
+          const targetSection = document.getElementById(`${viewName}Section`);
+          if (targetSection) {
+            targetSection.classList.add("active");
+            addLog(`Sección ${viewName}Section mostrada`);
+
+            if (viewName === "modules") {
+              await this.renderModulesContent();
+            }
+          } else {
+            addLog(`ERROR: Sección ${viewName}Section no encontrada`);
+          }
+        }
+
+        async renderModulesContent() {
+          addLog("Renderizando contenido de módulos...");
+          const modulesGrid = document.getElementById("modulesGrid");
+          if (!modulesGrid) {
+            addLog("ERROR: modulesGrid no encontrado");
+            return;
+          }
+
+          const modules = Array.from(this.modules.values());
+          addLog(`Renderizando ${modules.length} módulos`);
+
+          const modulesHtml = modules
+            .map(
+              (module) => `
+                    <div style="border: 1px solid #ccc; padding: 1rem; margin: 0.5rem 0; cursor: pointer;"
+                         onclick="courseEngine.selectModule('${module.id}')">
+                        <h3>${module.emoji} ${module.title}</h3>
+                        <p>${module.description}</p>
+                        <small>📚 ${module.sections?.length || 0} secciones | ⏱️ ${module.estimatedHours}h</small>
+                    </div>
+                `
+            )
+            .join("");
+
+          modulesGrid.innerHTML = modulesHtml;
+          addLog("Módulos renderizados correctamente");
+        }
+
+        selectModule(moduleId) {
+          addLog(`Seleccionando módulo: ${moduleId}`);
+          const module = this.modules.get(moduleId);
+          if (module) {
+            alert(
+              `Módulo seleccionado: ${module.title}\n\nEn la implementación real aquí se abriría el contenido del módulo.`
+            );
+          } else {
+            addLog(`ERROR: Módulo ${moduleId} no encontrado`);
+          }
+        }
+      }
+
+      // Inicialización
+      let courseEngine;
+      window.courseEngine = courseEngine; // Para debugging global
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          addLog("DOM cargado, iniciando aplicación...");
+          courseEngine = new CourseEngine(courseConfig);
+          window.courseEngine = courseEngine; // Para debugging global
+          await courseEngine.initialize();
+          addLog("Aplicación iniciada correctamente");
+        } catch (error) {
+          addLog(`ERROR: ${error.message}`);
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>

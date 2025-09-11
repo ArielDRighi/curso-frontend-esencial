@@ -433,6 +433,3 @@ class CourseEngine {
     };
   }
 }
-
-// Exportar para uso en módulos
-export { CourseEngine };
