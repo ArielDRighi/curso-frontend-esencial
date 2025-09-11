@@ -1,17 +1,167 @@
-# 🚀 Frontend Esencial - Curso Interactivo
+# � Portal de Cursos de Programación - Documentación
 
-Una aplicación web interactiva diseñada para guiar a desarrolladores backend a través del aprendizaje de frontend moderno con React, TypeScript, Next.js y Tailwind CSS.
+Este directorio contiene toda la documentación, recursos y materiales educativos del portal de cursos de programación.
 
-## 📁 Estructura del Proyecto
+## 🎓 Cursos Disponibles
+
+### 🎨 [Curso Frontend Esencial](./CURSO_FRONTEND_ESENCIAL.md)
+
+**Estado:** ✅ Disponible y Completo  
+**Tecnologías:** React, Vue, Angular, TypeScript, Tailwind CSS  
+**Duración:** 10 módulos • 40+ horas de contenido  
+**Nivel:** Intermedio a Avanzado
+
+Una aplicación web interactiva diseñada para guiar a desarrolladores backend a través del aprendizaje de frontend moderno.
+
+### ☕ [Curso Java Spring Boot](./CURSO_JAVA_SPRING_BOOT.md)
+
+**Estado:** 🚧 En desarrollo activo  
+**Tecnologías:** Spring Boot, JPA, Security, Microservices, Docker  
+**Duración:** 11 módulos • 50+ horas de contenido  
+**Nivel:** Intermedio a Avanzado
+
+Curso completo de Java Spring Boot diseñado especialmente para desarrolladores backend que quieren dominar el ecosistema Java empresarial.
+
+### 🚀 [Curso Go - Transición al Backend](./CURSO_GO.md)
+
+**Estado:** 📋 Documentación Completa  
+**Tecnologías:** Go, PostgreSQL, Docker, Microservices, IA-Assisted Development  
+**Duración:** 6 módulos • 35+ horas de contenido  
+**Nivel:** Intermedio a Avanzado
+
+Curso innovador para desarrolladores JavaScript/TypeScript que quieren migrar a Go, incluyendo técnicas de desarrollo asistido por IA.
+
+---
+
+## 📁 Estructura de Documentación
 
 ```
-Frontend/
-├── index.html          # Aplicación principal
-├── app.js             # Lógica de la aplicación (Alpine.js)
-├── styles.css         # Estilos personalizados
-├── CURSO_FRONTEND_ESENCIAL.md  # Contenido original del curso
-└── README.md          # Este archivo
+docs/
+├── README.md                        # Este archivo
+├── CURSO_FRONTEND_ESENCIAL.md       # Curso completo de Frontend
+├── CURSO_FRONTEND_ESENCIAL.pdf      # Versión PDF del curso Frontend
+├── CURSO_JAVA_SPRING_BOOT.md        # Curso completo de Java Spring Boot
+├── CURSO_JAVA_SPRING_BOOT.pdf       # Versión PDF del curso Java
+├── CURSO_GO.md                      # Curso completo de Golang
+├── PLAN_DESARROLLO_CURSO_JAVA.md    # Plan de desarrollo detallado
+├── PLAN_IMPLEMENTACION_JAVA.md      # Plan de implementación técnica
+├── ANALISIS_DISEÑO_CURSOS.md        # Análisis y diseño pedagógico
+└── RECURSOS_DISEÑO_FRONTEND_IA.md   # Recursos adicionales y IA
 ```
+
+---
+
+## 🎯 Características Principales de los Cursos
+
+### 🏠 Aplicaciones Interactivas
+
+- **Dashboard de progreso:** Visualización circular del progreso general
+- **Sistema de módulos:** Contenido estructurado y navegable
+- **Persistencia local:** Progreso guardado automáticamente
+- **Diseño responsive:** Optimizado para móviles y desktop
+
+### 🤖 Integración con IA
+
+- **Plantillas de prompts:** Optimizadas para GitHub Copilot y Claude
+- **Desarrollo asistido:** Técnicas para dirigir asistentes de IA
+- **Ejemplos prácticos:** Casos de uso reales con IA
+- **Mejores prácticas:** Cómo evaluar código generado por IA
+
+### 📚 Contenido Educativo
+
+- **Enfoque práctico:** Proyectos reales desde el primer día
+- **Arquitectura moderna:** Clean Architecture, microservicios
+- **DevOps integrado:** Docker, CI/CD, testing automatizado
+- **Seguridad:** JWT, autenticación, autorización
+
+---
+
+## 🛠️ Tecnologías Cubiertas
+
+### Frontend
+
+- **Frameworks:** React, Vue.js, Angular
+- **Languages:** TypeScript, JavaScript ES6+
+- **Styling:** Tailwind CSS, CSS3, Sass
+- **Tools:** Vite, Webpack, Next.js
+
+### Backend
+
+- **Languages:** Java, Go (Golang)
+- **Frameworks:** Spring Boot, Fiber, Express
+- **Databases:** PostgreSQL, MongoDB
+- **Architecture:** REST APIs, Microservices
+
+### DevOps & Tools
+
+- **Containers:** Docker, Kubernetes
+- **CI/CD:** GitHub Actions, Jenkins
+- **Testing:** JUnit, Go testing, Jest
+- **Documentation:** Swagger/OpenAPI
+
+---
+
+## 📊 Información de los Cursos
+
+| **Curso**         | **Estado**     | **Duración** | **Nivel**           | **Modalidad** |
+| ----------------- | -------------- | ------------ | ------------------- | ------------- |
+| Frontend Esencial | ✅ Completo    | 40+ horas    | Intermedio-Avanzado | Interactivo   |
+| Java Spring Boot  | 🚧 Desarrollo  | 50+ horas    | Intermedio-Avanzado | Práctico      |
+| Go Backend + IA   | 📋 Documentado | 35+ horas    | Intermedio-Avanzado | IA-Asistido   |
+
+---
+
+## 🚀 Siguientes Pasos
+
+### Próximos Cursos en Planificación
+
+1. **Python para Data Science** (Q4 2025)
+2. **DevOps y Cloud Computing** (Q4 2025)
+3. **Arquitectura de Microservicios** (Q1 2026)
+
+### Mejoras Continuas
+
+- **Versiones interactivas** de todos los cursos
+- **Integración con plataformas** de e-learning
+- **Certificaciones** y badges
+- **Comunidad** de estudiantes
+
+---
+
+## 📞 Recursos y Soporte
+
+### Enlaces Útiles
+
+- 🌐 **Portal:** [https://arieldrigh.github.io/curso-frontend-esencial/](https://arieldrigh.github.io/curso-frontend-esencial/)
+- 📂 **Repositorio:** [https://github.com/ArielDRighi/curso-frontend-esencial](https://github.com/ArielDRighi/curso-frontend-esencial)
+- 📧 **Contacto:** Via Issues de GitHub
+
+### Herramientas de IA Recomendadas
+
+- **GitHub Copilot** - Asistente de código
+- **Claude Sonnet 4** - Análisis y generación de código
+- **ChatGPT** - Consultas y debugging
+- **Codeium** - Alternativa gratuita a Copilot
+
+---
+
+## 📄 Licencia y Uso
+
+Este material está diseñado con fines educativos. Siéntete libre de usar, modificar y distribuir según tus necesidades de aprendizaje.
+
+### Atribución
+
+Si utilizas este material, por favor considera:
+
+- ⭐ Dar una estrella al repositorio
+- 🔗 Mencionar el origen del contenido
+- 📢 Compartir con otros desarrolladores
+
+---
+
+> **💡 Nota:** Todos los cursos están actualizados con las mejores prácticas de 2025 e incluyen enfoques modernos de desarrollo asistido por IA.
+
+**¡Happy Learning! 🚀**
 
 ## 🚀 Cómo Usar
 
