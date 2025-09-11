@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Curso Go - Demo Funcional</title>
+
+    <!-- Estilos del curso Go -->
+    <link rel="stylesheet" href="cursos/shared/css/course-theme.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #00add8 0%, #007d9c 100%);
+        min-height: 100vh;
+        color: white;
+      }
+
+      .demo-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .demo-header h1 {
+        font-size: 3rem;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .demo-header .gopher {
+        font-size: 4rem;
+        animation: bounce 2s infinite;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .feature-card h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.3rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .demo-actions {
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .demo-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 10px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .demo-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-btn.primary {
+        background: #ff6b35;
+        border-color: #ff6b35;
+      }
+
+      .demo-btn.primary:hover {
+        background: #e55a2b;
+        border-color: #e55a2b;
+      }
+
+      .status-indicator {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        font-size: 1.1rem;
+      }
+
+      .status-icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+
+      .go-code-demo {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: "Monaco", "Consolas", monospace;
+        overflow-x: auto;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .demo-header h1 {
+          font-size: 2rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .demo-btn {
+          display: block;
+          margin: 10px auto;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-container">
+      <div class="demo-header">
+        <div class="gopher">🐹</div>
+        <h1>🚀 Curso Go - FASE 2 Demo</h1>
+        <p style="font-size: 1.2rem; opacity: 0.9; margin: 20px 0">
+          Arquitectura modular implementada • Diseño visual replicado • Funcionalidades específicas de Go
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📦</span>
+          <h3>Arquitectura Modular</h3>
+          <p>Sistema base reutilizable con componentes especializados. Reducción del 95% en líneas de código.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3>Diseño Visual Exacto</h3>
+          <p>Mantiene la interfaz exacta de cursos existentes con colores oficiales de Go.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🎮</span>
+          <h3>Go Playground</h3>
+          <p>Integración directa con el playground oficial de Go para ejecutar código en línea.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Concurrencia Visual</h3>
+          <p>Herramientas para visualizar goroutines y channels de forma interactiva.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🌐</span>
+          <h3>API Tester</h3>
+          <p>Probador integrado para APIs REST desarrolladas durante el curso.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🗄️</span>
+          <h3>DB Explorer</h3>
+          <p>Explorador de base de datos para visualizar esquemas y consultas.</p>
+        </div>
+      </div>
+
+      <div class="status-indicator">
+        <h3>📊 Estado de la Implementación</h3>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Sistema base modular (CourseEngine, SectionManager, ContentLoader, etc.)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Configuración completa del curso Go (6 módulos, proyecto final)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Aplicación principal minimalista (150 líneas vs 2,000+)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>HTML con diseño visual exacto replicado</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Estilos CSS con tema Go (colores oficiales, animaciones)</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">✅</span>
+          <span>Contenido demo del primer módulo</span>
+        </div>
+        <div class="status-item">
+          <span class="status-icon">⏳</span>
+          <span>Pendiente: Contenido completo de módulos 2-6 (FASE 3)</span>
+        </div>
+      </div>
+
+      <div class="go-code-demo">
+        <h4>💻 Ejemplo de código Go que verás en el curso:</h4>
+        <pre><code>package main
+
+import (
+    "fmt"
+    "time"
+    "sync"
+)
+
+func main() {
+    var wg sync.WaitGroup
+    
+    // Demostrar concurrencia con goroutines
+    for i := 1; i <= 3; i++ {
+        wg.Add(1)
+        go func(id int) {
+            defer wg.Done()
+            fmt.Printf("🚀 Goroutine %d ejecutándose\n", id)
+            time.Sleep(time.Second)
+            fmt.Printf("✅ Goroutine %d completada\n", id)
+        }(i)
+    }
+    
+    wg.Wait()
+    fmt.Println("🎉 ¡Todas las goroutines completadas!")
+}</code></pre>
+      </div>
+
+      <div class="demo-actions">
+        <a href="cursos/go-fundamentos/index.html" class="demo-btn primary"> 🚀 Acceder al Curso Go </a>
+        <a href="https://play.golang.org/" class="demo-btn" target="_blank"> 🎮 Go Playground </a>
+        <a href="test-go-course.html" class="demo-btn"> 🧪 Tests Técnicos </a>
+        <button class="demo-btn" onclick="showArchitecture()">📐 Ver Arquitectura</button>
+      </div>
+
+      <div id="architectureInfo" style="display: none">
+        <div class="status-indicator">
+          <h3>🏗️ Arquitectura del Sistema</h3>
+          <div style="text-align: left">
+            <h4>📁 Estructura de directorios:</h4>
+            <pre style="color: white; background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 8px">
+cursos/
+├── shared/                    # 🔧 Sistema base reutilizable
+│   ├── js/
+│   │   ├── course-engine.js      # Motor principal (314 líneas)
+│   │   ├── section-manager.js    # Gestor de secciones (465 líneas)
+│   │   ├── content-loader.js     # Cargador de contenido (421 líneas)
+│   │   ├── progress-tracker.js   # Seguimiento de progreso (482 líneas)
+│   │   └── storage-manager.js    # Gestión de almacenamiento (537 líneas)
+│   └── css/
+│       └── course-theme.css      # Estilos del tema Go
+├── go-fundamentos/            # 🚀 Curso específico de Go
+│   ├── index.html               # HTML principal con diseño exacto
+│   ├── app.js                   # Aplicación Go (150 líneas)
+│   ├── course-config.js         # Configuración del curso
+│   └── content/
+│       ├── modules/             # Contenido de módulos
+│       └── project/             # Proyecto final
+                    </pre
+            >
+
+            <h4>⚙️ Características implementadas:</h4>
+            <ul style="text-align: left">
+              <li>✅ <strong>Reducción de código:</strong> 95%+ menos líneas por curso</li>
+              <li>✅ <strong>Reutilización:</strong> Sistema base compartido entre cursos</li>
+              <li>✅ <strong>Modularidad:</strong> Separación clara de responsabilidades</li>
+              <li>✅ <strong>Escalabilidad:</strong> Fácil agregar nuevos cursos</li>
+              <li>✅ <strong>Mantenibilidad:</strong> Cambios centralizados en sistema base</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showArchitecture() {
+        const info = document.getElementById("architectureInfo");
+        info.style.display = info.style.display === "none" ? "block" : "none";
+      }
+
+      // Animación de entrada
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".feature-card");
+        cards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(30px)";
+
+          setTimeout(() => {
+            card.style.transition = "all 0.6s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, index * 100);
+        });
+      });
+    </script>
+  </body>
+</html>

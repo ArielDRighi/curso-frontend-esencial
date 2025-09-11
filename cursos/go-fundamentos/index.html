@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🚀 Curso Go - Fundamentos y Desarrollo Web</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Aprende Go desde cero hasta desarrollo web profesional. Concurrencia, APIs REST, bases de datos y más."
+    />
+    <meta
+      name="keywords"
+      content="go, golang, curso go, desarrollo web go, concurrencia, goroutines, api rest, gin framework"
+    />
+    <meta name="author" content="Curso Go - Fundamentos" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="🚀 Curso Go - Fundamentos y Desarrollo Web" />
+    <meta property="og:description" content="Aprende Go desde cero hasta desarrollo web profesional" />
+    <meta property="og:image" content="assets/go-preview.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="🚀 Curso Go - Fundamentos y Desarrollo Web" />
+    <meta property="twitter:description" content="Aprende Go desde cero hasta desarrollo web profesional" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/go-favicon.ico" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../shared/css/course-theme.css" />
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Curso Go - Fundamentos y Desarrollo Web",
+        "description": "Curso completo de Go desde fundamentos hasta desarrollo web profesional",
+        "provider": {
+          "@type": "Organization",
+          "name": "Portal de Cursos"
+        },
+        "educationalLevel": "Principiante a Intermedio",
+        "timeRequired": "PT35H",
+        "courseCode": "GO-FUND-2025"
+      }
+    </script>
+  </head>
+
+  <body class="go-theme">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="loading-content">
+        <div class="go-gopher">🐹</div>
+        <div class="loading-spinner"></div>
+        <h3>Inicializando Curso Go</h3>
+        <p>Preparando goroutines y channels...</p>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="curso-container" id="cursoContainer">
+      <!-- Header -->
+      <header class="curso-header" id="header">
+        <div class="header-content">
+          <div class="course-info">
+            <div class="course-icon">🚀</div>
+            <div class="course-details">
+              <h1 class="course-title">Go - Fundamentos y Desarrollo Web</h1>
+              <p class="course-subtitle">De cero a desarrollo web con Go, Gin y bases de datos</p>
+            </div>
+          </div>
+
+          <div class="header-controls">
+            <div class="progress-summary" id="progressSummary">
+              <div class="progress-ring">
+                <svg width="50" height="50">
+                  <circle cx="25" cy="25" r="20" stroke="#e0e0e0" stroke-width="4" fill="none" />
+                  <circle
+                    cx="25"
+                    cy="25"
+                    r="20"
+                    stroke="#00ADD8"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-dasharray="125.6"
+                    stroke-dashoffset="125.6"
+                    class="progress-circle"
+                  />
+                </svg>
+                <span class="progress-text">0%</span>
+              </div>
+              <div class="progress-details">
+                <span class="modules-completed">0/6 módulos</span>
+                <span class="time-remaining">35h estimadas</span>
+              </div>
+            </div>
+
+            <div class="header-actions">
+              <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+                <span class="theme-icon">🌙</span>
+              </button>
+              <button class="settings-btn" id="settingsBtn" title="Configuración">
+                <span class="settings-icon">⚙️</span>
+              </button>
+              <button class="bookmark-btn" id="bookmarkBtn" title="Marcar página">
+                <span class="bookmark-icon">🔖</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation -->
+      <nav class="curso-nav" id="navigation">
+        <div class="nav-container">
+          <button class="nav-btn active" data-section="dashboard" id="dashboardBtn">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+          </button>
+          <button class="nav-btn" data-section="modules" id="modulesBtn">
+            <span class="nav-icon">📚</span>
+            <span class="nav-text">Módulos</span>
+          </button>
+          <button class="nav-btn" data-section="project" id="projectBtn">
+            <span class="nav-icon">🚀</span>
+            <span class="nav-text">Proyecto</span>
+          </button>
+          <button class="nav-btn" data-section="reference" id="referenceBtn">
+            <span class="nav-icon">📖</span>
+            <span class="nav-text">Referencia</span>
+          </button>
+          <button class="nav-btn" data-section="prompts" id="promptsBtn">
+            <span class="nav-icon">🤖</span>
+            <span class="nav-text">Prompts IA</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="curso-main" id="mainContent">
+        <!-- Dashboard Section -->
+        <section class="content-section active" id="dashboardSection">
+          <div class="dashboard-container">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+              <div class="banner-content">
+                <div class="banner-icon">🐹</div>
+                <div class="banner-text">
+                  <h2>¡Bienvenido al mundo de Go!</h2>
+                  <p>Aprende el lenguaje creado por Google para desarrollo moderno y eficiente</p>
+                </div>
+                <div class="banner-actions">
+                  <button class="start-learning-btn" id="startLearningBtn">🚀 Comenzar Aprendizaje</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="progress-overview">
+              <h3>📈 Tu Progreso</h3>
+              <div class="progress-cards">
+                <div class="progress-card">
+                  <div class="card-icon">📚</div>
+                  <div class="card-content">
+                    <h4>Módulos</h4>
+                    <div class="progress-bar">
+                      <div class="progress-fill" data-progress="0"></div>
+                    </div>
+                    <span class="progress-label">0 de 6 completados</span>
+                  </div>
+                </div>
+
+                <div class="progress-card">
+                  <div class="card-icon">🚀</div>
+                  <div class="card-content">
+                    <h4>Proyecto</h4>
+                    <div class="progress-bar">
+                      <div class="progress-fill" data-progress="0"></div>
+                    </div>
+                    <span class="progress-label">0% completado</span>
+                  </div>
+                </div>
+
+                <div class="progress-card">
+                  <div class="card-icon">⏱️</div>
+                  <div class="card-content">
+                    <h4>Tiempo</h4>
+                    <div class="time-stats">
+                      <span class="time-spent">0h estudiadas</span>
+                      <span class="time-remaining">35h restantes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+              <h3>⚡ Acciones Rápidas</h3>
+              <div class="action-cards">
+                <div class="action-card" data-action="continue-learning">
+                  <div class="action-icon">📖</div>
+                  <h4>Continuar Aprendiendo</h4>
+                  <p>Retomar desde donde lo dejaste</p>
+                </div>
+
+                <div class="action-card" data-action="go-playground">
+                  <div class="action-icon">🎮</div>
+                  <h4>Go Playground</h4>
+                  <p>Prueba código Go en línea</p>
+                </div>
+
+                <div class="action-card" data-action="project-overview">
+                  <div class="action-icon">🏗️</div>
+                  <h4>Ver Proyecto</h4>
+                  <p>API REST de gestión de tareas</p>
+                </div>
+
+                <div class="action-card" data-action="go-docs">
+                  <div class="action-icon">📚</div>
+                  <h4>Documentación</h4>
+                  <p>Referencia oficial de Go</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+              <h3>📋 Actividad Reciente</h3>
+              <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                  <div class="activity-icon">🆕</div>
+                  <div class="activity-content">
+                    <span class="activity-text">¡Curso iniciado! Bienvenido a Go</span>
+                    <span class="activity-time">Ahora</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Modules Section -->
+        <section class="content-section" id="modulesSection">
+          <div class="modules-container">
+            <h2>📚 Módulos del Curso</h2>
+            <div class="modules-grid" id="modulesGrid">
+              <!-- Los módulos se cargarán dinámicamente -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Project Section -->
+        <section class="content-section" id="projectSection">
+          <div class="project-container">
+            <h2>🚀 Proyecto Final: API REST de Gestión de Tareas</h2>
+            <div class="project-content" id="projectContent">
+              <!-- El contenido del proyecto se cargará dinámicamente -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Reference Section -->
+        <section class="content-section" id="referenceSection">
+          <div class="reference-container">
+            <h2>📖 Referencia de Go</h2>
+            <div class="reference-content" id="referenceContent">
+              <!-- La referencia se cargará dinámicamente -->
+            </div>
+          </div>
+        </section>
+
+        <!-- AI Prompts Section -->
+        <section class="content-section" id="promptsSection">
+          <div class="prompts-container">
+            <h2>🤖 Prompts de IA para Go</h2>
+            <div class="prompts-content" id="promptsContent">
+              <!-- Los prompts se cargarán dinámicamente -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Module Content Section (Hidden by default) -->
+        <section class="content-section module-content-section" id="moduleContentSection">
+          <div class="module-content-container">
+            <div class="module-header">
+              <button class="back-to-modules" id="backToModules">← Volver a Módulos</button>
+              <div class="module-info">
+                <h2 id="currentModuleTitle">Cargando módulo...</h2>
+                <div class="module-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgressFill"></div>
+                  </div>
+                  <span id="moduleProgressText">0%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="module-content" id="moduleContent">
+              <!-- El contenido del módulo se cargará aquí -->
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Floating Elements -->
+      <div class="floating-elements">
+        <!-- Go to Top Button -->
+        <button class="scroll-to-top" id="scrollToTop" title="Ir arriba">↑</button>
+
+        <!-- Quick Help -->
+        <button class="quick-help" id="quickHelp" title="Ayuda rápida">❓</button>
+
+        <!-- Progress Indicator -->
+        <div class="floating-progress" id="floatingProgress">
+          <div class="floating-progress-bar">
+            <div class="floating-progress-fill"></div>
+          </div>
+          <span class="floating-progress-text">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>⚙️ Configuración</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-group">
+            <label>🎨 Tema</label>
+            <select id="themeSelect">
+              <option value="light">Claro</option>
+              <option value="dark">Oscuro</option>
+              <option value="auto">Automático</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label>💾 Guardado automático</label>
+            <input type="checkbox" id="autoSaveToggle" checked />
+          </div>
+
+          <div class="setting-group">
+            <label>🔔 Notificaciones</label>
+            <input type="checkbox" id="notificationsToggle" checked />
+          </div>
+
+          <div class="setting-group">
+            <label>🎬 Animaciones</label>
+            <input type="checkbox" id="animationsToggle" checked />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal" id="helpModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>❓ Ayuda Rápida</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="help-section">
+            <h4>🧭 Navegación</h4>
+            <ul>
+              <li>📊 Dashboard: Vista general del curso</li>
+              <li>📚 Módulos: Contenido del curso organizado</li>
+              <li>🚀 Proyecto: Proyecto final paso a paso</li>
+              <li>📖 Referencia: Documentación y recursos</li>
+              <li>🤖 Prompts IA: Plantillas para ChatGPT/Claude</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h4>⌨️ Atajos de Teclado</h4>
+            <ul>
+              <li><kbd>1</kbd> - Dashboard</li>
+              <li><kbd>2</kbd> - Módulos</li>
+              <li><kbd>3</kbd> - Proyecto</li>
+              <li><kbd>4</kbd> - Referencia</li>
+              <li><kbd>5</kbd> - Prompts IA</li>
+            </ul>
+          </div>
+
+          <div class="help-section">
+            <h4>🎮 Go Playground</h4>
+            <p>Usa los botones "🚀 Ejecutar en Go Playground" para probar código en el playground oficial de Go.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
